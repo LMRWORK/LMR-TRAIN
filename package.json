@@ -4,7 +4,7 @@
   "description": "lmrwork",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --colors --progress --content-base dist --host 0.0.0.0 --port 9966",
+    "dev": "webpack-dev-server --inline --colors --progress --content-base dist --host 202.103.68.62 --port 9966",
     "build": "webpack -p",
     "devtools": "react-devtools"
   },
@@ -36,7 +36,6 @@
     "immutable": "^3.8.1",
     "material-ui": "^0.17.0",
     "react": "^15.4.2",
-    "react-day-picker": "^5.2.0",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
     "react-router-dom": "^4.0.0",

@@ -4,9 +4,8 @@ import { HashRouter as Router, Route } from 'react-router-dom'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import HomePage from './src/layouts/HomePage'
-import DatePickPage from './src/layouts/DatePickPage'
-import SearchCityPage from './src/layouts/SearchCityPage'
+import Home from './src/layouts/Home'
+import TrainCity from './src/layouts/TrainCity'
 import reducer from './src/reducers/Trains';
 
 //MaterialIcons-Regular.woff -> https://fonts.googleapis.com/icon?family=Material+Icons
@@ -26,9 +25,8 @@ render(
     <Provider store={store}>
       <Router hashType="noslash">
         <div>
-          <Route exact path="/" component={HomePage}/>
-          <Route path="/calendar" component={DatePickPage}/>
-          <Route path="/search-city/:id" component={SearchCityPage}/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/search-city/:id" component={TrainCity}/>
         </div>
       </Router>
     </Provider>

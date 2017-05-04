@@ -7,8 +7,8 @@ const config = {
 
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    vendor1: ['react', 'react-dom', 'react-router-dom'],
-    vendor2: ['react-redux', 'react-day-picker', 'immutable', 'fecha', 'react-tap-event-plugin'],
+    vendor1: ['react', 'react-dom', 'react-router-dom', 'react-redux'],
+    vendor2: ['immutable', 'fecha', 'react-tap-event-plugin'],
   },
 
   output: {
