@@ -7,8 +7,8 @@ const config = {
 
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    vendor1: ['react', 'react-dom', 'react-redux'],
-    vendor2: ['immutable', 'fecha'],
+    vendor1: ['react', 'react-dom', 'react-redux', 'immutable'],
+    vendor2: ['framework7-react'],
   },
 
   output: {
@@ -35,7 +35,7 @@ const config = {
         loader: 'url-loader?importLoaders=1&limit=1&name=/font/[name].[ext]'
   　　},
       {
-        test: /\.txt$/,
+        test: /\.(txt|png)$/,
         exclude: /node_modules/,
         loader: 'url-loader?importLoaders=1&limit=1&name=/data/[name].[ext]'
       }
