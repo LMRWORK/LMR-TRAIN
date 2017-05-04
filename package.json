@@ -4,7 +4,7 @@
   "description": "lmrwork",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --colors --progress --content-base dist --host 0.0.0.0 --port 9966",
+    "dev": "webpack-dev-server --inline --colors --progress --content-base dist --host 202.103.68.62 --port 9966",
     "build": "webpack -p",
     "devtools": "react-devtools"
   },
