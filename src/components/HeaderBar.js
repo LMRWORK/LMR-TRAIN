@@ -3,7 +3,7 @@ import { connect, mapDispatchToProps } from 'react-redux';
 
 const HeaderBar = (props) => (
   <div>
-    HeaderBar
+    HeaderBar...
   </div>
 );
 

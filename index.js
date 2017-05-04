@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './src/reducers/Trains';
-import HomePage from './src/layouts/HomePage';
+import App from './src/app/Trains';
 
 //车站名文本：Acheng|Acheng|阿城|ACB|3141@Acheng|Acheng|阿城|ACB|3141
 import './src/resources/data/stations.txt';
@@ -16,7 +16,7 @@ render(
   (
     <Provider store={store}>
       <div>
-        <HomePage />
+        <App/>
       </div>
     </Provider>
   ),el

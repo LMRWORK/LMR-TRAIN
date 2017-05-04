@@ -2,10 +2,10 @@ import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-const HomePage = (props) => (
+const SearchCity = (props) => (
   <div>
-    HI2...
+  	SearchCity...
   </div>
 );
 
-export default HomePage;
+export default SearchCity;
