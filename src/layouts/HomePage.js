@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 const HomePage = (props) => (
   <div>
-    HI...
+    HI2...
   </div>
 );
 

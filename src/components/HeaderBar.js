@@ -1,21 +1,10 @@
-import React from 'react'
-import { connect, mapDispatchToProps } from 'react-redux'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import AppBar from 'material-ui/AppBar'
-import IconButton from 'material-ui/IconButton'
-import FontIcon from 'material-ui/FontIcon'
+import React from 'react';
+import { connect, mapDispatchToProps } from 'react-redux';
 
-const HeaderBar = (props) => 
-  <MuiThemeProvider>
-    <AppBar
-      title="China Train Search"
-      iconElementLeft = {
-        <IconButton>
-          <FontIcon className="material-icons">{ props.logo||"home" }</FontIcon>
-        </IconButton>
-      }
-      onLeftIconButtonTouchTap={ () => location.href="#/" }
-    />
-  </MuiThemeProvider>
+const HeaderBar = (props) => (
+  <div>
+    HeaderBar
+  </div>
+);
 
-export default HeaderBar
+export default HeaderBar;
