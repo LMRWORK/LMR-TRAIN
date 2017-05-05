@@ -13,15 +13,11 @@ import './src/resources/Framework7/css/framework7.ios.min.css';
 import './src/resources/Framework7/css/framework7.ios.colors.min.css';
 
 const store = createStore(reducer/*, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()*/);
-const el = document.createElement('div');
-document.body.appendChild(el);
 
 render(
   (
     <Provider store={store}>
-      <div>
         <App/>
-      </div>
     </Provider>
-  ),el
+  ), document.getElementById('root')
 );

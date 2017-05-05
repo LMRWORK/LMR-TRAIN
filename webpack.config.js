@@ -65,6 +65,7 @@ const config = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     */
+    //new webpack.EnvironmentPlugin(['NODE_ENV']),
 
     new webpack.optimize.CommonsChunkPlugin({ name: ['vendor1', 'vendor2'], minChunks: 2 }),
     new ExtractTextPlugin('bundle.css'),

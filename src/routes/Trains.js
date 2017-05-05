@@ -1,6 +1,6 @@
-import {Home} from '../layouts/Home';
+import {MatchCity} from '../components/MatchCity';
 
 export const routes = [{
-    path: '/',
-    component: Home
+    path: '/MatchCity/',
+    component: MatchCity
 }];
