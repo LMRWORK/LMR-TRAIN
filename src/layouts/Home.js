@@ -1,6 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {fetchStationsText} from '../actions/Trains';
+import { NavBar, Icon } from 'antd-mobile';
+import { connect } from 'react-redux';
+import { fetchStationsText } from '../actions/Trains';
 
 class Home extends React.Component {
 
@@ -12,7 +13,18 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>Home</div>
+            <div>
+                <NavBar 
+                    leftContent="back" 
+                    mode="light" 
+                    onLeftClick={() => console.log('onLeftClick')}
+                    rightContent={[
+                        <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} />,
+                        <Icon key="1" type="ellipsis" />,
+                    ]}>
+                NavBar
+                </NavBar>
+            </div>
         );
     }
 
