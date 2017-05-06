@@ -7,14 +7,19 @@ const config = {
 
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    vendor1: ['react', 'react-dom', 'react-redux', 'immutable'],
-    vendor2: ['framework7-react'],
+    vendor1: ['react', 'react-dom', 'react-redux'],
+    vendor2: ['immutable'],
   },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     publicPath: 'assets',
+  },
+
+  resolve: {
+    modules: ['node_modules', path.join(__dirname, '../node_modules')],
+    extensions: ['.web.js', '.js', '.json']
   },
 
   module: {
@@ -30,12 +35,12 @@ const config = {
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
       },
       {
-        test: /\.(woff|woff2|eot|ttf|svg)(\?.*||)/,
+        test: /\.(woff|woff2|eot|ttf|svg)/,
         exclude: /node_modules/,
         loader: 'url-loader?importLoaders=1&limit=1&name=/font/[name].[ext]'
   　　},
       {
-        test: /\.(txt|png)$/,
+        test: /\.txt/,
         exclude: /node_modules/,
         loader: 'url-loader?importLoaders=1&limit=1&name=/data/[name].[ext]'
       }
