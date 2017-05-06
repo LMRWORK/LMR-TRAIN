@@ -5,3 +5,5 @@
 - import Calendar from 'antd/lib/Calendar'
 - import 'antd/lib/date-picker/style/css'
 ##### LAST：还是使用最原始的HTML5（Flex）+CSS开发，这样既利于设计和一般市场人员参与，也避免使用UI带了的文件体积过大。 --LMR
+
+### 使用F7框架！
