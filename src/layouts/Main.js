@@ -1,4 +1,6 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {fetchStationsText} from '../actions/Trains';
 import {
   Views, View, Pages, Page, Navbar, Toolbar, Link, ContentBlockTitle, ContentBlock,
   List, ListItem, FormLabel, FormInput, Button, GridRow, GridCol
@@ -25,7 +27,7 @@ class Main extends React.Component {
               <List form>
                 <ListItem>
                   <FormLabel>出发地</FormLabel>
-                  <FormInput type="text" placeholder="北京"/>
+                  <FormInput type="text" placeholder="北京" readonly />
                 </ListItem>
                 <ListItem>
                   <FormLabel>目的地</FormLabel>
@@ -59,4 +61,12 @@ Main.contextTypes = {
   framework7AppContext: PropTypes.object
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  stationsText: state.get('stationsText')
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchStationsText: (stationsText) => dispatch(fetchStationsText(stationsText))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
