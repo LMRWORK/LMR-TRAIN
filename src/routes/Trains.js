@@ -1,6 +1,8 @@
-import {MatchCity} from '../components/MatchCity';
+import City from '../layouts/City';
 
-export const routes = [{
-    path: '/MatchCity/',
-    component: MatchCity
-}];
+export const routes = [
+    {
+        path: '/fzcity/',
+        component: City
+    }
+];

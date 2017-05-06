@@ -7,6 +7,6 @@ import Main from '../layouts/Main';
 export const App = () => (	
 	<Framework7App themeType="ios" routes={routes}>
 		<Statusbar />
-    <Main />
+        <Main />
 	</Framework7App>  
 );
