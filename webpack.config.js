@@ -4,7 +4,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
 const svgDirs = [
-  require.resolve('antd-mobile').replace(/warn\.js$/, '')
+  require.resolve('antd-mobile').replace(/warn\.js$/, ''),
+  path.resolve(__dirname, 'src/resources/svg')
 ];
 
 const config = {

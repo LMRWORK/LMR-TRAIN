@@ -3,26 +3,24 @@ import { NavBar, Icon } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchStationsText } from '../actions/Trains';
 
+const seo_h1_style = {fontSize:'inherit', fontWeight:'inherit', margin:'inherit'};
+
 class Home extends React.Component {
 
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
         console.log(props);
-        console.log(context);
     }
 
     render() {
         return (
             <div>
                 <NavBar 
-                    leftContent="back" 
-                    mode="light" 
-                    onLeftClick={() => console.log('onLeftClick')}
-                    rightContent={[
-                        <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} />,
-                        <Icon key="1" type="ellipsis" />,
-                    ]}>
-                NavBar
+                    iconName={null}
+                    leftContent="首页"
+                    mode="light"
+                >
+                    <h1 style={seo_h1_style}>中国火车票预定</h1>
                 </NavBar>
             </div>
         );
