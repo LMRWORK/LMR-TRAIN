@@ -3,11 +3,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
-const svgDirs = [
-  require.resolve('antd-mobile').replace(/warn\.js$/, ''),
-  path.resolve(__dirname, 'src/resources/svg')
-];
-
 const config = {
 
   entry: {
@@ -39,16 +34,20 @@ const config = {
       },
       {
         test: /\.(woff|woff2|eot|ttf)/,
-        loader: 'url-loader?importLoaders=1&limit=1&name=/font/[name].[ext]'
+        loader: 'url-loader?importLoaders=1&limit=1&name=/public/font/[name].[ext]'
   　　},
       {
         test: /\.txt/,
-        loader: 'url-loader?importLoaders=1&limit=1&name=/data/[name].[ext]'
+        loader: 'url-loader?importLoaders=1&limit=1&name=/public/data/[name].[ext]'
       },
       {
-        test: /\.(svg)$/i,
+        test: /\.png/,
+        loader: 'url-loader?importLoaders=1&limit=1&name=/public/img/[name].[ext]?[hash]'
+      },
+      {
+        test: /\.svg/,
         loader: 'svg-sprite-loader',
-        include: svgDirs
+        include: [require.resolve('antd-mobile').replace(/warn\.js$/, ''), path.resolve(__dirname, 'src/resources/svg')]
       }
     ]
   },

@@ -1,8 +1,8 @@
 import React from 'react';
-import Home from '../layouts/Home';
+import TrainIndex from '../layouts/TrainIndex';
 
 const Trains = () => (	
-    <Home />
+    <TrainIndex />
 );
 
 export default Trains;
