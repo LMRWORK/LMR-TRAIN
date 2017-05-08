@@ -23,14 +23,6 @@ class TrainCity extends React.Component {
         <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} mode="light" onLeftClick={() => history.go(-1)}>
           <h1 id="TrainIndex-h1">{this.state.trainsNavibarTitle}</h1>
         </NavBar>
-        
-        <div id="TrainIndex-tabbar-div">
-          <TabBar barTintColor="white">
-            <TabBar.Item title="火车查询" key="TabBar1" icon={<div/>}/>
-            <TabBar.Item title="注意事项" key="TabBar2" icon={<div/>}/>
-            <TabBar.Item title="关于我们" key="TabBar3" icon={<div/>}/>
-          </TabBar>
-        </div>
       </div>
     );
   }

@@ -1,0 +1,21 @@
+.page-enter {
+  opacity: 0.01;
+}
+
+.page-enter.page-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.page-leave {
+  opacity: 1;
+  position: inherit;
+  left: 0;
+}
+
+.page-leave.page-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+  position: absolute;
+  left: 1000px;
+}

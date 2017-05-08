@@ -2,18 +2,20 @@ import React from 'react';
 import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import TrainIndex from '../layouts/TrainIndex';
 import TrainCity from '../layouts/TrainCity';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import '../resources/css/TrainIndex.css';
+import '../resources/css/Motion.css';
 import '../resources/png/city.png';
 import '../resources/png/date.png';
 
 class Trains extends React.Component {
 
   constructor(props) {
-    super(props);
-    this.state = {};
-    //console.log('TrainsApp =>');
-    //console.log(props);
+  super(props);
+  this.state = {};
+  //console.log('TrainsApp =>');
+  //console.log(props);
   }
 
   routes = (props) => {
@@ -30,7 +32,7 @@ class Trains extends React.Component {
     //使用当前path遍历路由表，转化取出对应的组件
     const component = componentArray.map(item => {
       if (location.pathname === item.to) {
-        return item.component;
+      return item.component;
       }
     }).filter(item => item)[0];
 
@@ -42,7 +44,9 @@ class Trains extends React.Component {
     return (
       <div>
         <Route exact path="/" render={homeRoute} />
-        <Route location={location} key={location.pathname} path={location.pathname} component={component} />
+        <CSSTransitionGroup transitionName="page" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+          <Route location={location} key={location.pathname} path={location.pathname} component={component} />
+        </CSSTransitionGroup>
       </div>
     );
   }
@@ -50,10 +54,10 @@ class Trains extends React.Component {
   render() {
     return (
       <Router>
-        <Route render={this.routes} />
+      <Route render={this.routes} />
       </Router>
     );
- }
+  }
 
 }
 
