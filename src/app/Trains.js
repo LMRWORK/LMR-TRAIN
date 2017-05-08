@@ -44,7 +44,7 @@ class Trains extends React.Component {
     return (
       <div>
         <Route exact path="/" render={homeRoute} />
-        <CSSTransitionGroup transitionName="page" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+        <CSSTransitionGroup transitionName="page" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
           <Route location={location} key={location.pathname} path={location.pathname} component={component} />
         </CSSTransitionGroup>
       </div>
