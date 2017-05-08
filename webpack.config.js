@@ -8,7 +8,7 @@ const config = {
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
     vendor1: ['react', 'react-dom', 'react-redux'],
-    vendor2: ['immutable'],
+    vendor2: ['immutable','moment'],
   },
 
   output: {
@@ -62,6 +62,13 @@ const config = {
             removeComments:true,
             //collapseWhitespace:true /*product*/
         }
+    }),
+
+    //开发使用生产模式，忽略react的warning。（warning是来自antd的bug）
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': '"production"'
+      }
     }),
 
     /* product
