@@ -54,8 +54,17 @@ class Trains extends React.Component {
   render() {
     return (
       <Router>
-      <Route render={this.routes} />
+        <Route render={this.routes} />
       </Router>
+      /*
+      <Router>
+        <CSSTransitionGroup transitionName="page" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
+          <Route path="/index" key="index" component={TrainIndex}/>
+          <Route path="/city" key="city" component={TrainCity}/>
+          <Redirect to="/index"/>
+        </CSSTransitionGroup>
+      </Router>
+      */
     );
   }
 
