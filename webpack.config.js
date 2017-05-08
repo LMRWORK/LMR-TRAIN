@@ -7,7 +7,7 @@ const config = {
 
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    vendor1: ['react', 'react-dom', 'react-redux'],
+    vendor1: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-dom'],
     vendor2: ['immutable','moment'],
   },
 
