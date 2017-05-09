@@ -1,7 +1,6 @@
 import React from 'react';
-import { NavBar, List, InputItem, DatePicker, Button, WingBlank, WhiteSpace, TabBar, Icon } from 'antd-mobile';
+import { NavBar, List, DatePicker, Button, WingBlank, WhiteSpace, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchStationsText } from '../actions/Trains';
 import { Link } from 'react-router-dom'
 
 class TrainIndex extends React.Component {
@@ -25,7 +24,7 @@ class TrainIndex extends React.Component {
       dateIcon: '/public/img/date.png',
       date: ''
     };
-    //console.log('TrainIndex =>');
+    //console.log('TrainIndex 👇');
     //console.log(props);
   }
 
@@ -70,15 +69,6 @@ class TrainIndex extends React.Component {
       </div>
     );
   }
-
 }
 
-const mapStateToProps = (state) => ({
-  stationsText: state.get('stationsText')
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchStationsText: (stationsText) => dispatch(fetchStationsText(stationsText))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TrainIndex);
+export default TrainIndex;
