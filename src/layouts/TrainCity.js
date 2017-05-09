@@ -19,35 +19,17 @@ class TrainCity extends React.Component {
       trainsNavibarRight: '帮助',
       searchPlaceholder: '搜索',
       stationsUrl: '/public/data/stations.txt',
-      stationsTxt: '',
+      stationsTxt: props.stationsTxt,
     };
     console.log('TrainCity 👇');
     console.log(props);
   }
 
   componentDidMount = () => {
-
-    this.props.fetchStationsTxt(this.state.stationsUrl);
-
-    //异步加载火车文本
-    /*
     if (!this.state.stationsTxt) {
-      let stationsTxt = '';
-      fetch(this.state.stationsUrl)
-      .then(
-        (response) => response.text()
-      )
-      .then(
-        (text) => {
-          stationsTxt = text;
-          console.log(text.substring(0, 10));
-        }
-      );
-      this.state.stationsTxt = stationsTxt;
+      //抓取车站文本
+      this.props.fetchStationsTxt(this.state.stationsUrl);
     }
-    console.log(this.state.stationsTxt.substring(0, 10));
-    */
-
   }
 
   render() {
@@ -66,8 +48,8 @@ class TrainCity extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  stationsTxt: state.get('stationsTxt')
+const mapStateToProps = (store) => ({
+  stationsTxt: store.get('stationsTxt')
 });
 
 const mapDispatchToProps = (dispatch) => ({

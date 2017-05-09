@@ -1,6 +1,6 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import TrainIndex from '../layouts/TrainIndex';
 import TrainCity from '../layouts/TrainCity';
 
