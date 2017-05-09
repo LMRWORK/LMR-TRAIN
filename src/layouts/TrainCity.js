@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, SearchBar, WhiteSpace, WingBlank } from 'antd-mobile';
+import { NavBar, SearchBar, WhiteSpace, WingBlank, Toast} from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStationsTxt } from '../actions/Trains';
@@ -18,6 +18,7 @@ class TrainCity extends React.Component {
       trainsNavibarLeft: '返回',
       trainsNavibarRight: '帮助',
       searchPlaceholder: '搜索',
+      loadingText: '加载中...',
       stationsUrl: '/public/data/stations.txt',
       stationsTxt: props.stationsTxt,
     };
@@ -27,9 +28,15 @@ class TrainCity extends React.Component {
 
   componentDidMount = () => {
     if (!this.state.stationsTxt) {
+      Toast.info(this.state.loadingText, 0);
       //抓取车站文本
       this.props.fetchStationsTxt(this.state.stationsUrl);
     }
+  }
+
+  componentWillReceiveProps = () => {
+    this.setState({stationsTxt: this.props.stationsTxt});
+    Toast.hide();
   }
 
   render() {

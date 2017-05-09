@@ -16,3 +16,5 @@
     top: 2px;
 }
 #TrainIndex-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#108ee9!important;}
+/*loading图标*/
+.am-toast-notice {top: 40%;}
