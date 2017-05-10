@@ -23,7 +23,7 @@ class TrainCity extends React.PureComponent {
       cityIcon: '/public/img/city.png',
       stationsUrl: '/public/data/stations.txt',
       stationsTxt: props.stationsTxt,
-      stationsArr: [
+      stationsArrInit: [
         {cn:'北京', code:'BJP', en:'Beijing'}, 
         {cn:'上海', code:'SHH', en:'Shanghai'},
         {cn:'天津', code:'TJP', en:'Tianjin'},
@@ -36,6 +36,7 @@ class TrainCity extends React.PureComponent {
         {cn:'济南', code:'JNK', en:'Jinan'},
         {cn:'昆明', code:'KMM', en:'Kunming'},
       ],
+      stationsArr: [],
     };
     //console.log('TrainCity 👇');
     //console.log(props);
@@ -56,39 +57,33 @@ class TrainCity extends React.PureComponent {
     Toast.hide();
   }
 
-  //构建城市列表
-  createStationList = () => {
-    let lists = [];
-    for (let i=0; i<this.state.stationsArr.length; i++) {
-      lists.push(
-        <Link to={{ pathname: '/index'}}>
-          <List.Item platform="ios" extra={this.state.toCity} arrow="horizontal" thumb={this.state.cityIcon} extra={this.state.stationsArr[i].cn}> 
-            {this.state.stationsArr[i].en}
-          </List.Item>
-        </Link>
-      );
-    }
-    return lists;
-  }
-
   //正则匹配城市字串，数据格式："@Guangzhou|広州|广州|GZQ|707@"
   onSearch = (str) => {
     if (str) {
       let reg = new RegExp('@[^@]*?'+str+'[^@]*?@', 'gi');
       let reg_arr = this.state.stationsTxt.match(reg);
+      let count = 0;
       if (reg_arr) {
         let stationObj_arr = [];
         for (let i=0; i<reg_arr.length; i++) {
           let tmp = reg_arr[i].split('|');
           stationObj_arr.push({ en: tmp[1], cn: tmp[2], code: tmp[3] });
+          if (count++ > 9) break;
         }
-        this.setState({stationsArr: stationObj_arr.slice(0, 11)});
+        this.setState({stationsArr: stationObj_arr});
         //console.log(stationObj_arr);
       }
+    } else {
+      this.setState({stationsArr: []});
     }
   }
 
+  onSelect = (city) => {
+    console.log(city);
+  }
+
   render() {
+    let lists = this.state.stationsArr.length ? this.state.stationsArr : this.state.stationsArrInit;
     return (
       <div>
         <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} mode="light" onLeftClick={() => history.go(-1)}>
@@ -100,7 +95,13 @@ class TrainCity extends React.PureComponent {
         </WingBlank>
         <WhiteSpace/>
         <List>
-          {this.createStationList()}
+          { 
+            lists.map( city => (
+              <List.Item platform="ios" arrow="horizontal" thumb={this.state.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
+                {city.en}
+              </List.Item>
+            ))
+          }
         </List>
       </div>
     );
