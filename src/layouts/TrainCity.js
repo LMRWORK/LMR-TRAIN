@@ -23,14 +23,27 @@ class TrainCity extends React.PureComponent {
       cityIcon: '/public/img/city.png',
       stationsUrl: '/public/data/stations.txt',
       stationsTxt: props.stationsTxt,
-      stationsArr: ['北京', '上海', '天津', '重庆', '长沙', '成都', '福州', '广州', '杭州', '济南', '昆明'],
+      stationsArr: [
+        {cn:'北京', code:'BJP', en:'Beijing'}, 
+        {cn:'上海', code:'SHH', en:'Shanghai'},
+        {cn:'天津', code:'TJP', en:'Tianjin'},
+        {cn:'重庆', code:'CQW', en:'Chongqing'},
+        {cn:'长沙', code:'CSQ', en:'Changsha'},
+        {cn:'成都', code:'CDW', en:'Chengdu'},
+        {cn:'福州', code:'FZS', en:'Fuzhou'},
+        {cn:'广州', code:'GZQ', en:'Guangzhou'},
+        {cn:'杭州', code:'HZH', en:'Hangzhou'},
+        {cn:'济南', code:'JNK', en:'Jinan'},
+        {cn:'昆明', code:'KMM', en:'Kunming'},
+      ],
     };
-    console.log('TrainCity 👇');
-    console.log(props);
+    //console.log('TrainCity 👇');
+    //console.log(props);
   }
 
   componentDidMount = () => {
     if (!this.state.stationsTxt) {
+      //显示轻提示
       Toast.info(this.state.loadingText, 0);
       //抓取车站文本
       this.props.fetchStationsTxt(this.state.stationsUrl);
@@ -39,6 +52,7 @@ class TrainCity extends React.PureComponent {
 
   componentWillReceiveProps = (nextProps) => {
     this.setState({stationsTxt: nextProps.stationsTxt});
+    //隐藏新提示
     Toast.hide();
   }
 
@@ -48,13 +62,30 @@ class TrainCity extends React.PureComponent {
     for (let i=0; i<this.state.stationsArr.length; i++) {
       lists.push(
         <Link to={{ pathname: '/index'}}>
-          <List.Item platform="ios" extra={this.state.toCity} arrow="horizontal" thumb={this.state.cityIcon}> 
-            {this.state.stationsArr[i]}
+          <List.Item platform="ios" extra={this.state.toCity} arrow="horizontal" thumb={this.state.cityIcon} extra={this.state.stationsArr[i].cn}> 
+            {this.state.stationsArr[i].en}
           </List.Item>
         </Link>
       );
     }
     return lists;
+  }
+
+  //正则匹配城市字串，数据格式："@Guangzhou|広州|广州|GZQ|707@"
+  onSearch = (str) => {
+    if (str) {
+      let reg = new RegExp('@[^@]*?'+str+'[^@]*?@', 'gi');
+      let reg_arr = this.state.stationsTxt.match(reg);
+      if (reg_arr) {
+        let stationObj_arr = [];
+        for (let i=0; i<reg_arr.length; i++) {
+          let tmp = reg_arr[i].split('|');
+          stationObj_arr.push({ en: tmp[1], cn: tmp[2], code: tmp[3] });
+        }
+        this.setState({stationsArr: stationObj_arr.slice(0, 11)});
+        //console.log(stationObj_arr);
+      }
+    }
   }
 
   render() {
@@ -65,7 +96,7 @@ class TrainCity extends React.PureComponent {
         </NavBar>
         <WhiteSpace/>
         <WingBlank>
-          <SearchBar placeholder={this.state.searchPlaceholder}/>
+          <SearchBar placeholder={this.state.searchPlaceholder} onChange={this.onSearch}/>
         </WingBlank>
         <WhiteSpace/>
         <List>

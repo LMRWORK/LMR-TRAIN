@@ -7,8 +7,8 @@ const config = {
 
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    vendor1: ['react', 'react-dom', 'react-redux', 'react-router-dom'],
-    vendor2: ['immutable','react-transition-group'],
+    vendor1: ['react', 'react-dom', 'react-redux', 'react-router-dom', 'react-transition-group'],
+    vendor2: ['immutable', 'isomorphic-fetch', 'es6-promise'],
   },
 
   output: {
