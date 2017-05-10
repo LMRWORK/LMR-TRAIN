@@ -3,7 +3,7 @@ import { NavBar, List, DatePicker, Button, WingBlank, WhiteSpace, TabBar } from 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
-class TrainIndex extends React.Component {
+class TrainIndex extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -40,19 +40,19 @@ class TrainIndex extends React.Component {
         <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} rightContent={this.state.trainsNavibarRight} mode="light">
           <h1 id="TrainIndex-h1">{this.state.trainsNavibarTitle}</h1>
         </NavBar>
-        <List renderHeader={() => this.state.tips} className="my-list">
+        <List renderHeader={() => this.state.tips}>
           <Link to={{ pathname: '/city', search:'from' }}>
-            <List.Item extra={this.state.fromCity} arrow="horizontal" thumb={this.state.cityIcon} onClick={() => {}}> 
+            <List.Item platform="ios" extra={this.state.fromCity} arrow="horizontal" thumb={this.state.cityIcon}> 
               {this.state.fromCityLabel}
             </List.Item>
           </Link>
           <Link to={{ pathname: '/city', search:'to' }}>
-            <List.Item extra={this.state.toCity} arrow="horizontal" thumb={this.state.cityIcon} onClick={() => {}}> 
+            <List.Item platform="ios" extra={this.state.toCity} arrow="horizontal" thumb={this.state.cityIcon}> 
               {this.state.toCityLabel} 
             </List.Item>
           </Link>
           <DatePicker mode="date" title={this.state.datepickerTitle} extra={this.state.datepickerExtra} value={this.state.date} onChange={this.onChange}>
-            <List.Item arrow="horizontal" thumb={this.state.dateIcon}> {this.state.datepickerLabel} </List.Item>
+            <List.Item platform="ios" arrow="horizontal" thumb={this.state.dateIcon}> {this.state.datepickerLabel} </List.Item>
           </DatePicker>
         </List>
         <WhiteSpace size='lg'/>
