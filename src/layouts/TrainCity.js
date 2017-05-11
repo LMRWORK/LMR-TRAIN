@@ -2,7 +2,7 @@ import React from 'react';
 import { NavBar, SearchBar, WhiteSpace, WingBlank, Toast, List} from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchStationsTxt } from '../actions/Trains';
+import { fetchStationsTxt, setFromStation, setToStation } from '../actions/Trains';
 
 //对旧版浏览器的fetch、promise兼容性
 import promise from 'es6-promise';
@@ -19,23 +19,11 @@ class TrainCity extends React.PureComponent {
       trainsNavibarLeft: '返回',
       trainsNavibarRight: '帮助',
       searchPlaceholder: '搜索',
-      loadingText: '加载中...',
+      loadingText: '加载站点中...',
       cityIcon: '/public/img/city.png',
       stationsUrl: '/public/data/stations.txt',
       stationsTxt: props.stationsTxt,
-      stationsArrInit: [
-        {cn:'北京', code:'BJP', en:'Beijing'}, 
-        {cn:'上海', code:'SHH', en:'Shanghai'},
-        {cn:'天津', code:'TJP', en:'Tianjin'},
-        {cn:'重庆', code:'CQW', en:'Chongqing'},
-        {cn:'长沙', code:'CSQ', en:'Changsha'},
-        {cn:'成都', code:'CDW', en:'Chengdu'},
-        {cn:'福州', code:'FZS', en:'Fuzhou'},
-        {cn:'广州', code:'GZQ', en:'Guangzhou'},
-        {cn:'杭州', code:'HZH', en:'Hangzhou'},
-        {cn:'济南', code:'JNK', en:'Jinan'},
-        {cn:'昆明', code:'KMM', en:'Kunming'},
-      ],
+      stationsArrInit: props.stationsArrInit,
       stationsArr: [],
     };
     //console.log('TrainCity 👇');
@@ -54,7 +42,9 @@ class TrainCity extends React.PureComponent {
   componentWillReceiveProps = (nextProps) => {
     this.setState({stationsTxt: nextProps.stationsTxt});
     //隐藏新提示
-    Toast.hide();
+    //Toast.hide();
+    //开发中延时一下，发布时取消。
+    setTimeout(() => Toast.hide(), 1000);
   }
 
   //正则匹配城市字串，数据格式："@Guangzhou|広州|广州|GZQ|707@"
@@ -79,7 +69,7 @@ class TrainCity extends React.PureComponent {
   }
 
   onSelect = (city) => {
-    console.log(city);
+    this.state.searchType == 'from' ? this.props.setFromStation(city) : this.props.setToStation(city);
   }
 
   render() {
@@ -97,9 +87,11 @@ class TrainCity extends React.PureComponent {
         <List>
           { 
             lists.map( city => (
-              <List.Item platform="ios" arrow="horizontal" thumb={this.state.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
-                {city.en}
-              </List.Item>
+              <Link to="/index">
+                <List.Item platform="ios" arrow="horizontal" thumb={this.state.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
+                  {city.en}
+                </List.Item>
+              </Link>
             ))
           }
         </List>
@@ -109,11 +101,14 @@ class TrainCity extends React.PureComponent {
 }
 
 const mapStateToProps = (store) => ({
-  stationsTxt: store.get('stationsTxt')
+  stationsTxt: store.get('stationsTxt'),
+  stationsArrInit: store.get('stationsArrInit'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchStationsTxt: (url) => dispatch(fetchStationsTxt(url))
+  fetchStationsTxt: (url) => dispatch(fetchStationsTxt(url)),
+  setFromStation: (station) => dispatch(setFromStation(station)),
+  setToStation: (station) => dispatch(setToStation(station)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainCity);

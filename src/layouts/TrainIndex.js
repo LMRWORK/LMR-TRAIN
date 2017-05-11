@@ -12,10 +12,15 @@ class TrainIndex extends React.PureComponent {
       trainsNavibarLeft: '首页',
       trainsNavibarRight: '帮助',
       tips: '温馨提示：办理购票、改签和退票业务时，请不晚于开车前48小时.',
-      fromCityLabel: '出发地',
-      toCityLabel: '目的地',
-      fromCity: '北京',
-      toCity: '上海',
+      fromStationLabel: '出发地',
+      toStationLabel: '目的地',
+      fromStation: this.props.fromStation,
+      toStation: this.props.toStation,
+      tabBar: [
+        {name: '火车查询', url:''},
+        {name: '注意事项', url:''},
+        {name: '关于我们', url:''},
+      ],
       datepickerLabel: '出发日',
       datepickerTitle: '选择日期',
       datepickerExtra: '请选择',
@@ -40,15 +45,15 @@ class TrainIndex extends React.PureComponent {
         <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} rightContent={this.state.trainsNavibarRight} mode="light">
           <h1 id="TrainIndex-h1">{this.state.trainsNavibarTitle}</h1>
         </NavBar>
-        <List renderHeader={() => this.state.tips}>
+        <List renderHeader={() => this.state.tips} id="TrainIndex-searchList">
           <Link to={{ pathname: '/city', search:'from' }}>
-            <List.Item platform="ios" extra={this.state.fromCity} arrow="horizontal" thumb={this.state.cityIcon}> 
-              {this.state.fromCityLabel}
+            <List.Item platform="ios" extra={this.state.fromStation.en+', '+this.state.fromStation.cn} arrow="horizontal" thumb={this.state.cityIcon}> 
+              {this.state.fromStationLabel}
             </List.Item>
           </Link>
           <Link to={{ pathname: '/city', search:'to' }}>
-            <List.Item platform="ios" extra={this.state.toCity} arrow="horizontal" thumb={this.state.cityIcon}> 
-              {this.state.toCityLabel} 
+            <List.Item platform="ios" extra={this.state.toStation.en+', '+this.state.toStation.cn} arrow="horizontal" thumb={this.state.cityIcon}> 
+              {this.state.toStationLabel} 
             </List.Item>
           </Link>
           <DatePicker mode="date" title={this.state.datepickerTitle} extra={this.state.datepickerExtra} value={this.state.date} onChange={this.onChange}>
@@ -61,9 +66,9 @@ class TrainIndex extends React.PureComponent {
         </WingBlank>
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">
-            <TabBar.Item title="火车查询" key="TabBar1" icon={<div/>}/>
-            <TabBar.Item title="注意事项" key="TabBar2" icon={<div/>}/>
-            <TabBar.Item title="关于我们" key="TabBar3" icon={<div/>}/>
+            {this.state.tabBar.map( 
+              (i) => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
+            )}
           </TabBar>
         </div>
       </div>
@@ -71,4 +76,11 @@ class TrainIndex extends React.PureComponent {
   }
 }
 
-export default TrainIndex;
+const mapStateToProps = (store) => ({
+  fromStation: store.get('fromStation'),
+  toStation: store.get('toStation'),
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TrainIndex);

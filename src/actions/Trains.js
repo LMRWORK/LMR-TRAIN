@@ -25,3 +25,15 @@ export const fetchStationsTxt = (url) => {
       });
   }
 }
+
+//设置搜索发站
+export const setFromStation = (station) => ({
+  type: 'SET_FROM_STATION',
+  station
+})
+
+//设置搜索到站
+export const setToStation = (station) => ({
+  type: 'SET_TO_STATION',
+  station
+})
