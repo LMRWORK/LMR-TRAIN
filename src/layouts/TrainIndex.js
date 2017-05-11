@@ -14,13 +14,9 @@ class TrainIndex extends React.PureComponent {
       tips: '温馨提示：办理购票、改签和退票业务时，请不晚于开车前48小时.',
       fromStationLabel: '出发地',
       toStationLabel: '目的地',
-      fromStation: this.props.fromStation,
-      toStation: this.props.toStation,
-      tabBar: [
-        {name: '火车查询', url:''},
-        {name: '注意事项', url:''},
-        {name: '关于我们', url:''},
-      ],
+      fromStation: this.props.lang.fromStation,
+      toStation: this.props.lang.toStation,
+      tabBar: this.props.lang.tabBar,
       datepickerLabel: '出发日',
       datepickerTitle: '选择日期',
       datepickerExtra: '请选择',
@@ -77,8 +73,7 @@ class TrainIndex extends React.PureComponent {
 }
 
 const mapStateToProps = (store) => ({
-  fromStation: store.get('fromStation'),
-  toStation: store.get('toStation'),
+  lang: store.get('lang'),
 });
 
 const mapDispatchToProps = (dispatch) => ({});

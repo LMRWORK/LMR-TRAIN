@@ -23,7 +23,7 @@ class TrainCity extends React.PureComponent {
       cityIcon: '/public/img/city.png',
       stationsUrl: '/public/data/stations.txt',
       stationsTxt: props.stationsTxt,
-      stationsArrInit: props.stationsArrInit,
+      stationsArrInit: props.lang.stationsArrInit,
       stationsArr: [],
     };
     //console.log('TrainCity 👇');
@@ -76,7 +76,7 @@ class TrainCity extends React.PureComponent {
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.state.stationsArrInit;
     return (
       <div>
-        <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} mode="light" onLeftClick={() => history.go(-1)}>
+        <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} mode="light" onLeftClick={() => this.props.history.goBack()}>
           <h1 id="TrainIndex-h1">{this.state.trainsNavibarTitle}</h1>
         </NavBar>
         <WhiteSpace/>
@@ -85,15 +85,13 @@ class TrainCity extends React.PureComponent {
         </WingBlank>
         <WhiteSpace/>
         <List>
-          { 
-            lists.map( city => (
+          {lists.map( city => (
               <Link to="/index">
                 <List.Item platform="ios" arrow="horizontal" thumb={this.state.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
                   {city.en}
                 </List.Item>
               </Link>
-            ))
-          }
+          ))}
         </List>
       </div>
     );
@@ -102,7 +100,7 @@ class TrainCity extends React.PureComponent {
 
 const mapStateToProps = (store) => ({
   stationsTxt: store.get('stationsTxt'),
-  stationsArrInit: store.get('stationsArrInit'),
+  lang: store.get('lang'),
 });
 
 const mapDispatchToProps = (dispatch) => ({

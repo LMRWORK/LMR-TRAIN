@@ -1,6 +1,6 @@
-import store from '../store/Trains'
+import initStates from '../store/Trains'
 
-const trainReducer = (state=store, action) => {
+const trainReducer = (state=initStates, action) => {
   switch(action.type) {
     case 'SET_STATIONS_TXT':
       return state.set('stationsTxt', action.stationsTxt);
