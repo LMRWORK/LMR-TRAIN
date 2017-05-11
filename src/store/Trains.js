@@ -1,6 +1,10 @@
 import { Map } from 'immutable';
 
 const initStates = Map({
+  //[全局 states]
+  stationsTxt: '',
+  fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
+  toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
   //[多语言支持 language]
   lang: {
     //[全局 language]
@@ -15,8 +19,6 @@ const initStates = Map({
     cityIcon: '/public/img/city.png',
     dateIcon: '/public/img/date.png',
     //[首页 layout/TrainIndex.js]
-    fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
-    toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
     tabBar: [
       {name: '注意事项', url:''},
       {name: '关于我们', url:''},
@@ -36,8 +38,6 @@ const initStates = Map({
       {cn:'昆明', code:'KMM', en:'Kunming'},
     ],
   },
-  //[全局 states]
-  stationsTxt: '',
 });
 
 export default initStates;

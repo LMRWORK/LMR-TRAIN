@@ -14,8 +14,8 @@ class TrainIndex extends React.PureComponent {
       tips: '温馨提示：办理购票、改签和退票业务时，请不晚于开车前48小时.',
       fromStationLabel: '出发地',
       toStationLabel: '目的地',
-      fromStation: this.props.lang.fromStation,
-      toStation: this.props.lang.toStation,
+      fromStation: this.props.fromStation,
+      toStation: this.props.toStation,
       tabBar: this.props.lang.tabBar,
       datepickerLabel: '出发日',
       datepickerTitle: '选择日期',
@@ -25,14 +25,18 @@ class TrainIndex extends React.PureComponent {
       dateIcon: '/public/img/date.png',
       date: ''
     };
-    //console.log('TrainIndex 👇');
-    //console.log(props);
+    console.log('TrainIndex 👇');
+    console.log(props);
   }
 
   onChange = (date) => {
     this.setState({
       date,
     });
+  }
+
+  linkto = (type) => {
+    this.props.history.push('/city?'+type);
   }
 
   render() {
@@ -42,16 +46,12 @@ class TrainIndex extends React.PureComponent {
           <h1 id="TrainIndex-h1">{this.state.trainsNavibarTitle}</h1>
         </NavBar>
         <List renderHeader={() => this.state.tips} id="TrainIndex-searchList">
-          <Link to={{ pathname: '/city', search:'from' }}>
-            <List.Item platform="ios" extra={this.state.fromStation.en+', '+this.state.fromStation.cn} arrow="horizontal" thumb={this.state.cityIcon}> 
-              {this.state.fromStationLabel}
-            </List.Item>
-          </Link>
-          <Link to={{ pathname: '/city', search:'to' }}>
-            <List.Item platform="ios" extra={this.state.toStation.en+', '+this.state.toStation.cn} arrow="horizontal" thumb={this.state.cityIcon}> 
-              {this.state.toStationLabel} 
-            </List.Item>
-          </Link>
+          <List.Item platform="ios" extra={this.state.fromStation.en+', '+this.state.fromStation.cn} arrow="horizontal" thumb={this.state.cityIcon} onClick={() => this.linkto('from')}> 
+            {this.state.fromStationLabel}
+          </List.Item>
+          <List.Item platform="ios" extra={this.state.toStation.en+', '+this.state.toStation.cn} arrow="horizontal" thumb={this.state.cityIcon} onClick={() => this.linkto('to')}> 
+            {this.state.toStationLabel} 
+          </List.Item>
           <DatePicker mode="date" title={this.state.datepickerTitle} extra={this.state.datepickerExtra} value={this.state.date} onChange={this.onChange}>
             <List.Item platform="ios" arrow="horizontal" thumb={this.state.dateIcon}> {this.state.datepickerLabel} </List.Item>
           </DatePicker>
@@ -74,6 +74,8 @@ class TrainIndex extends React.PureComponent {
 
 const mapStateToProps = (store) => ({
   lang: store.get('lang'),
+  fromStation: store.get('fromStation'),
+  toStation: store.get('toStation'),
 });
 
 const mapDispatchToProps = (dispatch) => ({});

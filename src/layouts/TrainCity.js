@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStationsTxt, setFromStation, setToStation } from '../actions/Trains';
 
-//对旧版浏览器的fetch、promise兼容性
-import promise from 'es6-promise';
-import 'isomorphic-fetch';
-promise.polyfill();
-
 class TrainCity extends React.PureComponent {
 
   constructor(props) {
@@ -26,8 +21,8 @@ class TrainCity extends React.PureComponent {
       stationsArrInit: props.lang.stationsArrInit,
       stationsArr: [],
     };
-    //console.log('TrainCity 👇');
-    //console.log(props);
+    console.log('TrainCity 👇');
+    console.log(props);
   }
 
   componentDidMount = () => {
@@ -70,6 +65,7 @@ class TrainCity extends React.PureComponent {
 
   onSelect = (city) => {
     this.state.searchType == 'from' ? this.props.setFromStation(city) : this.props.setToStation(city);
+    this.props.history.push('/index');
   }
 
   render() {
@@ -86,11 +82,9 @@ class TrainCity extends React.PureComponent {
         <WhiteSpace/>
         <List>
           {lists.map( city => (
-              <Link to="/index">
-                <List.Item platform="ios" arrow="horizontal" thumb={this.state.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
-                  {city.en}
-                </List.Item>
-              </Link>
+              <List.Item platform="ios" arrow="horizontal" thumb={this.state.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
+                {city.en}
+              </List.Item>
           ))}
         </List>
       </div>

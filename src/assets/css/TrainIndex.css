@@ -17,5 +17,6 @@
 }
 #TrainIndex-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#108ee9!important;}
 #TrainIndex-searchList .am-list-item .am-list-line .am-list-extra {flex-basis:65%;}
-/*loading图标*/
+
+/*fix antd-mobile*/
 .am-toast-notice {top: 40%;}

@@ -1,3 +1,7 @@
+//对旧版浏览器的fetch、promise兼容性
+import promise from 'es6-promise';
+promise.polyfill();
+
 //正在抓取车站文本
 export const gettingStationsTxt = () => ({
   type: 'GETTING_STATIONS_TXT'
