@@ -1,6 +1,6 @@
 # ICHT-TRAIN
 - 国际站火车移动端APP开发。
-## 开发框架
+## 开发技术栈
 - 使用antd-mobile组件库做UI设计，方便之后做三端（pc、ios、andriod）融合。
 - 使用redux管理APP全局状态。
 - 使用react-router开发APP路由。
