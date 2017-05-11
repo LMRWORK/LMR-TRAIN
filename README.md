@@ -1,9 +1,27 @@
-# LMR-TRAIN
-- 2016-03-20 测试-UI框架太重了，要换
-- 2016-03-21 测试蚂蚁金服的UI：ant ui，遇到同样文件体积太大的问题，例如：
-##### 简单的引用日历，体积就超过382k
-- import Calendar from 'antd/lib/Calendar'
-- import 'antd/lib/date-picker/style/css'
-##### LAST：还是使用最原始的HTML5（Flex）+CSS开发，这样既利于设计和一般市场人员参与，也避免使用UI带了的文件体积过大。 --LMR
-
-### 使用F7框架！
+# ICHT-TRAIN
+- 国际站火车移动端APP开发。
+## 开发框架
+- 使用antd-mobile组件库做UI设计，方便之后做三端（pc、ios、andriod）融合。
+- 使用redux管理APP全局状态。
+- 使用react-router开发APP路由。
+- 使用redux-thunk、isomorphic-fetch处理数据异步请求。
+- 使用react-transition-group/CSSTransitionGroup处理切换动画。
+## 开发进度
+### 2016-05-09
+- TODO：车站状态使用全局store管理。
+### 2016-05-09
+- 增加车站列表List。
+- 车站的自动完成功能OK。
+### 2016-05-09
+- 分离routes逻辑到单独的routes文件夹中。
+- 添加redux-thunk、es6-promise、isomorphic-fetch 处理action内异步调用。
+- 完成车站名的异步获取。
+- 增加加载状态变化。
+### 2016-05-07
+- 首页布局完成。
+- webpack调整，可以按需载入antd样式。
+- react-router高阶组件。
+- 添加切换CSS3动画，react-transition-group/CSSTransitionGroup。
+- 整合router和动画组件。
+### 2016-05-06
+- 初始化开发环境，等待加入antd-mobile。
