@@ -7,8 +7,11 @@
 - 使用redux-thunk、isomorphic-fetch处理数据异步请求。
 - 使用react-transition-group/CSSTransitionGroup处理切换动画。
 ## 开发进度
+### 2016-05-12
+- 增加日期全局状态管理。
+- 增加moment，完成日期国际化方案。
 ### 2016-05-10
-- TODO：车站状态使用全局store管理。
+- 车站状态使用全局store管理。
 ### 2016-05-09
 - 增加车站列表List。
 - 车站的自动完成功能OK。
