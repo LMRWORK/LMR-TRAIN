@@ -77,7 +77,7 @@ class TrainCity extends React.PureComponent {
         </NavBar>
         <WhiteSpace/>
         <WingBlank>
-          <SearchBar placeholder={this.state.searchPlaceholder} onChange={this.onSearch}/>
+          <SearchBar placeholder={this.state.searchPlaceholder} onChange={str => this.onSearch(str)}/>
         </WingBlank>
         <WhiteSpace/>
         <List>

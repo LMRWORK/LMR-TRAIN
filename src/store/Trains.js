@@ -1,8 +1,10 @@
 import { Map } from 'immutable';
+import moment from 'moment';
 
 const initStates = Map({
   //[全局 states]
-  stationsTxt: '',
+  stationsTxt: null,
+  startDate: moment(),
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
   //[多语言支持 language]

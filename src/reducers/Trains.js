@@ -5,9 +5,11 @@ const trainReducer = (state=initStates, action) => {
     case 'SET_STATIONS_TXT':
       return state.set('stationsTxt', action.stationsTxt);
     case 'SET_FROM_STATION':
-      return state.set('fromStation', action.station)
+      return state.set('fromStation', action.station);
     case 'SET_TO_STATION':
-      return state.set('toStation', action.station)
+      return state.set('toStation', action.station);
+    case 'SET_START_DATE':
+      return state.set('startDate', action.moment);
     default:
       return state;
   }

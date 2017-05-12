@@ -41,3 +41,9 @@ export const setToStation = (station) => ({
   type: 'SET_TO_STATION',
   station
 })
+
+//设置搜索日期
+export const setStartDate = (moment) => ({
+  type: 'SET_START_DATE',
+  moment
+})
