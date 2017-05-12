@@ -4,7 +4,8 @@
 - 使用antd-mobile组件库做UI设计，方便之后做三端（pc、ios、andriod）融合。
 - 使用redux管理APP全局状态。
 - 使用react-router开发APP路由。
-- 使用redux-thunk、isomorphic-fetch处理数据异步请求。
+- 使用redux-thunk处理数据异步请求。
+- 使用moment处理日期的国际化。
 - 使用react-transition-group/CSSTransitionGroup处理切换动画。
 ## 开发进度
 ### 2016-05-12
