@@ -9,10 +9,10 @@ const initStates = Map({
   //[多语言支持 language]
   lang: {
     //[全局 language]
-    trainsNavibarTitle: '中国火车票预定',
-    trainsNavibarRight: '帮助',
-    trainsNavibarLeft: '首页',
-    trainsNavibarLeft: '返回',
+    NavibarTitle: '中国火车票预定',
+    NavibarRight: '帮助',
+    NavibarLeftIndex: '首页',
+    NavibarLeftBack: '返回',
     searchPlaceholder: '搜索',
     loadingText: '加载中...',
     fromStationLabel: '出发地',

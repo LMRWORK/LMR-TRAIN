@@ -3,16 +3,16 @@ import { NavBar, List, DatePicker, Button, WingBlank, WhiteSpace, TabBar } from 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setStartDate } from '../actions/Trains';
-import enUs from 'antd-mobile/lib/date-picker/locale/en_US';
+import loc from 'antd-mobile/lib/date-picker/locale/zh_CN';
 
 class TrainIndex extends React.PureComponent {
 
   constructor(props) {
     super(props);
     this.state = {
-      trainsNavibarTitle: this.props.lang.trainsNavibarTitle,
-      trainsNavibarLeft: this.props.lang.trainsNavibarLeft,
-      trainsNavibarRight: this.props.lang.trainsNavibarRight,
+      NavibarTitle: this.props.lang.NavibarTitle,
+      NavibarLeftIndex: this.props.lang.NavibarLeftIndex,
+      NavibarRight: this.props.lang.NavibarRight,
       tips: this.props.lang.tips,
       fromStationLabel: this.props.lang.fromStationLabel,
       toStationLabel: this.props.lang.toStationLabel,
@@ -43,8 +43,8 @@ class TrainIndex extends React.PureComponent {
   render() {
     return (
       <div>
-        <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} rightContent={this.state.trainsNavibarRight} mode="light">
-          <h1 id="TrainIndex-h1">{this.state.trainsNavibarTitle}</h1>
+        <NavBar iconName={null} leftContent={this.state.NavibarLeftIndex} rightContent={this.state.NavibarRight} mode="light">
+          <h1 id="TrainIndex-h1">{this.state.NavibarTitle}</h1>
         </NavBar>
         <List renderHeader={() => this.state.tips} id="TrainIndex-searchList">
           <List.Item platform="ios" extra={this.state.fromStation.en+', '+this.state.fromStation.cn} arrow="horizontal" thumb={this.state.cityIcon} onClick={() => this.linkto('from')}> 
@@ -53,7 +53,7 @@ class TrainIndex extends React.PureComponent {
           <List.Item platform="ios" extra={this.state.toStation.en+', '+this.state.toStation.cn} arrow="horizontal" thumb={this.state.cityIcon} onClick={() => this.linkto('to')}> 
             {this.state.toStationLabel} 
           </List.Item>
-          <DatePicker mode="date" title={this.state.datepickerTitle} extra={this.state.datepickerExtra} value={this.state.startDate} onChange={moment => this.onChange(moment)} locale={enUs}>
+          <DatePicker mode="date" title={this.state.datepickerTitle} extra={this.state.datepickerExtra} value={this.state.startDate} onChange={moment => this.onChange(moment)} locale={loc}>
             <List.Item platform="ios" arrow="horizontal" thumb={this.state.dateIcon}> {this.state.datepickerLabel} </List.Item>
           </DatePicker>
         </List>

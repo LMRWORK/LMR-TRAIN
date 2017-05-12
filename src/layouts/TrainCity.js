@@ -11,8 +11,7 @@ class TrainCity extends React.PureComponent {
     this.state = {
       cityNavibarTitle: this.props.location.search=='?from' ? this.props.lang.fromStationLabel : this.props.lang.toStationLabel,
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
-      trainsNavibarLeft: this.props.lang.trainsNavibarLeft,
-      trainsNavibarRight: this.props.lang.trainsNavibarRight,
+      NavibarLeftBack: this.props.lang.NavibarLeftBack,
       searchPlaceholder: this.props.lang.searchPlaceholder,
       loadingText: this.props.lang.loadingText,
       cityIcon: this.props.lang.cityIcon,
@@ -72,7 +71,7 @@ class TrainCity extends React.PureComponent {
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.state.stationsArrInit;
     return (
       <div>
-        <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} mode="light" onLeftClick={() => this.props.history.goBack()}>
+        <NavBar iconName={null} leftContent={this.state.NavibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
           <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
         </NavBar>
         <WhiteSpace/>
