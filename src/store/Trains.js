@@ -1,10 +1,9 @@
 import { Map } from 'immutable';
-import moment from 'moment';
 
 const initStates = Map({
   //[全局 states]
   stationsTxt: null,
-  startDate: moment(),
+  startDate: null,
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
   //[多语言支持 language]
@@ -13,13 +12,20 @@ const initStates = Map({
     trainsNavibarTitle: '中国火车票预定',
     trainsNavibarRight: '帮助',
     trainsNavibarLeft: '首页',
+    trainsNavibarLeft: '返回',
+    searchPlaceholder: '搜索',
+    loadingText: '加载中...',
+    fromStationLabel: '出发地',
+    toStationLabel: '目的地',
     tips: '温馨提示：办理购票、改签和退票业务时，请不晚于开车前48小时。',
     datepickerLabel: '出发日',
     datepickerTitle: '选择日期',
     datepickerExtra: '请选择',
-    search: '查询',
+    searchTxt: '查询',
     cityIcon: '/public/img/city.png',
     dateIcon: '/public/img/date.png',
+    //[全局 fecthApi]
+    stationsUrl: '/public/data/stations.txt',
     //[首页 layout/TrainIndex.js]
     tabBar: [
       {name: '注意事项', url:''},

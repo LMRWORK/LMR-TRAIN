@@ -9,16 +9,16 @@ class TrainCity extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      trainsNavibarTitle: props.location.search=='?from' ? '出发地' : '目的地',
-      searchType: props.location.search=='?from' ? 'from' : 'to',
-      trainsNavibarLeft: '返回',
-      trainsNavibarRight: '帮助',
-      searchPlaceholder: '搜索',
-      loadingText: '加载站点中...',
-      cityIcon: '/public/img/city.png',
-      stationsUrl: '/public/data/stations.txt',
-      stationsTxt: props.stationsTxt,
-      stationsArrInit: props.lang.stationsArrInit,
+      cityNavibarTitle: this.props.location.search=='?from' ? this.props.lang.fromStationLabel : this.props.lang.toStationLabel,
+      searchType: this.props.location.search=='?from' ? 'from' : 'to',
+      trainsNavibarLeft: this.props.lang.trainsNavibarLeft,
+      trainsNavibarRight: this.props.lang.trainsNavibarRight,
+      searchPlaceholder: this.props.lang.searchPlaceholder,
+      loadingText: this.props.lang.loadingText,
+      cityIcon: this.props.lang.cityIcon,
+      stationsUrl: this.props.lang.stationsUrl,
+      stationsTxt: this.props.stationsTxt,
+      stationsArrInit: this.props.lang.stationsArrInit,
       stationsArr: [],
     };
     console.log('TrainCity 👇');
@@ -73,7 +73,7 @@ class TrainCity extends React.PureComponent {
     return (
       <div>
         <NavBar iconName={null} leftContent={this.state.trainsNavibarLeft} mode="light" onLeftClick={() => this.props.history.goBack()}>
-          <h1 id="TrainIndex-h1">{this.state.trainsNavibarTitle}</h1>
+          <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
         </NavBar>
         <WhiteSpace/>
         <WingBlank>

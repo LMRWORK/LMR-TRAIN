@@ -10,19 +10,19 @@ class TrainIndex extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      trainsNavibarTitle: '中国火车票预定',
-      trainsNavibarLeft: '首页',
-      trainsNavibarRight: '帮助',
-      tips: '温馨提示：办理购票、改签和退票业务时，请不晚于开车前48小时.',
-      fromStationLabel: '出发地',
-      toStationLabel: '目的地',
+      trainsNavibarTitle: this.props.lang.trainsNavibarTitle,
+      trainsNavibarLeft: this.props.lang.trainsNavibarLeft,
+      trainsNavibarRight: this.props.lang.trainsNavibarRight,
+      tips: this.props.lang.tips,
+      fromStationLabel: this.props.lang.fromStationLabel,
+      toStationLabel: this.props.lang.toStationLabel,
       fromStation: this.props.fromStation,
       toStation: this.props.toStation,
       tabBar: this.props.lang.tabBar,
-      datepickerLabel: '出发日',
-      datepickerTitle: '选择日期',
-      datepickerExtra: '请选择',
-      search: '查询',
+      datepickerLabel: this.props.lang.datepickerLabel,
+      datepickerTitle: this.props.lang.datepickerTitle,
+      datepickerExtra: this.props.lang.datepickerExtra,
+      searchTxt: this.props.lang.searchTxt,
       cityIcon: '/public/img/city.png',
       dateIcon: '/public/img/date.png',
       startDate: this.props.startDate,
@@ -33,7 +33,6 @@ class TrainIndex extends React.PureComponent {
 
   onChange = (moment) => {
     this.setState({ startDate: moment });
-    console.log(moment);
     this.props.setStartDate(moment);
   }
 
@@ -60,7 +59,7 @@ class TrainIndex extends React.PureComponent {
         </List>
         <WhiteSpace size='lg'/>
         <WingBlank size="lg">
-          <Button className="btn" icon="search" id="TrainIndex-search-btn">{this.state.search}</Button>
+          <Button className="btn" icon="search" id="TrainIndex-search-btn">{this.state.searchTxt}</Button>
         </WingBlank>
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">
