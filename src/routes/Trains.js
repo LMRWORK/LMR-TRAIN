@@ -21,8 +21,7 @@ export const routes = (props) => {
       return item.component;
     }
   }).filter(item => item)[0];
-  console.log(component);
-
+ 
   //首页跳转
   const homeRoute = () => (
     <Redirect to="/index"/>

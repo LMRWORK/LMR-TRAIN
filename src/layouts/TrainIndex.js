@@ -23,8 +23,8 @@ class TrainIndex extends React.PureComponent {
       datepickerTitle: this.props.lang.datepickerTitle,
       datepickerExtra: this.props.lang.datepickerExtra,
       searchTxt: this.props.lang.searchTxt,
-      cityIcon: '/public/img/city.png',
-      dateIcon: '/public/img/date.png',
+      cityIcon: this.props.lang.cityIcon,
+      dateIcon: this.props.lang.dateIcon,
       startDate: this.props.startDate,
     };
     console.log('TrainIndex 👇');
