@@ -1,5 +1,6 @@
 import { Map } from 'immutable';
 
+//初始化store
 const initStates = Map({
   //[全局 states]
   stationsTxt: null,

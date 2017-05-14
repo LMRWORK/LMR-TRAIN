@@ -18,9 +18,10 @@ export const routes = (props) => {
   //使用当前path遍历路由表，转化取出对应的组件
   const component = componentArray.map(item => {
     if (location.pathname === item.to) {
-    return item.component;
+      return item.component;
     }
   }).filter(item => item)[0];
+  console.log(component);
 
   //首页跳转
   const homeRoute = () => (
