@@ -49,7 +49,7 @@ const initStates = Map({
       {cn:'昆明', code:'KMM', en:'Kunming'},
     ],
     //[搜索页 layout/TrainSearch.js]
-    searchNavibarTitle: 'Beijing -> Shanghai',
+    searchNavibarTitle: 'Beijing ⇀ Shanghai',
   },
 });
 

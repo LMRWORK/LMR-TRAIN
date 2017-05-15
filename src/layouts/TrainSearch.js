@@ -23,6 +23,9 @@ class TrainSearch extends React.PureComponent {
   }
 
   componentDidMount = () => {
+    this.setState({
+      searchNavibarTitle: this.props.fromStation.en + ' ⇀ ' + this.props.toStation.en
+    });
     //显示轻提示
     Toast.info(this.state.loadingText, 0);
     //抓取车站文本
@@ -40,7 +43,10 @@ class TrainSearch extends React.PureComponent {
 
   shouldComponentUpdate = (nextProps, nextState) => {
     console.log('TrainSearch.shouldComponentUpdate 👇');
-    return this.state.fromStation.code != nextState.fromStation.code && this.state.toStation.code != nextState.toStation.code && this.state.startDate.format() != nextState.startDate.format();
+    return this.state.fromStation.code != nextState.fromStation.code || 
+           this.state.toStation.code != nextState.toStation.code ||
+           this.state.startDate != nextState.startDate ||
+           this.state.searchNavibarTitle != nextState.searchNavibarTitle;
   }
 
   render() {
@@ -48,7 +54,7 @@ class TrainSearch extends React.PureComponent {
     return (
       <div>
         <NavBar iconName={null} leftContent={this.state.NavibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
-          <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
+          <h1 id="TrainIndex-h1">{this.state.searchNavibarTitle}</h1>
         </NavBar>
       </div>
     );
