@@ -11,6 +11,8 @@
 ### 2016-05-15
 - 构造APP所需要的搜索结构json。
 - 在action中增加模拟接口请求的程序。
+- 完成TrainSearch页面布局。
+- 优化TrainSearch.shouldComponentUpdate。
 ### 2016-05-12
 - 增加日期全局状态管理。
 - 增加moment，完成日期国际化方案。
