@@ -7,6 +7,7 @@ const initStates = Map({
   startDate: null,
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
+  trainsResult: null,
   //[多语言支持 language]
   lang: {
     //[全局 language]
@@ -27,7 +28,7 @@ const initStates = Map({
     dateIcon: '/public/img/date.png',
     //[全局 fecthApi] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
     stationsUrl: '/public/data/stations.txt',
-    fetchTrainsUrl: '/public/data/fetchTrain.data',
+    fetchTrainsUrl: '/public/data/fetchTrain.txt',
     //[首页 layout/TrainIndex.js]
     tabBar: [
       {name: '注意事项', url:''},

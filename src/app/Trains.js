@@ -7,8 +7,11 @@ import '../assets/css/TrainIndex.css';
 import '../assets/css/Motion.css';
 import '../assets/png/city.png';
 import '../assets/png/date.png';
+
+//插入测试数据
 //车站名文本：Acheng|Acheng|阿城|ACB|3141@Acheng|Acheng|阿城|ACB|3141
 import '../assets/data/stations.txt';
+import '../assets/data/fetchTrain.txt';
 
 class Trains extends React.PureComponent {
 

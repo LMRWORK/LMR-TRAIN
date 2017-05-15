@@ -37,7 +37,7 @@ const config = {
         loader: 'url-loader?importLoaders=1&limit=1&name=/public/font/[name].[ext]'
   　　},
       {
-        test: /\.(txt|data)/,
+        test: /\.txt/,
         loader: 'url-loader?importLoaders=1&limit=1&name=/public/data/[name].[ext]'
       },
       {

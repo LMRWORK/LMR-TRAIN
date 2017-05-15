@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar, WhiteSpace, WingBlank, Toast, List} from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchStationsTxt, setFromStation, setToStation } from '../actions/Trains';
+import { fetchTrains } from '../actions/Trains';
 
 class TrainSearch extends React.PureComponent {
 
@@ -16,7 +16,7 @@ class TrainSearch extends React.PureComponent {
       toStation: this.props.toStation,
       startDate: this.props.startDate,
       fetchTrainsUrl: this.props.lang.fetchTrainsUrl,
-      trainsArr: [],
+      trainsResult: this.props.trainsResult,
     };
     console.log('TrainSearch 👇');
     console.log(props);
@@ -25,16 +25,18 @@ class TrainSearch extends React.PureComponent {
   componentDidMount = () => {
     if (!this.state.stationsTxt) {
       //显示轻提示
-      //Toast.info(this.state.loadingText, 0);
+      Toast.info(this.state.loadingText, 0);
       //抓取车站文本
-      //this.props.fetchStationsTxt(this.state.stationsUrl);
+      this.props.fetchTrains(this.state.fetchTrainsUrl);
     }
   }
 
   componentWillReceiveProps = (nextProps) => {
-    //this.setState({trainsArr: nextProps.stationsTxt});
+    console.log(nextProps);
     //隐藏新提示
-    Toast.hide();
+    //Toast.hide();
+    //开发中延时一下，发布时取消。
+    setTimeout(() => Toast.hide(), 1000);
   }
 
   render() {
@@ -53,11 +55,11 @@ const mapStateToProps = (store) => ({
   fromStation: store.get('fromStation'),
   toStation: store.get('toStation'),
   startDate: store.get('startDate'),
+  trainsResult: store.get('trainsResult'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  //setFromStation: (station) => dispatch(setFromStation(station)),
-  //setToStation: (station) => dispatch(setToStation(station)),
+  fetchTrains: (url) => dispatch(fetchTrains(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainSearch);

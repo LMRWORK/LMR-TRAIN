@@ -10,6 +10,8 @@ const trainReducer = (state=initStates, action) => {
       return state.set('toStation', action.station);
     case 'SET_START_DATE':
       return state.set('startDate', action.moment);
+    case 'SET_TRAINS_RESULT':
+      return state.set('trainsResult', action.json);
     default:
       return state;
   }

@@ -13,7 +13,7 @@ export const setStationsTxt = (stationsTxt) => ({
   stationsTxt
 })
 
-//异步抓取文本
+//异步抓取车站文本
 export const fetchStationsTxt = (url) => {
   return (dispatch) => {
     dispatch(gettingStationsTxt());
@@ -47,3 +47,31 @@ export const setStartDate = (moment) => ({
   type: 'SET_START_DATE',
   moment
 })
+
+//正在抓取车站文本
+export const gettingTrainsResult = () => ({
+  type: 'GETTING_TRAINS_RESULT'
+})
+
+//正在抓取车站文本
+export const setTrainsResult = (json) => ({
+  type: 'SET_TRAINS_RESULT',
+  json
+})
+
+//异步抓取车站文本
+export const fetchTrains = (url) => {
+  return (dispatch) => {
+    dispatch(gettingTrainsResult());
+    //异步Ajax请求
+    fetch(url)
+      .then((res) => {
+        //从返回的Promise里得到文本
+        return res.json();
+      })
+      .then((json) => {
+        //拿到文本，然后dispatch action
+        dispatch(setTrainsResult(json))
+      });
+  }
+}
