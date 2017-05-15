@@ -25,8 +25,9 @@ const initStates = Map({
     searchTxt: '查询',
     cityIcon: '/public/img/city.png',
     dateIcon: '/public/img/date.png',
-    //[全局 fecthApi]
+    //[全局 fecthApi] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
     stationsUrl: '/public/data/stations.txt',
+    fetchTrainsUrl: '/public/data/fetchTrain.data',
     //[首页 layout/TrainIndex.js]
     tabBar: [
       {name: '注意事项', url:''},
