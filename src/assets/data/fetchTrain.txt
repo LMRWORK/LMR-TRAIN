@@ -1,5 +1,10 @@
 {
   "status": 200,
+  "search": {
+    "FromStationCode": "AOH",
+    "ToStationCode": "SHH",
+    "StartDate": "2017-05-15"
+  },
   "map": {
     "AOH": "上海虹桥",
     "BJP": "北京",

@@ -23,15 +23,14 @@ class TrainSearch extends React.PureComponent {
   }
 
   componentDidMount = () => {
-    if (!this.state.stationsTxt) {
-      //显示轻提示
-      Toast.info(this.state.loadingText, 0);
-      //抓取车站文本
-      this.props.fetchTrains(this.state.fetchTrainsUrl);
-    }
+    //显示轻提示
+    Toast.info(this.state.loadingText, 0);
+    //抓取车站文本
+    this.props.fetchTrains(this.state.fetchTrainsUrl);
   }
 
   componentWillReceiveProps = (nextProps) => {
+    console.log('TrainSearch.componentWillReceiveProps 👇');
     console.log(nextProps);
     //隐藏新提示
     //Toast.hide();
@@ -39,7 +38,13 @@ class TrainSearch extends React.PureComponent {
     setTimeout(() => Toast.hide(), 1000);
   }
 
+  shouldComponentUpdate = (nextProps, nextState) => {
+    console.log('TrainSearch.shouldComponentUpdate 👇');
+    return this.state.fromStation.code != nextState.fromStation.code && this.state.toStation.code != nextState.toStation.code && this.state.startDate.format() != nextState.startDate.format();
+  }
+
   render() {
+    console.log("render()");
     return (
       <div>
         <NavBar iconName={null} leftContent={this.state.NavibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
