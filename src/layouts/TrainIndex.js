@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavBar, List, DatePicker, Button, WingBlank, WhiteSpace, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { setStartDate } from '../actions/Trains';
 import loc from 'antd-mobile/lib/date-picker/locale/zh_CN';
 
@@ -40,6 +39,10 @@ class TrainIndex extends React.PureComponent {
     this.props.history.push('/city?'+type);
   }
 
+  onSearch = () => {
+    this.props.history.push('/search');
+  }
+
   render() {
     return (
       <div>
@@ -59,7 +62,7 @@ class TrainIndex extends React.PureComponent {
         </List>
         <WhiteSpace size='lg'/>
         <WingBlank size="lg">
-          <Button className="btn" icon="search" id="TrainIndex-search-btn">{this.state.searchTxt}</Button>
+          <Button className="btn" icon="search" id="TrainIndex-search-btn" onClick={() => this.onSearch()}>{this.state.searchTxt}</Button>
         </WingBlank>
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">

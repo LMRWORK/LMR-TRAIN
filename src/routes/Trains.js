@@ -3,6 +3,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { Route, Redirect } from 'react-router-dom';
 import TrainIndex from '../layouts/TrainIndex';
 import TrainCity from '../layouts/TrainCity';
+import TrainSearch from '../layouts/TrainSearch';
 
 export const routes = (props) => {
 
@@ -13,6 +14,7 @@ export const routes = (props) => {
   const componentArray = [
     { to: '/index', component: TrainIndex, name: 'index' },
     { to: '/city', component: TrainCity, name: 'city' },
+    { to: '/search', component: TrainSearch, name: 'search' },
   ];
 
   //使用当前path遍历路由表，转化取出对应的组件

@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavBar, SearchBar, WhiteSpace, WingBlank, Toast, List} from 'antd-mobile';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStationsTxt, setFromStation, setToStation } from '../actions/Trains';
 

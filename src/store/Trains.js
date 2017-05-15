@@ -33,7 +33,7 @@ const initStates = Map({
       {name: '注意事项', url:''},
       {name: '关于我们', url:''},
     ],
-    //[搜索页 layout/TrainCity.js]
+    //[站点页 layout/TrainCity.js]
     stationsArrInit: [
       {cn:'北京', code:'BJP', en:'Beijing'}, 
       {cn:'上海', code:'SHH', en:'Shanghai'},
@@ -47,6 +47,8 @@ const initStates = Map({
       {cn:'济南', code:'JNK', en:'Jinan'},
       {cn:'昆明', code:'KMM', en:'Kunming'},
     ],
+    //[搜索页 layout/TrainSearch.js]
+    searchNavibarTitle: 'Beijing -> Shanghai',
   },
 });
 
