@@ -207,7 +207,7 @@ class TrainSearch extends React.PureComponent {
           pageSize={4}
           scrollRenderAheadDistance={500}
           scrollEventThrottle={20}
-          onScroll={() => { console.log('scroll'); }}
+          //onScroll={() => { console.log('scroll'); }}
           onEndReached={this.onEndReached}
           onEndReachedThreshold={10}
         />
