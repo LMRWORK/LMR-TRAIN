@@ -19,8 +19,8 @@ class TrainCity extends React.PureComponent {
       stationsArrInit: this.props.lang.stationsArrInit,
       stationsArr: [],
     };
-    console.log('TrainCity 👇');
-    console.log(props);
+    //console.log('TrainCity 👇');
+    //console.log(props);
   }
 
   componentDidMount = () => {

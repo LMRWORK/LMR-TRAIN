@@ -26,8 +26,8 @@ class TrainIndex extends React.PureComponent {
       dateIcon: this.props.lang.dateIcon,
       startDate: this.props.startDate,
     };
-    console.log('TrainIndex 👇');
-    console.log(props);
+    //console.log('TrainIndex 👇');
+    //console.log(props);
   }
 
   onChange = (moment) => {

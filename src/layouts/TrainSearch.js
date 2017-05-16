@@ -3,6 +3,15 @@ import { NavBar, WhiteSpace, WingBlank, Toast, ListView } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains } from '../actions/Trains';
 
+const MyBody = (props) => {
+  return (
+    <div className="am-list-body my-body">
+      <span style={{ display: 'none' }}>you can custom body wrap element</span>
+      {props.children}
+    </div>
+  );
+}
+
 //测试数据
 const data = [
   {
@@ -22,8 +31,7 @@ const data = [
   },
 ];
 
-let index = data.length - 1;
-
+let index = 0;
 const NUM_SECTIONS = 5;
 const NUM_ROWS_PER_SECTION = 5;
 let pageIndex = 0;
@@ -63,6 +71,12 @@ class TrainSearch extends React.PureComponent {
       // new object ref
       this.sectionIDs = [].concat(this.sectionIDs);
       this.rowIDs = [].concat(this.rowIDs);
+      console.log('sectionIDs 👇');
+      console.log(this.sectionIDs);
+      console.log('rowIDs 👇');
+      console.log(this.rowIDs);
+      console.log('dataBlob 👇');
+      console.log(this.dataBlob);
     };
 
     this.state = {
@@ -141,8 +155,6 @@ class TrainSearch extends React.PureComponent {
     const separator = (sectionID, rowID) => (
       <div key={`${sectionID}-${rowID}`}
         style={{
-          backgroundColor: '#F5F5F9',
-          height: 8,
           borderTop: '1px solid #ECECED',
           borderBottom: '1px solid #ECECED',
         }}
@@ -182,23 +194,22 @@ class TrainSearch extends React.PureComponent {
           renderSectionHeader={sectionData => (
             <div>{`Task ${sectionData.split(' ')[1]}`}</div>
           )}
+          renderBodyComponent={() => <MyBody />}
           renderRow={row}
           renderSeparator={separator}
-          className="icht-am-list"
+          className="fortest"
+          style={{
+            height: document.documentElement.clientHeight,
+            overflow: 'auto',
+            border: '1px solid #ddd',
+            margin: '0.1rem 0',
+          }}
           pageSize={4}
+          scrollRenderAheadDistance={500}
           scrollEventThrottle={20}
           onScroll={() => { console.log('scroll'); }}
           onEndReached={this.onEndReached}
           onEndReachedThreshold={10}
-          stickyHeader
-          stickyProps={{
-            stickyStyle: { zIndex: 999, WebkitTransform: 'none', transform: 'none' },
-            // topOffset: -43,
-            // isActive: false,
-          }}
-          stickyContainerProps={{
-            className: 'for-stickyContainer-demo',
-          }}
         />
       </div>
     );
