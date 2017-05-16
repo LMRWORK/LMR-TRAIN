@@ -8,17 +8,17 @@ const data = [
   {
     img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
     title: 'Meet hotel',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    des: '不是所有的兼职汪都需要风吹日晒1',
   },
   {
     img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
     title: 'McDonald\'s invites you',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    des: '不是所有的兼职汪都需要风吹日晒2',
   },
   {
     img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
     title: 'Eat the week',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    des: '不是所有的兼职汪都需要风吹日晒3',
   },
 ];
 
@@ -90,14 +90,6 @@ class TrainSearch extends React.PureComponent {
     Toast.info(this.state.loadingText, 0);
     //抓取车站文本
     this.props.fetchTrains(this.state.fetchTrainsUrl);
-    //列表init：simulate initial Ajax
-    setTimeout(() => {
-      this.genData();
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRowsAndSections(this.dataBlob, this.sectionIDs, this.rowIDs),
-        isLoading: false,
-      });
-    }, 600);
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -107,6 +99,14 @@ class TrainSearch extends React.PureComponent {
     //Toast.hide();
     //开发中延时一下，发布时取消。
     setTimeout(() => Toast.hide(), 1000);
+    //列表init：simulate initial Ajax
+    setTimeout(() => {
+      this.genData();
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRowsAndSections(this.dataBlob, this.sectionIDs, this.rowIDs),
+        isLoading: false,
+      });
+    }, 600);
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
