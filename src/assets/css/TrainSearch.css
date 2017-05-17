@@ -92,6 +92,94 @@
   right: 0.5rem;
   position: relative;
 }
+.sBefor {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-top: 0.1rem solid #ccc;
+  border-left: 0.1rem solid #ccc;
+  transform:rotate(-45deg);
+  top: 0.9rem;
+  right: 0.5rem;
+  position: relative;
+}
+.sNext-small {
+  width: 0.3rem;
+  height: 0.3rem;
+  border-top: 1px solid #333;
+  border-right: 1px solid #333;
+  transform: rotate(45deg);
+  top: 0.42rem;
+  right: 0.5rem;
+  position: absolute;
+}
+.sBefore-small {
+  width: 0.3rem;
+  height: 0.3rem;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  transform: rotate(-45deg);
+  top: 0.42rem;
+  left: 0.5rem;
+  position: absolute;
+}
+.sDown-small {
+  width: 0.3rem;
+  height: 0.3rem;
+  border-bottom: 1px solid #333;
+  border-right: 1px solid #333;
+  transform: rotate(45deg);
+  top: 0.35rem;
+  right: 0.7rem;
+  position: absolute;
+}
+/*searchBar*/
+.flex-box.searchBar {
+  background: #f5f5f9;
+  padding: 0.5rem 0;
+}
+.flex-box.searchBar .flex-item {
+  padding: 0.2rem 0;
+  border: none;
+}
+#nextDay {
+  position: absolute;
+  right: 0.3rem;
+  width: 4rem;
+  background: none;
+  border: none;
+  font-size: 0.6rem;
+}
+#prevDay {
+  position: absolute;
+  left: 0.3rem;
+  width: 4rem;
+  background: none;
+  border: none;
+  font-size: 0.6rem;
+}
+#prevDay:active, #nextDay:active {
+  color: #07c;
+  background: #ddd
+}
+#showDatepicker {
+  text-align: center;
+  height: 1.2rem;
+  line-height: 1.2rem;
+}
+#showDatepicker a {
+  border: 1px solid #dfdfdf;
+  background: #fdfdfd;
+  border-radius: 0.15rem;
+  height: 1.2rem;
+  display: inline-block;
+  padding: 0 1.5rem 0 1.3rem;
+  position: relative;
+}
+#showDatepicker img {
+  position: relative;
+  top: 0.2rem;
+  left: -0.3rem;
+}
 /*flex*/
 .flex-box {
   display: flex;
@@ -100,6 +188,7 @@
 .flex-item {
   padding:0.5rem 0 0.5rem 0.7rem ;
   border-bottom: 1px solid #ddd;
+  position: relative;
 }
 .flex-grow-1 {
   flex-grow:1;

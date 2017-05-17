@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, WhiteSpace, WingBlank, Toast, TabBar } from 'antd-mobile';
+import { NavBar, WhiteSpace, WingBlank, Toast, TabBar, Button } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains } from '../actions/Trains';
 
@@ -9,10 +9,12 @@ class TrainSearch extends React.PureComponent {
     super(props);
 
     this.state = {
+      navibarTitle: '',
       fromStation: this.props.fromStation,
       toStation: this.props.toStation,
       startDate: this.props.startDate,
       trainsResult: this.props.trainsResult,
+      datepickerVisible: false,
     };
     console.log('TrainSearch 👇');
     console.log(props);
@@ -20,7 +22,7 @@ class TrainSearch extends React.PureComponent {
 
   componentDidMount = () => {
     this.setState({
-      navibarTitle: this.props.fromStation.en + ' ⇀ ' + this.props.toStation.en
+      navibarTitle: this.state.fromStation.en + ' ⇀ ' + this.state.toStation.en
     });
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
@@ -45,14 +47,34 @@ class TrainSearch extends React.PureComponent {
            this.state.navibarTitle != nextState.navibarTitle;
   }
 
+  showDatePicker = () => {
+    this.setState({ datepickerVisible: true });
+  }
+
   render() {
     console.log("render()");
     return (
       <div>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
-          <h1 id="TrainIndex-h1">{this.props.lang.searchNavibarTitle}</h1>
+          <h1 id="TrainIndex-h1">{this.state.navibarTitle}</h1>
         </NavBar>
-
+        <div className="flex-box searchBar">
+          <div className="flex-item flex-grow-3">
+            <Button className="btn" id="prevDay" size="small">
+              <div className="sBefore-small"></div> 前一天 
+            </Button>
+          </div>
+          <div className="flex-item flex-grow-5">
+            <div id="showDatepicker">
+              <a> <img src={this.props.lang.dateIcon}/> 2017-05-21 <div className="sDown-small"></div> </a>
+            </div>
+          </div>
+          <div className="flex-item flex-grow-3">
+            <Button className="btn" id="nextDay" size="small">
+              后一天 <div className="sNext-small"></div>
+            </Button>
+          </div>
+        </div>
         <div className="flex-box">
           <div className="flex-item flex-grow-3">
             <div className="sTrain">G114</div>

@@ -6,12 +6,13 @@ const initStates = Map({
   stationsTxt: null,
   startDate: null,
   trainsResult: null,
+
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
-  //[全局 fecthApi] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
+  //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   fetchTrainsUrl: '/public/data/fetchTrain.txt',
-  //[站点页 layout/TrainCity.js]
+  //[城市选择页 layout/TrainCity.js]
   stationsArrInit: [
     {cn:'北京', code:'BJP', en:'Beijing'}, 
     {cn:'上海', code:'SHH', en:'Shanghai'},
@@ -48,13 +49,13 @@ const initStates = Map({
       {name: '注意事项', url:''},
       {name: '关于我们', url:''},
     ],
-    //[首页 layout/TrainSearch.js]
-    searchTabBar: [
-      {name: '注意事项', url:''},
-      {name: '关于我们', url:''},
-    ],
     //[搜索页 layout/TrainSearch.js]
-    searchNavibarTitle: 'Beijing ⇀ Shanghai',
+    searchTabBar: [
+      {name: '筛选', url:''},
+      {name: '出发', url:''},
+      {name: '耗时', url:''},
+      {name: '价格', url:''},
+    ],
   },
 });
 

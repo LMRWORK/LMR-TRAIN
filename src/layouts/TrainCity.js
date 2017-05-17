@@ -7,6 +7,7 @@ class TrainCity extends React.PureComponent {
 
   constructor(props) {
     super(props);
+    this.clientHeight = document.documentElement.clientHeight;
     this.state = {
       cityNavibarTitle: this.props.location.search=='?from' ? this.props.lang.fromStationLabel : this.props.lang.toStationLabel,
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
@@ -43,7 +44,7 @@ class TrainCity extends React.PureComponent {
         for (let i=0; i<reg_arr.length; i++) {
           let tmp = reg_arr[i].split('|');
           stationObj_arr.push({ en: tmp[1], cn: tmp[2], code: tmp[3] });
-          if (count++ > 9) break;
+          if (count++ > 10) break;
         }
         this.setState({stationsArr: stationObj_arr});
         //console.log(stationObj_arr);
@@ -70,7 +71,7 @@ class TrainCity extends React.PureComponent {
           <SearchBar placeholder={this.props.lang.searchPlaceholder} onChange={str => this.onSearch(str)}/>
         </WingBlank>
         <WhiteSpace/>
-        <List>
+        <List style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
           {lists.map( city => (
               <List.Item platform="ios" arrow="horizontal" thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
                 {city.en}
