@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, WhiteSpace, WingBlank, Toast, TabBar, Button } from 'antd-mobile';
+import { NavBar, WhiteSpace, WingBlank, Toast, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains } from '../actions/Trains';
 
@@ -59,20 +59,20 @@ class TrainSearch extends React.PureComponent {
           <h1 id="TrainIndex-h1">{this.state.navibarTitle}</h1>
         </NavBar>
         <div className="flex-box searchBar">
-          <div className="flex-item flex-grow-3">
-            <Button className="btn" id="prevDay" size="small">
+          <div className="flex-item flex-grow-1 textLeft">
+            <a className="btn" id="prevDay">
               <div className="sBefore-small"></div> 前一天 
-            </Button>
+            </a>
           </div>
-          <div className="flex-item flex-grow-5">
+          <div className="flex-item flex-grow-1">
             <div id="showDatepicker">
-              <a> <img src={this.props.lang.dateIcon}/> {this.state.startDate.format('LL')} <div className="sDown-small"></div> </a>
+              <a> <img src={this.props.lang.dateIcon}/> <span>{this.state.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
             </div>
           </div>
-          <div className="flex-item flex-grow-3">
-            <Button className="btn" id="nextDay" size="small">
+          <div className="flex-item flex-grow-1 textRight">
+            <a className="btn" id="nextDay">
               后一天 <div className="sNext-small"></div>
-            </Button>
+            </a>
           </div>
         </div>
         <div className="flex-box">

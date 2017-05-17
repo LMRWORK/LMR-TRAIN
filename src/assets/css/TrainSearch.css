@@ -108,9 +108,9 @@
   border-top: 1px solid #333;
   border-right: 1px solid #333;
   transform: rotate(45deg);
-  top: 0.42rem;
-  right: 0.5rem;
-  position: absolute;
+  display: inline-block;
+  position: relative;
+  top: -2px;
 }
 .sBefore-small {
   width: 0.3rem;
@@ -118,9 +118,9 @@
   border-top: 1px solid #333;
   border-left: 1px solid #333;
   transform: rotate(-45deg);
-  top: 0.42rem;
-  left: 0.5rem;
-  position: absolute;
+  display: inline-block;
+  position: relative;
+  top: -2px;
 }
 .sDown-small {
   width: 0.3rem;
@@ -129,56 +129,58 @@
   border-right: 1px solid #333;
   transform: rotate(45deg);
   top: 0.35rem;
-  right: 0.7rem;
+  right: 8%;
   position: absolute;
 }
 /*searchBar*/
 .flex-box.searchBar {
   background: #f5f5f9;
   padding: 0.5rem 0;
+  align-items: baseline;
 }
 .flex-box.searchBar .flex-item {
   padding: 0.2rem 0;
   border: none;
 }
 #nextDay {
-  position: absolute;
-  right: 0.3rem;
-  width: 4rem;
   background: none;
   border: none;
   font-size: 0.6rem;
+  padding: 5% 10%;
+  margin-right: 5%;
 }
 #prevDay {
-  position: absolute;
-  left: 0.3rem;
-  width: 4rem;
   background: none;
   border: none;
   font-size: 0.6rem;
+  padding: 5% 10%;
+  margin-left: 5%;
 }
 #prevDay:active, #nextDay:active {
   color: #07c;
-  background: #ddd
+  background: #ddd;
+  border-radius: 0.2rem;
 }
 #showDatepicker {
   text-align: center;
-  height: 1.2rem;
-  line-height: 1.2rem;
 }
 #showDatepicker a {
   border: 1px solid #dfdfdf;
-  background: #fdfdfd;
-  border-radius: 0.15rem;
-  height: 1.2rem;
-  display: inline-block;
-  padding: 0 1.5rem 0 1.3rem;
+  background: #efefef;
+  border-radius: 0.2rem;
+  height: 1.3rem;
+  line-height: 1.3rem;
+  display: block;
   position: relative;
 }
 #showDatepicker img {
   position: relative;
   top: 0.2rem;
-  left: -0.3rem;
+  left: -6%;
+}
+#showDatepicker span {
+  position: relative;
+  left: -5%;
 }
 /*flex*/
 .flex-box {
@@ -219,4 +221,10 @@
 }
 .flex-grow-10 {
   flex-grow:10;
+}
+.textLeft {
+  text-align: left;
+}
+.textRight {
+  text-align: right;
 }
