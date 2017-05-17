@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, WhiteSpace, WingBlank, Toast } from 'antd-mobile';
+import { NavBar, WhiteSpace, WingBlank, Toast, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains } from '../actions/Trains';
 
@@ -9,14 +9,9 @@ class TrainSearch extends React.PureComponent {
     super(props);
 
     this.state = {
-      searchNavibarTitle: this.props.lang.searchNavibarTitle,
-      NavibarLeftBack: this.props.lang.NavibarLeftBack,
-      loadingText: this.props.lang.loadingText,
-      cityIcon: this.props.lang.cityIcon,
       fromStation: this.props.fromStation,
       toStation: this.props.toStation,
       startDate: this.props.startDate,
-      fetchTrainsUrl: this.props.lang.fetchTrainsUrl,
       trainsResult: this.props.trainsResult,
     };
     console.log('TrainSearch 👇');
@@ -25,12 +20,12 @@ class TrainSearch extends React.PureComponent {
 
   componentDidMount = () => {
     this.setState({
-      searchNavibarTitle: this.props.fromStation.en + ' ⇀ ' + this.props.toStation.en
+      navibarTitle: this.props.fromStation.en + ' ⇀ ' + this.props.toStation.en
     });
     //显示轻提示
-    Toast.info(this.state.loadingText, 0);
+    Toast.info(this.props.lang.loadingText, 0);
     //抓取车站文本
-    this.props.fetchTrains(this.state.fetchTrainsUrl);
+    this.props.fetchTrains(this.props.fetchTrainsUrl);
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -47,15 +42,15 @@ class TrainSearch extends React.PureComponent {
     return this.state.fromStation.code != nextState.fromStation.code || 
            this.state.toStation.code != nextState.toStation.code ||
            this.state.startDate != nextState.startDate ||
-           this.state.searchNavibarTitle != nextState.searchNavibarTitle;
+           this.state.navibarTitle != nextState.navibarTitle;
   }
 
   render() {
     console.log("render()");
     return (
       <div>
-        <NavBar iconName={null} leftContent={this.state.NavibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
-          <h1 id="TrainIndex-h1">{this.state.searchNavibarTitle}</h1>
+        <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
+          <h1 id="TrainIndex-h1">{this.props.lang.searchNavibarTitle}</h1>
         </NavBar>
 
         <div className="flex-box">
@@ -74,6 +69,13 @@ class TrainSearch extends React.PureComponent {
           </div>
         </div>
 
+        <div id="TrainIndex-tabbar-div">
+          <TabBar barTintColor="white">
+            {this.props.lang.searchTabBar.map( 
+              (i) => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
+            )}
+          </TabBar>
+        </div>
       </div>
     );
   }
@@ -85,6 +87,7 @@ const mapStateToProps = (store) => ({
   toStation: store.get('toStation'),
   startDate: store.get('startDate'),
   trainsResult: store.get('trainsResult'),
+  fetchTrainsUrl: store.get('fetchTrainsUrl'),
 });
 
 const mapDispatchToProps = (dispatch) => ({

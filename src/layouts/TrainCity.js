@@ -10,13 +10,8 @@ class TrainCity extends React.PureComponent {
     this.state = {
       cityNavibarTitle: this.props.location.search=='?from' ? this.props.lang.fromStationLabel : this.props.lang.toStationLabel,
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
-      NavibarLeftBack: this.props.lang.NavibarLeftBack,
-      searchPlaceholder: this.props.lang.searchPlaceholder,
-      loadingText: this.props.lang.loadingText,
-      cityIcon: this.props.lang.cityIcon,
-      stationsUrl: this.props.lang.stationsUrl,
       stationsTxt: this.props.stationsTxt,
-      stationsArrInit: this.props.lang.stationsArrInit,
+      stationsArrInit: this.props.stationsArrInit,
       stationsArr: [],
     };
     //console.log('TrainCity 👇');
@@ -26,9 +21,9 @@ class TrainCity extends React.PureComponent {
   componentDidMount = () => {
     if (!this.state.stationsTxt) {
       //显示轻提示
-      Toast.info(this.state.loadingText, 0);
+      Toast.info(this.props.lang.loadingText, 0);
       //抓取车站文本
-      this.props.fetchStationsTxt(this.state.stationsUrl);
+      this.props.fetchStationsTxt(this.props.stationsUrl);
     }
   }
 
@@ -43,8 +38,8 @@ class TrainCity extends React.PureComponent {
   //正则匹配城市字串，数据格式："@Guangzhou|広州|广州|GZQ|707@"
   onSearch = (str) => {
     if (str) {
-      let reg = new RegExp('@[^@]*?'+str+'[^@]*?@', 'gi');
-      let reg_arr = this.state.stationsTxt.match(reg);
+      const reg = new RegExp('@[^@]{0,50}?'+str+'[^@]{0,50}?@', 'gi');
+      const reg_arr = this.state.stationsTxt.match(reg);
       let count = 0;
       if (reg_arr) {
         let stationObj_arr = [];
@@ -70,17 +65,17 @@ class TrainCity extends React.PureComponent {
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.state.stationsArrInit;
     return (
       <div>
-        <NavBar iconName={null} leftContent={this.state.NavibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
+        <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
           <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
         </NavBar>
         <WhiteSpace/>
         <WingBlank>
-          <SearchBar placeholder={this.state.searchPlaceholder} onChange={str => this.onSearch(str)}/>
+          <SearchBar placeholder={this.props.lang.searchPlaceholder} onChange={str => this.onSearch(str)}/>
         </WingBlank>
         <WhiteSpace/>
         <List>
           {lists.map( city => (
-              <List.Item platform="ios" arrow="horizontal" thumb={this.state.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
+              <List.Item platform="ios" arrow="horizontal" thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
                 {city.en}
               </List.Item>
           ))}
@@ -91,8 +86,10 @@ class TrainCity extends React.PureComponent {
 }
 
 const mapStateToProps = (store) => ({
-  stationsTxt: store.get('stationsTxt'),
   lang: store.get('lang'),
+  stationsUrl: store.get('stationsUrl'),
+  stationsTxt: store.get('stationsTxt'),
+  stationsArrInit: store.get('stationsArrInit'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
