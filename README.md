@@ -8,6 +8,8 @@
 - 使用moment处理日期的国际化。
 - 使用react-transition-group/CSSTransitionGroup处理切换动画。
 ## 开发进度
+### 2017-05-17
+- 搜索结果flex布局和样式编写。
 ### 2017-05-15
 - 构造APP所需要的搜索结构json。
 - 在action中增加模拟接口请求的程序。
