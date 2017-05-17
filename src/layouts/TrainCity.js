@@ -10,8 +10,6 @@ class TrainCity extends React.PureComponent {
     this.state = {
       cityNavibarTitle: this.props.location.search=='?from' ? this.props.lang.fromStationLabel : this.props.lang.toStationLabel,
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
-      stationsTxt: this.props.stationsTxt,
-      stationsArrInit: this.props.stationsArrInit,
       stationsArr: [],
     };
     //console.log('TrainCity 👇');
@@ -19,7 +17,7 @@ class TrainCity extends React.PureComponent {
   }
 
   componentDidMount = () => {
-    if (!this.state.stationsTxt) {
+    if (!this.props.stationsTxt) {
       //显示轻提示
       Toast.info(this.props.lang.loadingText, 0);
       //抓取车站文本
@@ -28,7 +26,6 @@ class TrainCity extends React.PureComponent {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    this.setState({stationsTxt: nextProps.stationsTxt});
     //隐藏新提示
     //Toast.hide();
     //开发中延时一下，发布时取消。
@@ -39,7 +36,7 @@ class TrainCity extends React.PureComponent {
   onSearch = (str) => {
     if (str) {
       const reg = new RegExp('@[^@]{0,50}?'+str+'[^@]{0,50}?@', 'gi');
-      const reg_arr = this.state.stationsTxt.match(reg);
+      const reg_arr = this.props.stationsTxt.match(reg);
       let count = 0;
       if (reg_arr) {
         let stationObj_arr = [];
@@ -62,7 +59,7 @@ class TrainCity extends React.PureComponent {
   }
 
   render() {
-    let lists = this.state.stationsArr.length ? this.state.stationsArr : this.state.stationsArrInit;
+    let lists = this.state.stationsArr.length ? this.state.stationsArr : this.props.stationsArrInit;
     return (
       <div>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
