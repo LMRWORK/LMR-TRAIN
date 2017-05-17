@@ -66,7 +66,7 @@ class TrainSearch extends React.PureComponent {
           </div>
           <div className="flex-item flex-grow-5">
             <div id="showDatepicker">
-              <a> <img src={this.props.lang.dateIcon}/> 2017-05-21 <div className="sDown-small"></div> </a>
+              <a> <img src={this.props.lang.dateIcon}/> {this.state.startDate.format('LL')} <div className="sDown-small"></div> </a>
             </div>
           </div>
           <div className="flex-item flex-grow-3">

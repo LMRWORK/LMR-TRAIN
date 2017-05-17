@@ -1,10 +1,10 @@
 import { Map } from 'immutable';
-
+import moment from 'moment';
 //初始化store
 const initStates = Map({
   //[全局 states]
   stationsTxt: null,
-  startDate: null,
+  startDate: moment(),
   trainsResult: null,
 
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},

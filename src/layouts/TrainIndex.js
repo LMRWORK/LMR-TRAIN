@@ -41,7 +41,7 @@ class TrainIndex extends React.PureComponent {
           <List.Item platform="ios" extra={this.props.toStation.en+', '+this.props.toStation.cn} arrow="horizontal" thumb={this.props.lang.cityIcon} onClick={() => this.linkto('to')}> 
             {this.props.lang.toStationLabel} 
           </List.Item>
-          <DatePicker mode="date" title={this.props.lang.datepickerTitle} extra={this.props.lang.datepickerExtra} value={this.props.startDate} onChange={moment => this.onChange(moment)} locale={loc}>
+          <DatePicker mode="date" title={this.props.lang.datepickerTitle} extra={this.props.lang.datepickerExtra} value={this.props.startDate} onChange={moment => this.onChange(moment)} locale={loc} format={moment => moment.format('LL')}>
             <List.Item platform="ios" arrow="horizontal" thumb={this.props.lang.dateIcon}> {this.props.lang.datepickerLabel} </List.Item>
           </DatePicker>
         </List>
