@@ -4,6 +4,7 @@ import { routes } from '../routes/Trains';
 
 //静态资源
 import '../assets/css/TrainIndex.css';
+import '../assets/css/TrainSearch.css';
 import '../assets/css/Motion.css';
 import '../assets/png/city.png';
 import '../assets/png/date.png';
