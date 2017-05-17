@@ -13,7 +13,7 @@ const MyBody = (props) => {
 }
 
 //测试数据
-const data = [
+let data = [
   {
     img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
     title: 'Meet hotel',
