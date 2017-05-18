@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 //对旧版浏览器的fetch、promise兼容性
 import promise from 'es6-promise';
 promise.polyfill();
@@ -61,11 +62,23 @@ export const setTrainsResult = (json) => ({
 })
 
 //异步抓取车站文本
-export const fetchTrains = (url) => {
+export const fetchTrains = (url, fromStation, toStation, startDate) => {
+  const data = {
+    from: fromStation.code,
+    to: toStation.code,
+    date: startDate.format('YYYY-MM-DD'),
+  };
+  /** 生产环境使用POST
+  const postHeader = {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: queryString.stringify(data),
+  };
+  **/
   return (dispatch) => {
     dispatch(gettingTrainsResult());
     //异步Ajax请求
-    fetch(url)
+    fetch(url+'?'+queryString.stringify(data))
       .then((res) => {
         //从返回的Promise里得到文本
         return res.json();

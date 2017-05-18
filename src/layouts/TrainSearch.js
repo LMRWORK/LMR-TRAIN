@@ -27,7 +27,7 @@ class TrainSearch extends React.PureComponent {
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
     //抓取火车数据
-    this.props.fetchTrains(this.props.fetchTrainsUrl);
+    this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, this.state.startDate);
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -59,26 +59,24 @@ class TrainSearch extends React.PureComponent {
     console.log('prevDay');
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
-    //清空原结果 & 日期减一
-    this.setState({
-      trainsResult: null,
-      startDate: this.state.startDate.subtract(1, 'd'),
-    });
+    //日期减一
+    this.props.setStartDate(this.state.startDate.subtract(1, 'd'));
+    //清空原结果
+    this.setState({trainsResult: null});
     //重新抓取火车数据
-    this.props.fetchTrains(this.props.fetchTrainsUrl);
+    this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, this.state.startDate);
   }
 
   nextDay = () => {
     console.log('nextDay');
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
-    //清空原结果 & 日期加一
-    this.setState({
-      trainsResult: null,
-      startDate: this.state.startDate.add(1, 'd'),
-    });
+    //日期加一
+    this.props.setStartDate(this.state.startDate.add(1, 'd'));
+    //清空原结果
+    this.setState({trainsResult: null});
     //重新抓取火车数据
-    this.props.fetchTrains(this.props.fetchTrainsUrl);
+    this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, this.state.startDate);
   }
 
   render() {
@@ -147,7 +145,7 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTrains: (url) => dispatch(fetchTrains(url)),
+  fetchTrains: (url, fromStation, toStation, startDate) => dispatch(fetchTrains(url, fromStation, toStation, startDate)),
   setTrainsResult: (result) => dispatch(setTrainsResult(result)),
   setStartDate: (moment) => dispatch(setStartDate(moment)),
 });

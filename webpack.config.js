@@ -8,7 +8,7 @@ const config = {
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
     vendor1: ['react', 'react-dom', 'react-redux', 'react-router-dom', 'immutable', 'es6-promise', 'react-transition-group'],
-    vendor2: ['moment'],
+    vendor2: ['moment', 'query-string'],
   },
 
   output: {

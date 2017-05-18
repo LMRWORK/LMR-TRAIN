@@ -4,7 +4,7 @@ import moment from 'moment';
 const initStates = Map({
   //[全局 states]
   stationsTxt: null,
-  startDate: new moment(),
+  startDate: moment(),
   trainsResult: null,
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
