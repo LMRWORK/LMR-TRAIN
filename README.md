@@ -6,8 +6,13 @@
 - 使用react-router开发APP路由。
 - 使用redux-thunk处理数据异步请求。
 - 使用moment处理日期的国际化。
+- 使用query-string处理表单数据提交和解析。
 - 使用react-transition-group/CSSTransitionGroup处理切换动画。
 ## 开发进度
+### 2017-05-17
+- 添加火车搜索测试程序。
+- 添加“前一天”和“后一天”的按钮逻辑。
+- 添加query-string处理JSON->POST数据之间的互转。
 ### 2017-05-17
 - 搜索结果flex布局和样式编写。
 ### 2017-05-15
