@@ -28,9 +28,9 @@ class TrainCity extends React.PureComponent {
 
   componentWillReceiveProps = (nextProps) => {
     //隐藏新提示
-    //Toast.hide();
-    //开发中延时一下，发布时取消。
-    setTimeout(() => Toast.hide(), 1000);
+    if (nextProps.stationsTxt){
+      Toast.hide();
+    }
   }
 
   //正则匹配城市字串，数据格式："@Guangzhou|広州|广州|GZQ|707@"

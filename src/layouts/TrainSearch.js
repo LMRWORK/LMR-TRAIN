@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar, WhiteSpace, WingBlank, Toast, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate } from '../actions/Trains';
 
 class TrainSearch extends React.PureComponent {
 
@@ -13,7 +13,7 @@ class TrainSearch extends React.PureComponent {
       fromStation: this.props.fromStation,
       toStation: this.props.toStation,
       startDate: this.props.startDate,
-      trainsResult: this.props.trainsResult,
+      trainsResult: null,
       datepickerVisible: false,
     };
     console.log('TrainSearch 👇');
@@ -26,18 +26,20 @@ class TrainSearch extends React.PureComponent {
     });
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
-    //抓取车站文本
+    //抓取火车数据
     this.props.fetchTrains(this.props.fetchTrainsUrl);
   }
 
   componentWillReceiveProps = (nextProps) => {
     console.log('TrainSearch.componentWillReceiveProps 👇');
     console.log(nextProps);
-    this.setState({trainsResult: nextProps.trainsResult});
-    //隐藏新提示
-    //Toast.hide();
-    //开发中延时一下，发布时取消。
-    setTimeout(() => Toast.hide(), 1000);
+    if (nextProps.trainsResult) {
+      this.setState({trainsResult: nextProps.trainsResult});
+      //清空抓取数据
+      this.props.setTrainsResult(null);
+      //隐藏轻提示
+      Toast.hide();
+    }
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
@@ -53,6 +55,32 @@ class TrainSearch extends React.PureComponent {
     this.setState({ datepickerVisible: true });
   }
 
+  prevDay = () => {
+    console.log('prevDay');
+    //显示轻提示
+    Toast.info(this.props.lang.loadingText, 0);
+    //清空原结果 & 日期减一
+    this.setState({
+      trainsResult: null,
+      startDate: this.state.startDate.subtract(1, 'd'),
+    });
+    //重新抓取火车数据
+    this.props.fetchTrains(this.props.fetchTrainsUrl);
+  }
+
+  nextDay = () => {
+    console.log('nextDay');
+    //显示轻提示
+    Toast.info(this.props.lang.loadingText, 0);
+    //清空原结果 & 日期加一
+    this.setState({
+      trainsResult: null,
+      startDate: this.state.startDate.add(1, 'd'),
+    });
+    //重新抓取火车数据
+    this.props.fetchTrains(this.props.fetchTrainsUrl);
+  }
+
   render() {
     console.log("TrainSearch.render()");
     let list = this.state.trainsResult ? this.state.trainsResult.result : [];
@@ -63,7 +91,7 @@ class TrainSearch extends React.PureComponent {
         </NavBar>
         <div className="flex-box searchBar">
           <div className="flex-item flex-grow-1 textLeft">
-            <a className="btn" id="prevDay">
+            <a className="btn" id="prevDay" onClick={this.prevDay}>
               <div className="sBefore-small"></div> {this.props.lang.prevDate} 
             </a>
           </div>
@@ -73,7 +101,7 @@ class TrainSearch extends React.PureComponent {
             </div>
           </div>
           <div className="flex-item flex-grow-1 textRight">
-            <a className="btn" id="nextDay">
+            <a className="btn" id="nextDay" onClick={this.nextDay}>
               {this.props.lang.nextDate} <div className="sNext-small"></div>
             </a>
           </div>
@@ -120,6 +148,8 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTrains: (url) => dispatch(fetchTrains(url)),
+  setTrainsResult: (result) => dispatch(setTrainsResult(result)),
+  setStartDate: (moment) => dispatch(setStartDate(moment)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainSearch);
