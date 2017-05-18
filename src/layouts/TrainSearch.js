@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, WhiteSpace, WingBlank, Toast, TabBar } from 'antd-mobile';
+import { NavBar, WhiteSpace, WingBlank, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains, setTrainsResult, setStartDate } from '../actions/Trains';
 
@@ -48,15 +48,39 @@ class TrainSearch extends React.PureComponent {
            this.state.toStation.code != nextState.toStation.code ||
            this.state.startDate != nextState.startDate ||
            this.state.navibarTitle != nextState.navibarTitle ||
+           this.state.datepickerVisible != nextState.datepickerVisible ||
            this.state.trainsResult != nextState.trainsResult;
   }
 
+  //显示日期控件
   showDatePicker = () => {
-    this.setState({ datepickerVisible: true });
+    this.setState({datepickerVisible: true});
   }
 
+  //OK+取消按钮：隐藏日期控件
+  hideDate = () => {
+    this.setState({datepickerVisible: false});
+  }
+
+  //日期变更时: 重新抓取火车数据
+  onChange = (moment) => {
+    if (moment != this.state.startDate) {
+      //显示轻提示
+      Toast.info(this.props.lang.loadingText, 0);
+      //更新日期
+      this.props.setStartDate(moment);
+      this.setState({startDate: moment});
+      //console.log(this.state.startDate.format('L'));
+      //console.log(this.props.startDate.format('L'));
+      //清空原结果
+      this.setState({trainsResult: null});
+      //重新抓取火车数据
+      this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, moment);
+    }
+  }
+
+  //前一天
   prevDay = () => {
-    console.log('prevDay');
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
     //日期减一
@@ -67,8 +91,8 @@ class TrainSearch extends React.PureComponent {
     this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, this.state.startDate);
   }
 
+  //后一天
   nextDay = () => {
-    console.log('nextDay');
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
     //日期加一
@@ -95,8 +119,17 @@ class TrainSearch extends React.PureComponent {
           </div>
           <div className="flex-item flex-grow-1">
             <div id="showDatepicker">
-              <a> <img src={this.props.lang.dateIcon}/> <span>{this.state.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
+              <a onClick={() => this.showDatePicker()}> <img src={this.props.lang.dateIcon}/> <span>{this.state.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
             </div>
+            <DatePicker
+              visible={this.state.datepickerVisible}
+              mode="date"
+              extra="请选择"
+              onOk={() => this.hideDate()}
+              onDismiss={() => this.hideDate()}
+              value={this.state.startDate}
+              onChange={moment => this.onChange(moment)}
+            />
           </div>
           <div className="flex-item flex-grow-1 textRight">
             <a className="btn" id="nextDay" onClick={this.nextDay}>
