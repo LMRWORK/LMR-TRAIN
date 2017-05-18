@@ -4,9 +4,8 @@ import moment from 'moment';
 const initStates = Map({
   //[全局 states]
   stationsTxt: null,
-  startDate: moment(),
+  startDate: new moment(),
   trainsResult: null,
-
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
@@ -50,6 +49,9 @@ const initStates = Map({
       {name: '关于我们', url:''},
     ],
     //[搜索页 layout/TrainSearch.js]
+    prevDate: '前一天',
+    nextDate: '后一天',
+    minute: '分钟',
     searchTabBar: [
       {name: '筛选', url:''},
       {name: '出发', url:''},

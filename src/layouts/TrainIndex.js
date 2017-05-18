@@ -52,7 +52,7 @@ class TrainIndex extends React.PureComponent {
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.indexTabBar.map( 
-              (i) => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
             )}
           </TabBar>
         </div>

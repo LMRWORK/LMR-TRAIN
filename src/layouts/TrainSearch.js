@@ -33,6 +33,7 @@ class TrainSearch extends React.PureComponent {
   componentWillReceiveProps = (nextProps) => {
     console.log('TrainSearch.componentWillReceiveProps 👇');
     console.log(nextProps);
+    this.setState({trainsResult: nextProps.trainsResult});
     //隐藏新提示
     //Toast.hide();
     //开发中延时一下，发布时取消。
@@ -44,7 +45,8 @@ class TrainSearch extends React.PureComponent {
     return this.state.fromStation.code != nextState.fromStation.code || 
            this.state.toStation.code != nextState.toStation.code ||
            this.state.startDate != nextState.startDate ||
-           this.state.navibarTitle != nextState.navibarTitle;
+           this.state.navibarTitle != nextState.navibarTitle ||
+           this.state.trainsResult != nextState.trainsResult;
   }
 
   showDatePicker = () => {
@@ -52,7 +54,8 @@ class TrainSearch extends React.PureComponent {
   }
 
   render() {
-    console.log("render()");
+    console.log("TrainSearch.render()");
+    let list = this.state.trainsResult ? this.state.trainsResult.result : [];
     return (
       <div>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
@@ -61,7 +64,7 @@ class TrainSearch extends React.PureComponent {
         <div className="flex-box searchBar">
           <div className="flex-item flex-grow-1 textLeft">
             <a className="btn" id="prevDay">
-              <div className="sBefore-small"></div> 前一天 
+              <div className="sBefore-small"></div> {this.props.lang.prevDate} 
             </a>
           </div>
           <div className="flex-item flex-grow-1">
@@ -71,30 +74,33 @@ class TrainSearch extends React.PureComponent {
           </div>
           <div className="flex-item flex-grow-1 textRight">
             <a className="btn" id="nextDay">
-              后一天 <div className="sNext-small"></div>
+              {this.props.lang.nextDate} <div className="sNext-small"></div>
             </a>
           </div>
         </div>
-        <div className="flex-box">
-          <div className="flex-item flex-grow-3">
-            <div className="sTrain">G114</div>
-            <div className="sStart">08:53</div>
-            <div className="sEnd">14:30</div>
-          </div>
-          <div className="flex-item flex-grow-8">
-            <div className="sRun">05:37</div>
-            <div className="sFrom">Beijing Nan (South)</div>
-            <div className="sTo">Shanghai Hongqiao</div>
-          </div>
-          <div className="flex-item flex-grow-1">
-            <div className="sNext"></div>
-          </div>
-        </div>
-
+        {list.map(
+          i => (
+            <div className="flex-box">
+              <div className="flex-item flex-grow-3">
+                <div className="sTrain">{i.TrainCode}</div>
+                <div className="sStart">{i.DepartTime}</div>
+                <div className="sEnd">{i.ArriveTime}</div>
+              </div>
+              <div className="flex-item flex-grow-8">
+                <div className="sRun">{i.RunTime} {this.props.lang.minute}</div>
+                <div className="sFrom">{i.DepartStation}</div>
+                <div className="sTo">{i.ArriveStation}</div>
+              </div>
+              <div className="flex-item flex-grow-1">
+                <div className="sNext"></div>
+              </div>
+            </div>
+          )
+        )}
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.searchTabBar.map( 
-              (i) => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
             )}
           </TabBar>
         </div>
