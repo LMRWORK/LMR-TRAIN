@@ -20,6 +20,8 @@ class TrainSearch extends React.PureComponent {
     this.setState({
       navibarTitle: this.props.fromStation.en + ' ⇀ ' + this.props.toStation.en
     });
+    //清空原结果
+    this.props.setTrainsResult(null);
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
     //抓取火车数据
@@ -62,7 +64,6 @@ class TrainSearch extends React.PureComponent {
       Toast.info(this.props.lang.loadingText, 0);
       //更新日期
       this.props.setStartDate(moment);
-      this.setState({startDate: moment});
       //console.log(this.props.startDate.format('L'));
       //console.log(this.props.startDate.format('L'));
       //清空原结果
@@ -96,12 +97,17 @@ class TrainSearch extends React.PureComponent {
     this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
   }
 
+  //火车条件筛选
+  filter = (data) => {
+    console.log(data);
+  }
+ 
   render() {
-    console.log("TrainSearch.render() @ "+this.state.renderCount);
+    console.log("TrainSearch.render()");
     let list = this.props.trainsResult ? this.props.trainsResult.result : [];
     return (
       <div>
-        <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
+        <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/index')}>
           <h1 id="TrainIndex-h1">{this.state.navibarTitle}</h1>
         </NavBar>
         <div className="flex-box searchBar">
@@ -152,7 +158,7 @@ class TrainSearch extends React.PureComponent {
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.searchTabBar.map( 
-              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)}/>
             )}
           </TabBar>
         </div>

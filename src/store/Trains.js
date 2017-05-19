@@ -45,18 +45,17 @@ const initStates = Map({
     dateIcon: '/public/img/date.png',
     //[首页 layout/TrainIndex.js]
     indexTabBar: [
-      {name: '注意事项', url:''},
-      {name: '关于我们', url:''},
+      {name: '注意事项', url:null, data:null},
+      {name: '关于我们', url:null, data:null},
     ],
     //[搜索页 layout/TrainSearch.js]
     prevDate: '前一天',
     nextDate: '后一天',
     minute: '分钟',
     searchTabBar: [
-      {name: '筛选', url:''},
-      {name: '出发', url:''},
-      {name: '耗时', url:''},
-      {name: '价格', url:''},
+      {name: '筛选', url:null, data:'proFilter'},
+      {name: '出发', url:null, data:'sortByStart'},
+      {name: '耗时', url:null, data:'sortByRunTime'},
     ],
   },
 });

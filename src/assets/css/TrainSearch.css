@@ -1,3 +1,5 @@
+#TrainIndex-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#333!important;}
+#TrainIndex-searchList .am-list-item .am-list-line .am-list-extra {flex-basis:65%;}
 /*直接用ch的样式*/
 .sTrain {
   color: #555;

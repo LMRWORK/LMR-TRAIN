@@ -3,6 +3,9 @@ import queryString from 'query-string';
 import promise from 'es6-promise';
 promise.polyfill();
 
+//测试用
+import moment from 'moment';
+
 //正在抓取车站文本
 export const gettingStationsTxt = () => ({
   type: 'GETTING_STATIONS_TXT'
@@ -85,8 +88,25 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
       })
       .then((json) => {
         //拿到文本，然后dispatch action
-        //模拟ajax延时，并随机重置'运行时间'，方便测试。
+
+        /**
+        模拟ajax延时，并随机重置'运行时间'，方便测试。
         json.result[0].RunTime = Math.ceil(Math.random()*100);
+        */
+        let t = moment();
+        json.result.forEach(i => {
+          i.RunTime = Math.ceil(Math.random()*100);
+          t.minute(Math.ceil(Math.random()*60));
+          t.hour(Math.ceil(Math.random()*24))
+          i.DepartTime = t.format('HH:mm');
+          t.minute(Math.ceil(Math.random()*60));
+          t.hour(Math.ceil(Math.random()*24))
+          i.ArriveTime = t.format('HH:mm');
+        });
+        /**
+        生产环境注释掉上面测试
+        */
+
         setTimeout(() => dispatch(setTrainsResult(json)), 1000);
       });
   }
