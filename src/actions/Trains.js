@@ -85,7 +85,8 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
       })
       .then((json) => {
         //拿到文本，然后dispatch action
-        //模拟ajax延时
+        //模拟ajax延时，并随机重置'运行时间'，方便测试。
+        json.result[0].RunTime = Math.ceil(Math.random()*100);
         setTimeout(() => dispatch(setTrainsResult(json)), 1000);
       });
   }

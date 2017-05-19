@@ -11,7 +11,6 @@ class TrainSearch extends React.PureComponent {
     this.state = {
       navibarTitle: '',
       datepickerVisible: false,
-      renderCount: 0,
     };
     console.log('TrainSearch 👇');
     console.log(props);
@@ -31,7 +30,6 @@ class TrainSearch extends React.PureComponent {
     console.log('TrainSearch.componentWillReceiveProps 👇');
     console.log(nextProps);
     if (nextProps.trainsResult) {
-      this.setState({renderCount: this.state.renderCount+1});
       //隐藏轻提示
       Toast.hide();
     }
@@ -44,8 +42,7 @@ class TrainSearch extends React.PureComponent {
            this.props.startDate != nextProps.startDate ||
            this.props.trainsResult != nextProps.trainsResult ||
            this.state.navibarTitle != nextState.navibarTitle ||
-           this.state.datepickerVisible != nextState.datepickerVisible ||
-           this.state.renderCount != nextState.renderCount;
+           this.state.datepickerVisible != nextState.datepickerVisible;
   }
 
   //显示日期控件
