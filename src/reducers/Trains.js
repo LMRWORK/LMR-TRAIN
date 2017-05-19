@@ -14,8 +14,13 @@ const trainReducer = (state=initStates, action) => {
       return state.set('trainsResult', action.json);
     case 'SORT_BY_RUNTIME':
       let rs = state.get('trainsResult');
-      console.log(rs);
-      return state;
+      //console.log(rs);
+      rs.result.sort(
+        (a, b) => {
+          return a.RunTime - b.RunTime;
+        }
+      );
+      return state.set('trainsResult', rs);;
     default:
       return state;
   }

@@ -11,6 +11,7 @@ class TrainSearch extends React.PureComponent {
     this.state = {
       navibarTitle: '',
       datepickerVisible: false,
+      selectedTab: false,
     };
     console.log('TrainSearch 👇');
     console.log(props);
@@ -44,6 +45,7 @@ class TrainSearch extends React.PureComponent {
            this.props.startDate != nextProps.startDate ||
            this.props.trainsResult != nextProps.trainsResult ||
            this.state.navibarTitle != nextState.navibarTitle ||
+           this.state.selectedTab != nextState.selectedTab ||
            this.state.datepickerVisible != nextState.datepickerVisible;
   }
 
@@ -99,8 +101,14 @@ class TrainSearch extends React.PureComponent {
 
   //火车条件筛选
   filter = (data) => {
-    console.log(data);
-    this.props.sortByRunTime();
+    switch(data) {
+      case 'sortByRunTime':
+        this.props.sortByRunTime();
+        this.setState({
+          selectedTab: data,
+        });
+        break;
+    }
   }
  
   render() {
@@ -159,7 +167,7 @@ class TrainSearch extends React.PureComponent {
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.searchTabBar.map( 
-              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)}/>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)} data-active={this.state.selectedTab === i.data}/>
             )}
           </TabBar>
         </div>
