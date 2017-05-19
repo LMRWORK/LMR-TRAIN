@@ -10,7 +10,6 @@ class TrainSearch extends React.PureComponent {
 
     this.state = {
       navibarTitle: '',
-      trainsResult: null,
       datepickerVisible: false,
       renderCount: 0,
     };
@@ -32,9 +31,7 @@ class TrainSearch extends React.PureComponent {
     console.log('TrainSearch.componentWillReceiveProps 👇');
     console.log(nextProps);
     if (nextProps.trainsResult) {
-      this.setState({trainsResult: nextProps.trainsResult});
-      //清空抓取数据
-      this.props.setTrainsResult(null);
+      this.setState({renderCount: this.state.renderCount+1});
       //隐藏轻提示
       Toast.hide();
     }
@@ -45,9 +42,10 @@ class TrainSearch extends React.PureComponent {
     return this.props.fromStation.code != nextProps.fromStation.code || 
            this.props.toStation.code != nextProps.toStation.code ||
            this.props.startDate != nextProps.startDate ||
+           this.props.trainsResult != nextProps.trainsResult ||
            this.state.navibarTitle != nextState.navibarTitle ||
            this.state.datepickerVisible != nextState.datepickerVisible ||
-           this.state.trainsResult != nextState.trainsResult;
+           this.state.renderCount != nextState.renderCount;
   }
 
   //显示日期控件
@@ -71,7 +69,7 @@ class TrainSearch extends React.PureComponent {
       //console.log(this.props.startDate.format('L'));
       //console.log(this.props.startDate.format('L'));
       //清空原结果
-      this.setState({trainsResult: null});
+      this.props.setTrainsResult(null);
       //重新抓取火车数据
       this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, moment);
     }
@@ -84,7 +82,7 @@ class TrainSearch extends React.PureComponent {
     //日期减一
     this.props.setStartDate(this.props.startDate.subtract(1, 'd'));
     //清空原结果
-    this.setState({trainsResult: null});
+    this.props.setTrainsResult(null);
     //重新抓取火车数据
     this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
   }
@@ -96,14 +94,14 @@ class TrainSearch extends React.PureComponent {
     //日期加一
     this.props.setStartDate(this.props.startDate.add(1, 'd'));
     //清空原结果
-    this.setState({trainsResult: null});
+    this.props.setTrainsResult(null);
     //重新抓取火车数据
     this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
   }
 
   render() {
-    console.log("TrainSearch.render()");
-    let list = this.state.trainsResult ? this.state.trainsResult.result : [];
+    console.log("TrainSearch.render() @ "+this.state.renderCount);
+    let list = this.props.trainsResult ? this.props.trainsResult.result : [];
     return (
       <div>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.goBack()}>
