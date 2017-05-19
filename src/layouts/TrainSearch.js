@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar, WhiteSpace, WingBlank, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains, setTrainsResult, setStartDate } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime } from '../actions/Trains';
 
 class TrainSearch extends React.PureComponent {
 
@@ -100,6 +100,7 @@ class TrainSearch extends React.PureComponent {
   //火车条件筛选
   filter = (data) => {
     console.log(data);
+    this.props.sortByRunTime();
   }
  
   render() {
@@ -180,6 +181,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTrains: (url, fromStation, toStation, startDate) => dispatch(fetchTrains(url, fromStation, toStation, startDate)),
   setTrainsResult: (result) => dispatch(setTrainsResult(result)),
   setStartDate: (moment) => dispatch(setStartDate(moment)),
+  sortByRunTime: () => dispatch(sortByRunTime()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainSearch);

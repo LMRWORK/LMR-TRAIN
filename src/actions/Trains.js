@@ -53,12 +53,12 @@ export const setStartDate = (moment) => ({
   moment
 })
 
-//正在抓取车站文本
+//正在搜索火车
 export const gettingTrainsResult = () => ({
   type: 'GETTING_TRAINS_RESULT'
 })
 
-//正在抓取车站文本
+//设置搜索结果
 export const setTrainsResult = (json) => ({
   type: 'SET_TRAINS_RESULT',
   json
@@ -111,3 +111,8 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
       });
   }
 }
+
+//按运行时间排序
+export const sortByRunTime = () => ({
+  type: 'SORT_BY_RUNTIME',
+})

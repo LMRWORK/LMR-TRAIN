@@ -12,6 +12,10 @@ const trainReducer = (state=initStates, action) => {
       return state.set('startDate', action.moment);
     case 'SET_TRAINS_RESULT':
       return state.set('trainsResult', action.json);
+    case 'SORT_BY_RUNTIME':
+      let rs = state.get('trainsResult');
+      console.log(rs);
+      return state;
     default:
       return state;
   }
