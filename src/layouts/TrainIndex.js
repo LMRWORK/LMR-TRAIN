@@ -8,15 +8,13 @@ class TrainIndex extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {
-      startDate: this.props.startDate,
-    };
+    this.state = {};
     //console.log('TrainIndex 👇');
     //console.log(props);
   }
 
   onChange = (moment) => {
-    this.setState({startDate: moment});
+    //this.setState({startDate: moment});
     this.props.setStartDate(moment);
   }
 
