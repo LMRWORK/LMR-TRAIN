@@ -10,11 +10,9 @@ class TrainSearch extends React.PureComponent {
 
     this.state = {
       navibarTitle: '',
-      fromStation: this.props.fromStation,
-      toStation: this.props.toStation,
-      startDate: this.props.startDate,
       trainsResult: null,
       datepickerVisible: false,
+      renderCount: 0,
     };
     console.log('TrainSearch 👇');
     console.log(props);
@@ -22,12 +20,12 @@ class TrainSearch extends React.PureComponent {
 
   componentDidMount = () => {
     this.setState({
-      navibarTitle: this.state.fromStation.en + ' ⇀ ' + this.state.toStation.en
+      navibarTitle: this.props.fromStation.en + ' ⇀ ' + this.props.toStation.en
     });
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
     //抓取火车数据
-    this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, this.state.startDate);
+    this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -44,9 +42,9 @@ class TrainSearch extends React.PureComponent {
 
   shouldComponentUpdate = (nextProps, nextState) => {
     console.log('TrainSearch.shouldComponentUpdate 👇');
-    return this.state.fromStation.code != nextState.fromStation.code || 
-           this.state.toStation.code != nextState.toStation.code ||
-           this.state.startDate != nextState.startDate ||
+    return this.props.fromStation.code != nextProps.fromStation.code || 
+           this.props.toStation.code != nextProps.toStation.code ||
+           this.props.startDate != nextProps.startDate ||
            this.state.navibarTitle != nextState.navibarTitle ||
            this.state.datepickerVisible != nextState.datepickerVisible ||
            this.state.trainsResult != nextState.trainsResult;
@@ -64,18 +62,18 @@ class TrainSearch extends React.PureComponent {
 
   //日期变更时: 重新抓取火车数据
   onChange = (moment) => {
-    if (moment != this.state.startDate) {
+    if (moment != this.props.startDate) {
       //显示轻提示
       Toast.info(this.props.lang.loadingText, 0);
       //更新日期
       this.props.setStartDate(moment);
       this.setState({startDate: moment});
-      //console.log(this.state.startDate.format('L'));
+      //console.log(this.props.startDate.format('L'));
       //console.log(this.props.startDate.format('L'));
       //清空原结果
       this.setState({trainsResult: null});
       //重新抓取火车数据
-      this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, moment);
+      this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, moment);
     }
   }
 
@@ -84,11 +82,11 @@ class TrainSearch extends React.PureComponent {
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
     //日期减一
-    this.props.setStartDate(this.state.startDate.subtract(1, 'd'));
+    this.props.setStartDate(this.props.startDate.subtract(1, 'd'));
     //清空原结果
     this.setState({trainsResult: null});
     //重新抓取火车数据
-    this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, this.state.startDate);
+    this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
   }
 
   //后一天
@@ -96,11 +94,11 @@ class TrainSearch extends React.PureComponent {
     //显示轻提示
     Toast.info(this.props.lang.loadingText, 0);
     //日期加一
-    this.props.setStartDate(this.state.startDate.add(1, 'd'));
+    this.props.setStartDate(this.props.startDate.add(1, 'd'));
     //清空原结果
     this.setState({trainsResult: null});
     //重新抓取火车数据
-    this.props.fetchTrains(this.props.fetchTrainsUrl, this.state.fromStation, this.state.toStation, this.state.startDate);
+    this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
   }
 
   render() {
@@ -119,7 +117,7 @@ class TrainSearch extends React.PureComponent {
           </div>
           <div className="flex-item flex-grow-1">
             <div id="showDatepicker">
-              <a onClick={() => this.showDatePicker()}> <img src={this.props.lang.dateIcon}/> <span>{this.state.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
+              <a onClick={() => this.showDatePicker()}> <img src={this.props.lang.dateIcon}/> <span>{this.props.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
             </div>
             <DatePicker
               visible={this.state.datepickerVisible}
@@ -127,7 +125,7 @@ class TrainSearch extends React.PureComponent {
               extra="请选择"
               onOk={() => this.hideDate()}
               onDismiss={() => this.hideDate()}
-              value={this.state.startDate}
+              value={this.props.startDate}
               onChange={moment => this.onChange(moment)}
             />
           </div>
