@@ -93,6 +93,7 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         */
         let t = moment();
         json.result.forEach(i => {
+          i.cheapSeat.SeatPrice = 50 + Math.ceil(Math.random()*100);
           i.RunTime = Math.ceil(Math.random()*100);
           t.minute(Math.ceil(Math.random()*60));
           t.hour(Math.ceil(Math.random()*24))
@@ -115,7 +116,12 @@ export const sortByRunTime = () => ({
   type: 'SORT_BY_RUNTIME',
 });
 
-//按运行时间排序
+//按出发时间排序
 export const sortByStartTime = () => ({
   type: 'SORT_BY_STARTTIME',
+});
+
+//按出发时间排序
+export const sortByPrice = () => ({
+  type: 'SORT_BY_PRICE',
 });

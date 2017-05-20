@@ -1,11 +1,11 @@
-#TrainIndex-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#333!important;}
-#TrainIndex-searchList .am-list-item .am-list-line .am-list-extra {flex-basis:65%;}
+#TrainSearch-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#666!important; border: 1px solid #888;padding: 0.2rem 0.5rem;border-radius: 5px; box-shadow: 1px 1px 1px #888;margin-bottom: 0.1rem;}
+#TrainSearch-searchList .am-list-item .am-list-line .am-list-extra {flex-basis:65%;}
 /*tabBar高亮*/
-#TrainIndex-tabbar-div .am-tab-bar-bar [data-active="true"] .am-tab-bar-tab-title {
-  background: #108ee9;
-  color: #fff!important;
-  padding: 0.2rem 0.5rem 0.22rem;
-  border-radius: 5px;
+#TrainSearch-tabbar-div .am-tab-bar-bar [data-active="true"] .am-tab-bar-tab-title {
+  background: #dfdfdf;
+  color: #333!important;
+  padding: 0.2rem 0.5rem;
+  border-color: #333;
 }
 /*直接用ch的样式*/
 .sTrain {
@@ -90,6 +90,16 @@
   z-index: 10;
   left: 0.1rem;
   top: 0.2rem;
+}
+.sSeat {
+  color: #666;
+  font-size: 0.6rem;
+  padding-bottom: 0.3rem;
+  margin-top: 0.8rem;
+}
+.sPrice {
+  color: #666;
+  font-size: 0.6rem;
 }
 .sNext {
   width: 0.5rem;

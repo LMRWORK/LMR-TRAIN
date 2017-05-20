@@ -44,6 +44,16 @@ const trainReducer = (state=initStates, action) => {
       return state.set('trainsResult', rs2);
       break;
 
+    case 'SORT_BY_PRICE':
+      let rs3 = state.get('trainsResult');
+      rs3.result.sort(
+        (a, b) => {
+          return a.cheapSeat.SeatPrice - b.cheapSeat.SeatPrice;
+        }
+      );
+      return state.set('trainsResult', rs3);
+      break;
+
     default:
       return state;
   }

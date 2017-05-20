@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar, WhiteSpace, WingBlank, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice } from '../actions/Trains';
 
 class TrainSearch extends React.PureComponent {
 
@@ -113,6 +113,10 @@ class TrainSearch extends React.PureComponent {
         this.props.sortByStartTime();
         this.setState({selectedTab: data});
         break;
+      case 'sortByPrice':
+        this.props.sortByPrice();
+        this.setState({selectedTab: data});
+        break;
     }
   }
  
@@ -163,16 +167,20 @@ class TrainSearch extends React.PureComponent {
                 <div className="sFrom">{i.DepartStation}</div>
                 <div className="sTo">{i.ArriveStation}</div>
               </div>
+              <div className="flex-item flex-grow-2">
+                <div className="sSeat">{i.cheapSeat.SeatName}</div>
+                <div className="sPrice">$ {i.cheapSeat.SeatPrice}</div>
+              </div>
               <div className="flex-item flex-grow-1">
                 <div className="sNext"></div>
               </div>
             </div>
           )
         )}
-        <div id="TrainIndex-tabbar-div">
+        <div id="TrainSearch-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.searchTabBar.map( 
-              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)} data-active={this.state.selectedTab === i.data}/>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)} data-active={this.state.selectedTab === i.data}></TabBar.Item>
             )}
           </TabBar>
         </div>
@@ -196,6 +204,7 @@ const mapDispatchToProps = (dispatch) => ({
   setStartDate: (moment) => dispatch(setStartDate(moment)),
   sortByRunTime: () => dispatch(sortByRunTime()),
   sortByStartTime: () => dispatch(sortByStartTime()),
+  sortByPrice: () => dispatch(sortByPrice()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainSearch);
