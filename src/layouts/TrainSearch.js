@@ -1,23 +1,24 @@
 import React from 'react';
 import { NavBar, WhiteSpace, WingBlank, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime } from '../actions/Trains';
 
 class TrainSearch extends React.PureComponent {
 
   constructor(props) {
     super(props);
-
     this.state = {
       navibarTitle: '',
       datepickerVisible: false,
-      selectedTab: false,
+      selectedTab: 'sortByRunTime',
+      firstRender: true,
     };
     console.log('TrainSearch 👇');
     console.log(props);
   }
 
   componentDidMount = () => {
+    //设置navbar
     this.setState({
       navibarTitle: this.props.fromStation.en + ' ⇀ ' + this.props.toStation.en
     });
@@ -32,9 +33,15 @@ class TrainSearch extends React.PureComponent {
   componentWillReceiveProps = (nextProps) => {
     console.log('TrainSearch.componentWillReceiveProps 👇');
     console.log(nextProps);
+    //加载完成
     if (nextProps.trainsResult) {
       //隐藏轻提示
       Toast.hide();
+      //默认按运行时间排序
+      if (this.state.firstRender) {
+        this.filter();
+        this.setState({firstRender: false});
+      }
     }
   }
 
@@ -100,13 +107,15 @@ class TrainSearch extends React.PureComponent {
   }
 
   //火车条件筛选
-  filter = (data) => {
+  filter = (data = this.state.selectedTab) => {
     switch(data) {
       case 'sortByRunTime':
         this.props.sortByRunTime();
-        this.setState({
-          selectedTab: data,
-        });
+        this.setState({selectedTab: data});
+        break;
+      case 'sortByStartTime':
+        this.props.sortByStartTime();
+        this.setState({selectedTab: data});
         break;
     }
   }
@@ -190,6 +199,7 @@ const mapDispatchToProps = (dispatch) => ({
   setTrainsResult: (result) => dispatch(setTrainsResult(result)),
   setStartDate: (moment) => dispatch(setStartDate(moment)),
   sortByRunTime: () => dispatch(sortByRunTime()),
+  sortByStartTime: () => dispatch(sortByStartTime()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainSearch);

@@ -3,7 +3,9 @@
 /*tabBar高亮*/
 #TrainIndex-tabbar-div .am-tab-bar-bar [data-active="true"] .am-tab-bar-tab-title {
   background: #108ee9;
-  color:#fff!important;
+  color: #fff!important;
+  padding: 0.2rem 0.5rem 0.22rem;
+  border-radius: 5px;
 }
 /*直接用ch的样式*/
 .sTrain {

@@ -34,11 +34,11 @@ const config = {
       },
       {
         test: /\.(woff|woff2|eot|ttf)/,
-        loader: 'url-loader?importLoaders=1&limit=1&name=/public/font/[name].[ext]'
+        loader: 'url-loader?importLoaders=1&limit=1&name=/public/font/[name].[ext]?[hash]'
   　　},
       {
         test: /\.txt/,
-        loader: 'url-loader?importLoaders=1&limit=1&name=/public/data/[name].[ext]'
+        loader: 'url-loader?importLoaders=1&limit=1&name=/public/data/[name].[ext]?[hash]'
       },
       {
         test: /\.png/,

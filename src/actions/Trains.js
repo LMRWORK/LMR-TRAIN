@@ -1,21 +1,19 @@
 import queryString from 'query-string';
+import moment from 'moment';
 //对旧版浏览器的fetch、promise兼容性
 import promise from 'es6-promise';
 promise.polyfill();
 
-//测试用
-import moment from 'moment';
-
 //正在抓取车站文本
 export const gettingStationsTxt = () => ({
   type: 'GETTING_STATIONS_TXT'
-})
+});
 
 //存放车站文本到store
 export const setStationsTxt = (stationsTxt) => ({
   type: 'SET_STATIONS_TXT',
   stationsTxt
-})
+});
 
 //异步抓取车站文本
 export const fetchStationsTxt = (url) => {
@@ -33,36 +31,36 @@ export const fetchStationsTxt = (url) => {
         setTimeout(() => dispatch(setStationsTxt(text)), 1000);
       });
   }
-}
+};
 
 //设置搜索发站
 export const setFromStation = (station) => ({
   type: 'SET_FROM_STATION',
   station
-})
+});
 
 //设置搜索到站
 export const setToStation = (station) => ({
   type: 'SET_TO_STATION',
   station
-})
+});
 
 //设置搜索日期
 export const setStartDate = (moment) => ({
   type: 'SET_START_DATE',
   moment
-})
+});
 
 //正在搜索火车
 export const gettingTrainsResult = () => ({
   type: 'GETTING_TRAINS_RESULT'
-})
+});
 
 //设置搜索结果
 export const setTrainsResult = (json) => ({
   type: 'SET_TRAINS_RESULT',
   json
-})
+});
 
 //异步抓取车站文本
 export const fetchTrains = (url, fromStation, toStation, startDate) => {
@@ -110,9 +108,14 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         setTimeout(() => dispatch(setTrainsResult(json)), 1000);
       });
   }
-}
+};
 
 //按运行时间排序
 export const sortByRunTime = () => ({
   type: 'SORT_BY_RUNTIME',
-})
+});
+
+//按运行时间排序
+export const sortByStartTime = () => ({
+  type: 'SORT_BY_STARTTIME',
+});

@@ -53,9 +53,9 @@ const initStates = Map({
     nextDate: '后一天',
     minute: '分钟',
     searchTabBar: [
-      {name: '筛选', url:null, data:'proFilter'},
-      {name: '出发', url:null, data:'sortByStart'},
-      {name: '耗时', url:null, data:'sortByRunTime'},
+      {name: '耗时:长>短', url:null, data:'sortByRunTime'},
+      {name: '出发:早>晚', url:null, data:'sortByStartTime'},
+      {name: '其他筛选', url:null, data:'proFilter'},
     ],
   },
 });
