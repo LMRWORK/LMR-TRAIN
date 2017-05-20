@@ -37,16 +37,16 @@ class TrainCity extends React.PureComponent {
   onSearch = (str) => {
     if (str) {
       const reg = new RegExp('@[^@]{0,50}?'+str+'[^@]{0,50}?@', 'gi');
-      const reg_arr = this.props.stationsTxt.match(reg);
+      const reg_arr = [];
+      let temp_arr = [];
       let count = 0;
-      if (reg_arr) {
-        let stationObj_arr = [];
-        for (let i=0; i<reg_arr.length; i++) {
-          let tmp = reg_arr[i].split('|');
-          stationObj_arr.push({ en: tmp[1], cn: tmp[2], code: tmp[3] });
-          if (count++ > 10) break;
-        }
-        this.setState({stationsArr: stationObj_arr});
+      while ((temp_arr = reg.exec(this.props.stationsTxt)) !== null) {
+        let tmp = temp_arr[0].split('|');
+        reg_arr.push({ en: tmp[1], cn: tmp[2], code: tmp[3] });
+        if (count++ > 10) break; 
+      }
+      if (reg_arr.length > 0) {
+        this.setState({stationsArr: reg_arr});
         //console.log(stationObj_arr);
       }
     } else {
