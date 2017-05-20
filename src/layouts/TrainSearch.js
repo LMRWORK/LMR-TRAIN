@@ -11,7 +11,6 @@ class TrainSearch extends React.PureComponent {
       navibarTitle: '',
       datepickerVisible: false,
       selectedTab: 'sortByRunTime',
-      firstRender: true,
     };
     console.log('TrainSearch 👇');
     console.log(props);
@@ -37,11 +36,8 @@ class TrainSearch extends React.PureComponent {
     if (nextProps.trainsResult) {
       //隐藏轻提示
       Toast.hide();
-      //默认按运行时间排序
-      if (this.state.firstRender) {
-        this.filter();
-        this.setState({firstRender: false});
-      }
+      //排序
+      this.filter(this.state.selectedTab);
     }
   }
 
