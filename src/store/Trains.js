@@ -44,6 +44,10 @@ const initStates = Map({
     searchTxt: '查询',
     cityIcon: '/public/img/city.png',
     dateIcon: '/public/img/date.png',
+    seatIcon: '/public/img/seat-O.png',
+    priceIcon: '/public/img/p7.png',
+    priceMarkBegin: '￥',
+    pricemarkAfter: '',
     //[首页 layout/TrainIndex.js]
     indexTabBar: [
       {name: '注意事项'},

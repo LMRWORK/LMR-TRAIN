@@ -7,6 +7,16 @@
   padding: 0.2rem 0.5rem;
   border-color: #333;
 }
+.sSeat > img, .sPrice > img {
+  vertical-align: middle;
+  position: relative;
+}
+.sSeat > img {
+  top: -2px;
+}
+.sPrice > img {
+  top: -4px;
+}
 /*直接用ch的样式*/
 .sTrain {
   color: #555;
@@ -94,8 +104,8 @@
 .sSeat {
   color: #666;
   font-size: 0.6rem;
-  padding-bottom: 0.3rem;
-  margin-top: 0.8rem;
+  padding-bottom: 0.1rem;
+  margin-top: 0.78rem;
 }
 .sPrice {
   color: #666;
