@@ -8,9 +8,9 @@ class TrainSearch extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      navibarTitle: '',
+      navibarTitle: null,
       datepickerVisible: false,
-      selectedTab: 'sortByRunTime',
+      selectedTab: null,
     };
     console.log('TrainSearch 👇');
     console.log(props);
@@ -104,19 +104,21 @@ class TrainSearch extends React.PureComponent {
 
   //火车条件筛选
   filter = (data = this.state.selectedTab) => {
-    switch(data) {
-      case 'sortByRunTime':
-        this.props.sortByRunTime();
-        this.setState({selectedTab: data});
-        break;
-      case 'sortByStartTime':
-        this.props.sortByStartTime();
-        this.setState({selectedTab: data});
-        break;
-      case 'sortByPrice':
-        this.props.sortByPrice();
-        this.setState({selectedTab: data});
-        break;
+    if (this.state.selectedTab != data) {
+      switch(data) {
+        case 'sortByRunTime':
+          this.props.sortByRunTime();
+          this.setState({selectedTab: data});
+          break;
+        case 'sortByStartTime':
+          this.props.sortByStartTime();
+          this.setState({selectedTab: data});
+          break;
+        case 'sortByPrice':
+          this.props.sortByPrice();
+          this.setState({selectedTab: data});
+          break;
+      }
     }
   }
  
