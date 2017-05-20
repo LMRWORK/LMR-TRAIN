@@ -46,8 +46,8 @@ const initStates = Map({
     dateIcon: '/public/img/date.png',
     seatIcon: '/public/img/seat-O.png',
     priceIcon: '/public/img/p7.png',
-    priceMarkBegin: '￥',
-    pricemarkAfter: '',
+    priceMarkBegin: '￥', //货币前缀
+    pricemarkAfter: '',   //货币后缀
     //[首页 layout/TrainIndex.js]
     indexTabBar: [
       {name: '注意事项'},
