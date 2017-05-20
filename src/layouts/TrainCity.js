@@ -13,8 +13,8 @@ class TrainCity extends React.PureComponent {
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
       stationsArr: [],
     };
-    //console.log('TrainCity 👇');
-    //console.log(props);
+    console.log('TrainCity 👇');
+    console.log(props);
   }
 
   componentDidMount = () => {
@@ -31,6 +31,11 @@ class TrainCity extends React.PureComponent {
     if (nextProps.stationsTxt){
       Toast.hide();
     }
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    console.log('TrainCity.shouldComponentUpdate 👇');
+    return this.state.stationsArr != nextState.stationsArr;
   }
 
   //正则匹配城市字串，数据格式："@Guangzhou|広州|广州|GZQ|707@"
@@ -60,6 +65,7 @@ class TrainCity extends React.PureComponent {
   }
 
   render() {
+    console.log("@@ TrainCity.render() @@");
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.props.stationsArrInit;
     return (
       <div>
@@ -68,7 +74,7 @@ class TrainCity extends React.PureComponent {
         </NavBar>
         <WhiteSpace/>
         <WingBlank>
-          <SearchBar placeholder={this.props.lang.searchPlaceholder} onChange={str => this.onSearch(str)}/>
+          <SearchBar placeholder={this.props.lang.searchPlaceholder} onChange={str => this.onSearch(str)} cancelText={this.props.lang.searchCancel}/>
         </WingBlank>
         <WhiteSpace/>
         <List style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>

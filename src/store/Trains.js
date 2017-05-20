@@ -33,6 +33,7 @@ const initStates = Map({
     navibarLeftIndex: '首页',
     navibarLeftBack: '返回',
     searchPlaceholder: '搜索',
+    searchCancel: '取消',
     loadingText: '加载中...',
     fromStationLabel: '出发地',
     toStationLabel: '目的地',
@@ -53,8 +54,8 @@ const initStates = Map({
     nextDate: '后一天',
     minute: '分钟',
     searchTabBar: [
-      {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '出发:早>晚', data:'sortByStartTime'},
+      {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '价格:低>高', data:'sortByPrice'},
     ],
   },
