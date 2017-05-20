@@ -34,11 +34,11 @@ const trainReducer = (state=initStates, action) => {
       let list1 = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储
       let mapped1 = list1.result.map((el, i) => {
-        return { index: i, value: el };
+        return { index: i, value: el.RunTime };
       });
       // 按照多个值排序数组
       mapped1.sort((a, b) => {
-        return a.value.RunTime - b.value.RunTime;
+        return a.value - b.value;
       });
       // 根据索引得到排序的结果
       list1.result = mapped1.map((el) => {
@@ -52,11 +52,11 @@ const trainReducer = (state=initStates, action) => {
       let list2 = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储
       let mapped2 = list2.result.map((el, i) => {
-        return { index: i, value: el };
+        return { index: i, value: moment(el.DepartTime, "HH:mm").unix() };
       });
       // 按照多个值排序数组
       mapped2.sort((a, b) => {
-        return moment(a.value.DepartTime, "HH:mm").unix() - moment(b.value.DepartTime, "HH:mm").unix();
+        return a.value - b.value;
       });
       // 根据索引得到排序的结果
       list2.result = mapped2.map((el) => {
@@ -70,11 +70,11 @@ const trainReducer = (state=initStates, action) => {
       let list3 = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储
       let mapped3 = list3.result.map((el, i) => {
-        return { index: i, value: el };
+        return { index: i, value: el.cheapSeat.SeatPrice };
       });
       // 按照多个值排序数组
       mapped3.sort((a, b) => {
-        return a.value.cheapSeat.SeatPrice - b.value.cheapSeat.SeatPrice;
+        return a.value - b.value;
       });
       // 根据索引得到排序的结果
       list3.result = mapped3.map((el) => {
