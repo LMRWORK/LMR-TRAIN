@@ -132,7 +132,6 @@ class TrainSearch extends React.PureComponent {
  
   render() {
     console.log("@@ TrainSearch.render() @@");
-    let list = this.props.trainsResult ? this.props.trainsResult.result : [];
     return (
       <div>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/index')}>
@@ -164,7 +163,7 @@ class TrainSearch extends React.PureComponent {
             </a>
           </div>
         </div>
-        {list.map(
+        {this.props.trainsResult && this.props.trainsResult.result.map(
           i => (
             <div className="flex-box">
               <div className="flex-item flex-grow-3">

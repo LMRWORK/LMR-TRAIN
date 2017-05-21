@@ -1,5 +1,6 @@
 # ICHT-TRAIN
 - 国际站火车移动端APP开发文档。
+- 代码请进入开发分支：https://github.com/lmrwork/icht-train/tree/feature/dev-react-redux-antd-mobile
 ## 开发技术栈
 - 使用antd-mobile组件库做UI设计，方便之后做三端（pc、ios、andriod）融合。
 - 使用redux管理APP全局状态。
