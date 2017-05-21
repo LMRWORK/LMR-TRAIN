@@ -9,7 +9,7 @@ class TrainIndex extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log('👇 TrainIndex');
+    console.log('😃 TrainIndex');
     console.log(props);
   }
 

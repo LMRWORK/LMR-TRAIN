@@ -1,14 +1,12 @@
 .page-enter {
   opacity: 0.01;
-  position: inherit;
-  width: inherit;
+  position: absolute;
+  width: 100%;
 }
 
 .page-enter.page-enter-active {
   opacity: 1;
   transition: opacity 200ms ease-in;
-  position: absolute;
-  width: 100%;
 }
 
 .page-leave {
@@ -18,4 +16,6 @@
 .page-leave.page-leave-active {
   opacity: 0.01;
   transition: opacity 200ms ease-in;
+  position: absolute;
+  width: 100%;
 }

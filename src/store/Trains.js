@@ -28,6 +28,12 @@ const initStates = Map({
   ],
   //[多语言支持 language]
   lang: {
+    //[全局 图片]
+    cityIcon: '/public/img/city.png',
+    dateIcon: '/public/img/date.png',
+    seatIcon: '/public/img/seat-O.png',
+    priceIcon: '/public/img/p7.png',
+    rightIcon: '/public/img/r1.png',
     //[全局 language]
     navibarTitle: '中国火车票预定',
     navibarRight: '帮助',
@@ -43,11 +49,7 @@ const initStates = Map({
     datepickerTitle: '选择日期',
     datepickerExtra: '请选择',
     searchTxt: '查询',
-    cityIcon: '/public/img/city.png',
-    dateIcon: '/public/img/date.png',
-    seatIcon: '/public/img/seat-O.png',
-    priceIcon: '/public/img/p7.png',
-    priceMarkBegin: '￥', //货币前缀
+    priceMarkBegin: '¥', //货币前缀
     pricemarkAfter: '',   //货币后缀
     //[首页 layout/TrainIndex.js]
     indexTabBar: [

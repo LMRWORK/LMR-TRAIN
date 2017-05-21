@@ -13,7 +13,7 @@ class TrainCity extends React.PureComponent {
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
       stationsArr: [],
     };
-    console.log('👇 TrainCity');
+    console.log('😃 TrainCity');
     console.log(props);
   }
 

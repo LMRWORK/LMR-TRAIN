@@ -8,20 +8,15 @@ class TrainSearch extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      navibarTitle: null,
       datepickerVisible: false,
       selectedTab: null,
       action: 'init', //用于记录复杂页面的操作历史
     };
-    console.log('👇 TrainSearch ');
+    console.log('😃 TrainSearch ');
     console.log(props);
   }
 
   componentDidMount = () => {
-    //设置navbar
-    this.setState({
-      navibarTitle: this.props.fromStation.en + ' ⇀ ' + this.props.toStation.en
-    });
     //清空原结果
     this.props.setTrainsResult(null);
     //显示轻提示
@@ -48,7 +43,6 @@ class TrainSearch extends React.PureComponent {
            this.props.toStation.code != nextProps.toStation.code ||
            this.props.startDate != nextProps.startDate ||
            this.props.trainsResult != nextProps.trainsResult ||
-           this.state.navibarTitle != nextState.navibarTitle ||
            this.state.selectedTab != nextState.selectedTab ||
            this.state.datepickerVisible != nextState.datepickerVisible;
   }
@@ -141,7 +135,7 @@ class TrainSearch extends React.PureComponent {
     return (
       <div>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/index')}>
-          <h1 id="TrainIndex-h1">{this.state.navibarTitle}</h1>
+          <h1 id="TrainIndex-h1">{this.props.fromStation.en} <img src={this.props.lang.rightIcon} className="rightArrow"/> {this.props.toStation.en}</h1>
         </NavBar>
         <div className="flex-box searchBar">
           <div className="flex-item flex-grow-1 textLeft">
@@ -176,12 +170,12 @@ class TrainSearch extends React.PureComponent {
                 <div className="sStart">{i.DepartTime}</div>
                 <div className="sEnd">{i.ArriveTime}</div>
               </div>
-              <div className="flex-item flex-grow-8">
+              <div className="flex-item flex-grow-5">
                 <div className="sRun">{i.RunTime} {this.props.lang.minute}</div>
                 <div className="sFrom">{i.DepartStation}</div>
                 <div className="sTo">{i.ArriveStation}</div>
               </div>
-              <div className="flex-item flex-grow-2">
+              <div className="flex-item flex-grow-1">
                 <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
                 <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.pricemarkAfter} </div>
               </div>

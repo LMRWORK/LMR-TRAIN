@@ -15,6 +15,7 @@
 }
 .sPrice > img {
   top: -4px;
+  margin-right:5px;
 }
 /*直接用ch的样式*/
 .sTrain {
@@ -159,6 +160,9 @@
   top: 0.35rem;
   right: 8%;
   position: absolute;
+}
+.rightArrow {
+  vertical-align: middle;
 }
 /*searchBar*/
 .flex-box.searchBar {
