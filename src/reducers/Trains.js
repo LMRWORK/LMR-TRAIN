@@ -29,6 +29,11 @@ const trainReducer = (state=initStates, action) => {
       return state.set('trainsResult', action.json);
       break;
 
+    //设置抓取的火车车次+价格数据。
+    case 'SET_SELECT_TRAIN':
+      return state.set('selectTrain', action.train);
+      break;
+
     //按运行时间排序。
     case 'SORT_BY_RUNTIME':
       let list1 = state.get('trainsResult');

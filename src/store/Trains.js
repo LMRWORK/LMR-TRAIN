@@ -8,6 +8,7 @@ const initStates = Map({
   trainsResult: null,
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
+  selectTrain: null,
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   fetchTrainsUrl: '/public/data/fetchTrain.txt',

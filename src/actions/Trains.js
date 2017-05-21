@@ -62,6 +62,12 @@ export const setTrainsResult = (json) => ({
   json
 });
 
+//设置点选的站点
+export const setSelectTrain = (train) => ({
+  type: 'SET_SELECT_TRAIN',
+  train
+});
+
 //异步抓取车站文本
 export const fetchTrains = (url, fromStation, toStation, startDate) => {
   const data = {
