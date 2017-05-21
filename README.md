@@ -1,6 +1,6 @@
 # ICHT-TRAIN
 - 国际站火车移动端APP开发文档。
-- 代码请进入开发分支：https://github.com/lmrwork/icht-train/tree/feature/dev-react-redux-antd-mobile
+- 查看&下载源码，请进入开发分支：https://github.com/lmrwork/icht-train/tree/feature/dev-react-redux-antd-mobile
 ## 开发技术栈
 - 使用antd-mobile组件库做UI设计，方便之后做三端（pc、ios、andriod）融合。
 - 使用redux管理APP全局状态。
@@ -21,6 +21,8 @@
 - 搜索结果基础排序：按运行时间，出发时间。
 - 使用映射数组，优化数组sort性能。
 - 使用RegExp优化城市检索正则。
+- 优化细节样式。
+- 初始化booking页面。
 ### 2017-05-19
 - 使用props替换部分state，精简首页、站点页、搜索页，优化render性能。
 ### 2017-05-18
