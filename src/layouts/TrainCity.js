@@ -13,7 +13,7 @@ class TrainCity extends React.PureComponent {
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
       stationsArr: [],
     };
-    console.log('TrainCity 👇');
+    console.log('👇 TrainCity');
     console.log(props);
   }
 
@@ -34,7 +34,7 @@ class TrainCity extends React.PureComponent {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainCity.shouldComponentUpdate 👇');
+    console.log('TrainCity.shouldComponentUpdate');
     return this.state.stationsArr != nextState.stationsArr;
   }
 
@@ -65,7 +65,7 @@ class TrainCity extends React.PureComponent {
   }
 
   render() {
-    console.log("@@ TrainCity.render() @@");
+    console.log("🔥 TrainCity.render()");
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.props.stationsArrInit;
     return (
       <div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, WhiteSpace, WingBlank, Toast, TabBar, DatePicker } from 'antd-mobile';
+import { NavBar, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain } from '../actions/Trains';
 
@@ -13,7 +13,7 @@ class TrainSearch extends React.PureComponent {
       selectedTab: null,
       action: 'init', //用于记录复杂页面的操作历史
     };
-    console.log('TrainSearch 👇');
+    console.log('👇 TrainSearch ');
     console.log(props);
   }
 
@@ -31,7 +31,7 @@ class TrainSearch extends React.PureComponent {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainSearch.componentWillReceiveProps 👇');
+    console.log('TrainSearch.componentWillReceiveProps');
     console.log(nextProps);
     //加载完成
     if (nextProps.trainsResult) {
@@ -43,7 +43,7 @@ class TrainSearch extends React.PureComponent {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainSearch.shouldComponentUpdate 👇');
+    console.log('TrainSearch.shouldComponentUpdate');
     return this.props.fromStation.code != nextProps.fromStation.code || 
            this.props.toStation.code != nextProps.toStation.code ||
            this.props.startDate != nextProps.startDate ||
@@ -137,7 +137,7 @@ class TrainSearch extends React.PureComponent {
   }
  
   render() {
-    console.log("@@ TrainSearch.render() @@");
+    console.log("🔥 TrainSearch.render()");
     return (
       <div>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/index')}>

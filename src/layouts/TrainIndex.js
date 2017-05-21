@@ -9,12 +9,12 @@ class TrainIndex extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log('TrainIndex 👇');
+    console.log('👇 TrainIndex');
     console.log(props);
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainSearch.shouldComponentUpdate 👇');
+    console.log('TrainSearch.shouldComponentUpdate');
     return this.props.fromStation.code != nextProps.fromStation.code || 
            this.props.toStation.code != nextProps.toStation.code ||
            this.props.startDate != nextProps.startDate;
@@ -34,7 +34,7 @@ class TrainIndex extends React.PureComponent {
   }
 
   render() {
-    console.log("@@ TrainIndex.render() @@");
+    console.log("🔥 TrainIndex.render()");
     return (
       <div>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftIndex} rightContent={this.props.lang.navibarRight} mode="light">
