@@ -40,7 +40,7 @@ class TrainIndex extends React.PureComponent {
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftIndex} rightContent={this.props.lang.navibarRight} mode="light">
           <h1 id="TrainIndex-h1">{this.props.lang.navibarTitle}</h1>
         </NavBar>
-        <List renderHeader={() => this.props.lang.tips} id="TrainIndex-searchList">
+        <List renderHeader={this.props.lang.tips} id="TrainIndex-searchList">
           <List.Item platform="ios" extra={this.props.fromStation.en+', '+this.props.fromStation.cn} arrow="horizontal" thumb={this.props.lang.cityIcon} onClick={() => this.linkto('from')}> 
             {this.props.lang.fromStationLabel}
           </List.Item>
@@ -53,7 +53,7 @@ class TrainIndex extends React.PureComponent {
         </List>
         <WhiteSpace size='lg'/>
         <WingBlank size="lg">
-          <Button className="btn" icon="search" id="TrainIndex-search-btn" onClick={() => this.onSearch()}>{this.props.lang.searchTxt}</Button>
+          <Button className="btn" icon="search" id="TrainIndex-search-btn" onClick={this.onSearch}>{this.props.lang.searchTxt}</Button>
         </WingBlank>
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">

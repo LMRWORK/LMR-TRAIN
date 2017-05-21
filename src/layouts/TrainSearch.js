@@ -151,13 +151,13 @@ class TrainSearch extends React.PureComponent {
           </div>
           <div className="flex-item flex-grow-1">
             <div id="showDatepicker">
-              <a onClick={() => this.showDatePicker()}> <img src={this.props.lang.dateIcon}/> <span>{this.props.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
+              <a onClick={this.showDatePicker}> <img src={this.props.lang.dateIcon}/> <span>{this.props.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
             </div>
             <DatePicker
               visible={this.state.datepickerVisible}
               mode="date"
-              onOk={() => this.hideDate()}
-              onDismiss={() => this.hideDate()}
+              onOk={this.hideDate}
+              onDismiss={this.hideDate}
               value={this.props.startDate}
               onChange={moment => this.onChange(moment)}
             />
