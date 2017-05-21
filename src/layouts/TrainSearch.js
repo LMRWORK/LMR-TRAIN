@@ -165,17 +165,17 @@ class TrainSearch extends React.PureComponent {
         {this.props.trainsResult && this.props.trainsResult.result.map(
           i => (
             <div className="flex-box" onClick={() => this.onSelect(i)}>
-              <div className="flex-item flex-grow-3">
+              <div className="flex-item flex-grow-4">
                 <div className="sTrain">{i.TrainCode}</div>
                 <div className="sStart">{i.DepartTime}</div>
                 <div className="sEnd">{i.ArriveTime}</div>
               </div>
-              <div className="flex-item flex-grow-5">
+              <div className="flex-item flex-grow-6">
                 <div className="sRun">{i.RunTime} {this.props.lang.minute}</div>
                 <div className="sFrom">{i.DepartStation}</div>
                 <div className="sTo">{i.ArriveStation}</div>
               </div>
-              <div className="flex-item flex-grow-1">
+              <div className="flex-item flex-grow-2">
                 <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
                 <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.pricemarkAfter} </div>
               </div>

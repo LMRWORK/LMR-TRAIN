@@ -2,13 +2,16 @@
 #TrainSearch-searchList .am-list-item .am-list-line .am-list-extra {flex-basis:65%;}
 /*tabBar高亮*/
 #TrainSearch-tabbar-div .am-tab-bar-bar [data-active="true"] .am-tab-bar-tab-title {
-  background: #ddd;
-  color: #333!important;
-  border-color: #333;
+  background: #f5f5f9;
+  color: #108ee9!important;
+  border: 2px solid #108ee9;
 }
 .sSeat > img, .sPrice > img {
   vertical-align: middle;
   position: relative;
+}
+.sTrain, .sStart, .sEnd{
+  margin-left: 0.72rem;
 }
 .sSeat > img {
   top: -2px;
@@ -118,7 +121,7 @@
   border-right: 0.1rem solid #ccc;
   transform:rotate(45deg);
   top: 0.9rem;
-  right: 0.5rem;
+  right: 0.3rem;
   position: relative;
 }
 .sBefor {
@@ -198,7 +201,7 @@
 }
 #showDatepicker a {
   border: 1px solid #dfdfdf;
-  background: #efefef;
+  background: #fff;
   border-radius: 0.2rem;
   height: 1.3rem;
   line-height: 1.3rem;
@@ -220,7 +223,7 @@
   background: #fff;
 }
 .flex-item {
-  padding:0.5rem 0 0.5rem 0.7rem ;
+  padding:0.5rem 0 ;
   border-bottom: 1px solid #ddd;
   position: relative;
 }
