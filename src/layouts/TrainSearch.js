@@ -156,7 +156,6 @@ class TrainSearch extends React.PureComponent {
             <DatePicker
               visible={this.state.datepickerVisible}
               mode="date"
-              extra="请选择"
               onOk={() => this.hideDate()}
               onDismiss={() => this.hideDate()}
               value={this.props.startDate}
