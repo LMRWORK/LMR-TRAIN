@@ -126,8 +126,9 @@ class TrainSearch extends React.PureComponent {
 
   //选择车站后，提交store，并路由到座位选择页
   onSelect = (train) => {
-    console.log(train);
+    //console.log(train);
     this.props.setSelectTrain(train);
+    this.props.history.push('/book');
   }
  
   render() {

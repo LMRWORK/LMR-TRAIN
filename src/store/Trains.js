@@ -65,6 +65,8 @@ const initStates = Map({
       {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '价格:低>高', data:'sortByPrice'},
     ],
+    //[搜索页 layout/TrainSearch.js]
+    bookNaviBar: '订单填写',
   },
 });
 

@@ -4,6 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import TrainIndex from '../layouts/TrainIndex';
 import TrainCity from '../layouts/TrainCity';
 import TrainSearch from '../layouts/TrainSearch';
+import TrainBook from '../layouts/TrainBook';
 
 export const routes = (props) => {
 
@@ -15,6 +16,7 @@ export const routes = (props) => {
     { to: '/index', component: TrainIndex, name: 'index' },
     { to: '/city', component: TrainCity, name: 'city' },
     { to: '/search', component: TrainSearch, name: 'search' },
+    { to: '/book', component: TrainBook, name: 'search' },
   ];
 
   //使用当前path遍历路由表，转化取出对应的组件
