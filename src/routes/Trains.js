@@ -13,7 +13,7 @@ export const routes = (props) => {
 
   //页面路由表
   const componentArray = [
-    { to: '/index', component: TrainIndex, name: 'index' },
+    { to: '/', component: TrainIndex, name: 'index' },
     { to: '/city', component: TrainCity, name: 'city' },
     { to: '/search', component: TrainSearch, name: 'search' },
     { to: '/book', component: TrainBook, name: 'search' },
@@ -25,19 +25,11 @@ export const routes = (props) => {
       return item.component;
     }
   }).filter(item => item)[0];
- 
-  //首页跳转
-  const homeRoute = () => (
-    <Redirect to="/index"/>
-  );
 
   return (
-    <div>
-      <Route exact path="/" render={homeRoute} />
-      <CSSTransitionGroup transitionName="page" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
-        <Route location={location} key={location.pathname} path={location.pathname} component={component} />
-      </CSSTransitionGroup>
-    </div>
+    <CSSTransitionGroup transitionName="page" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
+      <Route location={location} key={location.pathname} path={location.pathname} component={component} />
+    </CSSTransitionGroup>
   );
 
 }

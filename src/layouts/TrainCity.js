@@ -61,7 +61,7 @@ class TrainCity extends React.PureComponent {
 
   onSelect = (city) => {
     this.state.searchType == 'from' ? this.props.setFromStation(city) : this.props.setToStation(city);
-    this.props.history.push('/index');
+    this.props.history.push('/');
   }
 
   render() {
@@ -69,7 +69,7 @@ class TrainCity extends React.PureComponent {
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.props.stationsArrInit;
     return (
       <div>
-        <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/index')}>
+        <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/')}>
           <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
         </NavBar>
         <WhiteSpace/>
