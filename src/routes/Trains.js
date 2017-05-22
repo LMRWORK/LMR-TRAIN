@@ -28,7 +28,7 @@ export const routes = (props) => {
 
   //动画API参考文档：https://motion.ant.design/api/queue-anim
   return (
-    <QueueAnim className="router-wrap" type="alpha"}>
+    <QueueAnim className="router-wrap" type="alpha">
       <Route location={location} key={location.pathname} path={location.pathname} component={component} />
     </QueueAnim>
   );

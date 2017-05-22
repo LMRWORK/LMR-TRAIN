@@ -54,7 +54,7 @@ class TrainIndex extends React.PureComponent {
         </List>
         <WhiteSpace size='lg'/>
         <WingBlank size="lg">
-          <Button className="btn" icon="search" id="TrainIndex-search-btn" onClick={this.onSearch}>{this.props.lang.searchTxt}</Button>
+          <Button className="btn" type="primary" icon="search" id="TrainIndex-search-btn" onClick={this.onSearch}>{this.props.lang.searchTxt}</Button>
         </WingBlank>
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">
