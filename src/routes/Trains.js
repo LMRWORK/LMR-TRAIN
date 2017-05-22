@@ -20,11 +20,11 @@ export const routes = (props) => {
   ];
 
   //使用当前path遍历路由表，转化取出对应的组件
-  const component = componentArray.map(item => {
+  const component = componentArray.filter(item => {
     if (location.pathname === item.to) {
-      return item.component;
+      return true;
     }
-  }).filter(item => item)[0];
+  })[0].component;
 
   return (
     <CSSTransitionGroup transitionName="page" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
