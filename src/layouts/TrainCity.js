@@ -1,4 +1,5 @@
 import React from 'react';
+import QueueAnim from 'rc-queue-anim';
 import { NavBar, SearchBar, WhiteSpace, WingBlank, Toast, List} from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchStationsTxt, setFromStation, setToStation } from '../actions/Trains';
@@ -68,23 +69,25 @@ class TrainCity extends React.PureComponent {
     console.log("🔥 TrainCity.render()");
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.props.stationsArrInit;
     return (
-      <div className="trainPage" style={{height: this.clientHeight}}>
-        <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/')}>
-          <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
-        </NavBar>
-        <WhiteSpace/>
-        <WingBlank>
-          <SearchBar placeholder={this.props.lang.searchPlaceholder} onChange={str => this.onSearch(str)} cancelText={this.props.lang.searchCancel}/>
-        </WingBlank>
-        <WhiteSpace/>
-        <List style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
-          {lists.map( city => (
-              <List.Item platform="ios" arrow="horizontal" thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
-                {city.en}
-              </List.Item>
-          ))}
-        </List>
-      </div>
+      <QueueAnim className="router-wrap" type="bottom">
+        <div className="trainPage" key="2" style={{height: this.clientHeight}}>
+          <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/')}>
+            <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
+          </NavBar>
+          <WhiteSpace/>
+          <WingBlank>
+            <SearchBar placeholder={this.props.lang.searchPlaceholder} onChange={str => this.onSearch(str)} cancelText={this.props.lang.searchCancel}/>
+          </WingBlank>
+          <WhiteSpace/>
+          <List style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
+            {lists.map( city => (
+                <List.Item platform="ios" arrow="horizontal" thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
+                  {city.en}
+                </List.Item>
+            ))}
+          </List>
+        </div>
+      </QueueAnim>
     );
   }
 }

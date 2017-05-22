@@ -1,5 +1,4 @@
 import React from 'react';
-import QueueAnim from 'rc-queue-anim';
 import { Route, Redirect } from 'react-router-dom';
 import TrainIndex from '../layouts/TrainIndex';
 import TrainCity from '../layouts/TrainCity';
@@ -20,17 +19,15 @@ export const routes = (props) => {
   ];
 
   //使用当前path遍历路由表，转化取出对应的组件
-  const component = componentArray.filter(item => {
-    if (location.pathname === item.to) {
+  const component = componentArray.filter(i => {
+    if (location.pathname === i.to) {
       return true;
     }
   })[0].component;
 
   //动画API参考文档：https://motion.ant.design/api/queue-anim
   return (
-    <QueueAnim className="router-wrap" type="alpha">
-      <Route location={location} key={location.pathname} path={location.pathname} component={component} />
-    </QueueAnim>
+    <Route location={location} key={location.pathname} path={location.pathname} component={component} />
   );
 
 }

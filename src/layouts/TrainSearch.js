@@ -1,4 +1,5 @@
 import React from 'react';
+import QueueAnim from 'rc-queue-anim';
 import { NavBar, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain } from '../actions/Trains';
@@ -135,68 +136,70 @@ class TrainSearch extends React.PureComponent {
   render() {
     console.log("🔥 TrainSearch.render()");
     return (
-      <div className="trainPage" style={{height: this.clientHeight}}>
-        <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/')}>
-          <h1 id="TrainIndex-h1">{this.props.fromStation.en} <img src={this.props.lang.rightIcon} className="rightArrow"/> {this.props.toStation.en}</h1>
-        </NavBar>
-        <div className="flex-box searchBar">
-          <div className="flex-item flex-grow-1 textLeft">
-            <a className="btn" id="prevDay" onClick={this.prevDay}>
-              <div className="sBefore-small"></div> {this.props.lang.prevDate} 
-            </a>
-          </div>
-          <div className="flex-item flex-grow-1">
-            <div id="showDatepicker">
-              <a onClick={this.showDatePicker}> <img src={this.props.lang.dateIcon}/> <span>{this.props.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
+      <QueueAnim className="router-wrap" type="bottom">
+        <div className="trainPage" key="3" style={{height: this.clientHeight}}>
+          <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/')}>
+            <h1 id="TrainIndex-h1">{this.props.fromStation.en} <img src={this.props.lang.rightIcon} className="rightArrow"/> {this.props.toStation.en}</h1>
+          </NavBar>
+          <div className="flex-box searchBar">
+            <div className="flex-item flex-grow-1 textLeft">
+              <a className="btn" id="prevDay" onClick={this.prevDay}>
+                <div className="sBefore-small"></div> {this.props.lang.prevDate} 
+              </a>
             </div>
-            <DatePicker
-              visible={this.state.datepickerVisible}
-              mode="date"
-              onOk={this.hideDate}
-              onDismiss={this.hideDate}
-              value={this.props.startDate}
-              onChange={moment => this.onChange(moment)}
-            />
-          </div>
-          <div className="flex-item flex-grow-1 textRight">
-            <a className="btn" id="nextDay" onClick={this.nextDay}>
-              {this.props.lang.nextDate} <div className="sNext-small"></div>
-            </a>
-          </div>
-        </div>
-        <div style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
-          {this.props.trainsResult && this.props.trainsResult.result.map(
-            i => (
-              <div className="flex-box" onClick={() => this.onSelect(i)}>
-                <div className="flex-item flex-grow-4">
-                  <div className="sTrain">{i.TrainCode}</div>
-                  <div className="sStart">{i.DepartTime}</div>
-                  <div className="sEnd">{i.ArriveTime}</div>
-                </div>
-                <div className="flex-item flex-grow-6">
-                  <div className="sRun">{i.RunTime} {this.props.lang.minute}</div>
-                  <div className="sFrom">{i.DepartStation}</div>
-                  <div className="sTo">{i.ArriveStation}</div>
-                </div>
-                <div className="flex-item flex-grow-2">
-                  <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
-                  <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.pricemarkAfter} </div>
-                </div>
-                <div className="flex-item flex-grow-1">
-                  <div className="sNext"></div>
-                </div>
+            <div className="flex-item flex-grow-1">
+              <div id="showDatepicker">
+                <a onClick={this.showDatePicker}> <img src={this.props.lang.dateIcon}/> <span>{this.props.startDate.format('LL')}</span> <div className="sDown-small"></div> </a>
               </div>
-            )
-          )}
-        </div>
-        <div id="TrainSearch-tabbar-div">
-          <TabBar barTintColor="white">
-            {this.props.lang.searchTabBar.map( 
-              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)} data-active={this.state.selectedTab === i.data}></TabBar.Item>
+              <DatePicker
+                visible={this.state.datepickerVisible}
+                mode="date"
+                onOk={this.hideDate}
+                onDismiss={this.hideDate}
+                value={this.props.startDate}
+                onChange={moment => this.onChange(moment)}
+              />
+            </div>
+            <div className="flex-item flex-grow-1 textRight">
+              <a className="btn" id="nextDay" onClick={this.nextDay}>
+                {this.props.lang.nextDate} <div className="sNext-small"></div>
+              </a>
+            </div>
+          </div>
+          <div style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
+            {this.props.trainsResult && this.props.trainsResult.result.map(
+              i => (
+                <div className="flex-box" onClick={() => this.onSelect(i)}>
+                  <div className="flex-item flex-grow-4">
+                    <div className="sTrain">{i.TrainCode}</div>
+                    <div className="sStart">{i.DepartTime}</div>
+                    <div className="sEnd">{i.ArriveTime}</div>
+                  </div>
+                  <div className="flex-item flex-grow-6">
+                    <div className="sRun">{i.RunTime} {this.props.lang.minute}</div>
+                    <div className="sFrom">{i.DepartStation}</div>
+                    <div className="sTo">{i.ArriveStation}</div>
+                  </div>
+                  <div className="flex-item flex-grow-2">
+                    <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
+                    <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.pricemarkAfter} </div>
+                  </div>
+                  <div className="flex-item flex-grow-1">
+                    <div className="sNext"></div>
+                  </div>
+                </div>
+              )
             )}
-          </TabBar>
+          </div>
+          <div id="TrainSearch-tabbar-div">
+            <TabBar barTintColor="white">
+              {this.props.lang.searchTabBar.map( 
+                i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)} data-active={this.state.selectedTab === i.data}></TabBar.Item>
+              )}
+            </TabBar>
+          </div>
         </div>
-      </div>
+      </QueueAnim>
     );
   }
 }

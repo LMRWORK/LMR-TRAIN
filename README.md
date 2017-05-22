@@ -8,8 +8,8 @@
 - 使用redux-thunk处理数据异步请求。
 - 使用moment处理日期的国际化。
 - 使用query-string处理表单数据提交和解析。
-- 使用rc-queue-anim处理动画。
-- 
+- 使用rc-animate处理动画,参考：https://github.com/julianshapiro/velocity。
+- 使用rc-queue-anim切换页面，参考：https://motion.ant.design/api/queue-anim#API
 ## 开发进度
 - 首页：100%
 - 车站选择页：100%
@@ -56,7 +56,7 @@
 - 首页布局完成。
 - webpack调整，可以按需载入antd样式。
 - react-router高阶组件。
-- 添加切换CSS3动画，react-transition-group/CSSTransitionGroup。
+- （移除）添加切换CSS3动画，react-transition-group/CSSTransitionGroup。
 - 整合router和动画组件。
 ### 2017-05-06
 - 初始化开发环境，等待加入antd-mobile。

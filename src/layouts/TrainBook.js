@@ -1,4 +1,5 @@
 import React from 'react';
+import QueueAnim from 'rc-queue-anim';
 import { NavBar, Toast, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
 
@@ -31,7 +32,8 @@ class TrainBook extends React.PureComponent {
   render() {
     console.log("🔥 TrainBook.render()");
     return (
-      <div className="trainPage" style={{height: this.clientHeight}}>
+      <QueueAnim className="router-wrap" type="scaleX">
+      <div className="trainPage" key="4" style={{height: this.clientHeight}}>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/search')}>
           <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
         </NavBar>
@@ -43,6 +45,7 @@ class TrainBook extends React.PureComponent {
           </TabBar>
         </div>
       </div>
+      </QueueAnim>
     );
   }
 }
