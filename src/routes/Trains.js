@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import QueueAnim from 'rc-queue-anim';
 import { Route, Redirect } from 'react-router-dom';
 import TrainIndex from '../layouts/TrainIndex';
 import TrainCity from '../layouts/TrainCity';
@@ -26,10 +26,11 @@ export const routes = (props) => {
     }
   })[0].component;
 
+  //动画API参考文档：https://motion.ant.design/api/queue-anim
   return (
-    <CSSTransitionGroup transitionName="page" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
+    <QueueAnim className="router-wrap" type="alpha"}>
       <Route location={location} key={location.pathname} path={location.pathname} component={component} />
-    </CSSTransitionGroup>
+    </QueueAnim>
   );
 
 }

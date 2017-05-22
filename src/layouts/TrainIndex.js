@@ -8,6 +8,7 @@ class TrainIndex extends React.PureComponent {
 
   constructor(props) {
     super(props);
+    this.clientHeight = document.documentElement.clientHeight;
     this.state = {};
     console.log('😃 TrainIndex');
     console.log(props);
@@ -36,7 +37,7 @@ class TrainIndex extends React.PureComponent {
   render() {
     console.log("🔥 TrainIndex.render()");
     return (
-      <div>
+      <div className="trainPage" style={{height: this.clientHeight}}>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftIndex} rightContent={this.props.lang.navibarRight} mode="light">
           <h1 id="TrainIndex-h1">{this.props.lang.navibarTitle}</h1>
         </NavBar>

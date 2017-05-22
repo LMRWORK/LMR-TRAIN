@@ -68,7 +68,7 @@ class TrainCity extends React.PureComponent {
     console.log("🔥 TrainCity.render()");
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.props.stationsArrInit;
     return (
-      <div>
+      <div className="trainPage" style={{height: this.clientHeight}}>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/')}>
           <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
         </NavBar>

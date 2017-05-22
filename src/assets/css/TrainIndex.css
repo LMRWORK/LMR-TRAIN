@@ -1,5 +1,6 @@
 /*针对SEO的H1样式，更改为继承父元素。*/
 #TrainIndex-h1 {font-size:inherit; font-weight:inherit; margin:inherit;}
+.trainPage {}
 #TrainIndex-search-btn {
     color: #fff;
     background-color: rgba(219, 87, 51, 1);

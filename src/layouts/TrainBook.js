@@ -6,6 +6,7 @@ class TrainBook extends React.PureComponent {
 
   constructor(props) {
     super(props);
+    this.clientHeight = document.documentElement.clientHeight;
     this.state = {
       action: 'init', //用于记录复杂页面的操作历史
     };
@@ -30,7 +31,7 @@ class TrainBook extends React.PureComponent {
   render() {
     console.log("🔥 TrainBook.render()");
     return (
-      <div>
+      <div className="trainPage" style={{height: this.clientHeight}}>
         <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/search')}>
           <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
         </NavBar>
