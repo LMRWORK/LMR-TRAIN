@@ -170,7 +170,7 @@ class TrainSearch extends React.PureComponent {
             <div style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
               {this.props.trainsResult && this.props.trainsResult.result.map(
                 (i, id) => (
-                  <div className="flex-box" key={id} onClick={() => this.onSelect(i)}>
+                  <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)}>
                     <div className="flex-item flex-grow-4">
                       <div className="sTrain">{i.TrainCode}</div>
                       <div className="sStart">{i.DepartTime}</div>

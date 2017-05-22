@@ -6,6 +6,9 @@
   color: #108ee9!important;
   border: 2px solid #108ee9;
 }
+.trainResults .flex-item {
+  border-bottom: 1px solid #ddd;
+}
 .sSeat > img, .sPrice > img {
   vertical-align: middle;
   position: relative;
@@ -224,7 +227,6 @@
 }
 .flex-item {
   padding:0.5rem 0 ;
-  border-bottom: 1px solid #ddd;
   position: relative;
 }
 .flex-grow-1 {

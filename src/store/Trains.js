@@ -65,8 +65,9 @@ const initStates = Map({
       {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '价格:低>高', data:'sortByPrice'},
     ],
-    //[搜索页 layout/TrainSearch.js]
+    //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
+    bookinfo: '预定完成后，我们会在24小时内通过电话或邮件联系您。',
   },
 });
 
