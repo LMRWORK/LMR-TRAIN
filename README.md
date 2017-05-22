@@ -8,7 +8,8 @@
 - 使用redux-thunk处理数据异步请求。
 - 使用moment处理日期的国际化。
 - 使用query-string处理表单数据提交和解析。
-- 使用react-transition-group/CSSTransitionGroup处理切换动画。
+- 使用rc-queue-anim处理动画。
+- 
 ## 开发进度
 - 首页：100%
 - 车站选择页：100%
