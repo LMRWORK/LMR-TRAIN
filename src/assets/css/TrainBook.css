@@ -1,0 +1,61 @@
+.bookinfo {
+
+}
+.bookinfoLeft {
+
+}
+.bookinfoMiddle {
+
+}
+.bookinfoRight {
+
+}
+.bookinfoLeft .bItem {
+	text-align: left;
+	padding: 0.1rem 0 0 0.1rem;
+}
+.bookinfoMiddle .bItem {
+	text-align: center;
+	padding: 0.1rem 0;
+}
+.bookinfoRight .bItem {
+	text-align: right;
+	padding: 0.1rem 0.1rem 0 0;
+}
+.bFrom, .bTo {
+	font-size: 0.8rem;
+}
+.bFromTime, .bToTime {
+	font-size: 1.2rem;
+}
+.bFromDate, .bToDate {
+	font-size: 0.5rem;
+}
+.bTime {
+	font-size: 0.5rem;
+}
+.bTrain {
+	margin-top: 0.5rem;
+	padding: 0;
+	font-size: 1rem;
+	color: #108ee9;
+}
+#img-tcd {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    position: relative;
+    bottom: 0.08rem;
+    right: 0.2rem;
+}
+.bookinfoMiddle .bLongArr {
+	padding: 0;
+	height: 0.2rem;
+}
+.bLongArr img {
+	width: auto;
+    height: auto;
+    max-width: 90%;
+    position: relative;
+    bottom: 2.4rem;
+}

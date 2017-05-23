@@ -45,7 +45,7 @@ export const setToStation = (station) => ({
   station
 });
 
-//设置搜索日期
+//设置出发日期
 export const setStartDate = (moment) => ({
   type: 'SET_START_DATE',
   moment
@@ -100,7 +100,9 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         let t = moment();
         json.result.forEach(i => {
           i.cheapSeat.SeatPrice = 50 + Math.ceil(Math.random()*2000);
-          i.RunTime = Math.ceil(Math.random()*100);
+          t.minute(Math.ceil(Math.random()*60));
+          t.hour(Math.ceil(12 + Math.random()*24))
+          i.RunTime = t.format('HH:mm');
           t.minute(Math.ceil(Math.random()*60));
           t.hour(Math.ceil(Math.random()*24))
           i.DepartTime = t.format('HH:mm');

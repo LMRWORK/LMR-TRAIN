@@ -177,7 +177,7 @@ class TrainSearch extends React.PureComponent {
                       <div className="sEnd">{i.ArriveTime}</div>
                     </div>
                     <div className="flex-item flex-grow-6">
-                      <div className="sRun">{i.RunTime} {this.props.lang.minute}</div>
+                      <div className="sRun">{this.props.lang.needTime} {i.RunTime}</div>
                       <div className="sFrom">{i.DepartStation}</div>
                       <div className="sTo">{i.ArriveStation}</div>
                     </div>

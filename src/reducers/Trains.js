@@ -31,7 +31,20 @@ const trainReducer = (state=initStates, action) => {
 
     //设置抓取的火车车次+价格数据。
     case 'SET_SELECT_TRAIN':
-      return state.set('selectTrain', action.train);
+      let runTimeArr = action.train['RunTime'].split(':');
+      let departTimeArr = action.train['DepartTime'].split(':');
+      if (runTimeArr.length == 2 && departTimeArr.length == 2) {
+        const startDate = state.get('startDate');
+        startDate.set({
+          hours: departTimeArr[0],
+          minutes: departTimeArr[1],
+        })
+        let arriveDate = startDate.clone().add({
+          hours: runTimeArr[0],
+          minutes: runTimeArr[1],
+        });
+        return state.set('selectTrain', action.train).set('startDate', startDate).set('arriveDate', arriveDate);
+      }
       break;
 
     //按运行时间排序。
@@ -39,7 +52,7 @@ const trainReducer = (state=initStates, action) => {
       let list1 = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储
       let mapped1 = list1.result.map((el, i) => {
-        return { index: i, value: el.RunTime };
+        return { index: i, value: moment(el.RunTime, "HH:mm").unix() };
       });
       // 按照多个值排序数组
       mapped1.sort((a, b) => {

@@ -9,6 +9,7 @@ const initStates = Map({
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
   selectTrain: null,
+  arriveDate: null, //抵达日期需要出发日期和运行时间计算得出。
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   fetchTrainsUrl: '/public/data/fetchTrain.txt',
@@ -34,6 +35,8 @@ const initStates = Map({
     seatIcon: '/public/img/seat-O.png',
     priceIcon: '/public/img/p7.png',
     rightIcon: '/public/img/r1.png',
+    trainIcon: '/public/img/t1.png',
+    longArrIcon: '/public/img/lr1.png',
     //[全局 language]
     navibarTitle: '中国火车票预定',
     navibarRight: '帮助',
@@ -59,7 +62,6 @@ const initStates = Map({
     //[搜索页 layout/TrainSearch.js]
     prevDate: '前一天',
     nextDate: '后一天',
-    minute: '分钟',
     searchTabBar: [
       {name: '出发:早>晚', data:'sortByStartTime'},
       {name: '耗时:短>长', data:'sortByRunTime'},
@@ -68,6 +70,7 @@ const initStates = Map({
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
     bookinfo: '预定完成后，我们会在24小时内通过电话或邮件联系您。',
+    needTime: '历时',
   },
 });
 
