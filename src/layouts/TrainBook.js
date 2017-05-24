@@ -39,7 +39,7 @@ class TrainBook extends React.PureComponent {
       <div>
         <QueueAnim className="router-wrap" type="scaleX">
           <div className="trainPage" key="4">
-            <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/search')}>
+            <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/search')}>
               <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
             </NavBar>
             <List renderHeader={this.props.lang.bookinfo}>

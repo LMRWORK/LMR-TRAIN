@@ -25,3 +25,8 @@
 #TrainIndex-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#333!important; margin-bottom: 0.1rem;}
 /*fix antd-mobile*/
 .am-toast-notice {top: 40%;}
+.chtBack {
+    margin-bottom: -0.15rem;
+    left: -8px;
+    margin-left: -0.35rem;
+}

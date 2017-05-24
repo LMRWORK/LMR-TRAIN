@@ -37,6 +37,7 @@ const initStates = Map({
     rightIcon: '/public/img/r1.png',
     trainIcon: '/public/img/t1.png',
     longArrIcon: '/public/img/lr1.png',
+    backIcon: '/public/img/back.png',
     //[全局 language]
     navibarTitle: '中国火车票预定',
     navibarRight: '帮助',
@@ -67,6 +68,7 @@ const initStates = Map({
       {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '价格:低>高', data:'sortByPrice'},
     ],
+    selectedTab: null,
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
     bookinfo: '预定完成后，我们会在24小时内通过电话或邮件联系您。',

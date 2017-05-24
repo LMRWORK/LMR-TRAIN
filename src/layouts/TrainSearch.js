@@ -2,16 +2,15 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { NavBar, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSelectedTab } from '../actions/Trains';
 
 class TrainSearch extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.clientHeight = document.documentElement.clientHeight;
     this.state = {
       datepickerVisible: false,
-      selectedTab: null,
+      selectedTab: this.props.selectedTab,
       action: 'init', //用于记录复杂页面的操作历史
     };
     console.log('😃 TrainSearch ');
@@ -122,6 +121,7 @@ class TrainSearch extends React.PureComponent {
           break;
       }
       this.setState({action: 'filter'});
+      this.props.setSelectedTab(data);
       //console.log('sort done: ' + data);
     }
   }
@@ -138,8 +138,8 @@ class TrainSearch extends React.PureComponent {
     return (
       <div>
         <QueueAnim className="router-wrap" type="bottom">
-          <div className="trainPage" key="3" style={{height: this.clientHeight}}>
-            <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/')}>
+          <div className="trainPage" key="3">
+            <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/')}>
               <h1 id="TrainIndex-h1">{this.props.fromStation.en} <img src={this.props.lang.rightIcon} className="rightArrow"/> {this.props.toStation.en}</h1>
             </NavBar>
             <div className="flex-box searchBar">
@@ -213,6 +213,7 @@ const mapStateToProps = (store) => ({
   startDate: store.get('startDate'),
   trainsResult: store.get('trainsResult'),
   fetchTrainsUrl: store.get('fetchTrainsUrl'),
+  selectedTab: store.get('selectedTab'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -223,6 +224,7 @@ const mapDispatchToProps = (dispatch) => ({
   sortByStartTime: () => dispatch(sortByStartTime()),
   sortByPrice: () => dispatch(sortByPrice()),
   setSelectTrain: (train) => dispatch(setSelectTrain(train)),
+  setSelectedTab: (filterType) => dispatch(setSelectedTab(filterType)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainSearch);

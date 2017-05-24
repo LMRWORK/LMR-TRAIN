@@ -56,10 +56,16 @@ export const gettingTrainsResult = () => ({
   type: 'GETTING_TRAINS_RESULT'
 });
 
-//设置搜索结果
+//设置过滤条件
 export const setTrainsResult = (json) => ({
   type: 'SET_TRAINS_RESULT',
   json
+});
+
+//设置搜索结果
+export const setSelectedTab = (filterType) => ({
+  type: 'SET_SELECTED_TAB',
+  filterType
 });
 
 //设置点选的站点

@@ -84,6 +84,10 @@ const trainReducer = (state=initStates, action) => {
       break;
 
     //按最低可预定价格排序。
+    case 'SET_SELECTED_TAB':
+      return state.set('selectedTab', action.filterType);
+
+    //按最低可预定价格排序。
     case 'SORT_BY_PRICE':
       let list3 = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储

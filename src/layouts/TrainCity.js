@@ -49,7 +49,7 @@ class TrainCity extends React.PureComponent {
       while ((temp_arr = reg.exec(this.props.stationsTxt)) !== null) {
         let tmp = temp_arr[0].split('|');
         reg_arr.push({ en: tmp[1], cn: tmp[2], code: tmp[3] });
-        if (count++ > 10) break; 
+        if (count++ > 8) break; 
       }
       if (reg_arr.length > 0) {
         this.setState({stationsArr: reg_arr});
@@ -71,7 +71,7 @@ class TrainCity extends React.PureComponent {
     return (
       <QueueAnim className="router-wrap" type="bottom">
         <div className="trainPage" key="2" style={{height: this.clientHeight}}>
-          <NavBar iconName={null} leftContent={this.props.lang.navibarLeftBack} mode="light" onLeftClick={() => this.props.history.push('/')}>
+          <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/')}>
             <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
           </NavBar>
           <WhiteSpace/>
@@ -81,9 +81,9 @@ class TrainCity extends React.PureComponent {
           <WhiteSpace/>
           <List style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
             {lists.map( city => (
-                <List.Item platform="ios" arrow="horizontal" thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
-                  {city.en}
-                </List.Item>
+              <List.Item platform="ios" arrow="horizontal" key={city.en} thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
+                {city.en}
+              </List.Item>
             ))}
           </List>
         </div>
