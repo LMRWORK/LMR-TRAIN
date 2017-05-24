@@ -1,6 +1,6 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { NavBar, SearchBar, WhiteSpace, WingBlank, Toast, List} from 'antd-mobile';
+import { NavBar, SearchBar, WhiteSpace, WingBlank, List} from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchStationsTxt, setFromStation, setToStation } from '../actions/Trains';
 
@@ -20,8 +20,8 @@ class TrainCity extends React.PureComponent {
 
   componentDidMount = () => {
     if (!this.props.stationsTxt) {
-      //显示轻提示
-      Toast.info(this.props.lang.loadingText, 0);
+      //显示轻提示（因为使用cdn分发，速度很快，不显示loading）
+      //Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
       //抓取车站文本
       this.props.fetchStationsTxt(this.props.stationsUrl);
     }
@@ -29,9 +29,11 @@ class TrainCity extends React.PureComponent {
 
   componentWillReceiveProps = (nextProps) => {
     //隐藏新提示
+    /*因为使用cdn分发，速度很快，不显示loading
     if (nextProps.stationsTxt){
       Toast.hide();
     }
+    */
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {

@@ -1,21 +1,91 @@
-.page-enter {
-  opacity: 0.01;
-  position: absolute;
-  width: 100%;
+.loader{
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    border-radius: 50%;
+    border-top: 7px solid #eb6c18;
+    color: #a12023;
+    text-align: center;
+    position: relative;
+    margin: 30px auto;
+    -webkit-animation: 2s loading1 ease-in-out infinite;
+    animation: 2s loading1 ease-in-out infinite;
+}
+.loader:before,
+.loader:after{
+    content: "";
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: 0;
+}
+.loader:before{
+    border-top: 7px solid #c3c659;
+    -webkit-transform: rotate(120deg);
+    transform: rotate(120deg)
+}
+.loader:after{
+    border-top: 7px solid #b93be6;
+    -webkit-transform: rotate(240deg);
+    transform: rotate(240deg)
+}
+.loader .loader-inner{
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    -webkit-animation: 2s loading2 linear infinite;
+    animation: 2s loading2 linear infinite;
+}
+@-webkit-keyframes loading1{
+    50% {
+        -webkit-transform: rotate(180deg)
+    }
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
+}
+@keyframes loading1{
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg)
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+@-webkit-keyframes loading2{
+    50% {
+        -webkit-transform: rotate(-180deg)
+    }
+    100% {
+        -webkit-transform: rotate(-360deg)
+    }
+}
+@keyframes loading2{
+    50% {
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg)
+    }
+    100% {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg)
+    }
 }
 
-.page-enter.page-enter-active {
-  opacity: 1;
-  transition: opacity 200ms ease-in;
+/*fix antd*/
+.am-toast-notice-content .am-toast-text {
+    background: none;
 }
-
-.page-leave {
-  opacity: 1;
+.am-toast.am-toast-mask {
+    background-color: rgba(255, 255, 255, 0.5);
 }
-
-.page-leave.page-leave-active {
-  opacity: 0.01;
-  transition: opacity 200ms ease-in;
-  position: absolute;
-  width: 100%;
+.am-toast-notice {
+    top: 35%;
 }

@@ -100,9 +100,15 @@ class TrainBook extends React.PureComponent {
               ))}
               </List>
               <List renderHeader={this.props.lang.passengerText}>
-                <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} onClick={this.onSelectAge} autoFocus>{this.props.lang.ageText}</InputItem>
-                <InputItem clear placeholder={this.props.lang.namePlaceholder} autoFocus>{this.props.lang.nameText}</InputItem>
-                <InputItem clear placeholder={this.props.lang.passportPlaceholder} autoFocus>{this.props.lang.passportText}</InputItem>
+                <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} onClick={this.onSelectAge}>
+                  {this.props.lang.ageText}
+                </InputItem>
+                <InputItem clear placeholder={this.props.lang.namePlaceholder}>
+                  {this.props.lang.nameText}
+                </InputItem>
+                <InputItem clear placeholder={this.props.lang.passportPlaceholder}>
+                  {this.props.lang.passportText}
+                </InputItem>
                 <List.Item>
                   <div className="addOne" onClick={this.addOne}>
                     <img src={this.props.lang.addIcon} className="addOneIcon"/>

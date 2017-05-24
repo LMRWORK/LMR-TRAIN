@@ -1,4 +1,4 @@
-#TrainSearch-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#666!important; border: 1px solid #888;padding: 0.3rem 0.5rem;border-radius: 5px; box-shadow: 1px 1px 5px #ddd;margin-bottom: 0.1rem;}
+#TrainSearch-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#666!important; border: 1px solid #888;padding: 0.3rem 0.4rem;border-radius: 5px; box-shadow: 1px 1px 5px #ddd;margin-bottom: 0.1rem;}
 #TrainSearch-searchList .am-list-item .am-list-line .am-list-extra {flex-basis:65%;}
 /*tabBar高亮*/
 #TrainSearch-tabbar-div .am-tab-bar-bar [data-active="true"] .am-tab-bar-tab-title {
