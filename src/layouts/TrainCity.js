@@ -8,7 +8,7 @@ class TrainCity extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.clientHeight = document.documentElement.clientHeight;
+    this.clientHeight = document.documentElement.clientHeight; //fix弹出输入框造成的高度变化
     this.state = {
       cityNavibarTitle: this.props.location.search=='?from' ? this.props.lang.fromStationLabel : this.props.lang.toStationLabel,
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
@@ -70,7 +70,7 @@ class TrainCity extends React.PureComponent {
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.props.stationsArrInit;
     return (
       <QueueAnim className="router-wrap" type="bottom">
-        <div className="trainPage" key="2" style={{height: this.clientHeight}}>
+        <div className="trainPage" key="2">
           <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/')}>
             <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
           </NavBar>
@@ -79,7 +79,7 @@ class TrainCity extends React.PureComponent {
             <SearchBar placeholder={this.props.lang.searchPlaceholder} onChange={str => this.onSearch(str)} cancelText={this.props.lang.searchCancel}/>
           </WingBlank>
           <WhiteSpace/>
-          <List style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
+          <List style={{overflow:'scroll', maxHeight:this.clientHeight}}>
             {lists.map( city => (
               <List.Item arrow="horizontal" key={city.en} thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
                 {city.en}
