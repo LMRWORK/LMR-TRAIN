@@ -1,21 +1,20 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, Toast, TabBar, WingBlank, WhiteSpace } from 'antd-mobile';
+import { List, NavBar, Toast, TabBar, WingBlank, WhiteSpace, Radio } from 'antd-mobile';
 import { connect } from 'react-redux';
+
+const RadioItem = Radio.RadioItem;
 
 class TrainBook extends React.PureComponent {
 
   constructor(props) {
     super(props);
     this.state = {
+      selectSeat: null,
       action: 'init', //用于记录复杂页面的操作历史
     };
     console.log('😃 TrainBook ');
     console.log(props);
-  }
-
-  componentDidMount = () => {
-
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -27,7 +26,12 @@ class TrainBook extends React.PureComponent {
     console.log('TrainBook.shouldComponentUpdate');
     return true;
   }
- 
+
+  onChange = (seat) => {
+    this.setState({selectSeat: seat.SeatCode});
+    console.log(seat);
+  }
+  
   render() {
     console.log("🔥 TrainBook.render()");
     //没有数据路由到搜索页
@@ -37,7 +41,7 @@ class TrainBook extends React.PureComponent {
     }
     return (
       <div>
-        <QueueAnim className="router-wrap" type="scaleX">
+        <QueueAnim className="router-wrap" type="top">
           <div className="trainPage" key="4">
             <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/search')}>
               <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
@@ -62,6 +66,13 @@ class TrainBook extends React.PureComponent {
                   </div>
                 </div>
               </List.Item>
+            </List>
+            <List renderHeader={this.props.lang.selectSeatText}>
+            {this.props.selectTrain.SeatList.map(i => (
+              <RadioItem key={i.SeatCode} checked={this.state.selectSeat === i.SeatCode} onChange={() => this.onChange(i)}>
+                {i.SeatName} @ {i.SeatPrice} @ {i.SeatInventory}
+              </RadioItem>
+            ))}
             </List>
           </div>
         </QueueAnim>

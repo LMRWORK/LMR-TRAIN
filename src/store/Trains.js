@@ -71,8 +71,9 @@ const initStates = Map({
     selectedTab: null,
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
-    bookinfo: '预定完成后，我们会在24小时内通过电话或邮件联系您。',
+    bookinfo: '预定后，我们会在24小时内通过邮件联系您。',
     needTime: '历时',
+    selectSeatText: '请选择座位'
   },
 });
 

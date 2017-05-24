@@ -81,7 +81,7 @@ class TrainCity extends React.PureComponent {
           <WhiteSpace/>
           <List style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
             {lists.map( city => (
-              <List.Item platform="ios" arrow="horizontal" key={city.en} thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
+              <List.Item arrow="horizontal" key={city.en} thumb={this.props.lang.cityIcon} extra={city.cn} onClick={() => this.onSelect(city)}> 
                 {city.en}
               </List.Item>
             ))}

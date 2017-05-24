@@ -44,14 +44,14 @@ class TrainIndex extends React.PureComponent {
               <h1 id="TrainIndex-h1">{this.props.lang.navibarTitle}</h1>
             </NavBar>
             <List renderHeader={this.props.lang.tips} id="TrainIndex-searchList">
-              <List.Item platform="ios" extra={this.props.fromStation.en+', '+this.props.fromStation.cn} arrow="horizontal" thumb={this.props.lang.cityIcon} onClick={() => this.linkto('from')}> 
+              <List.Item extra={this.props.fromStation.en+', '+this.props.fromStation.cn} arrow="horizontal" thumb={this.props.lang.cityIcon} onClick={() => this.linkto('from')}> 
                 {this.props.lang.fromStationLabel}
               </List.Item>
-              <List.Item platform="ios" extra={this.props.toStation.en+', '+this.props.toStation.cn} arrow="horizontal" thumb={this.props.lang.cityIcon} onClick={() => this.linkto('to')}> 
+              <List.Item extra={this.props.toStation.en+', '+this.props.toStation.cn} arrow="horizontal" thumb={this.props.lang.cityIcon} onClick={() => this.linkto('to')}> 
                 {this.props.lang.toStationLabel} 
               </List.Item>
               <DatePicker mode="date" title={this.props.lang.datepickerTitle} extra={this.props.lang.datepickerExtra} value={this.props.startDate} onChange={moment => this.onChange(moment)} locale={loc} format={moment => moment.format('LL')}>
-                <List.Item platform="ios" arrow="horizontal" thumb={this.props.lang.dateIcon}> {this.props.lang.datepickerLabel} </List.Item>
+                <List.Item arrow="horizontal" thumb={this.props.lang.dateIcon}> {this.props.lang.datepickerLabel} </List.Item>
               </DatePicker>
             </List>
             <WhiteSpace size='lg'/>
