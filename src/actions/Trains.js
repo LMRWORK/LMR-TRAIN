@@ -1,8 +1,7 @@
 import queryString from 'query-string';
 import moment from 'moment';
-//对旧版浏览器的fetch、promise兼容性
-import promise from 'es6-promise';
-promise.polyfill();
+//对旧版浏览器的fetch兼容性、检测promise
+import 'whatwg-fetch';
 
 //正在抓取车站文本
 export const gettingStationsTxt = () => ({
@@ -28,7 +27,7 @@ export const fetchStationsTxt = (url) => {
       .then((text) => {
         //拿到文本，然后dispatch action
         //模拟ajax延时
-        setTimeout(() => dispatch(setStationsTxt(text)), 500);
+        setTimeout(() => dispatch(setStationsTxt(text)), 1000);
       });
   }
 };
@@ -120,7 +119,7 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         生产环境注释掉上面测试
         */
 
-        setTimeout(() => dispatch(setTrainsResult(json)), 500);
+        setTimeout(() => dispatch(setTrainsResult(json)), 1000);
       });
   }
 };

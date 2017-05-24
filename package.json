@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "antd-mobile": "^1.1.1",
-    "es6-promise": "^4.1.0",
     "immutable": "^3.8.1",
     "moment": "^2.18.1",
     "query-string": "^4.3.4",
@@ -48,7 +47,8 @@
     "react-redux": "^5.0.3",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "repository": {
     "type": "git",
