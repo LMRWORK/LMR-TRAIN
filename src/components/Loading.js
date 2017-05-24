@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Loading = (props) => (
+const Loading = ({text}) => (
   <div className="loader">
-      <span className="loader-inner">{props.text}</span>
+      <span className="loader-inner">{text}</span>
   </div>
 );
 
