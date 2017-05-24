@@ -51,6 +51,13 @@
           "SeatInventory": 72
         },
         {
+          "SeatCode": "3",
+          "SeatName": "软卧",
+          "SeatPrice": 360,
+          "SeatPriceRMB": 1789,
+          "SeatInventory": 0
+        },
+        {
           "SeatCode": "X",
           "SeatName": "无座",
           "SeatPrice": 120,

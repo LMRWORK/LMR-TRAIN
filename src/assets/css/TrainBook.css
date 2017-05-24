@@ -58,6 +58,9 @@
     position: relative;
     bottom: 2.4rem;
 }
+.bookSmall {
+	font-size: 0.5rem;
+}
 @media (max-width: 640px) {
 	.bLongArr img {
 		max-width: 82%;

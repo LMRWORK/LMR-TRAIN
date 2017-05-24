@@ -83,9 +83,13 @@ const trainReducer = (state=initStates, action) => {
       return state.set('trainsResult', list2);
       break;
 
-    //按最低可预定价格排序。
+    //设置排序状态。
     case 'SET_SELECTED_TAB':
       return state.set('selectedTab', action.filterType);
+
+    //设置已选座位。
+    case 'SET_SELECT_SEAT':
+      return state.set('selectSeat', action.seat);
 
     //按最低可预定价格排序。
     case 'SORT_BY_PRICE':

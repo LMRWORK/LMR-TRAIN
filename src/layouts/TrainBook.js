@@ -1,16 +1,17 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, Toast, TabBar, WingBlank, WhiteSpace, Radio } from 'antd-mobile';
+import { List, NavBar, Toast, TabBar, WingBlank, WhiteSpace, Radio, Flex } from 'antd-mobile';
 import { connect } from 'react-redux';
+import { setSelectSeat } from '../actions/Trains';
 
 const RadioItem = Radio.RadioItem;
+const FlexItem = Flex.Item;
 
 class TrainBook extends React.PureComponent {
 
   constructor(props) {
     super(props);
     this.state = {
-      selectSeat: null,
       action: 'init', //用于记录复杂页面的操作历史
     };
     console.log('😃 TrainBook ');
@@ -28,7 +29,7 @@ class TrainBook extends React.PureComponent {
   }
 
   onChange = (seat) => {
-    this.setState({selectSeat: seat.SeatCode});
+    this.props.setSelectSeat(seat);
     console.log(seat);
   }
   
@@ -38,6 +39,13 @@ class TrainBook extends React.PureComponent {
     if (!this.props.selectTrain) {
       this.props.history.push('/search');
       return false;
+    }
+    //是否已选座位？
+    let selectSeatCode = null;
+    if (this.props.selectSeat) {
+      selectSeatCode = this.props.selectSeat.SeatCode;
+    } else {
+      selectSeatCode = this.props.selectTrain.SeatList[0].SeatCode;
     }
     return (
       <div>
@@ -69,8 +77,12 @@ class TrainBook extends React.PureComponent {
             </List>
             <List renderHeader={this.props.lang.selectSeatText}>
             {this.props.selectTrain.SeatList.map(i => (
-              <RadioItem key={i.SeatCode} checked={this.state.selectSeat === i.SeatCode} onChange={() => this.onChange(i)}>
-                {i.SeatName} @ {i.SeatPrice} @ {i.SeatInventory}
+              <RadioItem key={i.SeatCode} checked={selectSeatCode === i.SeatCode} onChange={() => this.onChange(i)} disabled={i.SeatInventory === 0}>
+                <Flex>
+                  <FlexItem>{i.SeatName}</FlexItem>
+                  <FlexItem>{this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.pricemarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span></FlexItem>
+                  <FlexItem>{i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span></FlexItem>
+                </Flex>
               </RadioItem>
             ))}
             </List>
@@ -95,8 +107,11 @@ const mapStateToProps = (store) => ({
   startDate: store.get('startDate'),
   selectTrain: store.get('selectTrain'),
   arriveDate: store.get('arriveDate'),
+  selectSeat: store.get('selectSeat')
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  setSelectSeat: (seat) => dispatch(setSelectSeat(seat)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainBook);

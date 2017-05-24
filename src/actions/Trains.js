@@ -1,6 +1,8 @@
 import queryString from 'query-string';
 import moment from 'moment';
-//对旧版浏览器的fetch兼容性、检测promise
+//对旧版浏览器的fetch、promise兼容性
+//import promise from 'es6-promise';
+//promise.polyfill();
 import 'whatwg-fetch';
 
 //正在抓取车站文本
@@ -27,7 +29,7 @@ export const fetchStationsTxt = (url) => {
       .then((text) => {
         //拿到文本，然后dispatch action
         //模拟ajax延时
-        setTimeout(() => dispatch(setStationsTxt(text)), 400);
+        setTimeout(() => dispatch(setStationsTxt(text)), 200);
       });
   }
 };
@@ -73,6 +75,12 @@ export const setSelectTrain = (train) => ({
   train
 });
 
+//设置已选位置
+export const setSelectSeat = (seat) => ({
+  type: 'SET_SELECT_SEAT',
+  seat
+});
+
 //异步抓取车站文本
 export const fetchTrains = (url, fromStation, toStation, startDate) => {
   const data = {
@@ -105,6 +113,7 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         let t = moment();
         json.result.forEach(i => {
           i.cheapSeat.SeatPrice = 50 + Math.ceil(Math.random()*2000);
+          i.SeatList[0].SeatPrice = i.cheapSeat.SeatPrice;
           t.minute(Math.ceil(Math.random()*60));
           t.hour(Math.ceil(12 + Math.random()*24))
           i.RunTime = t.format('HH:mm');
@@ -119,7 +128,7 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         生产环境注释掉上面测试
         */
 
-        setTimeout(() => dispatch(setTrainsResult(json)), 500);
+        setTimeout(() => dispatch(setTrainsResult(json)), 400);
       });
   }
 };

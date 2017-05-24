@@ -10,6 +10,7 @@ const initStates = Map({
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
   selectTrain: null,
   arriveDate: null, //抵达日期需要出发日期和运行时间计算得出。
+  selectSeat: null,
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   fetchTrainsUrl: '/public/data/fetchTrain.txt',
@@ -73,7 +74,9 @@ const initStates = Map({
     bookNaviBar: '订单填写',
     bookinfo: '预定后，我们会在24小时内通过邮件联系您。',
     needTime: '历时',
-    selectSeatText: '请选择座位'
+    selectSeatText: '请选择您的座位',
+    leavingTiket: '剩余',
+    perPerson: '每人',
   },
 });
 
