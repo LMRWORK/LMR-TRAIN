@@ -12,7 +12,7 @@ class TrainBook extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      action: 'init', //用于记录复杂页面的操作历史
+      lastAction: 'init', //用于记录复杂页面的操作历史
     };
     console.log('😃 TrainBook ');
     console.log(props);
@@ -30,7 +30,6 @@ class TrainBook extends React.PureComponent {
 
   onChange = (seat) => {
     this.props.setSelectSeat(seat);
-    console.log(seat);
   }
   
   render() {

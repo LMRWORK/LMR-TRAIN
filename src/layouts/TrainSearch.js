@@ -2,7 +2,7 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { NavBar, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSelectedTab } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSelectedTab, ActivityIndicator } from '../actions/Trains';
 
 class TrainSearch extends React.PureComponent {
 
@@ -11,7 +11,8 @@ class TrainSearch extends React.PureComponent {
     this.state = {
       datepickerVisible: false,
       selectedTab: this.props.selectedTab,
-      action: 'init', //用于记录复杂页面的操作历史
+      lastAction: 'init', //用于记录复杂页面的操作历史
+
     };
     console.log('😃 TrainSearch ');
     console.log(props);
@@ -72,7 +73,7 @@ class TrainSearch extends React.PureComponent {
       //重新抓取火车数据
       this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, moment);
     }
-    this.setState({action: 'onChange'});
+    this.setState({lastAction: 'onChange'});
   }
 
   //前一天
@@ -86,7 +87,7 @@ class TrainSearch extends React.PureComponent {
     //重新抓取火车数据
     this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
     //记录操作
-    this.setState({action: 'prevDay'});
+    this.setState({lastAction: 'prevDay'});
   }
 
   //后一天
@@ -100,12 +101,12 @@ class TrainSearch extends React.PureComponent {
     //重新抓取火车数据
     this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
     //记录操作
-    this.setState({action: 'nextDay'});
+    this.setState({lastAction: 'nextDay'});
   }
 
   //火车条件筛选
   filter = (data = this.state.selectedTab) => {
-    if (this.state.selectedTab != data || this.state.action != 'filter') {
+    if (this.state.selectedTab != data || this.state.lastAction != 'filter') {
       switch(data) {
         case 'sortByRunTime':
           this.props.sortByRunTime();
@@ -120,7 +121,7 @@ class TrainSearch extends React.PureComponent {
           this.setState({selectedTab: data});
           break;
       }
-      this.setState({action: 'filter'});
+      this.setState({lastAction: 'filter'});
       this.props.setSelectedTab(data);
       //console.log('sort done: ' + data);
     }
