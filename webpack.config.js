@@ -7,8 +7,8 @@ const config = {
 
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    vendor1: ['react', 'react-dom', 'react-redux', 'react-router-dom', 'immutable', 'whatwg-fetch', 'rc-queue-anim'],
-    vendor2: ['moment', 'query-string'],
+    vendor1: ['react', 'react-dom', 'react-redux', 'immutable', 'rc-queue-anim'],
+    vendor2: ['react-router-dom', 'moment', 'query-string', 'whatwg-fetch'],
   },
 
   output: {
