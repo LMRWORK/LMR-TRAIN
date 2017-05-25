@@ -8,7 +8,7 @@ const RadioItem = Radio.RadioItem;
 const FlexItem = Flex.Item;
 //乘客信息模板
 const passengerInfo = {
-  age:null,       // 0 成人，1 儿童
+  age: null,       // 0 成人，1 儿童
   name:null,      // 姓名
   passport:null,  // 护照
   ok:false,       // 是否填写完成
@@ -38,11 +38,28 @@ class TrainBook extends React.PureComponent {
 
   shouldComponentUpdate = (nextProps, nextState) => {
     console.log('TrainSearch.shouldComponentUpdate');
-    return true;
+    //console.log(nextProps.passengers);
+    //console.log(this.props.passengers);
+
+    //对比乘客数据，优化性能
+    let passengerStatus = true;
+    if (this.props.passengers) {
+      passengerStatus = this.props.passengers.every((i, id) => {
+        return i.age != nextProps.passengers[id].age && 
+               i.name != nextProps.passengers[id].name && 
+               i.passport != nextProps.passengers[id].passport && 
+               i.ok != nextProps.passengers[id].ok;
+      });
+    }
+
+    //对比最后操作，更新store，优化性能
+    return passengerStatus ||
+           this.state.lastAction != nextState.lastAction;
   }
 
-  onChange = (seat) => {
+  onSelectSeat = (seat) => {
     this.props.setSelectSeat(seat);
+    this.setState({lastAction: 'onSelectSeat'+seat.SeatCode});
   }
 
   addOne = () => {
@@ -50,7 +67,10 @@ class TrainBook extends React.PureComponent {
   }
 
   hideModal = () => {
-    this.setState({modalVisible: false});
+    this.setState({
+      modalVisible: false,
+      lastAction: 'hideModal'+this.state.passengerId,
+    });
   }
 
   onSelectAge = (age) => {
@@ -58,6 +78,7 @@ class TrainBook extends React.PureComponent {
     this.props.passengers[this.state.passengerId].age = age;
     this.setState({
       modalVisible: false,
+      lastAction: 'onSelectAge'+this.state.passengerId,
     });
   }
 
@@ -65,9 +86,19 @@ class TrainBook extends React.PureComponent {
     this.setState({
       modalVisible: true,
       passengerId: id,
+      lastAction: 'onClickAge'+id,
     });
   }
   
+  onInputDone = (text, type, id) => {
+    if (type == 'name') {
+      this.props.passengers[id].name = text;
+    } else if (type == 'passport') {
+      this.props.passengers[id].passport = text;
+    }
+    this.setState({lastAction: 'onInputDone'});
+  }
+
   render() {
     console.log("🔥 TrainBook.render()");
     //没有数据路由到搜索页
@@ -134,7 +165,7 @@ class TrainBook extends React.PureComponent {
               </List>
               <List renderHeader={this.props.lang.selectSeatText}>
               {this.props.selectTrain.SeatList.map(i => (
-                <RadioItem key={i.SeatCode} checked={selectSeatCode === i.SeatCode} onChange={() => this.onChange(i)} disabled={i.SeatInventory === 0}>
+                <RadioItem key={i.SeatCode} checked={selectSeatCode === i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
                   <Flex>
                     <FlexItem>{i.SeatName}</FlexItem>
                     <FlexItem>{this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.pricemarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span></FlexItem>
@@ -148,10 +179,10 @@ class TrainBook extends React.PureComponent {
                   <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>
                     {this.props.lang.ageText}
                   </InputItem>
-                  <InputItem clear placeholder={this.props.lang.namePlaceholder} defaultValue={i.name}>
+                  <InputItem clear placeholder={this.props.lang.namePlaceholder} defaultValue={i.name} onBlur={(text) => this.onInputDone(text, 'name', id)}>
                     {this.props.lang.nameText}
                   </InputItem>
-                  <InputItem clear placeholder={this.props.lang.passportPlaceholder} defaultValue={i.passport}>
+                  <InputItem clear placeholder={this.props.lang.passportPlaceholder} defaultValue={i.passport} onBlur={(text) => this.onInputDone(text, 'passport', id)}>
                     {this.props.lang.passportText}
                   </InputItem>
                   <List.Item>
