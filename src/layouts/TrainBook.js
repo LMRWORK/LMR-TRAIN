@@ -1,6 +1,6 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, TabBar } from 'antd-mobile';
+import { List, NavBar } from 'antd-mobile';
 import { connect } from 'react-redux';
 import TrainForm from '../components/TrainForm';
 
@@ -8,10 +8,7 @@ class TrainBook extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.clientHeight = document.documentElement.clientHeight; //fix弹出输入框造成的高度变化
-    this.state = {
-      lastAction: 'init', //用于记录复杂页面的操作历史
-    };
+    this.state = {};
     console.log('😃 TrainBook ');
     console.log(props);
   }
@@ -42,14 +39,28 @@ class TrainBook extends React.PureComponent {
             <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/search')}>
               <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
             </NavBar>
-            <TrainForm {...this.props}/>
-          </div>
-          <div id="TrainIndex-tabbar-div">
-            <TabBar barTintColor="white">
-              {this.props.lang.indexTabBar.map( 
-                i => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
-              )}
-            </TabBar>
+            <List renderHeader={this.props.lang.bookinfo}>
+              <List.Item> 
+                <div className="flex-box bookinfo">
+                  <div className="flex-item flex-grow-1 bookinfoLeft">
+                    <div className="bItem bFrom">{this.props.selectTrain.DepartStation}</div>
+                    <div className="bItem bFromTime">{this.props.selectTrain.DepartTime}</div>
+                    <div className="bItem bFromDate">{this.props.startDate.format('LL')}</div>
+                  </div>
+                  <div className="flex-item flex-grow-1 bookinfoMiddle">
+                    <div className="bItem bTrain"><img src={this.props.lang.trainIcon} id="img-tcd"/>{this.props.selectTrain.TrainCode}</div>
+                    <div className="bItem bLongArr"><img src={this.props.lang.longArrIcon}/></div>
+                    <div className="bItem bTime">{this.props.lang.needTime} {this.props.selectTrain.RunTime}</div>
+                  </div>
+                  <div className="flex-item flex-grow-1 bookinfoRight">
+                    <div className="bItem bTo">{this.props.selectTrain.ArriveStation}</div>
+                    <div className="bItem bToTime">{this.props.selectTrain.ArriveTime}</div>
+                    <div className="bItem bToDate">{this.props.arriveDate.format('LL')}</div>
+                  </div>
+                </div>
+              </List.Item>
+            </List>
+            <TrainForm />
           </div>
         </QueueAnim>
       </div>

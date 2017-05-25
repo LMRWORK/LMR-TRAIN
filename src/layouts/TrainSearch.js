@@ -9,6 +9,7 @@ class TrainSearch extends React.PureComponent {
 
   constructor(props) {
     super(props);
+    this.clientHeight = document.documentElement.clientHeight; //fix弹出输入框造成的高度变化
     this.state = {
       datepickerVisible: false,
       selectedTab: this.props.selectedTab,

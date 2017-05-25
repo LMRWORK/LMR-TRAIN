@@ -17,7 +17,6 @@ class TrainForm extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.clientHeight = document.documentElement.clientHeight; //fix弹出输入框造成的高度变化
     this.state = {
       lastAction: 'init', //用于记录复杂页面的操作历史
       modalVisible: false,
@@ -25,7 +24,7 @@ class TrainForm extends React.PureComponent {
       passengerId: null,
     };
     //初始化乘客列表并放入store
-    this.props.passengers || this.props.setPassengers([passengerInfo]);
+    this.props.passengers || this.props.setPassengers([Object.assign({}, passengerInfo)]);
     console.log('😃 TrainForm ');
     console.log(props);
   }
@@ -100,11 +99,6 @@ class TrainForm extends React.PureComponent {
 
   render() {
     console.log("🔥 TrainForm.render()");
-    //没有数据路由到搜索页
-    if (!this.props.selectTrain) {
-      this.props.history.push('/search');
-      return false;
-    }
     //体验优化：如果点选过座位，则保持已选择过的座位类型。
     let selectSeatCode = null;
     if (this.props.selectSeat) {
@@ -134,28 +128,7 @@ class TrainForm extends React.PureComponent {
       );
     }
     return (
-      <div style={{overflow:'scroll', height:this.clientHeight-180}}>
-        <List renderHeader={this.props.lang.bookinfo}>
-          <List.Item> 
-            <div className="flex-box bookinfo">
-              <div className="flex-item flex-grow-1 bookinfoLeft">
-                <div className="bItem bFrom">{this.props.selectTrain.DepartStation}</div>
-                <div className="bItem bFromTime">{this.props.selectTrain.DepartTime}</div>
-                <div className="bItem bFromDate">{this.props.startDate.format('LL')}</div>
-              </div>
-              <div className="flex-item flex-grow-1 bookinfoMiddle">
-                <div className="bItem bTrain"><img src={this.props.lang.trainIcon} id="img-tcd"/>{this.props.selectTrain.TrainCode}</div>
-                <div className="bItem bLongArr"><img src={this.props.lang.longArrIcon}/></div>
-                <div className="bItem bTime">{this.props.lang.needTime} {this.props.selectTrain.RunTime}</div>
-              </div>
-              <div className="flex-item flex-grow-1 bookinfoRight">
-                <div className="bItem bTo">{this.props.selectTrain.ArriveStation}</div>
-                <div className="bItem bToTime">{this.props.selectTrain.ArriveTime}</div>
-                <div className="bItem bToDate">{this.props.arriveDate.format('LL')}</div>
-              </div>
-            </div>
-          </List.Item>
-        </List>
+      <div>
         <List renderHeader={this.props.lang.selectSeatText}>
         {this.props.selectTrain.SeatList.map(i => (
           <RadioItem key={i.SeatCode} checked={selectSeatCode === i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
@@ -206,6 +179,7 @@ const mapStateToProps = (store) => ({
   lang: store.get('lang'),
   selectSeat: store.get('selectSeat'),
   passengers: store.get('passengers'),
+  selectTrain: store.get('selectTrain'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
