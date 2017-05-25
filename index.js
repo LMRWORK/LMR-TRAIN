@@ -10,6 +10,10 @@ import TrainApp from './src/app/Trains';
 //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
+//打包png目录的所有图片
+let requireContext = require.context("./src/assets/png", true, /^\.\/.*\.png$/);
+requireContext.keys().map(requireContext);
+
 //生产模式
 const store = createStore(reducer, applyMiddleware(thunk));
 
