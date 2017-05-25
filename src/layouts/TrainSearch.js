@@ -11,7 +11,7 @@ class TrainSearch extends React.PureComponent {
     super(props);
     this.state = {
       datepickerVisible: false,
-      selectedTab: this.props.selectedTab,
+      selectedTab: this.props.lang.selectedTab,
       lastAction: 'init', //用于记录复杂页面的操作历史
 
     };

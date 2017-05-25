@@ -27,9 +27,8 @@ export const fetchStationsTxt = (url) => {
         return res.text()
       })
       .then((text) => {
-        //拿到文本，然后dispatch action
-        //模拟ajax延时
-        setTimeout(() => dispatch(setStationsTxt(text)), 200);
+        //拿到文本，然后dispatch setStationsTxt
+        dispatch(setStationsTxt(text));
       });
   }
 };
@@ -128,7 +127,7 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         生产环境注释掉上面测试
         */
 
-        setTimeout(() => dispatch(setTrainsResult(json)), 400);
+        setTimeout(() => dispatch(setTrainsResult(json)), 1200);
       });
   }
 };

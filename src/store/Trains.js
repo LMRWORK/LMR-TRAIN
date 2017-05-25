@@ -71,7 +71,7 @@ const initStates = Map({
       {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '价格:低>高', data:'sortByPrice'},
     ],
-    selectedTab: null,
+    selectedTab: 'sortByRunTime',
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
     bookinfo: '预定后，我们会在24小时内通过邮件联系您。',
