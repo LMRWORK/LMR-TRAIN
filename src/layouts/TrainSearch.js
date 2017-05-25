@@ -11,7 +11,7 @@ class TrainSearch extends React.PureComponent {
     super(props);
     this.state = {
       datepickerVisible: false,
-      selectedTab: this.props.lang.selectedTab,
+      selectedTab: this.props.selectedTab,
       lastAction: 'init', //用于记录复杂页面的操作历史
 
     };
@@ -36,7 +36,7 @@ class TrainSearch extends React.PureComponent {
       //隐藏轻提示
       Toast.hide();
       //排序
-      this.filter(this.state.selectedTab);
+      this.filter(this.props.selectedTab);
     }
   }
 
@@ -46,7 +46,7 @@ class TrainSearch extends React.PureComponent {
            this.props.toStation.code != nextProps.toStation.code ||
            this.props.startDate != nextProps.startDate ||
            this.props.trainsResult != nextProps.trainsResult ||
-           this.state.selectedTab != nextState.selectedTab ||
+           this.props.selectedTab != nextProps.selectedTab ||
            this.state.datepickerVisible != nextState.datepickerVisible;
   }
 
@@ -106,24 +106,23 @@ class TrainSearch extends React.PureComponent {
   }
 
   //火车条件筛选
-  filter = (data = this.state.selectedTab) => {
-    if (this.state.selectedTab != data || this.state.lastAction != 'filter') {
+  filter = (data = this.props.selectedTab) => {
+    if (this.props.selectedTab != data || this.state.lastAction != 'filter') {
       switch(data) {
         case 'sortByRunTime':
           this.props.sortByRunTime();
-          this.setState({selectedTab: data});
+          this.props.setSelectedTab(data);
           break;
         case 'sortByStartTime':
           this.props.sortByStartTime();
-          this.setState({selectedTab: data});
+          this.props.setSelectedTab(data);
           break;
         case 'sortByPrice':
           this.props.sortByPrice();
-          this.setState({selectedTab: data});
+          this.props.setSelectedTab(data);
           break;
       }
       this.setState({lastAction: 'filter'});
-      this.props.setSelectedTab(data);
       //console.log('sort done: ' + data);
     }
   }
@@ -199,7 +198,7 @@ class TrainSearch extends React.PureComponent {
         <div id="TrainSearch-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.searchTabBar.map( 
-              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)} data-active={this.state.selectedTab === i.data}></TabBar.Item>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)} data-active={this.props.selectedTab === i.data}></TabBar.Item>
             )}
           </TabBar>
         </div>

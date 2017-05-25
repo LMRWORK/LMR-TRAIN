@@ -1,6 +1,6 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, Toast, TabBar, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal } from 'antd-mobile';
+import { List, NavBar, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
 import TrainForm from '../components/TrainForm';
 
@@ -52,17 +52,6 @@ class TrainBook extends React.PureComponent {
             </TabBar>
           </div>
         </QueueAnim>
-        <Modal title={this.props.lang.ageModalTitle} transparent maskClosable={false} visible={this.state.modalVisible} platform="ios" className="ichtModal" closable={true} onClose={this.hideModal}>
-            <div className="am-modal-body">
-                {this.props.lang.ageTips}
-            </div>
-            <div className="am-modal-footer">
-              <div className="am-modal-button-group-v">
-                <a className="am-modal-button" role="button" onClick={() => this.onSelectAge(0)}>{this.props.lang.adultText}</a>
-                <a className="am-modal-button" role="button" onClick={() => this.onSelectAge(1)}>{this.props.lang.childText}</a>
-              </div>
-            </div>
-        </Modal>
       </div>
     );
   }

@@ -12,6 +12,7 @@ const initStates = Map({
   arriveDate: null, //抵达日期需要出发日期和运行时间计算得出。
   selectSeat: null,
   passengers: null, //乘客列表（对象数组）
+  selectedTab: 'sortByRunTime',
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   fetchTrainsUrl: '/public/data/fetchTrain.txt',
@@ -72,7 +73,6 @@ const initStates = Map({
       {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '价格:低>高', data:'sortByPrice'},
     ],
-    selectedTab: 'sortByRunTime',
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
     bookinfo: '预定后，我们会在24小时内通过邮件联系您。',
