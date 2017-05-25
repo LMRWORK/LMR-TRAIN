@@ -42,7 +42,7 @@ class TrainBook extends React.PureComponent {
             <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/search')}>
               <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
             </NavBar>
-            <TrainForm />
+            <TrainForm {...this.props}/>
           </div>
           <div id="TrainIndex-tabbar-div">
             <TabBar barTintColor="white">
@@ -75,13 +75,8 @@ const mapStateToProps = (store) => ({
   startDate: store.get('startDate'),
   selectTrain: store.get('selectTrain'),
   arriveDate: store.get('arriveDate'),
-  selectSeat: store.get('selectSeat'),
-  passengers: store.get('passengers'),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setSelectSeat: (seat) => dispatch(setSelectSeat(seat)),
-  setPassengers: (passengers) => dispatch(setPassengers(passengers)),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainBook);

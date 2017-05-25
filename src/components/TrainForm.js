@@ -13,7 +13,7 @@ const passengerInfo = {
   ok:false,       // 是否填写完成
 }
 
-class TrainBook extends React.PureComponent {
+class TrainForm extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -26,12 +26,12 @@ class TrainBook extends React.PureComponent {
     };
     //初始化乘客列表并放入store
     this.props.passengers || this.props.setPassengers([passengerInfo]);
-    console.log('😃 TrainBook ');
+    console.log('😃 TrainForm ');
     console.log(props);
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainBook.componentWillReceiveProps');
+    console.log('TrainForm.componentWillReceiveProps');
     console.log(nextProps);
   }
 
@@ -99,7 +99,7 @@ class TrainBook extends React.PureComponent {
   }
 
   render() {
-    console.log("🔥 TrainBook.render()");
+    console.log("🔥 TrainForm.render()");
     //没有数据路由到搜索页
     if (!this.props.selectTrain) {
       this.props.history.push('/search');
@@ -204,11 +204,6 @@ class TrainBook extends React.PureComponent {
 
 const mapStateToProps = (store) => ({
   lang: store.get('lang'),
-  fromStation: store.get('fromStation'),
-  toStation: store.get('toStation'),
-  startDate: store.get('startDate'),
-  selectTrain: store.get('selectTrain'),
-  arriveDate: store.get('arriveDate'),
   selectSeat: store.get('selectSeat'),
   passengers: store.get('passengers'),
 });
@@ -218,4 +213,4 @@ const mapDispatchToProps = (dispatch) => ({
   setPassengers: (passengers) => dispatch(setPassengers(passengers)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrainBook);
+export default connect(mapStateToProps, mapDispatchToProps)(TrainForm);
