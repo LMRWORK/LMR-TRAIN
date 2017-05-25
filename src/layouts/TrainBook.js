@@ -15,11 +15,7 @@ class TrainBook extends React.PureComponent {
     this.state = {
       lastAction: 'init', //用于记录复杂页面的操作历史
       modalVisible: false,
-      sexPickData: [
-        {label: this.props.lang.adultText, value: 'adult'}, 
-        {label: this.props.lang.childText, value: 'child'}
-      ],
-      ageText: ['成人', '儿童'],
+      ageText: [this.props.lang.adultText, this.props.lang.childText],
       testAge: null,
     };
     console.log('😃 TrainBook ');
@@ -156,14 +152,14 @@ class TrainBook extends React.PureComponent {
             </TabBar>
           </div>
         </QueueAnim>
-        <Modal title="请确认乘客年龄" transparent maskClosable={false} visible={this.state.modalVisible} platform="ios" className="ichtModal" closable={true} onClose={this.hideModal}>
+        <Modal title={this.props.lang.ageModalTitle} transparent maskClosable={false} visible={this.state.modalVisible} platform="ios" className="ichtModal" closable={true} onClose={this.hideModal}>
             <div className="am-modal-body">
-                请注意：只有身高小于1.5米的儿童，享受儿童票价。
+                {this.props.lang.ageTips}
             </div>
             <div className="am-modal-footer">
               <div className="am-modal-button-group-v">
-                <a className="am-modal-button" role="button" onClick={() => this.onSelectAge(0)}>成人</a>
-                <a className="am-modal-button" role="button" onClick={() => this.onSelectAge(1)}>儿童</a>
+                <a className="am-modal-button" role="button" onClick={() => this.onSelectAge(0)}>{this.props.lang.adultText}</a>
+                <a className="am-modal-button" role="button" onClick={() => this.onSelectAge(1)}>{this.props.lang.childText}</a>
               </div>
             </div>
         </Modal>
