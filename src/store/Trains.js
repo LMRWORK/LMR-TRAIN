@@ -31,7 +31,7 @@ const initStates = Map({
   ],
   //[多语言支持 language]
   lang: {
-    //[全局 图片]
+    //[全局 图片，上线后请替换成cdn图源]
     cityIcon: '/public/img/city.png',
     dateIcon: '/public/img/date.png',
     seatIcon: '/public/img/seat-O.png',
