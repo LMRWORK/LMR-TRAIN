@@ -36,7 +36,7 @@ class TrainForm extends React.PureComponent {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainSearch.shouldComponentUpdate');
+    console.log('TrainForm.shouldComponentUpdate');
     //console.log(nextProps.passengers);
     //console.log(this.props.passengers);
 
