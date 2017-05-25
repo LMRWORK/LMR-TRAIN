@@ -28,11 +28,6 @@ class TrainBook extends React.PureComponent {
     console.log(nextProps);
   }
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainBook.shouldComponentUpdate');
-    return true;
-  }
-
   onChange = (seat) => {
     this.props.setSelectSeat(seat);
   }
@@ -52,12 +47,33 @@ class TrainBook extends React.PureComponent {
       this.props.history.push('/search');
       return false;
     }
-    //是否已选座位？
+    //体验优化：如果点选过座位，则保持已选择过的座位类型。
     let selectSeatCode = null;
     if (this.props.selectSeat) {
-      selectSeatCode = this.props.selectSeat.SeatCode;
-    } else {
-      selectSeatCode = this.props.selectTrain.SeatList[0].SeatCode;
+      this.props.selectTrain.SeatList.every(
+        i => {
+          if (i.SeatInventory > 0 && i.SeatCode == this.props.selectSeat.SeatCode) {
+            selectSeatCode = i.SeatCode;
+            selectSeatCode = this.props.selectSeat.SeatCode;
+            return false;
+          } else {
+            return true;
+          }
+        }
+      );
+    }
+    //体验优化：默认勾选邮票的第一个座位。
+    if (!selectSeatCode) {
+      this.props.selectTrain.SeatList.every(
+        i => {
+          if (i.SeatInventory > 0) {
+            selectSeatCode = i.SeatCode;
+            return false;
+          } else {
+            return true;
+          }
+        }
+      );
     }
     return (
       <div>

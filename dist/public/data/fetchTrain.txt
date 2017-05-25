@@ -41,7 +41,7 @@
           "SeatName": "二等座",
           "SeatPrice": 120,
           "SeatPriceRMB": 553,
-          "SeatInventory": 112
+          "SeatInventory": 0
         },
         {
           "SeatCode": "M",
