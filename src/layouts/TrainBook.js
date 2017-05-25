@@ -1,6 +1,6 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, Toast, TabBar, WingBlank, WhiteSpace, Radio, Flex, InputItem } from 'antd-mobile';
+import { List, NavBar, Toast, TabBar, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setSelectSeat } from '../actions/Trains';
 
@@ -14,10 +14,13 @@ class TrainBook extends React.PureComponent {
     this.clientHeight = document.documentElement.clientHeight; //fix弹出输入框造成的高度变化
     this.state = {
       lastAction: 'init', //用于记录复杂页面的操作历史
+      modalVisible: false,
       sexPickData: [
         {label: this.props.lang.adultText, value: 'adult'}, 
         {label: this.props.lang.childText, value: 'child'}
       ],
+      ageText: ['成人', '儿童'],
+      testAge: null,
     };
     console.log('😃 TrainBook ');
     console.log(props);
@@ -36,8 +39,19 @@ class TrainBook extends React.PureComponent {
     console.log('addOne');
   }
 
-  onSelectAge = () => {
-    console.log('onSelectAge');
+  hideModal = () => {
+    this.setState({modalVisible: false});
+  }
+
+  onSelectAge = (age) => {
+    this.setState({
+      modalVisible: false,
+      testAge: this.state.ageText[age],
+    });
+  }
+
+  onClickAge = () => {
+    this.setState({modalVisible: true});
   }
   
   render() {
@@ -116,13 +130,13 @@ class TrainBook extends React.PureComponent {
               ))}
               </List>
               <List renderHeader={this.props.lang.passengerText}>
-                <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} onClick={this.onSelectAge}>
+                <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={this.state.testAge} onClick={this.onClickAge}>
                   {this.props.lang.ageText}
                 </InputItem>
-                <InputItem clear placeholder={this.props.lang.namePlaceholder}>
+                <InputItem clear placeholder={this.props.lang.namePlaceholder} value={null}>
                   {this.props.lang.nameText}
                 </InputItem>
-                <InputItem clear placeholder={this.props.lang.passportPlaceholder}>
+                <InputItem clear placeholder={this.props.lang.passportPlaceholder} value={null}>
                   {this.props.lang.passportText}
                 </InputItem>
                 <List.Item>
@@ -142,6 +156,17 @@ class TrainBook extends React.PureComponent {
             </TabBar>
           </div>
         </QueueAnim>
+        <Modal title="请确认乘客年龄" transparent maskClosable={false} visible={this.state.modalVisible} platform="ios" className="ichtModal" closable={true} onClose={this.hideModal}>
+            <div className="am-modal-body">
+                请注意：只有身高小于1.5米的儿童，享受儿童票价。
+            </div>
+            <div className="am-modal-footer">
+              <div className="am-modal-button-group-v">
+                <a className="am-modal-button" role="button" onClick={() => this.onSelectAge(0)}>成人</a>
+                <a className="am-modal-button" role="button" onClick={() => this.onSelectAge(1)}>儿童</a>
+              </div>
+            </div>
+        </Modal>
       </div>
     );
   }

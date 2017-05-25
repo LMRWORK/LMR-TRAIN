@@ -75,6 +75,12 @@
 .am-whitespace.fixBook {
 	height: 20rem;
 }
+.ichtModal {
+	width: 70%!important;
+}
+.ichtModal .am-modal-button:active {
+	background: #f0f0f0;
+}
 @media (max-width: 640px) {
 	.bLongArr img {
 		max-width: 82%;
