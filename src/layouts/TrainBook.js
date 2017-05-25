@@ -2,10 +2,17 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { List, NavBar, Toast, TabBar, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { setSelectSeat } from '../actions/Trains';
+import { setSelectSeat, setPassengers } from '../actions/Trains';
 
 const RadioItem = Radio.RadioItem;
 const FlexItem = Flex.Item;
+//乘客信息模板
+const passengerInfo = {
+  age:null,       // 0 成人，1 儿童
+  name:null,      // 姓名
+  passport:null,  // 护照
+  ok:false,       // 是否填写完成
+}
 
 class TrainBook extends React.PureComponent {
 
@@ -16,8 +23,10 @@ class TrainBook extends React.PureComponent {
       lastAction: 'init', //用于记录复杂页面的操作历史
       modalVisible: false,
       ageText: [this.props.lang.adultText, this.props.lang.childText],
-      testAge: null,
+      passengerId: null,
     };
+    //初始化乘客列表并放入store
+    this.props.passengers || this.props.setPassengers([passengerInfo]);
     console.log('😃 TrainBook ');
     console.log(props);
   }
@@ -25,6 +34,11 @@ class TrainBook extends React.PureComponent {
   componentWillReceiveProps = (nextProps) => {
     console.log('TrainBook.componentWillReceiveProps');
     console.log(nextProps);
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    console.log('TrainSearch.shouldComponentUpdate');
+    return true;
   }
 
   onChange = (seat) => {
@@ -40,14 +54,18 @@ class TrainBook extends React.PureComponent {
   }
 
   onSelectAge = (age) => {
+    //passengers是mutable的。
+    this.props.passengers[this.state.passengerId].age = age;
     this.setState({
       modalVisible: false,
-      testAge: this.state.ageText[age],
     });
   }
 
-  onClickAge = () => {
-    this.setState({modalVisible: true});
+  onClickAge = (id) => {
+    this.setState({
+      modalVisible: true,
+      passengerId: id,
+    });
   }
   
   render() {
@@ -125,23 +143,25 @@ class TrainBook extends React.PureComponent {
                 </RadioItem>
               ))}
               </List>
-              <List renderHeader={this.props.lang.passengerText}>
-                <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={this.state.testAge} onClick={this.onClickAge}>
-                  {this.props.lang.ageText}
-                </InputItem>
-                <InputItem clear placeholder={this.props.lang.namePlaceholder} value={null}>
-                  {this.props.lang.nameText}
-                </InputItem>
-                <InputItem clear placeholder={this.props.lang.passportPlaceholder} value={null}>
-                  {this.props.lang.passportText}
-                </InputItem>
-                <List.Item>
-                  <div className="addOne" onClick={this.addOne}>
-                    <img src={this.props.lang.addIcon} className="addOneIcon"/>
-                    {this.props.lang.addOneText}
-                  </div>
-                </List.Item>
-              </List>
+              {this.props.passengers && this.props.passengers.map( (i, id) => 
+                <List renderHeader={this.props.lang.passengerText}>
+                  <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>
+                    {this.props.lang.ageText}
+                  </InputItem>
+                  <InputItem clear placeholder={this.props.lang.namePlaceholder} defaultValue={i.name}>
+                    {this.props.lang.nameText}
+                  </InputItem>
+                  <InputItem clear placeholder={this.props.lang.passportPlaceholder} defaultValue={i.passport}>
+                    {this.props.lang.passportText}
+                  </InputItem>
+                  <List.Item>
+                    <div className="addOne" onClick={this.addOne}>
+                      <img src={this.props.lang.addIcon} className="addOneIcon"/>
+                      {this.props.lang.addOneText}
+                    </div>
+                  </List.Item>
+                </List>
+              )}
             </div>
           </div>
           <div id="TrainIndex-tabbar-div">
@@ -175,11 +195,13 @@ const mapStateToProps = (store) => ({
   startDate: store.get('startDate'),
   selectTrain: store.get('selectTrain'),
   arriveDate: store.get('arriveDate'),
-  selectSeat: store.get('selectSeat')
+  selectSeat: store.get('selectSeat'),
+  passengers: store.get('passengers'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setSelectSeat: (seat) => dispatch(setSelectSeat(seat)),
+  setPassengers: (passengers) => dispatch(setPassengers(passengers)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainBook);

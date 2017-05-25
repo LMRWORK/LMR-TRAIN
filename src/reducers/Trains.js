@@ -91,6 +91,10 @@ const trainReducer = (state=initStates, action) => {
     case 'SET_SELECT_SEAT':
       return state.set('selectSeat', action.seat);
 
+    //设置乘客列表。
+    case 'SET_PASSENGERS':
+      return state.set('passengers', action.passengers);
+
     //按最低可预定价格排序。
     case 'SORT_BY_PRICE':
       let list3 = state.get('trainsResult');

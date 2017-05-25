@@ -146,3 +146,9 @@ export const sortByStartTime = () => ({
 export const sortByPrice = () => ({
   type: 'SORT_BY_PRICE',
 });
+
+//设置乘客列表
+export const setPassengers = (passengers) => ({
+  type: 'SET_PASSENGERS',
+  passengers
+});
