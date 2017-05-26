@@ -89,12 +89,14 @@ class TrainForm extends React.PureComponent {
   }
   
   onInputDone = (text, type, id) => {
-    if (type == 'name') {
-      this.props.passengers[id].name = text;
-    } else if (type == 'passport') {
-      this.props.passengers[id].passport = text;
+    if (text) {
+      if (type == 'name') {
+        this.props.passengers[id].name = text;
+      } else if (type == 'passport') {
+        this.props.passengers[id].passport = text;
+      }
+      this.setState({lastAction: 'onInputDone'});
     }
-    this.setState({lastAction: 'onInputDone'});
   }
 
   render() {
