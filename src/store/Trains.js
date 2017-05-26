@@ -42,6 +42,7 @@ const initStates = Map({
     longArrIcon: '/public/img/lr1.png',
     backIcon: '/public/img/back.png',
     addIcon: '/public/img/add.png',
+    subIcon: '/public/img/sub.png',
     //[全局 language]
     navibarTitle: '中国火车票预定',
     navibarRight: '帮助',

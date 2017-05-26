@@ -56,6 +56,7 @@ class TrainForm extends React.PureComponent {
     //对比最后操作，更新store，优化性能
     return passengerStatus ||
            nextState.lastAction == 'addOne' ||
+           nextState.lastAction == 'subOne' ||
            this.state.lastAction != nextState.lastAction;
   }
 
@@ -67,20 +68,35 @@ class TrainForm extends React.PureComponent {
 
   //添加一名乘客
   addOne = (id) => {
-    console.log('addOne');
-
     //之前的所有乘客框下不现实增加按钮
     this.props.passengers.forEach(i => {i.showAdd = false});
 
     //增加一名乘客
     this.props.passengers.push(Object.assign({}, passengerInfo));
 
-    //动画滚动预先处理：增加容器高度，并滚动窗口
+    //动画滚动预先处理：指定容器高度
     let passWapper = ReactDom.findDOMNode(this.refs.passWapper);
     passWapper.style.height = (450 * this.props.passengers.length) + 'px';
     window.scrollTo(0, 370 * this.props.passengers.length);
 
+    console.log('addOne', this.props.passengers);
+
     this.setState({lastAction: 'addOne'});
+  }
+
+    //减少一名乘客
+  subOne = (id) => {
+    //减少一名乘客
+    this.props.passengers.splice(id, 1); 
+
+    //动画滚动预先处理：指定容器高度
+    let passWapper = ReactDom.findDOMNode(this.refs.passWapper);
+    passWapper.style.height = (450 * this.props.passengers.length) + 'px';
+    window.scrollTo(0, 370 * this.props.passengers.length);
+
+    console.log('subOne', this.props.passengers);
+
+    this.setState({lastAction: 'subOne'});
   }
 
   hideModal = () => {
@@ -161,17 +177,17 @@ class TrainForm extends React.PureComponent {
           </RadioItem>
         ))}
         </List>
-        <div ref="passWapper">
-          <QueueAnim className="passWrap" type="bottom" duration={1000}>
+        <div ref="passWapper" style={{overflow:'hidden'}}>
+          <QueueAnim className="passWrap" type="bottom" duration="500">
           {this.props.passengers && this.props.passengers.map( (i, id) => 
             <List key={id} renderHeader={this.props.lang.passText+(id+1)+': '+this.props.lang.passengerText}>
               <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>
                 {this.props.lang.ageText}
               </InputItem>
-              <InputItem clear placeholder={this.props.lang.namePlaceholder} defaultValue={i.name} onBlur={(text) => this.onInputDone(text, 'name', id)}>
+              <InputItem clear placeholder={this.props.lang.namePlaceholder} onBlur={(text) => this.onInputDone(text, 'name', id)}>
                 {this.props.lang.nameText}
               </InputItem>
-              <InputItem clear placeholder={this.props.lang.passportPlaceholder} defaultValue={i.passport} onBlur={(text) => this.onInputDone(text, 'passport', id)}>
+              <InputItem clear placeholder={this.props.lang.passportPlaceholder} onBlur={(text) => this.onInputDone(text, 'passport', id)}>
                 {this.props.lang.passportText}
               </InputItem>
               <List.Item className="passBtn">
@@ -181,8 +197,8 @@ class TrainForm extends React.PureComponent {
                     {this.props.lang.addOneText}
                   </div>
                   :
-                  <div className="addOne" onClick={() => this.subOne(id)}>
-                    <img src={this.props.lang.addIcon} className="addOneIcon"/>
+                  <div className="subOne" onClick={() => this.subOne(id)}>
+                    <img src={this.props.lang.subIcon} className="subOneIcon"/>
                     {this.props.lang.subOneText}
                   </div>
                 }
