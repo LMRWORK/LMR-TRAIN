@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDom from 'react-dom';
+import QueueAnim from 'rc-queue-anim';
 import { List, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setSelectSeat, setPassengers } from '../actions/Trains';
@@ -11,6 +13,7 @@ const passengerInfo = {
   name:null,      // 姓名
   passport:null,  // 护照
   ok:false,       // 是否填写完成
+  showAdd: true,  // 是否显示增加按钮
 }
 
 class TrainForm extends React.PureComponent {
@@ -52,16 +55,32 @@ class TrainForm extends React.PureComponent {
 
     //对比最后操作，更新store，优化性能
     return passengerStatus ||
+           nextState.lastAction == 'addOne' ||
            this.state.lastAction != nextState.lastAction;
   }
 
+  //选择座位
   onSelectSeat = (seat) => {
     this.props.setSelectSeat(seat);
     this.setState({lastAction: 'onSelectSeat'+seat.SeatCode});
   }
 
-  addOne = () => {
+  //添加一名乘客
+  addOne = (id) => {
     console.log('addOne');
+
+    //之前的所有乘客框下不现实增加按钮
+    this.props.passengers.forEach(i => {i.showAdd = false});
+
+    //增加一名乘客
+    this.props.passengers.push(Object.assign({}, passengerInfo));
+
+    //动画滚动预先处理：增加容器高度，并滚动窗口
+    let passWapper = ReactDom.findDOMNode(this.refs.passWapper);
+    passWapper.style.height = (450 * this.props.passengers.length) + 'px';
+    window.scrollTo(0, 370 * this.props.passengers.length);
+
+    this.setState({lastAction: 'addOne'});
   }
 
   hideModal = () => {
@@ -142,25 +161,36 @@ class TrainForm extends React.PureComponent {
           </RadioItem>
         ))}
         </List>
-        {this.props.passengers && this.props.passengers.map( (i, id) => 
-          <List renderHeader={this.props.lang.passengerText}>
-            <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>
-              {this.props.lang.ageText}
-            </InputItem>
-            <InputItem clear placeholder={this.props.lang.namePlaceholder} defaultValue={i.name} onBlur={(text) => this.onInputDone(text, 'name', id)}>
-              {this.props.lang.nameText}
-            </InputItem>
-            <InputItem clear placeholder={this.props.lang.passportPlaceholder} defaultValue={i.passport} onBlur={(text) => this.onInputDone(text, 'passport', id)}>
-              {this.props.lang.passportText}
-            </InputItem>
-            <List.Item>
-              <div className="addOne" onClick={this.addOne}>
-                <img src={this.props.lang.addIcon} className="addOneIcon"/>
-                {this.props.lang.addOneText}
-              </div>
-            </List.Item>
-          </List>
-        )}
+        <div ref="passWapper">
+          <QueueAnim className="passWrap" type="bottom" duration={1000}>
+          {this.props.passengers && this.props.passengers.map( (i, id) => 
+            <List key={id} renderHeader={this.props.lang.passText+(id+1)+': '+this.props.lang.passengerText}>
+              <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>
+                {this.props.lang.ageText}
+              </InputItem>
+              <InputItem clear placeholder={this.props.lang.namePlaceholder} defaultValue={i.name} onBlur={(text) => this.onInputDone(text, 'name', id)}>
+                {this.props.lang.nameText}
+              </InputItem>
+              <InputItem clear placeholder={this.props.lang.passportPlaceholder} defaultValue={i.passport} onBlur={(text) => this.onInputDone(text, 'passport', id)}>
+                {this.props.lang.passportText}
+              </InputItem>
+              <List.Item className="passBtn">
+                { i.showAdd ?
+                  <div className="addOne" onClick={() => this.addOne(id)}>
+                    <img src={this.props.lang.addIcon} className="addOneIcon"/>
+                    {this.props.lang.addOneText}
+                  </div>
+                  :
+                  <div className="addOne" onClick={() => this.subOne(id)}>
+                    <img src={this.props.lang.addIcon} className="addOneIcon"/>
+                    {this.props.lang.subOneText}
+                  </div>
+                }
+              </List.Item>
+            </List>
+          )}
+          </QueueAnim>
+        </div>
         <Modal title={this.props.lang.ageModalTitle} transparent maskClosable={false} visible={this.state.modalVisible} platform="ios" className="ichtModal" closable={true} onClose={this.hideModal}>
             <div className="am-modal-body">
                 {this.props.lang.ageTips}
