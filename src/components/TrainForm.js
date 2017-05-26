@@ -184,10 +184,10 @@ class TrainForm extends React.PureComponent {
               <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>
                 {this.props.lang.ageText}
               </InputItem>
-              <InputItem clear placeholder={this.props.lang.namePlaceholder} onBlur={(text) => this.onInputDone(text, 'name', id)}>
+              <InputItem clear placeholder={this.props.lang.namePlaceholder} defaultValue={i.name} onBlur={(text) => this.onInputDone(text, 'name', id)}>
                 {this.props.lang.nameText}
               </InputItem>
-              <InputItem clear placeholder={this.props.lang.passportPlaceholder} onBlur={(text) => this.onInputDone(text, 'passport', id)}>
+              <InputItem clear placeholder={this.props.lang.passportPlaceholder} defaultValue={i.passport} onBlur={(text) => this.onInputDone(text, 'passport', id)}>
                 {this.props.lang.passportText}
               </InputItem>
               <List.Item className="passBtn">
