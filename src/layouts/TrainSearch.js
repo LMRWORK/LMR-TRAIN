@@ -141,7 +141,7 @@ class TrainSearch extends React.PureComponent {
       <div>
         <QueueAnim className="router-wrap" type="bottom">
           <div className="trainPage" key="3">
-            <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/')}>
+            <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/')}>
               <h1 id="TrainIndex-h1">{this.props.fromStation.en} <img src={this.props.lang.rightIcon} className="rightArrow"/> {this.props.toStation.en}</h1>
             </NavBar>
             <div className="flex-box searchBar">

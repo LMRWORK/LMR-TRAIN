@@ -37,10 +37,10 @@ const initStates = Map({
     dateIcon: '/public/img/date.png',
     seatIcon: '/public/img/seat-O.png',
     priceIcon: '/public/img/p7.png',
-    rightIcon: '/public/img/r1.png',
+    rightIcon: '/public/img/rw.png',
     trainIcon: '/public/img/t1.png',
     longArrIcon: '/public/img/lr1.png',
-    backIcon: '/public/img/back.png',
+    backIcon: '/public/img/back-w.png',
     addIcon: '/public/img/add.png',
     subIcon: '/public/img/sub.png',
     //[全局 language]

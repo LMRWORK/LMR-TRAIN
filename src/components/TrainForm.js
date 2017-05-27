@@ -179,7 +179,7 @@ class TrainForm extends React.PureComponent {
         ))}
         </List>
         <div ref="passWapper" style={{overflow:'hidden'}}>
-          <QueueAnim className="passWrap" type="bottom" duration="1000">
+          <QueueAnim className="passWrap" type="top" duration="1000">
           {this.props.passengers && this.props.passengers.map( (i, id) => 
             <List key={id} renderHeader={this.props.lang.passText+(id+1)+': '+this.props.lang.passengerText}>
               <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>

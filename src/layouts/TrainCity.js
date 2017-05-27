@@ -73,7 +73,7 @@ class TrainCity extends React.PureComponent {
     return (
       <QueueAnim className="router-wrap" type="bottom">
         <div className="trainPage" key="2">
-          <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="light" onLeftClick={() => this.props.history.push('/')}>
+          <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/')}>
             <h1 id="TrainIndex-h1">{this.state.cityNavibarTitle}</h1>
           </NavBar>
           <WhiteSpace/>

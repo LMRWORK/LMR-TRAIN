@@ -40,7 +40,7 @@ class TrainIndex extends React.PureComponent {
       <div>
         <QueueAnim className="router-wrap" type="top">
           <div className="trainPage" key="1">
-            <NavBar iconName={null} leftContent={this.props.lang.navibarLeftIndex} rightContent={this.props.lang.navibarRight} mode="light">
+            <NavBar iconName={null} leftContent={this.props.lang.navibarLeftIndex} rightContent={this.props.lang.navibarRight} mode="dark">
               <h1 id="TrainIndex-h1">{this.props.lang.navibarTitle}</h1>
             </NavBar>
             <List renderHeader={this.props.lang.tips} id="TrainIndex-searchList">
