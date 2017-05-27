@@ -185,7 +185,7 @@ class TrainSearch extends React.PureComponent {
                     </div>
                     <div className="flex-item flex-grow-2">
                       <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
-                      <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.pricemarkAfter} </div>
+                      <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.priceMarkAfter} </div>
                     </div>
                     <div className="flex-item flex-grow-1">
                       <div className="sNext"></div>

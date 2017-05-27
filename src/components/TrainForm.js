@@ -172,14 +172,14 @@ class TrainForm extends React.PureComponent {
           <RadioItem key={i.SeatCode} checked={selectSeatCode === i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
             <Flex>
               <FlexItem>{i.SeatName}</FlexItem>
-              <FlexItem>{this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.pricemarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span></FlexItem>
+              <FlexItem>{this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span></FlexItem>
               <FlexItem>{i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span></FlexItem>
             </Flex>
           </RadioItem>
         ))}
         </List>
-        <div ref="passWapper" style={{overflow:'hidden'}}>
-          <QueueAnim className="passWrap" type="top" duration="1000">
+        <div ref="passWapper" style={{overflow:'hidden', height:441}}>
+          <QueueAnim className="passWrap" type="bottom" duration="1000">
           {this.props.passengers && this.props.passengers.map( (i, id) => 
             <List key={id} renderHeader={this.props.lang.passText+(id+1)+': '+this.props.lang.passengerText}>
               <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>

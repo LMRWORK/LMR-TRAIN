@@ -43,6 +43,7 @@ const initStates = Map({
     backIcon: '/public/img/back-w.png',
     addIcon: '/public/img/add.png',
     subIcon: '/public/img/sub.png',
+    totalPriceIcon: '/public/img/p1.png',
     //[全局 language]
     navibarTitle: '中国火车票预定',
     navibarRight: '帮助',
@@ -60,7 +61,7 @@ const initStates = Map({
     datepickerExtra: '请选择',
     searchTxt: '查询',
     priceMarkBegin: '¥', //货币前缀
-    pricemarkAfter: '',   //货币后缀
+    priceMarkAfter: '',   //货币后缀
     //[首页 layout/TrainIndex.js]
     indexTabBar: [
       {name: '注意事项'},
@@ -76,6 +77,7 @@ const initStates = Map({
     ],
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
+    trainText: '车次',
     bookinfo: '预定后，我们会在24小时内通过邮件联系您。',
     needTime: '历时',
     selectSeatText: '请选择您的座位：',
@@ -95,6 +97,8 @@ const initStates = Map({
     ageTips: '请注意：只有身高小于1.5米的儿童，享受儿童票价。',
     ageText: '年龄',
     agePlaceholder: '例如：成人/儿童',
+    totalTitle: '价格合计：',
+    bookNpay: '下单 & 支付',
   },
 });
 
