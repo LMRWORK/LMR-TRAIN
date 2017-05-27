@@ -7,7 +7,7 @@ import { setSelectSeat, setPassengers } from '../actions/Trains';
 
 const RadioItem = Radio.RadioItem;
 const FlexItem = Flex.Item;
-//乘客信息模板
+//乘客信息模板 mutable类型
 const passengerInfo = {
   age: null,       // 0 成人，1 儿童
   name:null,      // 姓名
@@ -25,6 +25,7 @@ class TrainForm extends React.PureComponent {
       modalVisible: false,
       ageText: [this.props.lang.adultText, this.props.lang.childText],
       passengerId: null,
+      tmp: '',
     };
     //初始化乘客列表并放入store
     this.props.passengers || this.props.setPassengers([Object.assign({}, passengerInfo)]);
@@ -57,7 +58,8 @@ class TrainForm extends React.PureComponent {
     return passengerStatus ||
            nextState.lastAction == 'addOne' ||
            nextState.lastAction == 'subOne' ||
-           this.state.lastAction != nextState.lastAction;
+           this.state.lastAction != nextState.lastAction ||
+          this.state.tmp != nextState.tmp;
   }
 
   //选择座位
@@ -123,15 +125,14 @@ class TrainForm extends React.PureComponent {
     });
   }
   
-  onInputDone = (text, type, id) => {
-    if (text) {
-      if (type == 'name') {
-        this.props.passengers[id].name = text;
-      } else if (type == 'passport') {
-        this.props.passengers[id].passport = text;
-      }
-      this.setState({lastAction: 'onInputDone'});
-    }
+  onNameInput = (value, id) => {
+    this.props.passengers[id].name = value;
+    this.setState({tmp: value});
+  }
+
+  onPassportInput = (value, id) => {
+    this.props.passengers[id].passport = value;
+    this.setState({tmp: value});
   }
 
   render() {
@@ -178,16 +179,16 @@ class TrainForm extends React.PureComponent {
         ))}
         </List>
         <div ref="passWapper" style={{overflow:'hidden'}}>
-          <QueueAnim className="passWrap" type="bottom" duration="500">
+          <QueueAnim className="passWrap" type="bottom" duration="1000">
           {this.props.passengers && this.props.passengers.map( (i, id) => 
             <List key={id} renderHeader={this.props.lang.passText+(id+1)+': '+this.props.lang.passengerText}>
               <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>
                 {this.props.lang.ageText}
               </InputItem>
-              <InputItem clear placeholder={this.props.lang.namePlaceholder} defaultValue={i.name} onBlur={(text) => this.onInputDone(text, 'name', id)}>
+              <InputItem clear placeholder={this.props.lang.namePlaceholder} value={this.props.passengers[id].name} onChange={(value) => this.onNameInput(value, id)}>
                 {this.props.lang.nameText}
               </InputItem>
-              <InputItem clear placeholder={this.props.lang.passportPlaceholder} defaultValue={i.passport} onBlur={(text) => this.onInputDone(text, 'passport', id)}>
+              <InputItem clear placeholder={this.props.lang.passportPlaceholder} value={this.props.passengers[id].passport} onChange={(value) => this.onPassportInput(value, id)}>
                 {this.props.lang.passportText}
               </InputItem>
               <List.Item className="passBtn">
