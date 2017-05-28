@@ -23,10 +23,26 @@
 
 /*tabbar*/
 #TrainIndex-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#333!important; margin-bottom: 0.1rem;}
-/*fix antd-mobile*/
-.am-toast-notice {top: 40%;}
+
 .chtBack {
     margin-bottom: -0.15rem;
     left: -8px;
     margin-left: -0.35rem;
 }
+
+/*fix antd-mobile*/
+.am-navbar.am-navbar-dark {
+    background-color: #a31022;
+}
+
+.am-button-primary {
+    background-color: #a31022;
+    border: 1PX solid #a31022;
+}
+
+.am-button-primary.am-button-active {
+    background-color: #931022;
+}
+
+.am-toast-notice {top: 40%;}
+

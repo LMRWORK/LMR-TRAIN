@@ -9,7 +9,11 @@ class TrainBook extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      lastAction: 'init',
+      showDetailFromTime: false,
+      showDetailToTime: false,
+    };
     console.log('😃 TrainBook ');
     console.log(props);
   }
@@ -29,6 +33,14 @@ class TrainBook extends React.PureComponent {
     //console.log(nextProps.passengers);
     //console.log(this.props.passengers);
     return true;
+  }
+
+  showDetailFromTime = () => {
+    this.state.showDetailFromTime ? this.setState({showDetailFromTime: false}) : this.setState({showDetailFromTime: true});
+  }
+
+  showDetailToTime = () => {
+    this.state.showDetailToTime ? this.setState({showDetailToTime: false}) : this.setState({showDetailToTime: true});
   }
 
   render() {
@@ -54,28 +66,44 @@ class TrainBook extends React.PureComponent {
                   <Flex.Item className="bItem bTime">{this.props.lang.needTime} {this.props.selectTrain.RunTime}</Flex.Item>
                 </Flex>
               </List.Item>
-              <List.Item thumb={this.props.lang.cityIcon}> 
+              <List.Item thumb={this.props.lang.cityIcon} onClick={this.showDetailFromTime}> 
                 <Flex>
                   <Flex.Item className="bItem bFrom">{this.props.selectTrain.DepartStation}</Flex.Item>
-                  <Flex.Item className="bItem bFromTime">{this.props.selectTrain.DepartTime}</Flex.Item>
+                  <Flex.Item className="bItem bFromTime">{this.props.selectTrain.DepartTime}
+                    <a className="detailTime">详细 
+                      { this.state.showDetailFromTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
+                    </a>
+                  </Flex.Item>
                 </Flex>
               </List.Item>
-              <List.Item thumb={this.props.lang.dateIcon}> 
-                <Flex>
-                  <Flex.Item className="bItem bFromDate2">{this.props.startDate.format('LLLL')}</Flex.Item>
-                </Flex>
-              </List.Item>
-              <List.Item thumb={this.props.lang.cityIcon}> 
+              { this.state.showDetailFromTime ?
+              <QueueAnim className="router-wrap" type="right">
+                <List.Item thumb={this.props.lang.dateIcon} key="a1"> 
+                  <Flex>
+                    <Flex.Item className="bItem bFrom2">发车日期</Flex.Item>
+                    <Flex.Item className="bItem bFromDate2">{this.props.startDate.format('LLLL')}</Flex.Item>
+                  </Flex>
+                </List.Item> 
+              </QueueAnim>: ''}
+              <List.Item thumb={this.props.lang.cityIcon} onClick={this.showDetailToTime}> 
                 <Flex>
                   <Flex.Item className="bItem bTo">{this.props.selectTrain.ArriveStation}</Flex.Item>
-                  <Flex.Item className="bItem bToTime">{this.props.selectTrain.ArriveTime}</Flex.Item>
+                  <Flex.Item className="bItem bToTime">{this.props.selectTrain.ArriveTime}
+                    <a className="detailTime">详细 
+                      { this.state.showDetailToTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
+                    </a>
+                  </Flex.Item>
                 </Flex>
               </List.Item>
-              <List.Item thumb={this.props.lang.dateIcon}> 
-                <Flex>
-                  <Flex.Item className="bItem bToDate2">{this.props.arriveDate.format('LLLL')}</Flex.Item>
-                </Flex>
-              </List.Item>
+              { this.state.showDetailToTime ?
+              <QueueAnim className="router-wrap" type="right">
+                <List.Item thumb={this.props.lang.dateIcon} key="b1"> 
+                  <Flex>
+                    <Flex.Item className="bItem bTo2">抵达日期</Flex.Item>
+                    <Flex.Item className="bItem bToDate2">{this.props.arriveDate.format('LLLL')}</Flex.Item>
+                  </Flex>
+                </List.Item>
+              </QueueAnim>: ''}
             </List>
             <TrainForm />
             <List renderHeader={this.props.lang.totalTitle} id="payDiv">

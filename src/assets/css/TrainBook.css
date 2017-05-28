@@ -3,18 +3,28 @@
 #payDiv {
 }
 #trainInfo .bFrom, #trainInfo .bTo {
+  flex-grow: 2
 }
 #trainInfo .bFromTime, #trainInfo .bToTime {
 }
 #trainInfo .bFromDate, #trainInfo .bToDate {
 }
+#trainInfo .bFrom2, #trainInfo .bTo2 {
+  font-size: 0.6rem;
+  color: #a31022;
+}
 #trainInfo .bFromDate2, #trainInfo .bToDate2 {
   font-size: 0.6rem;
+  color: #a31022;
+  flex-grow: 4;
 }
 #trainInfo .bTrain {
-	color: #108ee9;
+  font-size: 0.8rem;
+	color: #a31022;
 }
 #trainInfo .bTime {
+  position: relative;
+  left: -0.1rem;
 }
 .bPay {
 }
@@ -23,20 +33,21 @@
 	font-size: 1rem;
 }
 .addOne {
-	width: 100%;
 	color: #108ee9;
 	text-align: center;
 }
 .subOne {
-  width: 100%;
   color: #d81e06;
   text-align: center;
 }
+.addOne:active, .subOne:active {
+  background: #f0f0f0;
+}
 .addOne .addOneIcon, .subOne .subOneIcon {
 	width: auto;
-    height: auto;
-    vertical-align: text-bottom;
-    margin-right: 0.3rem;
+  height: auto;
+  vertical-align: text-bottom;
+  margin-right: 0.3rem;
 }
 .am-whitespace.fixBook {
 	height: 20rem;
@@ -47,9 +58,26 @@
 .ichtModal .am-modal-button:active {
 	background: #f0f0f0;
 }
+.detailTime {
+  color: #108ee9;
+  margin-left: 0.3rem;
+  font-size: 0.55rem;
+}
+.moreIcon {
+  width: auto!important;
+  height: auto!important;
+  vertical-align: text-bottom!important;
+}
+.imgAutoList img {
+  width: auto!important;
+  height: auto!important;
+}
+.imgAutoList .am-list-content {
+  padding: 0!important;
+}
 @media (max-width: 640px) {
 	.bLongArr img {
 		max-width: 82%;
-    	bottom: 1.8rem;
+    bottom: 1.8rem;
 	}
 }

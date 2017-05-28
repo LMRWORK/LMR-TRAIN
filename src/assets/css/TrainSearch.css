@@ -2,9 +2,9 @@
 #TrainSearch-searchList .am-list-item .am-list-line .am-list-extra {flex-basis:65%;}
 /*tabBar高亮*/
 #TrainSearch-tabbar-div .am-tab-bar-bar [data-active="true"] .am-tab-bar-tab-title {
-  background: #108ee9;
+  background: #a31022;
   color: #fff!important;
-  border: 1px solid #108ee9;
+  border: 1px solid #a31022;
 }
 .trainResults .flex-item {
   border-bottom: 1px solid #ddd;
@@ -236,34 +236,34 @@
   position: relative;
 }
 .flex-grow-1 {
-  flex-grow:1;
+  flex-grow:1!important;
 }
 .flex-grow-2 {
-  flex-grow:2;
+  flex-grow:2!important;
 }
 .flex-grow-3 {
-  flex-grow:3;
+  flex-grow:3!important;
 }
 .flex-grow-4 {
-  flex-grow:4;
+  flex-grow:4!important;
 }
 .flex-grow-5 {
-  flex-grow:5;
+  flex-grow:5!important;
 }
 .flex-grow-6 {
-  flex-grow:6;
+  flex-grow:6!important;
 }
 .flex-grow-7 {
-  flex-grow:7;
+  flex-grow:7!important;
 }
 .flex-grow-8 {
-  flex-grow:8;
+  flex-grow:8!important;
 }
 .flex-grow-9 {
-  flex-grow:9;
+  flex-grow:9!important;
 }
 .flex-grow-10 {
-  flex-grow:10;
+  flex-grow:10!important;
 }
 .textLeft {
   text-align: left;

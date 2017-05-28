@@ -119,6 +119,8 @@ class TrainSearch extends React.PureComponent {
       this.setState({lastAction: 'filter'});
       //非首次排序，显示轻提示
       if (this.state.lastAction == 'filter') Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
+      //排序置顶
+      this.refs.trainScroll.scrollTop = 0;
       switch(data) {
         case 'sortByRunTime':
           this.props.sortByRunTime();
@@ -180,7 +182,7 @@ class TrainSearch extends React.PureComponent {
             </div>
           </div>
         </QueueAnim>
-        <div style={{overflow:'scroll', maxHeight:this.clientHeight-290}}>
+        <div style={{overflow:'scroll', maxHeight:this.clientHeight-290}} ref="trainScroll">
           {this.props.trainsResult && this.props.trainsResult.result.map(
             (i, id) => (
               <LazyLoad key={id} overflow throttle={100} height={180} once>

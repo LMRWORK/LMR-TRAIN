@@ -6,14 +6,13 @@ import { connect } from 'react-redux';
 import { setSelectSeat, setPassengers } from '../actions/Trains';
 
 const RadioItem = Radio.RadioItem;
-const FlexItem = Flex.Item;
 //乘客信息模板 mutable类型
 const passengerInfo = {
   age: null,       // 0 成人，1 儿童
   name:null,      // 姓名
   passport:null,  // 护照
   ok:false,       // 是否填写完成
-  showAdd: true,  // 是否显示增加按钮
+  showSub: false,  // 是否显示减少按钮
 }
 
 class TrainForm extends React.PureComponent {
@@ -70,19 +69,15 @@ class TrainForm extends React.PureComponent {
 
   //添加一名乘客
   addOne = (id) => {
-    //之前的所有乘客框下不现实增加按钮
-    this.props.passengers.forEach(i => {i.showAdd = false});
-
     //增加一名乘客
-    this.props.passengers.push(Object.assign({}, passengerInfo));
+    const newPassenger = Object.assign({}, passengerInfo);
+    newPassenger.showSub = true;
+    this.props.passengers.push(newPassenger);
 
     //动画滚动预先处理：指定容器高度
     let passWapper = ReactDom.findDOMNode(this.refs.passWapper);
     passWapper.style.height = (450 * this.props.passengers.length) + 'px';
     window.scrollTo(0, 370 * this.props.passengers.length);
-
-    console.log('addOne', this.props.passengers);
-
     this.setState({lastAction: 'addOne'});
   }
 
@@ -95,9 +90,6 @@ class TrainForm extends React.PureComponent {
     let passWapper = ReactDom.findDOMNode(this.refs.passWapper);
     passWapper.style.height = (450 * this.props.passengers.length) + 'px';
     window.scrollTo(0, 370 * this.props.passengers.length);
-
-    console.log('subOne', this.props.passengers);
-
     this.setState({lastAction: 'subOne'});
   }
 
@@ -165,44 +157,51 @@ class TrainForm extends React.PureComponent {
         }
       );
     }
+    console.log('this.props.selectTrain.SeatList', this.props.passengers);
     return (
       <div>
         <List renderHeader={this.props.lang.selectSeatText}>
-        {this.props.selectTrain.SeatList.map(i => (
-          <RadioItem key={i.SeatCode} checked={selectSeatCode === i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
+        { this.props.selectTrain.SeatList.map(i => (
+          <RadioItem thumb={this.props.lang.seatO2Icon} key={i.SeatCode} checked={selectSeatCode === i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
             <Flex>
-              <FlexItem>{i.SeatName}</FlexItem>
-              <FlexItem>{this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span></FlexItem>
-              <FlexItem>{i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span></FlexItem>
+              <Flex.Item className="flex-grow-7">{i.SeatName}</Flex.Item>
+              <Flex.Item className="flex-grow-5">{this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span></Flex.Item>
+              <Flex.Item className="flex-grow-6">{i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span></Flex.Item>
             </Flex>
           </RadioItem>
         ))}
         </List>
-        <div ref="passWapper" style={{overflow:'hidden', height:441}}>
+        <div ref="passWapper" style={{overflow:'hidden', height:441 * (this.props.passengers ? this.props.passengers.length : 1) }}>
           <QueueAnim className="passWrap" type="bottom" duration="1000">
           {this.props.passengers && this.props.passengers.map( (i, id) => 
             <List key={id} renderHeader={this.props.lang.passText+(id+1)+': '+this.props.lang.passengerText}>
-              <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)}>
-                {this.props.lang.ageText}
-              </InputItem>
-              <InputItem clear placeholder={this.props.lang.namePlaceholder} value={this.props.passengers[id].name} onChange={(value) => this.onNameInput(value, id)}>
-                {this.props.lang.nameText}
-              </InputItem>
-              <InputItem clear placeholder={this.props.lang.passportPlaceholder} value={this.props.passengers[id].passport} onChange={(value) => this.onPassportInput(value, id)}>
-                {this.props.lang.passportText}
-              </InputItem>
+              <List.Item thumb={this.props.lang.ageIcon} className="imgAutoList">
+                <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)} style={{paddingLeft:0}}>
+                  {this.props.lang.ageText}
+                </InputItem>
+              </List.Item>
+              <List.Item thumb={this.props.lang.nameIcon} className="imgAutoList">
+                <InputItem thumb={this.props.lang.nameIcon} clear placeholder={this.props.lang.namePlaceholder} value={this.props.passengers[id].name} onChange={(value) => this.onNameInput(value, id)} style={{paddingLeft:0}}>
+                  {this.props.lang.nameText}
+                </InputItem>
+              </List.Item>
+              <List.Item thumb={this.props.lang.passIcon} className="imgAutoList">
+                <InputItem thumb={this.props.lang.passIcon} clear placeholder={this.props.lang.passportPlaceholder} value={this.props.passengers[id].passport} onChange={(value) => this.onPassportInput(value, id)} style={{paddingLeft:0}}>
+                  {this.props.lang.passportText}
+                </InputItem>
+              </List.Item>
               <List.Item className="passBtn">
-                { i.showAdd ?
-                  <div className="addOne" onClick={() => this.addOne(id)}>
-                    <img src={this.props.lang.addIcon} className="addOneIcon"/>
-                    {this.props.lang.addOneText}
-                  </div>
-                  :
-                  <div className="subOne" onClick={() => this.subOne(id)}>
+                <Flex>
+                  {i.showSub ?
+                  <Flex.Item className="subOne" onClick={() => this.subOne(id)}>
                     <img src={this.props.lang.subIcon} className="subOneIcon"/>
                     {this.props.lang.subOneText}
-                  </div>
-                }
+                  </Flex.Item> : ''}
+                  <Flex.Item className="addOne" onClick={() => this.addOne(id)}>
+                    <img src={this.props.lang.addIcon} className="addOneIcon"/>
+                    {this.props.lang.addOneText}
+                  </Flex.Item>
+                </Flex>
               </List.Item>
             </List>
           )}
