@@ -11,11 +11,11 @@
 }
 #trainInfo .bFrom2, #trainInfo .bTo2 {
   font-size: 0.6rem;
-  color: #a31022;
+  color: #933;
 }
 #trainInfo .bFromDate2, #trainInfo .bToDate2 {
   font-size: 0.6rem;
-  color: #a31022;
+  color: #933;
   flex-grow: 4;
 }
 #trainInfo .bTrain {
