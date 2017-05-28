@@ -42,7 +42,7 @@ class TrainBook extends React.PureComponent {
     return (
       <div>
         <QueueAnim className="router-wrap" type="top">
-          <div className="bookPage" key="4">
+          <div className="bookPage" key="1">
             <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/search')}>
               <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
             </NavBar>

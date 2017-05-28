@@ -143,8 +143,8 @@ class TrainSearch extends React.PureComponent {
     console.log("🔥 TrainSearch.render()");
     return (
       <div>
-        <QueueAnim className="router-wrap" type="bottom">
-          <div className="trainPage" key="3">
+        <QueueAnim className="date-wrap" type="top">
+          <div className="trainPage" key="1">
             <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/')}>
               <h1 id="TrainIndex-h1">{this.props.fromStation.en} <img src={this.props.lang.rightIcon} className="rightArrow"/> {this.props.toStation.en}</h1>
             </NavBar>
@@ -173,33 +173,33 @@ class TrainSearch extends React.PureComponent {
                 </a>
               </div>
             </div>
-            <div style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
-              {this.props.trainsResult && this.props.trainsResult.result.map(
-                (i, id) => (
-                  <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)}>
-                    <div className="flex-item flex-grow-4">
-                      <div className="sTrain">{i.TrainCode}</div>
-                      <div className="sStart">{i.DepartTime}</div>
-                      <div className="sEnd">{i.ArriveTime}</div>
-                    </div>
-                    <div className="flex-item flex-grow-6">
-                      <div className="sRun">{this.props.lang.needTime} {i.RunTime}</div>
-                      <div className="sFrom">{i.DepartStation}</div>
-                      <div className="sTo">{i.ArriveStation}</div>
-                    </div>
-                    <div className="flex-item flex-grow-2">
-                      <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
-                      <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.priceMarkAfter} </div>
-                    </div>
-                    <div className="flex-item flex-grow-1">
-                      <div className="sNext"></div>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
           </div>
         </QueueAnim>
+        <div style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
+          {this.props.trainsResult && this.props.trainsResult.result.map(
+            (i, id) => (
+              <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)}>
+                <div className="flex-item flex-grow-4">
+                  <div className="sTrain">{i.TrainCode}</div>
+                  <div className="sStart">{i.DepartTime}</div>
+                  <div className="sEnd">{i.ArriveTime}</div>
+                </div>
+                <div className="flex-item flex-grow-6">
+                  <div className="sRun">{this.props.lang.needTime} {i.RunTime}</div>
+                  <div className="sFrom">{i.DepartStation}</div>
+                  <div className="sTo">{i.ArriveStation}</div>
+                </div>
+                <div className="flex-item flex-grow-2">
+                  <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
+                  <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.priceMarkAfter} </div>
+                </div>
+                <div className="flex-item flex-grow-1">
+                  <div className="sNext"></div>
+                </div>
+              </div>
+            )
+          )}
+        </div>
         <div id="TrainSearch-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.searchTabBar.map( 
