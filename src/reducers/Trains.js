@@ -95,6 +95,10 @@ const trainReducer = (state=initStates, action) => {
     case 'SET_PASSENGERS':
       return state.set('passengers', action.passengers);
 
+    //不重新搜索的标志。
+    case 'SET_NOSEARCH':
+      return state.set('noSearch', action.noSearch);
+
     //按最低可预定价格排序。
     case 'SORT_BY_PRICE':
       let list3 = state.get('trainsResult');

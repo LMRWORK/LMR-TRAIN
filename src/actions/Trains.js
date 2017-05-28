@@ -152,3 +152,9 @@ export const setPassengers = (passengers) => ({
   type: 'SET_PASSENGERS',
   passengers
 });
+
+//设置返回不重新搜索的标志
+export const setNoSearch = (noSearch) => ({
+  type: 'SET_NOSEARCH',
+  noSearch
+});

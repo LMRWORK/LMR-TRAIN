@@ -13,6 +13,7 @@ const initStates = Map({
   selectSeat: null,
   passengers: null, //乘客列表（对象数组）
   selectedTab: 'sortByRunTime',
+  noSearch: false, //从book页跳回搜索页时，仅一次有效。
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   fetchTrainsUrl: '/public/data/fetchTrain.txt',
@@ -74,7 +75,7 @@ const initStates = Map({
       {name: '出发:早>晚', data:'sortByStartTime'},
       {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '价格:低>高', data:'sortByPrice'},
-    ],
+    ], 
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
     trainText: '车次',

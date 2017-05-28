@@ -2,7 +2,7 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { NavBar, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSelectedTab, ActivityIndicator } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSelectedTab, ActivityIndicator, setNoSearch } from '../actions/Trains';
 import Loading from '../components/Loading';
 
 class TrainSearch extends React.PureComponent {
@@ -21,12 +21,16 @@ class TrainSearch extends React.PureComponent {
   }
 
   componentDidMount = () => {
-    //清空原结果
-    this.props.setTrainsResult(null);
-    //显示轻提示
-    Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
-    //抓取火车数据
-    this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
+    if (!this.props.noSearch) {
+      //清空原结果
+      this.props.setTrainsResult(null);
+      //显示轻提示
+      Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
+      //抓取火车数据
+      this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
+    } else {
+      this.props.setNoSearch(false);
+    }
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -216,6 +220,7 @@ const mapStateToProps = (store) => ({
   trainsResult: store.get('trainsResult'),
   fetchTrainsUrl: store.get('fetchTrainsUrl'),
   selectedTab: store.get('selectedTab'),
+  noSearch: store.get('noSearch'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -227,6 +232,7 @@ const mapDispatchToProps = (dispatch) => ({
   sortByPrice: () => dispatch(sortByPrice()),
   setSelectTrain: (train) => dispatch(setSelectTrain(train)),
   setSelectedTab: (filterType) => dispatch(setSelectedTab(filterType)),
+  setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainSearch);

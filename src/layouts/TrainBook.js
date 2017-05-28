@@ -3,6 +3,7 @@ import QueueAnim from 'rc-queue-anim';
 import { List, NavBar, Flex, Button } from 'antd-mobile';
 import { connect } from 'react-redux';
 import TrainForm from '../components/TrainForm';
+import { setNoSearch } from '../actions/Trains';
 
 class TrainBook extends React.PureComponent {
 
@@ -16,6 +17,11 @@ class TrainBook extends React.PureComponent {
   componentWillReceiveProps = (nextProps) => {
     console.log('TrainBook.componentWillReceiveProps');
     console.log(nextProps);
+  }
+
+  componentDidMount = () => {
+    //从表单页返回时，不刷新结果。
+    this.props.setNoSearch(true);
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
@@ -91,6 +97,8 @@ const mapStateToProps = (store) => ({
   arriveDate: store.get('arriveDate'),
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainBook);
