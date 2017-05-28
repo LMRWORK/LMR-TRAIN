@@ -2,7 +2,7 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { NavBar, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSelectedTab, ActivityIndicator, setNoSearch } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSorterTab, ActivityIndicator, setNoSearch } from '../actions/Trains';
 import LazyLoad from 'react-lazyload';
 import Loading from '../components/Loading';
 
@@ -13,7 +13,7 @@ class TrainSearch extends React.PureComponent {
     this.clientHeight = document.documentElement.clientHeight; //fix弹出输入框造成的高度变化
     this.state = {
       datepickerVisible: false,
-      selectedTab: this.props.selectedTab,
+      sorterTab: this.props.sorterTab,
       lastAction: 'init', //用于记录复杂页面的操作历史
 
     };
@@ -41,9 +41,9 @@ class TrainSearch extends React.PureComponent {
     //加载完成
     if (nextProps.trainsResult) {
       //隐藏轻提示
-      if (!this.props.noSearch && this.state.lastAction!='filter') Toast.hide();
+      if (!this.props.noSearch && this.state.lastAction!='sorter') Toast.hide();
       //排序
-      this.filter(this.props.selectedTab);
+      this.sorter(this.props.sorterTab);
     }
   }
 
@@ -53,7 +53,7 @@ class TrainSearch extends React.PureComponent {
            this.props.toStation.code != nextProps.toStation.code ||
            this.props.startDate != nextProps.startDate ||
            this.props.trainsResult != nextProps.trainsResult ||
-           this.props.selectedTab != nextProps.selectedTab ||
+           this.props.sorterTab != nextProps.sorterTab ||
            this.state.datepickerVisible != nextState.datepickerVisible;
   }
 
@@ -113,26 +113,26 @@ class TrainSearch extends React.PureComponent {
   }
 
   //火车条件筛选
-  filter = (data = this.props.selectedTab) => {
-    if (this.props.selectedTab != data || this.state.lastAction != 'filter') {
+  sorter = (data = this.props.sorterTab) => {
+    if (this.props.sorterTab != data || this.state.lastAction != 'sorter') {
       //过滤条件
-      this.setState({lastAction: 'filter'});
+      this.setState({lastAction: 'sorter'});
       //非首次排序，显示轻提示
-      if (this.state.lastAction == 'filter') Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
+      if (this.state.lastAction == 'sorter') Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
       //排序置顶
       this.refs.trainScroll.scrollTop = 0;
       switch(data) {
         case 'sortByRunTime':
           this.props.sortByRunTime();
-          this.props.setSelectedTab(data);
+          this.props.setSorterTab(data);
           break;
         case 'sortByStartTime':
           this.props.sortByStartTime();
-          this.props.setSelectedTab(data);
+          this.props.setSorterTab(data);
           break;
         case 'sortByPrice':
           this.props.sortByPrice();
-          this.props.setSelectedTab(data);
+          this.props.setSorterTab(data);
           break;
       }
       //console.log('sort done: ' + data);
@@ -212,7 +212,7 @@ class TrainSearch extends React.PureComponent {
         <div id="TrainSearch-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.searchTabBar.map( 
-              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.filter(i.data)} data-active={this.props.selectedTab === i.data}></TabBar.Item>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.sorter(i.data)} data-active={this.props.sorterTab === i.data}></TabBar.Item>
             )}
           </TabBar>
         </div>
@@ -228,7 +228,7 @@ const mapStateToProps = (store) => ({
   startDate: store.get('startDate'),
   trainsResult: store.get('trainsResult'),
   fetchTrainsUrl: store.get('fetchTrainsUrl'),
-  selectedTab: store.get('selectedTab'),
+  sorterTab: store.get('sorterTab'),
   noSearch: store.get('noSearch'),
 });
 
@@ -240,7 +240,7 @@ const mapDispatchToProps = (dispatch) => ({
   sortByStartTime: () => dispatch(sortByStartTime()),
   sortByPrice: () => dispatch(sortByPrice()),
   setSelectTrain: (train) => dispatch(setSelectTrain(train)),
-  setSelectedTab: (filterType) => dispatch(setSelectedTab(filterType)),
+  setSorterTab: (sorterType) => dispatch(setSorterTab(sorterType)),
   setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch)),
 });
 

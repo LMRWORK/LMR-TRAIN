@@ -12,7 +12,7 @@ const initStates = Map({
   arriveDate: null, //抵达日期需要出发日期和运行时间计算得出。
   selectSeat: null,
   passengers: null, //乘客列表（对象数组）
-  selectedTab: 'sortByRunTime',
+  sorterTab: 'sortByRunTime',
   noSearch: false, //从book页跳回搜索页时，仅一次有效。
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',

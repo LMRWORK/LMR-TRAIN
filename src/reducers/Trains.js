@@ -84,8 +84,8 @@ const trainReducer = (state=initStates, action) => {
       break;
 
     //设置排序状态。
-    case 'SET_SELECTED_TAB':
-      return state.set('selectedTab', action.filterType);
+    case 'SET_SORTER_TAB':
+      return state.set('sorterTab', action.sorterType);
 
     //设置已选座位。
     case 'SET_SELECT_SEAT':

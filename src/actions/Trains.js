@@ -63,9 +63,9 @@ export const setTrainsResult = (json) => ({
 });
 
 //设置搜索结果
-export const setSelectedTab = (filterType) => ({
-  type: 'SET_SELECTED_TAB',
-  filterType
+export const setSorterTab = (sorterType) => ({
+  type: 'SET_SORTER_TAB',
+  sorterType
 });
 
 //设置点选的站点
