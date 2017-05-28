@@ -11,6 +11,7 @@
 - 使用query-string处理表单数据提交和解析，参考：https://github.com/sindresorhus/query-string
 - 使用rc-animate处理动画，参考：https://github.com/julianshapiro/velocity
 - 使用rc-queue-anim切换页面，参考：https://motion.ant.design/api/queue-anim#API、https://github.com/fis-components/rc-queue-anim
+- 使用react-lazyload处理列表懒加载，参考：https://jasonslyvia.github.io/react-lazyload/
 ## 开发进度
 - 首页：100%
 - 车站选择页：100%

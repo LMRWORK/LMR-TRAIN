@@ -7,7 +7,7 @@ const config = {
 
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    vendor1: ['react', 'react-dom', 'react-redux', 'immutable', 'rc-queue-anim'],
+    vendor1: ['react', 'react-dom', 'react-redux', 'immutable', 'rc-queue-anim', 'react-lazyload'],
     vendor2: ['react-router-dom', 'moment', 'query-string', 'whatwg-fetch'],
   },
 

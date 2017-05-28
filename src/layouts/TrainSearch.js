@@ -3,6 +3,7 @@ import QueueAnim from 'rc-queue-anim';
 import { NavBar, Toast, TabBar, DatePicker } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSelectedTab, ActivityIndicator, setNoSearch } from '../actions/Trains';
+import LazyLoad from 'react-lazyload';
 import Loading from '../components/Loading';
 
 class TrainSearch extends React.PureComponent {
@@ -29,6 +30,7 @@ class TrainSearch extends React.PureComponent {
       //抓取火车数据
       this.props.fetchTrains(this.props.fetchTrainsUrl, this.props.fromStation, this.props.toStation, this.props.startDate);
     } else {
+      Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
       this.props.setNoSearch(false);
     }
   }
@@ -39,7 +41,7 @@ class TrainSearch extends React.PureComponent {
     //加载完成
     if (nextProps.trainsResult) {
       //隐藏轻提示
-      Toast.hide();
+      if (!this.props.noSearch && this.state.lastAction!='filter') Toast.hide();
       //排序
       this.filter(this.props.selectedTab);
     }
@@ -113,6 +115,10 @@ class TrainSearch extends React.PureComponent {
   //火车条件筛选
   filter = (data = this.props.selectedTab) => {
     if (this.props.selectedTab != data || this.state.lastAction != 'filter') {
+      //过滤条件
+      this.setState({lastAction: 'filter'});
+      //非首次排序，显示轻提示
+      if (this.state.lastAction == 'filter') Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
       switch(data) {
         case 'sortByRunTime':
           this.props.sortByRunTime();
@@ -127,7 +133,6 @@ class TrainSearch extends React.PureComponent {
           this.props.setSelectedTab(data);
           break;
       }
-      this.setState({lastAction: 'filter'});
       //console.log('sort done: ' + data);
     }
   }
@@ -175,28 +180,30 @@ class TrainSearch extends React.PureComponent {
             </div>
           </div>
         </QueueAnim>
-        <div style={{overflow:'scroll', maxHeight:this.clientHeight-214}}>
+        <div style={{overflow:'scroll', maxHeight:this.clientHeight-290}}>
           {this.props.trainsResult && this.props.trainsResult.result.map(
             (i, id) => (
-              <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)}>
-                <div className="flex-item flex-grow-4">
-                  <div className="sTrain">{i.TrainCode}</div>
-                  <div className="sStart">{i.DepartTime}</div>
-                  <div className="sEnd">{i.ArriveTime}</div>
+              <LazyLoad key={id} overflow throttle={100} height={180} once>
+                <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)}>
+                  <div className="flex-item flex-grow-4">
+                    <div className="sTrain">{i.TrainCode}</div>
+                    <div className="sStart">{i.DepartTime}</div>
+                    <div className="sEnd">{i.ArriveTime}</div>
+                  </div>
+                  <div className="flex-item flex-grow-6">
+                    <div className="sRun">{this.props.lang.needTime} {i.RunTime}</div>
+                    <div className="sFrom">{i.DepartStation}</div>
+                    <div className="sTo">{i.ArriveStation}</div>
+                  </div>
+                  <div className="flex-item flex-grow-2">
+                    <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
+                    <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.priceMarkAfter} </div>
+                  </div>
+                  <div className="flex-item flex-grow-1">
+                    <div className="sNext"></div>
+                  </div>
                 </div>
-                <div className="flex-item flex-grow-6">
-                  <div className="sRun">{this.props.lang.needTime} {i.RunTime}</div>
-                  <div className="sFrom">{i.DepartStation}</div>
-                  <div className="sTo">{i.ArriveStation}</div>
-                </div>
-                <div className="flex-item flex-grow-2">
-                  <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.cheapSeat.SeatName} </div>
-                  <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.cheapSeat.SeatPrice+this.props.lang.priceMarkAfter} </div>
-                </div>
-                <div className="flex-item flex-grow-1">
-                  <div className="sNext"></div>
-                </div>
-              </div>
+              </LazyLoad>
             )
           )}
         </div>
