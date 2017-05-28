@@ -35,6 +35,7 @@ class TrainBook extends React.PureComponent {
     console.log("🔥 TrainBook.render()");
     //没有数据路由到搜索页
     if (!this.props.selectTrain) {
+      this.props.setNoSearch(false);
       this.props.history.push('/search');
       return false;
     }
@@ -45,7 +46,7 @@ class TrainBook extends React.PureComponent {
             <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/search')}>
               <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
             </NavBar>
-            <List renderHeader={this.props.lang.bookinfo}>
+            <List renderHeader={this.props.lang.bookinfo} id="trainInfo">
               <List.Item thumb={this.props.lang.trainIcon}> 
                 <Flex>
                   <Flex.Item className="bItem bTrainText">{this.props.lang.trainText}</Flex.Item>
@@ -57,14 +58,22 @@ class TrainBook extends React.PureComponent {
                 <Flex>
                   <Flex.Item className="bItem bFrom">{this.props.selectTrain.DepartStation}</Flex.Item>
                   <Flex.Item className="bItem bFromTime">{this.props.selectTrain.DepartTime}</Flex.Item>
-                  <Flex.Item className="bItem bFromDate">{this.props.startDate.format('LL')}</Flex.Item>
+                </Flex>
+              </List.Item>
+              <List.Item thumb={this.props.lang.dateIcon}> 
+                <Flex>
+                  <Flex.Item className="bItem bFromDate2">{this.props.startDate.format('LLLL')}</Flex.Item>
                 </Flex>
               </List.Item>
               <List.Item thumb={this.props.lang.cityIcon}> 
                 <Flex>
                   <Flex.Item className="bItem bTo">{this.props.selectTrain.ArriveStation}</Flex.Item>
                   <Flex.Item className="bItem bToTime">{this.props.selectTrain.ArriveTime}</Flex.Item>
-                  <Flex.Item className="bItem bToDate">{this.props.arriveDate.format('LL')}</Flex.Item>
+                </Flex>
+              </List.Item>
+              <List.Item thumb={this.props.lang.dateIcon}> 
+                <Flex>
+                  <Flex.Item className="bItem bToDate2">{this.props.arriveDate.format('LLLL')}</Flex.Item>
                 </Flex>
               </List.Item>
             </List>

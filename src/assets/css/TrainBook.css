@@ -2,18 +2,21 @@
 }
 #payDiv {
 }
-.bFrom, .bTo {
+#trainInfo .bFrom, #trainInfo .bTo {
 }
-.bFromTime, .bToTime {
+#trainInfo .bFromTime, #trainInfo .bToTime {
 }
-.bFromDate, .bToDate {
+#trainInfo .bFromDate, #trainInfo .bToDate {
 }
-.bTime {
+#trainInfo .bFromDate2, #trainInfo .bToDate2 {
+  font-size: 0.6rem;
+}
+#trainInfo .bTrain {
+	color: #108ee9;
+}
+#trainInfo .bTime {
 }
 .bPay {
-}
-.bTrain {
-	color: #108ee9;
 }
 .bTotal {
 	color: #d81e06;
