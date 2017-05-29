@@ -41,7 +41,7 @@
     "immutable": "^3.8.1",
     "moment": "^2.18.1",
     "query-string": "^4.3.4",
-    "rc-queue-anim": "^1.0.3",
+    "rc-queue-anim": "^0.13.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-lazyload": "^2.2.7",
