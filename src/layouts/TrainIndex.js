@@ -39,8 +39,8 @@ class TrainIndex extends React.PureComponent {
     console.log("🔥 TrainIndex.render()");
     return (
       <div>
-        <VelocityComponent animation={{ opacity: 1, marginTop: 0 }} duration={400} runOnMount={true}>
-          <div className="trainPage" key="1" style={{ opacity: 0.1, marginTop: 30 }}>
+        <VelocityComponent animation={{ opacity: 1, left: 0 }} duration={500} runOnMount={true}>
+          <div className="trainPage" key="1" style={{ opacity: 0, left: 30, width:'100%', position:'relative' }}>
             <NavBar iconName={null} leftContent={this.props.lang.navibarLeftIndex} rightContent={this.props.lang.navibarRight} mode="dark">
               <h1 id="TrainIndex-h1">{this.props.lang.navibarTitle}</h1>
             </NavBar>
