@@ -59,7 +59,7 @@ class TrainForm extends React.PureComponent {
            nextState.lastAction == 'addOne' ||
            nextState.lastAction == 'subOne' ||
            this.state.lastAction != nextState.lastAction ||
-          this.state.tmp != nextState.tmp;
+           this.state.tmp != nextState.tmp;
   }
 
   //选择座位
