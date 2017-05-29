@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { setStartDate } from '../actions/Trains';
 import loc from 'antd-mobile/lib/date-picker/locale/zh_CN';
 
+import { VelocityComponent  } from 'velocity-react';
+
 class TrainIndex extends React.PureComponent {
 
   constructor(props) {
@@ -22,7 +24,6 @@ class TrainIndex extends React.PureComponent {
   }
 
   onChange = (moment) => {
-    //this.setState({startDate: moment});
     this.props.setStartDate(moment);
   }
 
@@ -38,8 +39,8 @@ class TrainIndex extends React.PureComponent {
     console.log("🔥 TrainIndex.render()");
     return (
       <div>
-        <QueueAnim className="router-wrap" type="top">
-          <div className="trainPage" key="1">
+        <VelocityComponent animation={{ opacity: 1, marginTop: 0 }} duration={400} runOnMount={true}>
+          <div className="trainPage" key="1" style={{ opacity: 0.1, marginTop: 30 }}>
             <NavBar iconName={null} leftContent={this.props.lang.navibarLeftIndex} rightContent={this.props.lang.navibarRight} mode="dark">
               <h1 id="TrainIndex-h1">{this.props.lang.navibarTitle}</h1>
             </NavBar>
@@ -59,11 +60,11 @@ class TrainIndex extends React.PureComponent {
               <Button className="btn" type="primary" icon="search" id="TrainIndex-search-btn" onClick={this.onSearch}>{this.props.lang.searchTxt}</Button>
             </WingBlank>
           </div>
-        </QueueAnim>
+        </VelocityComponent>
         <div id="TrainIndex-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.indexTabBar.map( 
-              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>}/>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} />
             )}
           </TabBar>
         </div>
@@ -71,6 +72,12 @@ class TrainIndex extends React.PureComponent {
     );
   }
 }
+
+TrainIndex.propTypes = {
+    show: React.PropTypes.bool,
+    title: React.PropTypes.string.isRequired,
+    toggle: React.PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (store) => ({
   lang: store.get('lang'),
