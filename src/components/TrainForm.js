@@ -12,7 +12,8 @@ const passengerInfo = {
   name:null,      // 姓名
   passport:null,  // 护照
   ok:false,       // 是否填写完成
-  showSub: false,  // 是否显示减少按钮
+  showAdd: true,  // 是否显示增加按钮
+  showSub: false, // 是否显示减少按钮
 }
 
 class TrainForm extends React.PureComponent {
@@ -69,8 +70,14 @@ class TrainForm extends React.PureComponent {
 
   //添加一名乘客
   addOne = (id) => {
+    //前面的乘客框关闭增加按钮
+    this.props.passengers.forEach(i => {
+      i.showAdd = false;
+      i.showSub = true;
+    });
     //增加一名乘客
     const newPassenger = Object.assign({}, passengerInfo);
+    newPassenger.showAdd = true;
     newPassenger.showSub = true;
     this.props.passengers.push(newPassenger);
 
@@ -85,6 +92,10 @@ class TrainForm extends React.PureComponent {
   subOne = (id) => {
     //减少一名乘客
     this.props.passengers.splice(id, 1); 
+    if (this.props.passengers.length === 1) {
+      this.props.passengers[0].showAdd = true;
+      this.props.passengers[0].showSub = false;
+    }
 
     //动画滚动预先处理：指定容器高度
     let passWapper = ReactDom.findDOMNode(this.refs.passWapper);
@@ -196,11 +207,12 @@ class TrainForm extends React.PureComponent {
                   <Flex.Item className="subOne" onClick={() => this.subOne(id)}>
                     <img src={this.props.lang.subIcon} className="subOneIcon"/>
                     {this.props.lang.subOneText}
-                  </Flex.Item> : ''}
+                  </Flex.Item> :''}
+                  {i.showAdd ?
                   <Flex.Item className="addOne" onClick={() => this.addOne(id)}>
                     <img src={this.props.lang.addIcon} className="addOneIcon"/>
                     {this.props.lang.addOneText}
-                  </Flex.Item>
+                  </Flex.Item> :''}
                 </Flex>
               </List.Item>
             </List>
