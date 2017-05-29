@@ -70,16 +70,24 @@ class TrainForm extends React.PureComponent {
 
   //添加一名乘客
   addOne = (id) => {
-    //前面的乘客框关闭增加按钮
-    this.props.passengers.forEach(i => {
-      i.showAdd = false;
-      i.showSub = true;
-    });
+    
     //增加一名乘客
     const newPassenger = Object.assign({}, passengerInfo);
-    newPassenger.showAdd = true;
-    newPassenger.showSub = true;
     this.props.passengers.push(newPassenger);
+    //按钮显示逻辑
+    const len = this.props.passengers.length;
+    this.props.passengers.forEach((i, idx) => {
+      if (idx == 0) {
+        i.showAdd = true;
+        i.showSub = false;
+      } else if (idx == len-1) {
+        i.showAdd = true;
+        i.showSub = true;
+      } else {
+        i.showAdd = false;
+        i.showSub = true;
+      }
+    });
 
     //动画滚动预先处理：指定容器高度
     let passWapper = ReactDom.findDOMNode(this.refs.passWapper);
@@ -92,10 +100,20 @@ class TrainForm extends React.PureComponent {
   subOne = (id) => {
     //减少一名乘客
     this.props.passengers.splice(id, 1); 
-    if (this.props.passengers.length === 1) {
-      this.props.passengers[0].showAdd = true;
-      this.props.passengers[0].showSub = false;
-    }
+    //按钮显示逻辑
+    const len = this.props.passengers.length;
+    this.props.passengers.forEach((i, idx) => {
+      if (idx == 0) {
+        i.showAdd = true;
+        i.showSub = false;
+      } else if (idx == len-1) {
+        i.showAdd = true;
+        i.showSub = true;
+      } else {
+        i.showAdd = false;
+        i.showSub = true;
+      }
+    });
 
     //动画滚动预先处理：指定容器高度
     let passWapper = ReactDom.findDOMNode(this.refs.passWapper);
