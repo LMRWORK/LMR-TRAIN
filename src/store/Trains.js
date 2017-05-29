@@ -101,7 +101,7 @@ const initStates = Map({
     adultText: '成人',
     childText: '儿童',
     ageModalTitle: '请确认乘客年龄',
-    ageTips: '请注意：只有身高小于1.5米的儿童，享受儿童票价。',
+    ageTips: '注意：身高小于1.5米的儿童，享受儿童折扣：坐票1/2，卧铺3/4。',
     ageText: '年龄',
     agePlaceholder: '例如：成人/儿童',
     totalTitle: '价格合计：',
