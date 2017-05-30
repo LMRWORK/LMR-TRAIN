@@ -61,6 +61,11 @@ class TrainForm extends React.PureComponent {
            this.state.tmp != nextState.tmp;
   }
 
+  //计算价格
+  countPrice = () => {
+
+  }
+
   //选择座位
   onSelectSeat = (seat) => {
     console.log('TrainForm.onSelectSeat', seat);
@@ -178,6 +183,7 @@ class TrainForm extends React.PureComponent {
         i => {
           if (i.SeatInventory > 0) {
             selectSeatCode = i.SeatCode;
+            this.props.setSelectSeat(i);
             return false;
           } else {
             return true;
@@ -190,7 +196,7 @@ class TrainForm extends React.PureComponent {
       <div>
         <List renderHeader={this.props.lang.selectSeatText}>
         { this.props.selectTrain.SeatList.map(i => (
-          <RadioItem thumb={this.props.lang.seatO2Icon} key={i.SeatCode} checked={selectSeatCode === i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
+          <RadioItem thumb={this.props.lang.seatO2Icon} key={i.SeatCode} checked={ selectSeatCode == i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
             <Flex>
               <Flex.Item className="flex-grow-7">{i.SeatName}</Flex.Item>
               <Flex.Item className="flex-grow-5">{this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span></Flex.Item>
