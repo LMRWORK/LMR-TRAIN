@@ -123,7 +123,7 @@ class TrainBook extends React.PureComponent {
             </List.Item>
           </List>
           <WhiteSpace/>
-          <WingBlank>* 弊社にてお席が確保できましたら、お支払い案内のメールをお送りします。</WingBlank>
+          <WingBlank className="clickPayText">{this.props.lang.bookTips}</WingBlank>
           <WhiteSpace/>
         </div>
       </QueueAnim>

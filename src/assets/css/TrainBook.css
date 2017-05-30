@@ -75,6 +75,11 @@
 .imgAutoList .am-list-content {
   padding: 0!important;
 }
+.clickPayText {
+  color: #565656;
+  font-size: 0.6rem;
+  line-height: 0.9rem;
+}
 @media (max-width: 640px) {
 	.bLongArr img {
 		max-width: 82%;
