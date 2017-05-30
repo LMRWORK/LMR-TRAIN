@@ -108,6 +108,9 @@ const initStates = Map({
     totalTitle: '价格合计：',
     bookNpay: '下单 & 支付',
     bookTips: '*为了保证您的预定有效，请尽快完成付款，付款后会在24小时内帮您锁定车次。',
+    requiredAge: '请填写乘客年龄。',
+    requiredName: '请填写乘客姓名。',
+    requiredPassport: '请填写乘客护照号。',
   },
 });
 
