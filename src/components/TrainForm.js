@@ -5,7 +5,6 @@ import { List, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal, Button } fr
 import { connect } from 'react-redux';
 import { setSelectSeat, setPassengers, setTotalPrice } from '../actions/Trains';
 
-const alert = Modal.alert;
 const RadioItem = Radio.RadioItem;
 //乘客信息模板 mutable类型
 const passengerInfo = {
