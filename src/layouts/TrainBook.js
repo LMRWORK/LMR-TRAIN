@@ -33,12 +33,19 @@ class TrainBook extends React.PureComponent {
     return true;
   }
 
+  //显示发车时间
   showDetailFromTime = () => {
     this.state.showDetailFromTime ? this.setState({showDetailFromTime: false}) : this.setState({showDetailFromTime: true});
   }
 
+  //显示抵达时间
   showDetailToTime = () => {
     this.state.showDetailToTime ? this.setState({showDetailToTime: false}) : this.setState({showDetailToTime: true});
+  }
+
+  //点击预定按钮
+  onBook = () => {
+    console.log('onBook');
   }
 
   render() {
@@ -107,9 +114,9 @@ class TrainBook extends React.PureComponent {
             <List renderHeader={this.props.lang.totalTitle} id="payDiv">
               <List.Item thumb={this.props.lang.totalPriceIcon}>
                 <Flex>
-                  <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}965{this.props.lang.priceMarkAfter}</Flex.Item>
+                  <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>
                   <Flex.Item className="bItem bPay">
-                    <Button className="btn" type="primary">
+                    <Button className="btn" type="primary" onClick={this.onBook}>
                       {this.props.lang.bookNpay}
                     </Button>
                   </Flex.Item>
@@ -130,6 +137,7 @@ const mapStateToProps = (store) => ({
   startDate: store.get('startDate'),
   selectTrain: store.get('selectTrain'),
   arriveDate: store.get('arriveDate'),
+  totalPrice: store.get('totalPrice'),
 });
 
 const mapDispatchToProps = (dispatch) => ({

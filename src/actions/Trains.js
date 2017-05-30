@@ -80,6 +80,11 @@ export const setSelectSeat = (seat) => ({
   seat
 });
 
+//设置总价格
+export const setTotalPrice = () => ({
+  type: 'SET_TOTAL_PRICE',
+});
+
 //异步抓取车站文本
 export const fetchTrains = (url, fromStation, toStation, startDate) => {
   const data = {

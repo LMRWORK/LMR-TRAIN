@@ -95,6 +95,21 @@ const trainReducer = (state=initStates, action) => {
     case 'SET_PASSENGERS':
       return state.set('passengers', action.passengers);
 
+    //设置总价格。
+    case 'SET_TOTAL_PRICE':
+      let price = 0;
+      const selectSeat = state.get('selectSeat');
+      const passengers = state.get('passengers');
+      console.log('SET_TOTAL_PRICE', selectSeat, passengers);
+      passengers.forEach(i => {
+        if (i.age == 0 || i.age == null) {
+          price += selectSeat.SeatPrice;
+        } else {
+          price += selectSeat.SeatPrice*0.5;
+        }
+      })
+      return state.set('totalPrice', Math.ceil(price));
+
     //不重新搜索的标志。
     case 'SET_NOSEARCH':
       return state.set('noSearch', action.noSearch);

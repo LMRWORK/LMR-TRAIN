@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import QueueAnim from 'rc-queue-anim';
 import { List, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { setSelectSeat, setPassengers } from '../actions/Trains';
+import { setSelectSeat, setPassengers, setTotalPrice } from '../actions/Trains';
 
 const RadioItem = Radio.RadioItem;
 //乘客信息模板 mutable类型
@@ -31,6 +31,12 @@ class TrainForm extends React.PureComponent {
     //初始化乘客列表并放入store
     this.props.passengers || this.props.setPassengers([Object.assign({}, passengerInfo)]);
     console.log('😃 TrainForm', props);
+  }
+
+  componentDidMount = () => {
+    console.log('TrainForm.componentDidMount');
+    //计算价格
+    this.props.setTotalPrice();
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -61,16 +67,13 @@ class TrainForm extends React.PureComponent {
            this.state.tmp != nextState.tmp;
   }
 
-  //计算价格
-  countPrice = () => {
-
-  }
-
   //选择座位
   onSelectSeat = (seat) => {
     console.log('TrainForm.onSelectSeat', seat);
     this.props.setSelectSeat(seat);
     this.setState({lastAction: 'onSelectSeat'+seat.SeatCode});
+    //计算价格
+    this.props.setTotalPrice();
   }
 
   //添加一名乘客
@@ -99,9 +102,11 @@ class TrainForm extends React.PureComponent {
     passWapper.style.height = (450 * this.props.passengers.length) + 'px';
     window.scrollTo(0, 370 * this.props.passengers.length);
     this.setState({lastAction: 'addOne'});
+    //计算价格
+    this.props.setTotalPrice();
   }
 
-    //减少一名乘客
+  //减少一名乘客
   subOne = (id) => {
     //减少一名乘客
     this.props.passengers.splice(id, 1); 
@@ -125,8 +130,11 @@ class TrainForm extends React.PureComponent {
     passWapper.style.height = (450 * this.props.passengers.length) + 'px';
     window.scrollTo(0, 370 * this.props.passengers.length);
     this.setState({lastAction: 'subOne'});
+    //计算价格
+    this.props.setTotalPrice();
   }
 
+  //隐藏age modal
   hideModal = () => {
     this.setState({
       modalVisible: false,
@@ -141,8 +149,11 @@ class TrainForm extends React.PureComponent {
       modalVisible: false,
       lastAction: 'onSelectAge'+this.state.passengerId,
     });
+    //计算价格
+    this.props.setTotalPrice();
   }
 
+  //点击显示age modal
   onClickAge = (id) => {
     this.setState({
       modalVisible: true,
@@ -151,11 +162,13 @@ class TrainForm extends React.PureComponent {
     });
   }
   
+  //输入姓名
   onNameInput = (value, id) => {
     this.props.passengers[id].name = value;
     this.setState({tmp: value});
   }
 
+  //输入护照
   onPassportInput = (value, id) => {
     this.props.passengers[id].passport = value;
     this.setState({tmp: value});
@@ -170,6 +183,7 @@ class TrainForm extends React.PureComponent {
         i => {
           if (i.SeatInventory > 0 && i.SeatCode == this.props.selectSeat.SeatCode) {
             selectSeatCode = i.SeatCode;
+            this.props.setSelectSeat(i);
             return false;
           } else {
             return true;
@@ -191,7 +205,6 @@ class TrainForm extends React.PureComponent {
         }
       );
     }
-    console.log('this.props.passengers', this.props.passengers);
     return (
       <div>
         <List renderHeader={this.props.lang.selectSeatText}>
@@ -268,6 +281,7 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   setSelectSeat: (seat) => dispatch(setSelectSeat(seat)),
   setPassengers: (passengers) => dispatch(setPassengers(passengers)),
+  setTotalPrice: () => dispatch(setTotalPrice()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainForm);

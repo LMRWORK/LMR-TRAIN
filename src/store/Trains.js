@@ -14,6 +14,7 @@ const initStates = Map({
   passengers: null, //乘客列表（对象数组）
   sorterTab: 'sortByRunTime',
   noSearch: false, //从book页跳回搜索页时，仅一次有效。
+  totalPrice: 0, //价格合计
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   fetchTrainsUrl: '/public/data/fetchTrain.txt',
