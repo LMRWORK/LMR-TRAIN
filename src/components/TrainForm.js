@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import QueueAnim from 'rc-queue-anim';
-import { List, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal } from 'antd-mobile';
+import { List, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal, Button } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setSelectSeat, setPassengers, setTotalPrice } from '../actions/Trains';
 
+const alert = Modal.alert;
 const RadioItem = Radio.RadioItem;
 //乘客信息模板 mutable类型
 const passengerInfo = {
   age: null,       // 0 成人，1 儿童
   name:null,      // 姓名
   passport:null,  // 护照
-  ok:false,       // 是否填写完成
+  ageError:false,        // 是否填写年龄
+  nameError:false,       // 是否填写姓名
+  passportError:false,   // 是否填写护照
   showAdd: true,  // 是否显示增加按钮
   showSub: false, // 是否显示减少按钮
   price: 0,
@@ -55,7 +58,9 @@ class TrainForm extends React.PureComponent {
         return i.age != nextProps.passengers[id].age && 
                i.name != nextProps.passengers[id].name && 
                i.passport != nextProps.passengers[id].passport && 
-               i.ok != nextProps.passengers[id].ok;
+               i.ageError != nextProps.passengers[id].ageError && 
+               i.nameError != nextProps.passengers[id].nameError && 
+               i.passportError != nextProps.passengers[id].passportError;
       });
     }
 
@@ -142,17 +147,6 @@ class TrainForm extends React.PureComponent {
     });
   }
 
-  onSelectAge = (age) => {
-    //passengers是mutable的。
-    this.props.passengers[this.state.passengerId].age = age;
-    this.setState({
-      modalVisible: false,
-      lastAction: 'onSelectAge'+this.state.passengerId,
-    });
-    //计算价格
-    this.props.setTotalPrice();
-  }
-
   //点击显示age modal
   onClickAge = (id) => {
     this.setState({
@@ -161,18 +155,55 @@ class TrainForm extends React.PureComponent {
       lastAction: 'onClickAge'+id,
     });
   }
+
+  onSelectAge = (age) => {
+    //passengers是mutable的。
+    this.props.passengers[this.state.passengerId].age = age;
+    this.setState({
+      modalVisible: false,
+      lastAction: 'onSelectAge'+this.state.passengerId,
+    });
+    this.props.passengers[this.state.passengerId].ageError = false;
+    //计算价格
+    this.props.setTotalPrice();
+  }
   
   //输入姓名
   onNameInput = (value, id) => {
     this.props.passengers[id].name = value;
     this.setState({tmp: value});
+    if (value) {
+      this.props.passengers[id].nameError = false;
+    } else {
+      this.props.passengers[id].nameError = true;
+    }
   }
 
   //输入护照
   onPassportInput = (value, id) => {
     this.props.passengers[id].passport = value;
     this.setState({tmp: value});
+    if (value) {
+      this.props.passengers[id].passportError = false;
+    } else {
+      this.props.passengers[id].passportError = true;
+    }
   }
+
+  //点击预定按钮
+  onBook = () => {
+    this.props.passengers.forEach(i => {
+      i.age!==null ? i.ageError = false : i.ageError = true;
+      i.name ? i.nameError = false : i.nameError = true;
+      i.passport ? i.passportError = false : i.passportError = true;
+    })
+    this.setState({lastAction: 'onBook'});
+    console.log('TrainBook.onBook', this.props.passengers);
+  }
+
+  onErrorClick = (warnText) => {
+    alert(warnText)
+  } 
 
   render() {
     console.log("🔥 TrainForm.render()");
@@ -223,17 +254,17 @@ class TrainForm extends React.PureComponent {
           {this.props.passengers && this.props.passengers.map( (i, id) => 
             <List key={id} renderHeader={this.props.lang.passText+(id+1)+': '+this.props.lang.passengerText}>
               <List.Item thumb={this.props.lang.ageIcon} className="imgAutoList">
-                <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)} style={{paddingLeft:0}}>
+                <InputItem placeholder={this.props.lang.agePlaceholder} editable={false} value={i.age!==null ? this.state.ageText[i.age] : null} onClick={() => this.onClickAge(id)} style={{paddingLeft:0}} error={i.ageError} onErrorClick={() => this.onErrorClick('请填写乘客年龄。')}>
                   {this.props.lang.ageText}
                 </InputItem>
               </List.Item>
               <List.Item thumb={this.props.lang.nameIcon} className="imgAutoList">
-                <InputItem thumb={this.props.lang.nameIcon} clear placeholder={this.props.lang.namePlaceholder} value={this.props.passengers[id].name} onChange={(value) => this.onNameInput(value, id)} style={{paddingLeft:0}}>
+                <InputItem thumb={this.props.lang.nameIcon} clear placeholder={this.props.lang.namePlaceholder} value={this.props.passengers[id].name} onChange={(value) => this.onNameInput(value, id)} style={{paddingLeft:0}} error={i.nameError} onErrorClick={() => this.onErrorClick('请填写乘客姓名。')}>
                   {this.props.lang.nameText}
                 </InputItem>
               </List.Item>
               <List.Item thumb={this.props.lang.passIcon} className="imgAutoList">
-                <InputItem thumb={this.props.lang.passIcon} clear placeholder={this.props.lang.passportPlaceholder} value={this.props.passengers[id].passport} onChange={(value) => this.onPassportInput(value, id)} style={{paddingLeft:0}}>
+                <InputItem thumb={this.props.lang.passIcon} clear placeholder={this.props.lang.passportPlaceholder} value={this.props.passengers[id].passport} onChange={(value) => this.onPassportInput(value, id)} style={{paddingLeft:0}} error={i.passportError} onErrorClick={() => this.onErrorClick('请填写乘客护照号。')}>
                   {this.props.lang.passportText}
                 </InputItem>
               </List.Item>
@@ -255,6 +286,18 @@ class TrainForm extends React.PureComponent {
           )}
           </QueueAnim>
         </div>
+        <List renderHeader={this.props.lang.totalTitle} id="payDiv">
+          <List.Item thumb={this.props.lang.totalPriceIcon}>
+            <Flex>
+              <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>
+              <Flex.Item className="bItem bPay">
+                <Button className="btn" type="primary" onClick={this.onBook}>
+                  {this.props.lang.bookNpay}
+                </Button>
+              </Flex.Item>
+            </Flex>
+          </List.Item>
+        </List>
         <Modal title={this.props.lang.ageModalTitle} transparent maskClosable={false} visible={this.state.modalVisible} platform="ios" className="ichtModal" closable={true} onClose={this.hideModal}>
             <div className="am-modal-body">
                 {this.props.lang.ageTips}
@@ -276,6 +319,7 @@ const mapStateToProps = (store) => ({
   selectSeat: store.get('selectSeat'),
   passengers: store.get('passengers'),
   selectTrain: store.get('selectTrain'),
+  totalPrice: store.get('totalPrice'),
 });
 
 const mapDispatchToProps = (dispatch) => ({

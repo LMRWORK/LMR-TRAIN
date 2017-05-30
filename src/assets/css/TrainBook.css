@@ -52,7 +52,7 @@
 .am-whitespace.fixBook {
 	height: 20rem;
 }
-.ichtModal {
+.ichtModal, .am-modal.am-modal-transparent {
 	width: 70%!important;
 }
 .ichtModal .am-modal-button:active {
