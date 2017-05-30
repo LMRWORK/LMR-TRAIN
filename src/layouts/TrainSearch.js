@@ -17,8 +17,7 @@ class TrainSearch extends React.PureComponent {
       lastAction: 'init', //用于记录复杂页面的操作历史
 
     };
-    console.log('😃 TrainSearch ');
-    console.log(props);
+    console.log('😃 TrainSearch', props);
   }
 
   componentDidMount = () => {
@@ -36,8 +35,7 @@ class TrainSearch extends React.PureComponent {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainSearch.componentWillReceiveProps');
-    console.log(nextProps);
+    console.log('TrainSearch.componentWillReceiveProps', nextProps);
     //加载完成
     if (nextProps.trainsResult) {
       //隐藏轻提示

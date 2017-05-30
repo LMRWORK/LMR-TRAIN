@@ -10,8 +10,7 @@ class TrainIndex extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log('😃 TrainIndex');
-    console.log(props);
+    console.log('😃 TrainIndex', props);
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {

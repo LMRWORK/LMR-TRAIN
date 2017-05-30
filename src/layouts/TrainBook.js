@@ -14,13 +14,11 @@ class TrainBook extends React.PureComponent {
       showDetailFromTime: false,
       showDetailToTime: false,
     };
-    console.log('😃 TrainBook ');
-    console.log(props);
+    console.log('😃 TrainBook', props);
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainBook.componentWillReceiveProps');
-    console.log(nextProps);
+    console.log('TrainBook.componentWillReceiveProps', nextProps);
   }
 
   componentDidMount = () => {

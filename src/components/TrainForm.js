@@ -14,6 +14,7 @@ const passengerInfo = {
   ok:false,       // 是否填写完成
   showAdd: true,  // 是否显示增加按钮
   showSub: false, // 是否显示减少按钮
+  price: 0,
 }
 
 class TrainForm extends React.PureComponent {
@@ -29,13 +30,11 @@ class TrainForm extends React.PureComponent {
     };
     //初始化乘客列表并放入store
     this.props.passengers || this.props.setPassengers([Object.assign({}, passengerInfo)]);
-    console.log('😃 TrainForm ');
-    console.log(props);
+    console.log('😃 TrainForm', props);
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainForm.componentWillReceiveProps');
-    console.log(nextProps);
+    console.log('TrainForm.componentWillReceiveProps', nextProps);
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
@@ -64,6 +63,7 @@ class TrainForm extends React.PureComponent {
 
   //选择座位
   onSelectSeat = (seat) => {
+    console.log('TrainForm.onSelectSeat', seat);
     this.props.setSelectSeat(seat);
     this.setState({lastAction: 'onSelectSeat'+seat.SeatCode});
   }
@@ -77,7 +77,7 @@ class TrainForm extends React.PureComponent {
     //按钮显示逻辑
     const len = this.props.passengers.length;
     this.props.passengers.forEach((i, idx) => {
-      if (idx == 0) {
+      if (idx == 0 && len == 1) {
         i.showAdd = true;
         i.showSub = false;
       } else if (idx == len-1) {
@@ -103,7 +103,7 @@ class TrainForm extends React.PureComponent {
     //按钮显示逻辑
     const len = this.props.passengers.length;
     this.props.passengers.forEach((i, idx) => {
-      if (idx == 0) {
+      if (idx == 0 && len == 1) {
         i.showAdd = true;
         i.showSub = false;
       } else if (idx == len-1) {
@@ -165,7 +165,6 @@ class TrainForm extends React.PureComponent {
         i => {
           if (i.SeatInventory > 0 && i.SeatCode == this.props.selectSeat.SeatCode) {
             selectSeatCode = i.SeatCode;
-            selectSeatCode = this.props.selectSeat.SeatCode;
             return false;
           } else {
             return true;
@@ -186,7 +185,7 @@ class TrainForm extends React.PureComponent {
         }
       );
     }
-    console.log('this.props.selectTrain.SeatList', this.props.passengers);
+    console.log('this.props.passengers', this.props.passengers);
     return (
       <div>
         <List renderHeader={this.props.lang.selectSeatText}>
