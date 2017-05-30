@@ -1,6 +1,6 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, Flex, Button } from 'antd-mobile';
+import { WingBlank, WhiteSpace, List, NavBar, Flex, Button } from 'antd-mobile';
 import { connect } from 'react-redux';
 import TrainForm from '../components/TrainForm';
 import { setNoSearch } from '../actions/Trains';
@@ -57,75 +57,76 @@ class TrainBook extends React.PureComponent {
       return false;
     }
     return (
-      <div>
-        <QueueAnim className="router-wrap" type="top">
-          <div className="bookPage" key="1">
-            <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/search')}>
-              <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
-            </NavBar>
-            <List renderHeader={this.props.lang.bookinfo} id="trainInfo">
-              <List.Item thumb={this.props.lang.trainIcon}> 
+      <QueueAnim className="router-wrap" type="top">
+        <div className="bookPage" key="1">
+          <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/search')}>
+            <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
+          </NavBar>
+          <List renderHeader={this.props.lang.bookinfo} id="trainInfo">
+            <List.Item thumb={this.props.lang.trainIcon}> 
+              <Flex>
+                <Flex.Item className="bItem bTrainText">{this.props.lang.trainText}</Flex.Item>
+                <Flex.Item className="bItem bTrain">{this.props.selectTrain.TrainCode}</Flex.Item>
+                <Flex.Item className="bItem bTime">{this.props.lang.needTime} {this.props.selectTrain.RunTime}</Flex.Item>
+              </Flex>
+            </List.Item>
+            <List.Item thumb={this.props.lang.cityIcon} onClick={this.showDetailFromTime}> 
+              <Flex>
+                <Flex.Item className="bItem bFrom">{this.props.selectTrain.DepartStation}</Flex.Item>
+                <Flex.Item className="bItem bFromTime">{this.props.selectTrain.DepartTime}
+                  <a className="detailTime">详细 
+                    { this.state.showDetailFromTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
+                  </a>
+                </Flex.Item>
+              </Flex>
+            </List.Item>
+            { this.state.showDetailFromTime ?
+            <QueueAnim className="router-wrap" type="right">
+              <List.Item thumb={this.props.lang.dateIcon} key="a1"> 
                 <Flex>
-                  <Flex.Item className="bItem bTrainText">{this.props.lang.trainText}</Flex.Item>
-                  <Flex.Item className="bItem bTrain">{this.props.selectTrain.TrainCode}</Flex.Item>
-                  <Flex.Item className="bItem bTime">{this.props.lang.needTime} {this.props.selectTrain.RunTime}</Flex.Item>
+                  <Flex.Item className="bItem bFrom2">发车日期</Flex.Item>
+                  <Flex.Item className="bItem bFromDate2">{this.props.startDate.format('LLLL')}</Flex.Item>
+                </Flex>
+              </List.Item> 
+            </QueueAnim>: ''}
+            <List.Item thumb={this.props.lang.cityIcon} onClick={this.showDetailToTime}> 
+              <Flex>
+                <Flex.Item className="bItem bTo">{this.props.selectTrain.ArriveStation}</Flex.Item>
+                <Flex.Item className="bItem bToTime">{this.props.selectTrain.ArriveTime}
+                  <a className="detailTime">详细 
+                    { this.state.showDetailToTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
+                  </a>
+                </Flex.Item>
+              </Flex>
+            </List.Item>
+            { this.state.showDetailToTime ?
+            <QueueAnim className="router-wrap" type="right">
+              <List.Item thumb={this.props.lang.dateIcon} key="b1"> 
+                <Flex>
+                  <Flex.Item className="bItem bTo2">抵达日期</Flex.Item>
+                  <Flex.Item className="bItem bToDate2">{this.props.arriveDate.format('LLLL')}</Flex.Item>
                 </Flex>
               </List.Item>
-              <List.Item thumb={this.props.lang.cityIcon} onClick={this.showDetailFromTime}> 
-                <Flex>
-                  <Flex.Item className="bItem bFrom">{this.props.selectTrain.DepartStation}</Flex.Item>
-                  <Flex.Item className="bItem bFromTime">{this.props.selectTrain.DepartTime}
-                    <a className="detailTime">详细 
-                      { this.state.showDetailFromTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
-                    </a>
-                  </Flex.Item>
-                </Flex>
-              </List.Item>
-              { this.state.showDetailFromTime ?
-              <QueueAnim className="router-wrap" type="right">
-                <List.Item thumb={this.props.lang.dateIcon} key="a1"> 
-                  <Flex>
-                    <Flex.Item className="bItem bFrom2">发车日期</Flex.Item>
-                    <Flex.Item className="bItem bFromDate2">{this.props.startDate.format('LLLL')}</Flex.Item>
-                  </Flex>
-                </List.Item> 
-              </QueueAnim>: ''}
-              <List.Item thumb={this.props.lang.cityIcon} onClick={this.showDetailToTime}> 
-                <Flex>
-                  <Flex.Item className="bItem bTo">{this.props.selectTrain.ArriveStation}</Flex.Item>
-                  <Flex.Item className="bItem bToTime">{this.props.selectTrain.ArriveTime}
-                    <a className="detailTime">详细 
-                      { this.state.showDetailToTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
-                    </a>
-                  </Flex.Item>
-                </Flex>
-              </List.Item>
-              { this.state.showDetailToTime ?
-              <QueueAnim className="router-wrap" type="right">
-                <List.Item thumb={this.props.lang.dateIcon} key="b1"> 
-                  <Flex>
-                    <Flex.Item className="bItem bTo2">抵达日期</Flex.Item>
-                    <Flex.Item className="bItem bToDate2">{this.props.arriveDate.format('LLLL')}</Flex.Item>
-                  </Flex>
-                </List.Item>
-              </QueueAnim>: ''}
-            </List>
-            <TrainForm />
-            <List renderHeader={this.props.lang.totalTitle} id="payDiv">
-              <List.Item thumb={this.props.lang.totalPriceIcon}>
-                <Flex>
-                  <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>
-                  <Flex.Item className="bItem bPay">
-                    <Button className="btn" type="primary" onClick={this.onBook}>
-                      {this.props.lang.bookNpay}
-                    </Button>
-                  </Flex.Item>
-                </Flex>
-              </List.Item>
-            </List>
-          </div>
-        </QueueAnim>
-      </div>
+            </QueueAnim>: ''}
+          </List>
+          <TrainForm />
+          <List renderHeader={this.props.lang.totalTitle} id="payDiv">
+            <List.Item thumb={this.props.lang.totalPriceIcon}>
+              <Flex>
+                <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>
+                <Flex.Item className="bItem bPay">
+                  <Button className="btn" type="primary" onClick={this.onBook}>
+                    {this.props.lang.bookNpay}
+                  </Button>
+                </Flex.Item>
+              </Flex>
+            </List.Item>
+          </List>
+          <WhiteSpace/>
+          <WingBlank>* 弊社にてお席が確保できましたら、お支払い案内のメールをお送りします。</WingBlank>
+          <WhiteSpace/>
+        </div>
+      </QueueAnim>
     );
   }
 }

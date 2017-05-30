@@ -9,11 +9,13 @@ import TrainApp from './src/app/Trains';
 //兼容无 Object.assign() 的旧浏览器
 import objectAssignPolyfill from './src/util/objectAssignPolyfill';
 objectAssignPolyfill();
+//兼容 promise
+//require('es6-promise').polyfill();
+//require('es6-promise/auto');
 
 //开发模式
 //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
-
 
 //打包png目录的所有图片
 let requireContext = require.context("./src/assets/png", true, /^\.\/.*\.png$/);
@@ -25,7 +27,7 @@ const store = createStore(reducer, applyMiddleware(thunk));
 render(
   (
     <Provider store={store}>
-        <TrainApp/>
+      <TrainApp/>
     </Provider>
   ), document.getElementById('root')
 );
