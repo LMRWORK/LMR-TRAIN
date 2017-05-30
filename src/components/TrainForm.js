@@ -259,12 +259,12 @@ class TrainForm extends React.PureComponent {
                 </InputItem>
               </List.Item>
               <List.Item thumb={this.props.lang.nameIcon} className="imgAutoList">
-                <InputItem thumb={this.props.lang.nameIcon} clear placeholder={this.props.lang.namePlaceholder} value={this.props.passengers[id].name} onChange={(value) => this.onNameInput(value, id)} style={{paddingLeft:0}} error={i.nameError} onErrorClick={() => this.onErrorClick('请填写乘客姓名。')}>
+                <InputItem thumb={this.props.lang.nameIcon} placeholder={this.props.lang.namePlaceholder} value={this.props.passengers[id].name} onChange={(value) => this.onNameInput(value, id)} style={{paddingLeft:0}} error={i.nameError} onErrorClick={() => this.onErrorClick('请填写乘客姓名。')}>
                   {this.props.lang.nameText}
                 </InputItem>
               </List.Item>
               <List.Item thumb={this.props.lang.passIcon} className="imgAutoList">
-                <InputItem thumb={this.props.lang.passIcon} clear placeholder={this.props.lang.passportPlaceholder} value={this.props.passengers[id].passport} onChange={(value) => this.onPassportInput(value, id)} style={{paddingLeft:0}} error={i.passportError} onErrorClick={() => this.onErrorClick('请填写乘客护照号。')}>
+                <InputItem thumb={this.props.lang.passIcon} placeholder={this.props.lang.passportPlaceholder} value={this.props.passengers[id].passport} onChange={(value) => this.onPassportInput(value, id)} style={{paddingLeft:0}} error={i.passportError} onErrorClick={() => this.onErrorClick('请填写乘客护照号。')}>
                   {this.props.lang.passportText}
                 </InputItem>
               </List.Item>
