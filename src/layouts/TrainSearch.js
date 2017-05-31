@@ -40,9 +40,9 @@ class TrainSearch extends React.PureComponent {
     //加载完成
     if (nextProps.trainsResult) {
       //隐藏轻提示
-      if (!this.props.noSearch && this.state.lastAction!='sorter') Toast.hide();
+      if (!this.props.noSearch && this.state.lastAction!='sorter' && this.state.lastAction!='runFilter') Toast.hide();
       //排序
-      this.sorter(this.props.sorterTab);
+      if (this.state.lastAction!='runFilter') this.sorter(this.props.sorterTab);
     }
   }
 
@@ -115,12 +115,9 @@ class TrainSearch extends React.PureComponent {
 
   //火车条件筛选
   sorter = (data = this.props.sorterTab) => {
-    console.log('this.state.lastAction', this.state.lastAction);
-    console.log('this.props.sorterTab', this.props.sorterTab);
     if (this.props.sorterTab != data || this.state.lastAction != 'sorter') {
-      console.log('#######');
       //非首次排序，显示轻提示
-      if (this.state.lastAction == 'sorter') Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
+      if (this.state.lastAction == 'sorter' || this.state.lastAction == 'runFilter') Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
       //排序置顶
       this.refs.trainScroll.scrollTop = 0;
       switch(data) {
@@ -159,10 +156,9 @@ class TrainSearch extends React.PureComponent {
   //触发过滤
   runFilter = () => {
     Popup.hide();
+    this.setState({lastAction: 'runFilter'});
     Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
     this.props.runFilter();
-    //记录操作
-    this.setState({lastAction: 'runFilter'});
   }
 
   render() {
@@ -231,7 +227,7 @@ class TrainSearch extends React.PureComponent {
         <div id="TrainSearch-tabbar-div">
           <TabBar barTintColor="white">
             {this.props.lang.searchTabBar.map( 
-              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.sorter(i.data)} data-active={this.props.sorterTab === i.data}></TabBar.Item>
+              i => <TabBar.Item title={i.name} key={i.name} icon={<div/>} onPress={() => this.sorter(i.data)} data-active={this.props.sorterTab === i.data}/>
             )}
           </TabBar>
         </div>

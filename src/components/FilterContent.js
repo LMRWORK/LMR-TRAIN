@@ -12,7 +12,7 @@ class FilterContent extends React.PureComponent {
 
   //过滤条件 highSpeed、time0006，time0612、time1218、time1824
   onSelect = (type, e) => {
-    e.stopPropagation();
+    //e.stopPropagation();
     if (e.target.checked) {
       this.props.setFilterType(type, 'add');
     } else {
@@ -20,12 +20,14 @@ class FilterContent extends React.PureComponent {
     }
   }
 
-  onReset = () => {
+  onReset = (e) => {
+    //e.stopPropagation();
     this.props.setFilterType(null, 'clear');
     this.props.onClose();
   }
 
-  onOk = () => {
+  onOk = (e) => {
+    //e.stopPropagation();
     this.props.onClose();
   }
 
@@ -56,8 +58,8 @@ class FilterContent extends React.PureComponent {
           </CheckboxItem>
           <List.Item>
             <Flex> 
-              <Flex.Item className="filterBtn filterReset" onClick={this.onReset}>重置</Flex.Item>
-              <Flex.Item className="filterBtn filterOk" onClick={this.onOk}>确定</Flex.Item>
+              <Flex.Item className="filterBtn filterReset" onClick={(e) => this.onReset(e)}>重置</Flex.Item>
+              <Flex.Item className="filterBtn filterOk" onClick={(e) => this.onOk(e)}>确定</Flex.Item>
             </Flex>
           </List.Item>
         </List>
