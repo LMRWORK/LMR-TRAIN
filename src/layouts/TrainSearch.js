@@ -1,10 +1,11 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { NavBar, Toast, TabBar, DatePicker } from 'antd-mobile';
+import { NavBar, Toast, TabBar, DatePicker, Popup } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSorterTab, ActivityIndicator, setNoSearch } from '../actions/Trains';
+import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSorterTab, ActivityIndicator, setNoSearch, setFilterType, runFilter } from '../actions/Trains';
 import LazyLoad from 'react-lazyload';
 import Loading from '../components/Loading';
+import FilterContent from '../components/FilterContent';
 
 class TrainSearch extends React.PureComponent {
 
@@ -143,14 +144,27 @@ class TrainSearch extends React.PureComponent {
     this.props.setSelectTrain(train);
     this.props.history.push('/book');
   }
- 
+
+  //弹出筛选框
+  popFilter = (e) => {
+    e.preventDefault();
+    Popup.show(<FilterContent {...this.props} onClose={this.runFilter} />,);
+  }
+
+  //触发过滤
+  runFilter = () => {
+    Popup.hide();
+    Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
+    this.props.runFilter();
+  }
+
   render() {
     console.log("🔥 TrainSearch.render()");
     return (
       <div>
         <QueueAnim className="date-wrap" type="top">
           <div className="trainPage" key="1">
-            <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/')}>
+            <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} rightContent={<div onClick={this.popFilter} className="chtFilter">{this.props.lang.filterText}<img src={this.props.lang.filterIcon}/></div>} mode="dark" onLeftClick={() => this.props.history.push('/')}>
               <h1 id="TrainIndex-h1">{this.props.fromStation.en} <img src={this.props.lang.rightIcon} className="rightArrow"/> {this.props.toStation.en}</h1>
             </NavBar>
             <div className="flex-box searchBar">
@@ -184,7 +198,7 @@ class TrainSearch extends React.PureComponent {
           {this.props.trainsResult && this.props.trainsResult.result.map(
             (i, id) => (
               <LazyLoad key={id} overflow throttle={100} height={180} once>
-                <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)}>
+                <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)} style={{display:i.display}}>
                   <div className="flex-item flex-grow-4">
                     <div className="sTrain">{i.TrainCode}</div>
                     <div className="sStart">{i.DepartTime}</div>
@@ -228,6 +242,7 @@ const mapStateToProps = (store) => ({
   fetchTrainsUrl: store.get('fetchTrainsUrl'),
   sorterTab: store.get('sorterTab'),
   noSearch: store.get('noSearch'),
+  filterType: store.get('filterType'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -240,6 +255,8 @@ const mapDispatchToProps = (dispatch) => ({
   setSelectTrain: (train) => dispatch(setSelectTrain(train)),
   setSorterTab: (sorterType) => dispatch(setSorterTab(sorterType)),
   setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch)),
+  setFilterType: (filterType, act) => dispatch(setFilterType(filterType, act)),
+  runFilter: () => dispatch(runFilter()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainSearch);

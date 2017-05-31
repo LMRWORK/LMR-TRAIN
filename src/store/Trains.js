@@ -32,6 +32,7 @@ const initStates = Map({
     {cn:'济南', code:'JNK', en:'Jinan'},
     {cn:'昆明', code:'KMM', en:'Kunming'},
   ],
+  filterType: [], //过滤条件数组：highSpeed、slowSpeed、time0006、time0612、time1218、time1824
   //[多语言支持 language]
   lang: {
     //[全局 图片，上线后请替换成cdn图源]
@@ -52,6 +53,7 @@ const initStates = Map({
     nameIcon: '/public/img/name.png',
     ageIcon: '/public/img/age.png',
     totalPriceIcon: '/public/img/p1.png',
+    filterIcon: '/public/img/filter-w.png',
     //[全局 language]
     navibarTitle: '中国火车票预定',
     navibarRight: '帮助',
@@ -83,6 +85,7 @@ const initStates = Map({
       {name: '耗时:短>长', data:'sortByRunTime'},
       {name: '价格:低>高', data:'sortByPrice'},
     ], 
+    filterText: '筛选',
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
     trainText: '车次',

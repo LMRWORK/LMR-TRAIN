@@ -114,7 +114,9 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         模拟ajax延时，并随机重置'运行时间'，方便测试。
         json.result[0].RunTime = Math.ceil(Math.random()*100);
         */
-        let t = moment();
+        const trainType = ['G', 'D', 'T', 'C', '1', 'L'];
+        const t = moment();
+        let r;
         json.result.forEach(i => {
           i.cheapSeat.SeatPrice = 50 + Math.ceil(Math.random()*2000);
           i.SeatList[0].SeatPrice = i.cheapSeat.SeatPrice;
@@ -127,6 +129,9 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
           t.minute(Math.ceil(Math.random()*60));
           t.hour(Math.ceil(Math.random()*24))
           i.ArriveTime = t.format('HH:mm');
+          r = Math.floor((Math.random()*10)%6);
+          i.trainType = trainType[r];
+          i.TrainCode = i.trainType + i.TrainCode.slice(1);
         });
         /**
         生产环境注释掉上面测试
@@ -147,9 +152,21 @@ export const sortByStartTime = () => ({
   type: 'SORT_BY_STARTTIME',
 });
 
-//按出发时间排序
+//按价格排序
 export const sortByPrice = () => ({
   type: 'SORT_BY_PRICE',
+});
+
+//筛选条件：高铁、发车时段
+export const setFilterType = (filterType, act) => ({
+  type: 'SET_FILTER_TYPE',
+  filterType,
+  act,
+});
+
+//筛选条件：高铁、发车时段
+export const runFilter = () => ({
+  type: 'RUN_FILTER',
 });
 
 //设置乘客列表

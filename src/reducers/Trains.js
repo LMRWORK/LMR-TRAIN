@@ -2,6 +2,9 @@ import initStates from '../store/Trains'
 import moment from 'moment';
 
 const trainReducer = (state=initStates, action) => {
+  let list;
+  let filter_array;
+  let mapped;
   switch(action.type) {
 
     //设置车站文本。
@@ -49,38 +52,38 @@ const trainReducer = (state=initStates, action) => {
 
     //按运行时间排序。
     case 'SORT_BY_RUNTIME':
-      let list1 = state.get('trainsResult');
+      list = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储
-      let mapped1 = list1.result.map((el, i) => {
+      mapped = list.result.map((el, i) => {
         return { index: i, value: moment(el.RunTime, "HH:mm").unix() };
       });
       // 按照多个值排序数组
-      mapped1.sort((a, b) => {
+      mapped.sort((a, b) => {
         return a.value - b.value;
       });
       // 根据索引得到排序的结果
-      list1.result = mapped1.map((el) => {
-        return list1.result[el.index];
+      list.result = mapped.map((el) => {
+        return list.result[el.index];
       });
-      return state.set('trainsResult', list1);
+      return state.set('trainsResult', list);
       break;
 
     //按发车时间排序。
     case 'SORT_BY_STARTTIME':
-      let list2 = state.get('trainsResult');
+      list = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储
-      let mapped2 = list2.result.map((el, i) => {
+      mapped = list.result.map((el, i) => {
         return { index: i, value: moment(el.DepartTime, "HH:mm").unix() };
       });
       // 按照多个值排序数组
-      mapped2.sort((a, b) => {
+      mapped.sort((a, b) => {
         return a.value - b.value;
       });
       // 根据索引得到排序的结果
-      list2.result = mapped2.map((el) => {
-        return list2.result[el.index];
+      list.result = mapped.map((el) => {
+        return list.result[el.index];
       });
-      return state.set('trainsResult', list2);
+      return state.set('trainsResult', list);
       break;
 
     //设置排序状态。
@@ -116,21 +119,116 @@ const trainReducer = (state=initStates, action) => {
 
     //按最低可预定价格排序。
     case 'SORT_BY_PRICE':
-      let list3 = state.get('trainsResult');
+      list = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储
-      let mapped3 = list3.result.map((el, i) => {
+      mapped = list.result.map((el, i) => {
         return { index: i, value: el.cheapSeat.SeatPrice };
       });
       // 按照多个值排序数组
-      mapped3.sort((a, b) => {
+      mapped.sort((a, b) => {
         return a.value - b.value;
       });
       // 根据索引得到排序的结果
-      list3.result = mapped3.map((el) => {
-        return list3.result[el.index];
+      list.result = mapped.map((el) => {
+        return list.result[el.index];
       });
-      return state.set('trainsResult', list3);
+      return state.set('trainsResult', list);
       break;
+
+    //设置过滤条件 highSpeed、time0060，time0612、time1218、time1824
+    case 'SET_FILTER_TYPE':
+      filter_array = state.get('filterType');
+      //添加或删除过滤条件
+      switch (action.act) {
+        case 'add':
+          if (filter_array.indexOf(action.filterType) == -1) {
+            filter_array.push(action.filterType);
+          }
+          break;
+        case 'delete':
+          filter_array = filter_array.filter(i => i != action.filterType);
+          break;
+        default:
+          filter_array = [];
+      }
+      console.log('SET_FILTER_TYPE', filter_array);
+      return state.set('filterType', filter_array);
+
+    //执行过滤：通过放置显示标识来完成，提高效率。
+    case 'RUN_FILTER':
+      filter_array = state.get('filterType');
+      console.log('RUN_FILTER', filter_array);
+      if (filter_array.length) {
+        let t, t1, t2;
+        list = state.get('trainsResult');
+        list.result.forEach(i => {
+          //高铁
+          if (filter_array.indexOf('highSpeed') != -1) {
+            if (['G', 'D', 'C'].indexOf(i.TrainType) != -1) {
+              i.display = 'inherit';
+            } else {
+              i.display = 'none';
+            }
+          }
+          //普通列车
+          if (filter_array.indexOf('slowSpeed') != -1) {
+            if (['G', 'D', 'C'].indexOf(i.TrainType) == -1) {
+              i.display = 'inherit';
+            } else {
+              i.display = 'none';
+            }
+          }
+          //00:00-06:00 发车
+          if (filter_array.indexOf('time0006') != -1) {
+            t = moment(i.DepartTime, 'HH:mm');
+            t1 = moment('00:00', 'HH:mm');
+            t2 = moment('06:00', 'HH:mm');
+            //diff
+            if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
+              i.display = 'inherit';
+            } else {
+              i.display = 'none';
+            }
+          }
+          //06:00-12:00 发车
+          if (filter_array.indexOf('time0612') != -1) {
+            t = moment(i.DepartTime, 'HH:mm');
+            t1 = moment('06:00', 'HH:mm');
+            t2 = moment('12:00', 'HH:mm');
+            //diff
+            if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
+              i.display = 'inherit';
+            } else {
+              i.display = 'none';
+            }
+          }
+          //12:00-18:00 发车
+          if (filter_array.indexOf('time1218') != -1) {
+            t = moment(i.DepartTime, 'HH:mm');
+            t1 = moment('12:00', 'HH:mm');
+            t2 = moment('18:00', 'HH:mm');
+            //diff
+            if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
+              i.display = 'inherit';
+            } else {
+              i.display = 'none';
+            }
+          }
+          //18:00-24:00 发车
+          if (filter_array.indexOf('time1824') != -1) {
+            t = moment(i.DepartTime, 'HH:mm');
+            t1 = moment('18:00', 'HH:mm');
+            t2 = moment('24:00', 'HH:mm');
+            //diff
+            if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
+              i.display = 'inherit';
+            } else {
+              i.display = 'none';
+            }
+          }
+        });
+        return state.set('trainsResult', list);
+      }
 
     default:
       return state;

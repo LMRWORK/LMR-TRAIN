@@ -1,4 +1,4 @@
-#TrainSearch-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#666!important; border: 1px solid #888;padding: 0.3rem 0.4rem;border-radius: 5px; box-shadow: 1px 2px 5px #ddd;margin-bottom: 0.1rem;}
+#TrainSearch-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {background: #fdfdfd;font-size:0.6rem; color:#666!important; border: 1px solid #888;padding: 0.3rem;border-radius: 5px; box-shadow: 1px 2px 5px #ddd;margin-bottom: 0.1rem;}
 #TrainSearch-searchList .am-list-item .am-list-line .am-list-extra {flex-basis:65%;}
 /*tabBar高亮*/
 #TrainSearch-tabbar-div .am-tab-bar-bar [data-active="true"] .am-tab-bar-tab-title {
@@ -196,7 +196,7 @@
 }
 #prevDay:active, #nextDay:active {
   color: #07c;
-  background: #ddd;
+  background: #eee;
   border-radius: 0.2rem;
 }
 #showDatepicker {
@@ -219,6 +219,29 @@
 #showDatepicker span {
   position: relative;
   left: -5%;
+}
+#TrainSearch-tabbar-div .am-tab-bar-bar .am-tab-bar-tab {
+  background: #f5f5f9;
+}
+.chtFilter img{
+  position: relative;
+  left: 0.2rem;
+  top: 0.1rem;
+}
+
+/*filter content*/
+.filterBtn {
+  text-align: center;
+}
+.filterOk {
+  color: #108ee9;
+}
+.filterReset {
+  color: #f86e21;
+}
+.filterOk:active, .filterReset:active {
+  background: #eee;
+  border-radius: 0.2rem;
 }
 /*flex*/
 .flex-box {
