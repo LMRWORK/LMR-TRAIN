@@ -130,8 +130,8 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
           t.hour(Math.ceil(Math.random()*24))
           i.ArriveTime = t.format('HH:mm');
           r = Math.floor((Math.random()*10)%6);
-          i.trainType = trainType[r];
-          i.TrainCode = i.trainType + i.TrainCode.slice(1);
+          i.TrainType = trainType[r];
+          i.TrainCode = i.TrainType + i.TrainCode.slice(1);
         });
         /**
         生产环境注释掉上面测试

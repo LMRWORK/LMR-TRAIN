@@ -53,7 +53,9 @@ class TrainSearch extends React.PureComponent {
            this.props.startDate != nextProps.startDate ||
            this.props.trainsResult != nextProps.trainsResult ||
            this.props.sorterTab != nextProps.sorterTab ||
-           this.state.datepickerVisible != nextState.datepickerVisible;
+           this.state.datepickerVisible != nextState.datepickerVisible ||
+           this.state.lastAction != nextState.lastAction ||
+           nextState.lastAction == 'runFilter';
   }
 
   //显示日期控件
@@ -113,9 +115,10 @@ class TrainSearch extends React.PureComponent {
 
   //火车条件筛选
   sorter = (data = this.props.sorterTab) => {
+    console.log('this.state.lastAction', this.state.lastAction);
+    console.log('this.props.sorterTab', this.props.sorterTab);
     if (this.props.sorterTab != data || this.state.lastAction != 'sorter') {
-      //过滤条件
-      this.setState({lastAction: 'sorter'});
+      console.log('#######');
       //非首次排序，显示轻提示
       if (this.state.lastAction == 'sorter') Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
       //排序置顶
@@ -134,6 +137,8 @@ class TrainSearch extends React.PureComponent {
           this.props.setSorterTab(data);
           break;
       }
+      //过滤条件
+      this.setState({lastAction: 'sorter'});
       //console.log('sort done: ' + data);
     }
   }
@@ -148,7 +153,7 @@ class TrainSearch extends React.PureComponent {
   //弹出筛选框
   popFilter = (e) => {
     e.preventDefault();
-    Popup.show(<FilterContent {...this.props} onClose={this.runFilter} />,);
+    Popup.show(<FilterContent {...this.props} onClose={this.runFilter} />);
   }
 
   //触发过滤
@@ -156,6 +161,8 @@ class TrainSearch extends React.PureComponent {
     Popup.hide();
     Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
     this.props.runFilter();
+    //记录操作
+    this.setState({lastAction: 'runFilter'});
   }
 
   render() {

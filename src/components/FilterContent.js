@@ -12,7 +12,6 @@ class FilterContent extends React.PureComponent {
 
   //过滤条件 highSpeed、time0006，time0612、time1218、time1824
   onSelect = (type, e) => {
-    console.log(e);
     e.stopPropagation();
     if (e.target.checked) {
       this.props.setFilterType(type, 'add');
