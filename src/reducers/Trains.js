@@ -162,72 +162,85 @@ const trainReducer = (state=initStates, action) => {
       if (filter_array.length) {
         let t, t1, t2;
         list.result.forEach(i => {
-          //预制不显示
+          //预制全部隐藏
           i.display = 'none';
-          //高铁
-          let filter_cc = true;
+          //高铁选择标志
+          let _c = false;
+          let _c1 = false;
+          let _c2 = false;
+          //高铁筛选
           if (filter_array.indexOf('highSpeed') != -1) {
+            _c = true;
             if (['G', 'D', 'C'].indexOf(i.TrainType) != -1) {
-              i.display = 'flex';
-            } else {
-              filter_cc = false;
+              _c1 = true;
             }
           }
           //普通列车
           if (filter_array.indexOf('slowSpeed') != -1) {
+            _c = true;
             if (['G', 'D', 'C'].indexOf(i.TrainType) == -1) {
-              i.display = 'flex';
-            } else {
-              filter_cc = false;
+              _c2 = true;
             }
           }
-          //00:00-06:00 发车
-          if (filter_array.indexOf('time0060') != -1 && filter_cc) {
+          //发车时段选择标志
+          let _t = false;
+          let _t1 = false;
+          let _t2 = false;
+          let _t3 = false;
+          let _t4 = false;
+          //00:00-06:00 发车筛选
+          if (filter_array.indexOf('time0060') != -1) {
+            _t = true;
             t = moment(i.DepartTime, 'HH:mm');
             t1 = moment('00:01', 'HH:mm');
             t2 = moment('06:00', 'HH:mm');
             //diff
             if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
-              i.display = 'flex';
-            } else {
-              i.display = 'none';
+              _t1 = true;
             }
           }
-          //06:00-12:00 发车
-          if (filter_array.indexOf('time0612') != -1 && filter_cc) {
+          //06:00-12:00 发车筛选
+          if (filter_array.indexOf('time0612') != -1) {
+            _t = true;
             t = moment(i.DepartTime, 'HH:mm');
             t1 = moment('06:00', 'HH:mm');
             t2 = moment('12:00', 'HH:mm');
             //diff
             if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
-              i.display = 'flex';
-            } else {
-              i.display = 'none';
+              _t2 = true;
             }
           }
-          //12:00-18:00 发车
-          if (filter_array.indexOf('time1218') != -1 && filter_cc) {
+          //12:00-18:00 发车筛选
+          if (filter_array.indexOf('time1218') != -1) {
+            _t = true;
             t = moment(i.DepartTime, 'HH:mm');
             t1 = moment('12:00', 'HH:mm');
             t2 = moment('18:00', 'HH:mm');
             //diff
             if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
-              i.display = 'flex';
-            } else {
-              i.display = 'none';
+              _t3 = true;
             }
           }
-          //18:00-24:00 发车
-          if (filter_array.indexOf('time1824') != -1 && filter_cc) {
+          //18:00-24:00 发车筛选
+          if (filter_array.indexOf('time1824') != -1) {
+            _t = true;
             t = moment(i.DepartTime, 'HH:mm');
             t1 = moment('18:00', 'HH:mm');
             t2 = moment('23:59', 'HH:mm');
             //diff
             if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
-              i.display = 'flex';
-            } else {
-              i.display = 'none';
+              _t4 = true;
             }
+          }
+          //过滤标识计算
+          const cFilter = _c1||_c2;
+          const tFilter = _t1||_t2||_t3||_t4;
+          if (_c&&_t) {
+            if (cFilter && tFilter) i.display = 'flex';
+          } else if (_c&&!_t) {
+            if (cFilter) i.display = 'flex';
+          } else if (!_c&&_t) {
+            if (tFilter) i.display = 'flex';
           }
         });
       } else {
