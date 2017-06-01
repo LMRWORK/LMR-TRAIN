@@ -80,7 +80,7 @@ class TrainBook extends React.PureComponent {
               <List.Item thumb={this.props.lang.dateIcon} key="a1"> 
                 <Flex>
                   <Flex.Item className="bItem bFrom2">发车日期</Flex.Item>
-                  <Flex.Item className="bItem bFromDate2">{this.props.startDate.format('LLLL')}</Flex.Item>
+                  <Flex.Item className="bItem bFromDate2">{this.props.startDate.format('LLL')}</Flex.Item>
                 </Flex>
               </List.Item> 
             </QueueAnim>: ''}
@@ -99,7 +99,7 @@ class TrainBook extends React.PureComponent {
               <List.Item thumb={this.props.lang.dateIcon} key="b1"> 
                 <Flex>
                   <Flex.Item className="bItem bTo2">抵达日期</Flex.Item>
-                  <Flex.Item className="bItem bToDate2">{this.props.arriveDate.format('LLLL')}</Flex.Item>
+                  <Flex.Item className="bItem bToDate2">{this.props.arriveDate.format('LLL')}</Flex.Item>
                 </Flex>
               </List.Item>
             </QueueAnim>: ''}
