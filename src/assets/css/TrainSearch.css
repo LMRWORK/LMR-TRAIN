@@ -226,9 +226,14 @@
 .chtFilter img{
   position: relative;
   left: 0.2rem;
-  top: 0.1rem;
+  top: 0.15rem;
 }
-
+.pullFlush {
+  color: #ddd;
+  text-align: center;
+  height: 180px;
+  line-height: 180px;
+}
 /*filter content*/
 .filterBtn {
   text-align: center;

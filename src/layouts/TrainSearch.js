@@ -206,7 +206,7 @@ class TrainSearch extends React.PureComponent {
         <div style={{overflow:'scroll', maxHeight:this.clientHeight-290}} ref="trainScroll">
           {this.props.trainsResult && this.props.trainsResult.result.map(
             (i, id) => (
-              <LazyLoad key={id} overflow throttle={200} height={180} once placeholder={<div style={{color:'#aaa', textAlign:'center', height:'180px', lineHeight:'180px'}}>{this.props.lang.pullFlush}</div>}>
+              <LazyLoad key={id} overflow throttle={200} height={180} once placeholder={<div className="pullFlush">{this.props.lang.pullFlush}</div>}>
                 <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)} style={{display:i.display}}>
                   <div className="flex-item flex-grow-4">
                     <div className="sTrain">{i.TrainCode}</div>

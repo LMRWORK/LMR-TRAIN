@@ -54,6 +54,7 @@ const initStates = Map({
     ageIcon: '/public/img/age.png',
     totalPriceIcon: '/public/img/p1.png',
     filterIcon: '/public/img/filter-w.png',
+    refreshIcon: '/public/img/refresh-w.png',
     //[全局 language]
     navibarTitle: '中国火车票预定',
     navibarRight: '帮助',
