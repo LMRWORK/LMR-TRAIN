@@ -151,14 +151,14 @@ const trainReducer = (state=initStates, action) => {
         default:
           filter_array = [];
       }
-      console.log('SET_FILTER_TYPE', filter_array);
+      //console.log('SET_FILTER_TYPE', filter_array);
       return state.set('filterType', filter_array);
 
     //执行过滤：通过放置显示标识来完成，提高效率。
     case 'RUN_FILTER':
       filter_array = state.get('filterType');
       list = state.get('trainsResult');
-      console.log('RUN_FILTER', filter_array);
+      //console.log('RUN_FILTER', filter_array);
       if (filter_array.length) {
         let t, t1, t2;
         list.result.forEach(i => {

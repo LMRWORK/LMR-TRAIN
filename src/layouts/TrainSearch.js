@@ -4,7 +4,6 @@ import { NavBar, Toast, TabBar, DatePicker, Popup } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSorterTab, ActivityIndicator, setNoSearch, setFilterType, runFilter } from '../actions/Trains';
 import LazyLoad from 'react-lazyload';
-import { forceCheck } from 'react-lazyload';
 import Loading from '../components/Loading';
 import FilterContent from '../components/FilterContent';
 
@@ -33,6 +32,9 @@ class TrainSearch extends React.PureComponent {
     } else {
       Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
       this.props.setNoSearch(false);
+      //手动抖动页面
+      this.refs.trainScroll.scrollTop = 100;
+      this.refs.trainScroll.scrollTop = 0;
     }
   }
 
@@ -160,9 +162,9 @@ class TrainSearch extends React.PureComponent {
     this.setState({lastAction: 'runFilter'});
     Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
     this.props.runFilter();
-    //置顶
+    //手动抖动页面
+    this.refs.trainScroll.scrollTop = 100;
     this.refs.trainScroll.scrollTop = 0;
-    forceCheck();
   }
 
   render() {
@@ -204,7 +206,7 @@ class TrainSearch extends React.PureComponent {
         <div style={{overflow:'scroll', maxHeight:this.clientHeight-290}} ref="trainScroll">
           {this.props.trainsResult && this.props.trainsResult.result.map(
             (i, id) => (
-              <LazyLoad key={id} overflow throttle={100} height={180} once placeholder={<br/>}>
+              <LazyLoad key={id} overflow throttle={200} height={180} once placeholder={<div style={{color:'#aaa', textAlign:'center', height:'180px', lineHeight:'180px'}}>{this.props.lang.pullFlush}</div>}>
                 <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)} style={{display:i.display}}>
                   <div className="flex-item flex-grow-4">
                     <div className="sTrain">{i.TrainCode}</div>

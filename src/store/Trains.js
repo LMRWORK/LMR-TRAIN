@@ -86,6 +86,7 @@ const initStates = Map({
       {name: '价格:低>高', data:'sortByPrice'},
     ], 
     filterText: '筛选',
+    pullFlush: '上滑刷新数据',
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '订单填写',
     trainText: '车次',
