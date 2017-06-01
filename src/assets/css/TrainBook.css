@@ -20,7 +20,7 @@
 }
 #trainInfo .bTrain {
   font-size: 0.8rem;
-	color: #a31022;
+  color: #a31022;
 }
 #trainInfo .bTime {
   position: relative;
@@ -29,12 +29,12 @@
 .bPay {
 }
 .bTotal {
-	color: #d81e06;
-	font-size: 1rem;
+  color: #d81e06;
+  font-size: 1rem;
 }
 .addOne {
-	color: #108ee9;
-	text-align: center;
+  color: #108ee9;
+  text-align: center;
 }
 .subOne {
   color: #d81e06;
@@ -44,19 +44,19 @@
   background: #f0f0f0;
 }
 .addOne .addOneIcon, .subOne .subOneIcon {
-	width: auto;
+  width: auto;
   height: auto;
   vertical-align: text-bottom;
   margin-right: 0.3rem;
 }
 .am-whitespace.fixBook {
-	height: 20rem;
+  height: 20rem;
 }
 .ichtModal, .am-modal.am-modal-transparent {
-	width: 70%!important;
+  width: 70%!important;
 }
 .ichtModal .am-modal-button:active {
-	background: #f0f0f0;
+  background: #f0f0f0;
 }
 .detailTime {
   color: #108ee9;
@@ -81,8 +81,8 @@
   line-height: 0.9rem;
 }
 @media (max-width: 640px) {
-	.bLongArr img {
-		max-width: 82%;
+  .bLongArr img {
+    max-width: 82%;
     bottom: 1.8rem;
-	}
+  }
 }

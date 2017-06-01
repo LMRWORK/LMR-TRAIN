@@ -165,55 +165,68 @@ const trainReducer = (state=initStates, action) => {
           //预制不显示
           i.display = 'none';
           //高铁
+          let filter_cc = true;
           if (filter_array.indexOf('highSpeed') != -1) {
             if (['G', 'D', 'C'].indexOf(i.TrainType) != -1) {
               i.display = 'flex';
+            } else {
+              filter_cc = false;
             }
           }
           //普通列车
           if (filter_array.indexOf('slowSpeed') != -1) {
             if (['G', 'D', 'C'].indexOf(i.TrainType) == -1) {
               i.display = 'flex';
+            } else {
+              filter_cc = false;
             }
           }
           //00:00-06:00 发车
-          if (filter_array.indexOf('time0006') != -1) {
+          if (filter_array.indexOf('time0060') != -1 && filter_cc) {
             t = moment(i.DepartTime, 'HH:mm');
             t1 = moment('00:01', 'HH:mm');
             t2 = moment('06:00', 'HH:mm');
             //diff
             if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
               i.display = 'flex';
+            } else {
+              i.display = 'none';
             }
           }
           //06:00-12:00 发车
-          if (filter_array.indexOf('time0612') != -1) {
+          if (filter_array.indexOf('time0612') != -1 && filter_cc) {
             t = moment(i.DepartTime, 'HH:mm');
             t1 = moment('06:00', 'HH:mm');
             t2 = moment('12:00', 'HH:mm');
             //diff
             if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
               i.display = 'flex';
+            } else {
+              i.display = 'none';
             }
           }
           //12:00-18:00 发车
-          if (filter_array.indexOf('time1218') != -1) {
+          if (filter_array.indexOf('time1218') != -1 && filter_cc) {
             t = moment(i.DepartTime, 'HH:mm');
             t1 = moment('12:00', 'HH:mm');
             t2 = moment('18:00', 'HH:mm');
             //diff
             if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
               i.display = 'flex';
+            } else {
+              i.display = 'none';
             }
           }
           //18:00-24:00 发车
-          if (filter_array.indexOf('time1824') != -1) {
+          if (filter_array.indexOf('time1824') != -1 && filter_cc) {
             t = moment(i.DepartTime, 'HH:mm');
             t1 = moment('18:00', 'HH:mm');
-            t2 = moment('13:59', 'HH:mm');
+            t2 = moment('23:59', 'HH:mm');
             //diff
             if (t.diff(t1) >= 0 && t.diff(t2) <= 0) {
               i.display = 'flex';
+            } else {
+              i.display = 'none';
             }
           }
         });
