@@ -6,6 +6,7 @@
   "scripts": {
     "dev1": "webpack-dev-server --inline --compress --colors --progress --content-base dist --host 202.103.68.62 --port 9966",
     "dev2": "webpack-dev-server --inline --compress --colors --progress --content-base dist --host 192.168.199.170 --port 9966",
+    "lyj": "webpack-dev-server --inline --compress --colors --progress --content-base dist --host 202.103.68.59 --port 9966",
     "build": "webpack -p",
     "devtools": "react-devtools"
   },
