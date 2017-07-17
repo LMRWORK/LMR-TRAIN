@@ -189,15 +189,20 @@ class TrainForm extends React.PureComponent {
     }
   }
 
-  //点击预定按钮
-  onBook = () => {
+  //点击先一步按钮
+  onNextBook = () => {
+    let chk = true;
     this.props.passengers.forEach(i => {
       i.age!==null ? i.ageError = false : i.ageError = true;
       i.name ? i.nameError = false : i.nameError = true;
       i.passport ? i.passportError = false : i.passportError = true;
+      chk = !i.ageError && !i.nameError && !i.passportError;
     })
-    this.setState({lastAction: 'onBook'});
-    console.log('TrainBook.onBook', this.props.passengers);
+    this.setState({lastAction: 'onNextBook'});
+    console.log('TrainBook.onNextBook', this.props.passengers);
+    if (chk) {
+      this.props.history.push('/booklinkman');
+    }
   }
 
   onErrorClick = (warnText) => {
@@ -290,7 +295,7 @@ class TrainForm extends React.PureComponent {
             <Flex>
               <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>
               <Flex.Item className="bItem bPay">
-                <Button className="btn" type="primary" onClick={this.onBook}>
+                <Button className="btn" type="primary" onClick={this.onNextBook}>
                   {this.props.lang.nextStepLinker}
                 </Button>
               </Flex.Item>

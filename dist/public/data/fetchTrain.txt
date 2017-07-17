@@ -29,6 +29,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -84,6 +85,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -132,6 +134,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -180,6 +183,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -228,6 +232,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -276,6 +281,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -324,6 +330,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -372,6 +379,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -420,6 +428,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -468,6 +477,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -516,6 +526,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -564,6 +575,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -612,6 +624,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -660,6 +673,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -708,6 +722,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -756,6 +771,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -804,6 +820,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -852,6 +869,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -900,6 +918,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -948,6 +967,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -996,6 +1016,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1044,6 +1065,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1092,6 +1114,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1140,6 +1163,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1188,6 +1212,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1236,6 +1261,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1284,6 +1310,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1332,6 +1359,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1380,6 +1408,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1428,6 +1457,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1476,6 +1506,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1524,6 +1555,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1572,6 +1604,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1620,6 +1653,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1668,6 +1702,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1716,6 +1751,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1764,6 +1800,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1812,6 +1849,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1860,6 +1898,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1908,6 +1947,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -1956,6 +1996,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2004,6 +2045,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2052,6 +2094,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2100,6 +2143,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2148,6 +2192,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2196,6 +2241,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2244,6 +2290,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2292,6 +2339,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2340,6 +2388,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2388,6 +2437,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2436,6 +2486,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2484,6 +2535,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2532,6 +2584,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2580,6 +2633,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2628,6 +2682,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2676,6 +2731,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2724,6 +2780,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2772,6 +2829,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2820,6 +2878,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2868,6 +2927,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2916,6 +2976,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -2964,6 +3025,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3012,6 +3074,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3060,6 +3123,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3108,6 +3172,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3156,6 +3221,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3204,6 +3270,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3252,6 +3319,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3300,6 +3368,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3348,6 +3417,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3396,6 +3466,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3444,6 +3515,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3492,6 +3564,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3540,6 +3613,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3588,6 +3662,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3636,6 +3711,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3684,6 +3760,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3732,6 +3809,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3780,6 +3858,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3828,6 +3907,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3876,6 +3956,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3924,6 +4005,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -3972,6 +4054,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4020,6 +4103,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4068,6 +4152,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4116,6 +4201,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4164,6 +4250,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4212,6 +4299,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4260,6 +4348,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4308,6 +4397,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4356,6 +4446,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4404,6 +4495,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4452,6 +4544,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4500,6 +4593,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4548,6 +4642,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4596,6 +4691,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4644,6 +4740,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4692,6 +4789,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4740,6 +4838,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4788,6 +4887,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4836,6 +4936,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4884,6 +4985,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4932,6 +5034,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -4980,6 +5083,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -5028,6 +5132,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",
@@ -5076,6 +5181,7 @@
       "RunTime": 339,
       "IsBookable": true,
       "SeatType": "OM9",
+      "childDiscut": 0.5,
       "cheapSeat": {
         "SeatCode": "O",
         "SeatName": "二等座",

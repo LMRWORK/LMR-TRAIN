@@ -101,14 +101,16 @@ const trainReducer = (state=initStates, action) => {
     //设置总价格。
     case 'SET_TOTAL_PRICE':
       let price = 0;
+      const selectTrain = state.get('selectTrain');
       const selectSeat = state.get('selectSeat');
       const passengers = state.get('passengers');
-      console.log('SET_TOTAL_PRICE', selectSeat, passengers);
+      console.log('SET_TOTAL_PRICE', selectTrain, selectSeat, passengers);
       passengers.forEach(i => {
         if (i.age == 0 || i.age == null) {
           price += selectSeat.SeatPrice;
         } else {
-          price += selectSeat.SeatPrice*0.5;
+          //小孩折扣系数计算放在服务器端完成，测试时取0.5
+          price += selectSeat.SeatPrice * selectTrain.childDiscut;
         }
       })
       return state.set('totalPrice', Math.ceil(price));

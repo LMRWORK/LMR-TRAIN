@@ -104,7 +104,7 @@ class TrainBook extends React.PureComponent {
               </List.Item>
             </QueueAnim>: ''}
           </List>
-          <TrainForm />
+          <TrainForm history={this.props.history}/>
           <WhiteSpace/>
           <WingBlank className="clickPayText">{this.props.lang.bookTips}</WingBlank>
           <WhiteSpace/>
