@@ -69,7 +69,7 @@ class TrainBook extends React.PureComponent {
               <Flex>
                 <Flex.Item className="bItem bFrom">{this.props.selectTrain.DepartStation}</Flex.Item>
                 <Flex.Item className="bItem bFromTime">{this.props.selectTrain.DepartTime}
-                  <a className="detailTime">详细 
+                  <a className="detailTime">{this.props.lang.detailText} 
                     { this.state.showDetailFromTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
                   </a>
                 </Flex.Item>
@@ -79,7 +79,7 @@ class TrainBook extends React.PureComponent {
             <QueueAnim className="router-wrap" type="right">
               <List.Item thumb={this.props.lang.dateIcon} key="a1"> 
                 <Flex>
-                  <Flex.Item className="bItem bFrom2">发车日期</Flex.Item>
+                  <Flex.Item className="bItem bFrom2">{this.props.lang.startDateText}</Flex.Item>
                   <Flex.Item className="bItem bFromDate2">{this.props.startDate.format('LLL')}</Flex.Item>
                 </Flex>
               </List.Item> 
@@ -88,7 +88,7 @@ class TrainBook extends React.PureComponent {
               <Flex>
                 <Flex.Item className="bItem bTo">{this.props.selectTrain.ArriveStation}</Flex.Item>
                 <Flex.Item className="bItem bToTime">{this.props.selectTrain.ArriveTime}
-                  <a className="detailTime">详细 
+                  <a className="detailTime">{this.props.lang.detailText} 
                     { this.state.showDetailToTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
                   </a>
                 </Flex.Item>
@@ -98,7 +98,7 @@ class TrainBook extends React.PureComponent {
             <QueueAnim className="router-wrap" type="right">
               <List.Item thumb={this.props.lang.dateIcon} key="b1"> 
                 <Flex>
-                  <Flex.Item className="bItem bTo2">抵达日期</Flex.Item>
+                  <Flex.Item className="bItem bTo2">{this.props.lang.endDateText} </Flex.Item>
                   <Flex.Item className="bItem bToDate2">{this.props.arriveDate.format('LLL')}</Flex.Item>
                 </Flex>
               </List.Item>

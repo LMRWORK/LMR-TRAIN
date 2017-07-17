@@ -4,6 +4,8 @@ import TrainIndex from '../layouts/TrainIndex';
 import TrainCity from '../layouts/TrainCity';
 import TrainSearch from '../layouts/TrainSearch';
 import TrainBook from '../layouts/TrainBook';
+import TrainBookLinkman from '../layouts/TrainBookLinkman';
+import TrainBookPassenger from '../layouts/TrainBookPassenger';
 import TrainThankyou from '../layouts/TrainThankyou';
 
 export const routes = (props) => {
@@ -17,6 +19,8 @@ export const routes = (props) => {
     { to: '/city', component: TrainCity, name: 'city' },
     { to: '/search', component: TrainSearch, name: 'search' },
     { to: '/book', component: TrainBook, name: 'search' },
+    { to: '/bookpassenger', component: TrainBookPassenger, name: 'bookpassenger' },
+    { to: '/booklinkman', component: TrainBookLinkman, name: 'booklinkman' },
     { to: '/thankyou', component: TrainThankyou, name: 'thankyou' }
   ];
 

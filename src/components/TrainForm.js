@@ -291,7 +291,7 @@ class TrainForm extends React.PureComponent {
               <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>
               <Flex.Item className="bItem bPay">
                 <Button className="btn" type="primary" onClick={this.onBook}>
-                  {this.props.lang.bookNpay}
+                  {this.props.lang.nextStepLinker}
                 </Button>
               </Flex.Item>
             </Flex>
