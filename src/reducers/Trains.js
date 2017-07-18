@@ -252,7 +252,13 @@ const trainReducer = (state=initStates, action) => {
       }
       //console.log('RUN_FILTER', list.result);
       return state.set('trainsResult', list);
+      break;
 
+    //设置出发时间。
+    case 'SET_LINKMAN':
+      return state.set('linkman', action.linkman);
+      break;
+      
     default:
       return state;
   }

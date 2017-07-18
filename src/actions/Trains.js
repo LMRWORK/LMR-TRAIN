@@ -180,3 +180,9 @@ export const setNoSearch = (noSearch) => ({
   type: 'SET_NOSEARCH',
   noSearch
 });
+
+//设置联系人信息
+export const setLinkman = (linkman) => ({
+  type: 'SET_LINKMAN',
+  linkman
+});

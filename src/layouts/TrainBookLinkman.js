@@ -1,8 +1,8 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, Flex, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import { List, NavBar, Flex, WhiteSpace, WingBlank, Button, InputItem } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { setNoSearch } from '../actions/Trains';
+import { setNoSearch, setLinkman } from '../actions/Trains';
 
 class TrainBookLinkman extends React.PureComponent {
 
@@ -18,12 +18,24 @@ class TrainBookLinkman extends React.PureComponent {
     console.log('TrainBookLinkman.componentWillReceiveProps', nextProps);
   }
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainBookLinkman.shouldComponentUpdate');
-    return true;
+  updateLinkman = () => {
+    //更新联系人信息
+    this.props.setLinkman({
+      name: document.getElementById('lName').value,
+      email: document.getElementById('lEmail').value,
+      nation: document.getElementById('lNation').value,
+      phone: document.getElementById('lPhone').value,
+    });
   }
+
   onNextBook = () => {
+    this.updateLinkman();
     alert('NEXT PAY!');
+  }
+
+  goBack = () => {
+    this.updateLinkman();
+    this.props.history.push('/book');
   }
 
   render() {
@@ -37,7 +49,7 @@ class TrainBookLinkman extends React.PureComponent {
     return (
       <QueueAnim className="router-wrap" type="top">
         <div className="bookPage" key="1">
-          <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={() => this.props.history.push('/book')}>
+          <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={this.goBack}>
             <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
           </NavBar>
           <List renderHeader={this.props.lang.checkTrainText} id="payDiv1">
@@ -52,13 +64,35 @@ class TrainBookLinkman extends React.PureComponent {
             </List.Item>
           ))}
           </List>
+          <List renderHeader={'请填写联系人信息:'}>
+            <List.Item className="imgAutoList">
+              <InputItem placeholder={this.props.lang.namePlaceholder} id="lName" defaultValue={this.props.linkman ? this.props.linkman.name : null}>
+                {this.props.lang.nameText}
+              </InputItem>
+            </List.Item>
+            <List.Item className="imgAutoList">
+              <InputItem placeholder={this.props.lang.emailPlaceholder} id="lEmail" defaultValue={this.props.linkman ? this.props.linkman.email : null}>
+                {this.props.lang.emailText}
+              </InputItem>
+            </List.Item>
+            <List.Item className="imgAutoList">
+              <InputItem placeholder={this.props.lang.nationPlaceholder} id="lNation" defaultValue={this.props.linkman ? this.props.linkman.nation : null}>
+                {this.props.lang.nationText}
+              </InputItem>
+            </List.Item>
+            <List.Item className="imgAutoList">
+              <InputItem placeholder={this.props.lang.phonePlaceholder} id="lPhone" defaultValue={this.props.linkman ? this.props.linkman.phone : null}>
+                {this.props.lang.phoneText}
+              </InputItem>
+            </List.Item>
+          </List>
           <List renderHeader={this.props.lang.totalTitle} id="payDiv3">
             <List.Item thumb={this.props.lang.totalPriceIcon}>
               <Flex>
                 <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>
                 <Flex.Item className="bItem bPay">
                   <Button className="btn" type="primary" onClick={this.onNextBook}>
-                    {this.props.lang.nextStepLinker}
+                    {this.props.lang.bookNpay}
                   </Button>
                 </Flex.Item>
               </Flex>
@@ -83,10 +117,12 @@ const mapStateToProps = (store) => ({
   totalPrice: store.get('totalPrice'),
   passengers: store.get('passengers'),
   selectSeat: store.get('selectSeat'),
+  linkman: store.get('linkman'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch)),
+  setLinkman: (linkman) => dispatch(setLinkman(linkman)),
+  setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainBookLinkman);
