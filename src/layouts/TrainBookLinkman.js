@@ -30,7 +30,7 @@ class TrainBookLinkman extends React.PureComponent {
 
   onNextBook = () => {
     this.updateLinkman();
-    alert('NEXT PAY!');
+    alert('已搜集完所有数据，TODO：异步提交表单，监控响应!');
   }
 
   goBack = () => {

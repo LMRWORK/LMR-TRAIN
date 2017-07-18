@@ -13,6 +13,7 @@ const initStates = Map({
   selectSeat: null,
   passengers: null, //乘客列表（对象数组）
   linkman: null, //联系人（对象）
+  formResponse: null, //表单提交后的相应
   sorterTab: 'sortByRunTime',
   noSearch: false, //从book页跳回搜索页时，仅一次有效。
   totalPrice: 0, //价格合计

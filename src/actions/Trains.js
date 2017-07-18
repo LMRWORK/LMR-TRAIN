@@ -186,3 +186,26 @@ export const setLinkman = (linkman) => ({
   type: 'SET_LINKMAN',
   linkman
 });
+
+//提交表单数据到112
+export const postForm = (data) => {
+  return (dispatch) => {
+    dispatch(gettingStationsTxt());
+    //异步Ajax请求
+    fetch(url)
+      .then((res) => {
+        //从返回的Promise里得到文本
+        return res.text()
+      })
+      .then((text) => {
+        //拿到文本，然后dispatch setStationsTxt
+        dispatch(setReponse(text));
+      });
+  }
+};
+
+//保存表单数据
+export const setReponse = (response) => ({
+  type: 'SET_RESPONSE',
+  response
+})

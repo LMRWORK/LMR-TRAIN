@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import QueueAnim from 'rc-queue-anim';
 import { List, WingBlank, WhiteSpace, Radio, Flex, InputItem, Modal, Button } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { setSelectSeat, setPassengers, setTotalPrice } from '../actions/Trains';
+import { setSelectSeat, setPassengers, setTotalPrice, postForm } from '../actions/Trains';
 
 const RadioItem = Radio.RadioItem;
 //乘客信息模板 mutable类型
