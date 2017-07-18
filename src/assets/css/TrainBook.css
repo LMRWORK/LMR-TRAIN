@@ -3,7 +3,7 @@
 #payDiv {
 }
 #trainInfo .bFrom, #trainInfo .bTo {
-  flex-grow: 2
+  flex-grow: 1
 }
 #trainInfo .bFromTime, #trainInfo .bToTime {
 }
@@ -87,4 +87,8 @@
     max-width: 82%;
     bottom: 1.8rem;
   }
+}
+span.sFont {
+  font-size: 0.5rem;
+  float: right;
 }

@@ -12,6 +12,7 @@ const initStates = Map({
   arriveDate: null, //抵达日期需要出发日期和运行时间计算得出。
   selectSeat: null,
   passengers: null, //乘客列表（对象数组）
+  linkman: null, //联系人（对象）
   sorterTab: 'sortByRunTime',
   noSearch: false, //从book页跳回搜索页时，仅一次有效。
   totalPrice: 0, //价格合计
@@ -47,8 +48,8 @@ const initStates = Map({
     backIcon: '/public/img/back-w.png',
     addIcon: '/public/img/add.png',
     subIcon: '/public/img/sub.png',
-    moreIcon: '/public/img/more.png',
-    lessIcon: '/public/img/less.png',
+    moreIcon: '/public/img/more2.png',
+    lessIcon: '/public/img/less2.png',
     passIcon: '/public/img/pass.png',
     nameIcon: '/public/img/name.png',
     ageIcon: '/public/img/age.png',
@@ -119,7 +120,9 @@ const initStates = Map({
     requiredPassport: '请填写乘客护照号。',
     detailText: '详细',
     startDateText: '发车日期',
-    endDateText: '抵达日期'
+    endDateText: '抵达日期',
+    checkTrainText: '请仔细确认列车信息。',
+    checkPersonText: '请仔细确认乘客信息。',
   },
 });
 
