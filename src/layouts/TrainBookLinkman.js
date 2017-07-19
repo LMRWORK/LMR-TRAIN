@@ -50,7 +50,7 @@ class TrainBookLinkman extends React.PureComponent {
       <QueueAnim className="router-wrap" type="top">
         <div className="bookPage" key="1">
           <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={this.goBack}>
-            <h1 id="TrainIndex-h1">{this.props.lang.bookNaviBar}</h1>
+            <h1 id="TrainIndex-h1">{this.props.lang.checkNaviBar}</h1>
           </NavBar>
           <List renderHeader={this.props.lang.checkTrainText} id="payDiv1">
             <List.Item thumb={this.props.lang.trainIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.TrainCode}</span> <span className="sFont">{this.props.selectSeat.SeatName}</span></List.Item>

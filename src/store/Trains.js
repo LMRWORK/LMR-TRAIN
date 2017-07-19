@@ -91,7 +91,8 @@ const initStates = Map({
     filterText: '筛选',
     pullFlush: '上滑刷新数据',
     //[表单页 layout/TrainBook.js]
-    bookNaviBar: '订单填写',
+    bookNaviBar: '填写订单',
+    checkNaviBar: '确认订单信息',
     trainText: '车次',
     bookinfo: '预定后，我们会在24小时内通过邮件联系您。',
     needTime: '历时',
