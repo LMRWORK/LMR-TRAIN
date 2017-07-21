@@ -3,7 +3,7 @@
 #payDiv {
 }
 #trainInfo .bFrom, #trainInfo .bTo {
-  flex-grow: 1
+  flex-grow: 2
 }
 #trainInfo .bFromTime, #trainInfo .bToTime {
 }
@@ -11,12 +11,12 @@
 }
 #trainInfo .bFrom2, #trainInfo .bTo2 {
   font-size: 0.6rem;
-  color: #07c;
+  color: grey;
   text-align:center;
 }
 #trainInfo .bFromDate2, #trainInfo .bToDate2 {
   font-size: 0.6rem;
-  color: #07c;
+  color: grey;
   text-align:center;
   flex-grow: 4;
 }

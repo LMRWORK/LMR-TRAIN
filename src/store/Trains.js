@@ -104,7 +104,7 @@ const initStates = Map({
     nationText: '国家',
     phoneText: '手机',
     namePlaceholder: '例如：达康书记',
-    emailPlaceholder: '例如：steve@outlook.com',
+    emailPlaceholder: '例如：jobs@outlook.com',
     nationPlaceholder: '例如：中国',
     phonePlaceholder: '例如：86-13768741352',
     passportPlaceholder: '例如：AFS19750218',
@@ -131,6 +131,7 @@ const initStates = Map({
     endDateText: '抵达日期',
     checkTrainText: '请仔细确认列车信息。',
     checkPersonText: '请仔细确认乘客信息。',
+    linkmanHead: '请填写联系人信息，我们会在24小时内联系您。',
   },
 });
 

@@ -112,6 +112,7 @@ const trainReducer = (state=initStates, action) => {
           //小孩折扣系数计算放在服务器端完成，测试时取0.5
           price += selectSeat.SeatPrice * selectTrain.childDiscut;
         }
+        price += selectTrain.shouxu;
       })
       return state.set('totalPrice', Math.ceil(price));
 

@@ -10,6 +10,10 @@ class TrainBookLinkman extends React.PureComponent {
     super(props);
     this.state = {
       lastAction: 'init',
+      lNameError: false,
+      lEmailError: false,
+      lPhoneError: false,
+      lNationError: false
     };
     console.log('😃 TrainBookLinkman', props);
   }
@@ -19,18 +23,28 @@ class TrainBookLinkman extends React.PureComponent {
   }
 
   updateLinkman = () => {
+    //设置
+    const lName = document.getElementById('lName').value;
+    const lEmail = document.getElementById('lEmail').value;
+    const lNation = document.getElementById('lNation').value;
+    const lPhone = document.getElementById('lPhone').value;
+    lName ? this.setState({'lNameError': false}) : this.setState({'lNameError': true});
+    lEmail ? this.setState({'lEmailError': false}) : this.setState({'lEmailError': true});
+    lNation ? this.setState({'lNationError': false}) : this.setState({'lNationError': true});
+    lPhone ? this.setState({'lPhoneError': false}) : this.setState({'lPhoneError': true});
+
     //更新联系人信息
     this.props.setLinkman({
-      name: document.getElementById('lName').value,
-      email: document.getElementById('lEmail').value,
-      nation: document.getElementById('lNation').value,
-      phone: document.getElementById('lPhone').value,
+      name: lName,
+      email: lEmail,
+      nation: lNation,
+      phone: lPhone,
     });
   }
 
   onNextBook = () => {
     this.updateLinkman();
-    alert('已搜集完所有数据，TODO：异步提交表单，监控响应!');
+    console.log('已搜集完所有数据，TODO：异步提交表单，监控响应!');
   }
 
   goBack = () => {
@@ -64,24 +78,24 @@ class TrainBookLinkman extends React.PureComponent {
             </List.Item>
           ))}
           </List>
-          <List renderHeader={'请填写联系人信息:'}>
+          <List renderHeader={this.props.lang.linkmanHead}>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.namePlaceholder} id="lName" defaultValue={this.props.linkman ? this.props.linkman.name : null}>
+              <InputItem placeholder={this.props.lang.namePlaceholder} id="lName" error={this.state.lNameError} defaultValue={this.props.linkman ? this.props.linkman.name : null}>
                 {this.props.lang.nameText}
               </InputItem>
             </List.Item>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.emailPlaceholder} id="lEmail" defaultValue={this.props.linkman ? this.props.linkman.email : null}>
+              <InputItem placeholder={this.props.lang.emailPlaceholder} id="lEmail" error={this.state.lEmailError} defaultValue={this.props.linkman ? this.props.linkman.email : null}>
                 {this.props.lang.emailText}
               </InputItem>
             </List.Item>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.nationPlaceholder} id="lNation" defaultValue={this.props.linkman ? this.props.linkman.nation : null}>
+              <InputItem placeholder={this.props.lang.nationPlaceholder} id="lNation" error={this.state.lNationError} defaultValue={this.props.linkman ? this.props.linkman.nation : null}>
                 {this.props.lang.nationText}
               </InputItem>
             </List.Item>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.phonePlaceholder} id="lPhone" defaultValue={this.props.linkman ? this.props.linkman.phone : null}>
+              <InputItem placeholder={this.props.lang.phonePlaceholder} id="lPhone" error={this.state.lPhoneError} defaultValue={this.props.linkman ? this.props.linkman.phone : null}>
                 {this.props.lang.phoneText}
               </InputItem>
             </List.Item>
