@@ -19,7 +19,8 @@ const initStates = Map({
   totalPrice: 0, //价格合计
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
-  fetchTrainsUrl: '/public/data/fetchTrain.txt',
+  /**fetchTrainsUrl: '/public/data/fetchTrain.txt',**/
+  fetchTrainsUrl: 'http://202.103.68.62:9093/index.php/tools/tt',
   //[城市选择页 layout/TrainCity.js]
   stationsArrInit: [
     {cn:'北京', code:'BJP', en:'Beijing'}, 

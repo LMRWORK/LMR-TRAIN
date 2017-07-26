@@ -114,6 +114,7 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
         模拟ajax延时，并随机重置'运行时间'，方便测试。
         json.result[0].RunTime = Math.ceil(Math.random()*100);
         */
+        /*
         const trainType = ['G', 'D', 'T', 'C', '1', 'L'];
         const t = moment();
         let r;
@@ -133,11 +134,13 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
           i.TrainType = trainType[r];
           i.TrainCode = i.TrainType + i.TrainCode.slice(1);
         });
+        setTimeout(() => dispatch(setTrainsResult(json)), 1200);
+        */
         /**
         生产环境注释掉上面测试
         */
-
-        setTimeout(() => dispatch(setTrainsResult(json)), 1200);
+        //console.log(json);
+        dispatch(setTrainsResult(json));
       });
   }
 };
