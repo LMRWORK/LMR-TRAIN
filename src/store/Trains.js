@@ -135,6 +135,10 @@ const initStates = Map({
     checkTrainText: '请仔细确认列车信息。',
     checkPersonText: '请仔细确认乘客信息。',
     linkmanHead: '请填写联系人信息，我们会在24小时内联系您。',
+    'lName': '请填写联系人的姓名。',
+    'lEmail': '请填写联系人的Email：jobs@facebook.com。',
+    'lNation': '请填写联系人的国籍。',
+    'lPhone': '请填写联系人的联系手机。'
   },
 });
 

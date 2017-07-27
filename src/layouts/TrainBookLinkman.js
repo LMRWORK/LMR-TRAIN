@@ -23,16 +23,6 @@ class TrainBookLinkman extends React.PureComponent {
   }
 
   updateLinkman = () => {
-    //设置
-    const lName = document.getElementById('lName').value;
-    const lEmail = document.getElementById('lEmail').value;
-    const lNation = document.getElementById('lNation').value;
-    const lPhone = document.getElementById('lPhone').value;
-    lName ? this.setState({'lNameError': false}) : this.setState({'lNameError': true});
-    lEmail ? this.setState({'lEmailError': false}) : this.setState({'lEmailError': true});
-    lNation ? this.setState({'lNationError': false}) : this.setState({'lNationError': true});
-    lPhone ? this.setState({'lPhoneError': false}) : this.setState({'lPhoneError': true});
-
     //更新联系人信息
     this.props.setLinkman({
       name: lName,
@@ -40,11 +30,34 @@ class TrainBookLinkman extends React.PureComponent {
       nation: lNation,
       phone: lPhone,
     });
+    
   }
 
+  //预定支付
   onNextBook = () => {
     this.updateLinkman();
-    console.log('已搜集完所有数据，TODO：异步提交表单，监控响应!');
+    //联系人表单校验
+    const lName = document.getElementById('lName').value;
+    const lEmail = document.getElementById('lEmail').value;
+    const lNation = document.getElementById('lNation').value;
+    const lPhone = document.getElementById('lPhone').value;
+    lName ? this.setState({'lNameError': false}) : this.setState({'lNameError': true});
+    lNation ? this.setState({'lNationError': false}) : this.setState({'lNationError': true});
+    lPhone ? this.setState({'lPhoneError': false}) : this.setState({'lPhoneError': true});
+    const remail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    let valiEmail = false;
+    if (remail.test(lEmail)) {
+      valiEmail = true;
+      this.setState({'lEmailError': false});
+    } else {
+      this.setState({'lEmailError': true});
+    }
+    //提交表单
+    if (lName && lEmail && lNation && lPhone && valiEmail) {
+      console.log('已搜集完所有数据，TODO：异步提交表单，监控响应!');
+    } else {
+      console.log('验证失败禁止提交!');
+    }
   }
 
   goBack = () => {
@@ -80,22 +93,22 @@ class TrainBookLinkman extends React.PureComponent {
           </List>
           <List renderHeader={this.props.lang.linkmanHead}>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.namePlaceholder} id="lName" error={this.state.lNameError} defaultValue={this.props.linkman ? this.props.linkman.name : null}>
+              <InputItem placeholder={this.props.lang.namePlaceholder} id="lName" error={this.state.lNameError} onErrorClick={() => alert(this.props.lang.lName)} defaultValue={this.props.linkman ? this.props.linkman.name : null}>
                 {this.props.lang.nameText}
               </InputItem>
             </List.Item>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.emailPlaceholder} id="lEmail" error={this.state.lEmailError} defaultValue={this.props.linkman ? this.props.linkman.email : null}>
+              <InputItem placeholder={this.props.lang.emailPlaceholder} id="lEmail" error={this.state.lEmailError} onErrorClick={() => alert(this.props.lang.lEmail)} defaultValue={this.props.linkman ? this.props.linkman.email : null}>
                 {this.props.lang.emailText}
               </InputItem>
             </List.Item>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.nationPlaceholder} id="lNation" error={this.state.lNationError} defaultValue={this.props.linkman ? this.props.linkman.nation : null}>
+              <InputItem placeholder={this.props.lang.nationPlaceholder} id="lNation" error={this.state.lNationError} onErrorClick={() => alert(this.props.lang.lNation)} defaultValue={this.props.linkman ? this.props.linkman.nation : null}>
                 {this.props.lang.nationText}
               </InputItem>
             </List.Item>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.phonePlaceholder} id="lPhone" error={this.state.lPhoneError} defaultValue={this.props.linkman ? this.props.linkman.phone : null}>
+              <InputItem placeholder={this.props.lang.phonePlaceholder} id="lPhone" error={this.state.lPhoneError} onErrorClick={() => alert(this.props.lang.lPhone)} defaultValue={this.props.linkman ? this.props.linkman.phone : null}>
                 {this.props.lang.phoneText}
               </InputItem>
             </List.Item>
