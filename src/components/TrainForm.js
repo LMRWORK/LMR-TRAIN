@@ -253,8 +253,8 @@ class TrainForm extends React.PureComponent {
           </RadioItem>
         ))}
         </List>
-        <div ref="passWapper" style={{overflow:'hidden', height:441 * (this.props.passengers ? this.props.passengers.length : 1) }}>
-          <QueueAnim className="passWrap" type="bottom" duration="1000">
+        <div ref="passWapper" style={{overflow:'hidden', height:448 * (this.props.passengers ? this.props.passengers.length : 1) }}>
+          <QueueAnim className="passWrap" type="right" duration="300">
           {this.props.passengers && this.props.passengers.map( (i, id) => 
             <List key={id} renderHeader={this.props.lang.passText+(id+1)+': '+this.props.lang.passengerText}>
               <List.Item thumb={this.props.lang.ageIcon} className="imgAutoList">
@@ -275,12 +275,12 @@ class TrainForm extends React.PureComponent {
               <List.Item className="passBtn">
                 <Flex>
                   {i.showSub ?
-                  <Flex.Item className="subOne" onClick={() => this.subOne(id)}>
+                  <Flex.Item className="subOne" onTouchEnd={() => this.subOne(id)}>
                     <img src={this.props.lang.subIcon} className="subOneIcon"/>
                     {this.props.lang.subOneText}
                   </Flex.Item> :''}
                   {i.showAdd ?
-                  <Flex.Item className="addOne" onClick={() => this.addOne(id)}>
+                  <Flex.Item className="addOne" onTouchEnd={() => this.addOne(id)}>
                     <img src={this.props.lang.addIcon} className="addOneIcon"/>
                     {this.props.lang.addOneText}
                   </Flex.Item> :''}

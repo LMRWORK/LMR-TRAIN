@@ -14,7 +14,7 @@ const initStates = Map({
   passengers: null, //乘客列表（对象数组）
   linkman: null, //联系人（对象）
   formResponse: null, //表单提交后的相应
-  sorterTab: 'sortByRunTime',
+  sorterTab: null, //默认排序:sortByStartTime, sortByRunTime, sortByPrice
   noSearch: false, //从book页跳回搜索页时，仅一次有效。
   totalPrice: 0, //价格合计
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。

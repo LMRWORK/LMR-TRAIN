@@ -68,8 +68,8 @@ class TrainBookLinkman extends React.PureComponent {
           </NavBar>
           <List renderHeader={this.props.lang.checkTrainText} id="payDiv1">
             <List.Item thumb={this.props.lang.trainIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.TrainCode}</span> <span className="sFont">{this.props.selectSeat.SeatName}</span></List.Item>
-            <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.DepartStation}</span> <span className="sFont">{this.props.startDate.format('LLL')}</span></List.Item>
-            <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.ArriveStation}</span> <span className="sFont">{this.props.arriveDate.format('LLL')}</span></List.Item>
+            <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.DepartStation}</span> <span className="sFont">{this.props.startDate.format('lll')}</span></List.Item>
+            <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.ArriveStation}</span> <span className="sFont">{this.props.arriveDate.format('lll')}</span></List.Item>
           </List>
           <List renderHeader={this.props.lang.checkPersonText} id="payDiv2">
           {this.props.passengers.map( i => (

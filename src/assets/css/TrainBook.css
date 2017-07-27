@@ -3,9 +3,10 @@
 #payDiv {
 }
 #trainInfo .bFrom, #trainInfo .bTo {
-  flex-grow: 2
+  flex-grow: 1;
 }
 #trainInfo .bFromTime, #trainInfo .bToTime {
+  text-align: right;
 }
 #trainInfo .bFromDate, #trainInfo .bToDate {
 }
@@ -17,7 +18,7 @@
 #trainInfo .bFromDate2, #trainInfo .bToDate2 {
   font-size: 0.6rem;
   color: grey;
-  text-align:center;
+  text-align:right;
   flex-grow: 4;
 }
 #trainInfo .bTrain {
@@ -37,10 +38,14 @@
 .addOne {
   color: #108ee9;
   text-align: center;
+  height: 1.5rem;
+  line-height: 1.5rem;
 }
 .subOne {
   color: #d81e06;
   text-align: center;
+  height: 1.5rem;
+  line-height: 1.5rem;
 }
 .addOne:active, .subOne:active {
   background: #f0f0f0;
@@ -62,7 +67,7 @@
 }
 .detailTime {
   color: #108ee9;
-  margin-left: 0.3rem;
+  margin-left: 0.2rem;
   font-size: 0.55rem;
 }
 .moreIcon {
@@ -89,6 +94,8 @@
   }
 }
 span.sFont {
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   float: right;
+  position: relative;
+  top: 0.1rem;
 }

@@ -24,6 +24,14 @@ requireContext.keys().map(requireContext);
 //生产模式
 const store = createStore(reducer, applyMiddleware(thunk));
 
+//高清模式兼容
+/*
+if (window.innerWidth <= 750) {
+  var oMeta = document.getElementsByTagName('meta')[2];
+  oMeta.content = "width=device-width,user-scalable=no,initial-scale=1,maximum-scale=0.48,minimum-scale=0.48";
+}
+*/
+
 render(
   (
     <Provider store={store}>
