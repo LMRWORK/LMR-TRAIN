@@ -4,7 +4,7 @@ import moment from 'moment';
 const initStates = Map({
   //[全局 states]
   stationsTxt: null,
-  startDate: moment(),
+  startDate: moment().add(1, 'd'),
   trainsResult: null,
   fromStation: {cn:'北京', code:'BJP', en:'Beijing'},
   toStation : {cn:'上海', code:'SHH', en:'Shanghai'},
@@ -91,6 +91,8 @@ const initStates = Map({
     ], 
     filterText: '筛选',
     pullFlush: '上滑刷新数据',
+    selloutText: '无票',
+    selloutAlert: '已无票，请选择其他车次',
     //[表单页 layout/TrainBook.js]
     bookNaviBar: '填写订单',
     checkNaviBar: '确认订单信息',
@@ -120,7 +122,7 @@ const initStates = Map({
     ageTips: '注意：身高小于1.5米的儿童，享受儿童折扣：坐票1/2，卧铺3/4。',
     ageText: '年龄',
     agePlaceholder: '例如：成人/儿童',
-    totalTitle: '价格合计：',
+    totalTitle: '价格合计（包含含卡费和服务费）：',
     nextStepLinker: '下一步',
     bookNpay: '下单 & 支付',
     bookTips: '*为了保证您的预定有效，请尽快完成付款，付款后会在24小时内帮您锁定车次。',

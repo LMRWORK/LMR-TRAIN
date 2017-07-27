@@ -170,11 +170,28 @@
 .rightArrow {
   vertical-align: middle;
 }
+#TrainSearch-tabbar-div .am-tab-bar-bar {
+  border-top:2px solid #666;
+  border-radius: 3px;
+}
+.trainResults.sellout {
+  opacity: 0.3;
+}
+.sellout-text{
+  color: #a12023;
+  position: absolute;
+  top: 0.3rem;
+}
+.sellout-text span {
+  vertical-align: text-top;
+}
 /*searchBar*/
 .flex-box.searchBar {
   background: #f5f5f9;
   padding: 0.15rem 0;
   align-items: baseline;
+  border-bottom: 2px solid #666;
+  border-radius: 3px;
 }
 .flex-box.searchBar .flex-item {
   padding: 0.2rem 0;

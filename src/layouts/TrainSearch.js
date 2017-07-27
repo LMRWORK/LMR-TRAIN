@@ -1,6 +1,6 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { NavBar, Toast, TabBar, DatePicker, Popup } from 'antd-mobile';
+import { NavBar, Toast, TabBar, DatePicker, Popup, Icon } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartTime, sortByPrice, setSelectTrain, setSorterTab, ActivityIndicator, setNoSearch, setFilterType, runFilter } from '../actions/Trains';
 import LazyLoad from 'react-lazyload';
@@ -32,7 +32,7 @@ class TrainSearch extends React.PureComponent {
     } else {
       Toast.info(<Loading text={this.props.lang.loadingText}/>, 0.5);
       this.props.setNoSearch(false);
-      //手动抖动页面
+      //页面去抖动
       this.refs.trainScroll.scrollTop = 100;
       this.refs.trainScroll.scrollTop = 0;
     }
@@ -146,8 +146,12 @@ class TrainSearch extends React.PureComponent {
   //选择车站后，提交store，并路由到座位选择页
   onSelect = (train) => {
     //console.log(train);
-    this.props.setSelectTrain(train);
-    this.props.history.push('/book');
+    if (train.IsBookable) {
+      this.props.setSelectTrain(train);
+      this.props.history.push('/book');
+    } else {
+      alert(this.props.lang.selloutAlert);
+    }
   }
 
   //弹出筛选框
@@ -207,7 +211,7 @@ class TrainSearch extends React.PureComponent {
           {this.props.trainsResult && this.props.trainsResult.result.map(
             (i, id) => (
               <LazyLoad key={id} overflow throttle={200} height={180} once placeholder={<div className="pullFlush">{this.props.lang.pullFlush}</div>}>
-                <div className="trainResults flex-box" key={id} onClick={() => this.onSelect(i)} style={{display:i.display}}>
+                <div className={i.IsBookable ? 'trainResults flex-box selling' : 'trainResults flex-box sellout'} key={id} onClick={() => this.onSelect(i)} style={{display:i.display}}>
                   <div className="flex-item flex-grow-4">
                     <div className="sTrain">{i.TrainCode}</div>
                     <div className="sStart">{i.DepartTime}</div>
@@ -219,6 +223,7 @@ class TrainSearch extends React.PureComponent {
                     <div className="sTo">{i.ArriveStation}</div>
                   </div>
                   <div className="flex-item flex-grow-2">
+                    { i.IsBookable ? '' : <div className="sellout-text"><Icon type="cross-circle" size="xxs"/> <span>{this.props.lang.selloutText}</span></div> }
                     <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.CheapSeat.SeatName} </div>
                     <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.CheapSeat.SeatPrice+this.props.lang.priceMarkAfter} </div>
                   </div>

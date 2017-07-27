@@ -13,6 +13,7 @@ import '../assets/css/Motion.css';
 import '../assets/data/stations.txt';
 import '../assets/data/fetchTrain.txt';
 
+//console.log = () => {};
 class Trains extends React.PureComponent {
 
   constructor(props) {

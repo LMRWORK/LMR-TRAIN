@@ -104,15 +104,15 @@ const trainReducer = (state=initStates, action) => {
       const selectTrain = state.get('selectTrain');
       const selectSeat = state.get('selectSeat');
       const passengers = state.get('passengers');
+      const exRate = 1 ;//= state.get('trainsResult').ExRate;
       console.log('SET_TOTAL_PRICE', selectTrain, selectSeat, passengers);
       passengers.forEach(i => {
         if (i.age == 0 || i.age == null) {
-          price += selectSeat.SeatPrice;
+          price += Math.ceil((selectSeat.SeatPriceRMB + selectSeat.ServiceCharge) * exRate);
         } else {
           //小孩折扣系数计算放在服务器端完成，测试时取0.5
-          price += selectSeat.SeatPrice * selectTrain.childDiscut;
+          price += Math.ceil((selectSeat.SeatPriceRMB * selectSeat.ChildDiscut + selectSeat.ServiceCharge) * exRate);
         }
-        price += selectTrain.shouxu;
       })
       return state.set('totalPrice', Math.ceil(price));
 
@@ -125,7 +125,7 @@ const trainReducer = (state=initStates, action) => {
       list = state.get('trainsResult');
       // 对需要排序的数字和位置的临时存储
       mapped = list.result.map((el, i) => {
-        return { index: i, value: el.cheapSeat.SeatPrice };
+        return { index: i, value: el.CheapSeat.SeatPrice };
       });
       // 按照多个值排序数组
       mapped.sort((a, b) => {
