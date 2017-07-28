@@ -76,6 +76,16 @@ const initStates = Map({
     searchTxt: '查询',
     priceMarkBegin: '¥', //货币前缀
     priceMarkAfter: '',   //货币后缀
+    //datepicker
+    datepicker: {
+      okText: '確認',
+      dismissText: 'キャンセル',
+      year: '年',
+      month: '月',
+      day: '日',
+      hour: '時',
+      minute: '分'
+    },
     //[首页 layout/TrainIndex.js]
     indexTabBar: [
       {name: '注意事项'},

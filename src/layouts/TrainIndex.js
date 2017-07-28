@@ -3,7 +3,6 @@ import QueueAnim from 'rc-queue-anim';
 import { NavBar, List, DatePicker, Button, WingBlank, WhiteSpace, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setStartDate } from '../actions/Trains';
-import loc from '../locale/date-picker/ja_JP';
 
 class TrainIndex extends React.PureComponent {
 
@@ -49,7 +48,7 @@ class TrainIndex extends React.PureComponent {
               <List.Item extra={this.props.toStation.en+', '+this.props.toStation.cn} arrow="horizontal" thumb={this.props.lang.cityIcon} onClick={() => this.linkto('to')}> 
                 {this.props.lang.toStationLabel} 
               </List.Item>
-              <DatePicker mode="date" title={this.props.lang.datepickerTitle} extra={this.props.lang.datepickerExtra} value={this.props.startDate} onChange={moment => this.onChange(moment)} locale={loc} format={moment => moment.format('LL')}>
+              <DatePicker mode="date" title={this.props.lang.datepickerTitle} extra={this.props.lang.datepickerExtra} value={this.props.startDate} onChange={moment => this.onChange(moment)} locale={this.props.lang.datepicker} format={moment => moment.format('LL')}>
                 <List.Item arrow="horizontal" thumb={this.props.lang.dateIcon}> {this.props.lang.datepickerLabel} </List.Item>
               </DatePicker>
             </List>

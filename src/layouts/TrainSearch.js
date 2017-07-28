@@ -6,7 +6,6 @@ import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartT
 import LazyLoad from 'react-lazyload';
 import Loading from '../components/Loading';
 import FilterContent from '../components/FilterContent';
-import loc from '../locale/date-picker/ja_JP';
 
 class TrainSearch extends React.PureComponent {
 
@@ -198,7 +197,7 @@ class TrainSearch extends React.PureComponent {
                   onDismiss={this.hideDate}
                   value={this.props.startDate}
                   onChange={moment => this.onChange(moment)}
-                  locale={loc}
+                  locale={this.props.lang.datepicker}
                   title={this.props.lang.datepickerTitle} 
                   extra={this.props.lang.datepickerExtra}
                 />
