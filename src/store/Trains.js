@@ -71,7 +71,7 @@ const initStates = Map({
     toStationLabel: '目的地',
     tips: '温馨提示：办理购票、改签和退票业务时，请不晚于开车前48小时。',
     datepickerLabel: '出发日',
-    datepickerTitle: '选择日期',
+    datepickerTitle: '', //日历选择框标题，语言文字长的推介留空
     datepickerExtra: '请选择',
     searchTxt: '查询',
     priceMarkBegin: '¥', //货币前缀

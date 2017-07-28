@@ -6,6 +6,7 @@ import { fetchTrains, setTrainsResult, setStartDate, sortByRunTime, sortByStartT
 import LazyLoad from 'react-lazyload';
 import Loading from '../components/Loading';
 import FilterContent from '../components/FilterContent';
+import loc from '../locale/date-picker/ja_JP';
 
 class TrainSearch extends React.PureComponent {
 
@@ -197,6 +198,9 @@ class TrainSearch extends React.PureComponent {
                   onDismiss={this.hideDate}
                   value={this.props.startDate}
                   onChange={moment => this.onChange(moment)}
+                  locale={loc}
+                  title={this.props.lang.datepickerTitle} 
+                  extra={this.props.lang.datepickerExtra}
                 />
               </div>
               <div className="flex-item flex-grow-1 textRight">

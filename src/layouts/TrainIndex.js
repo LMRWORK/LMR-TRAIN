@@ -3,7 +3,7 @@ import QueueAnim from 'rc-queue-anim';
 import { NavBar, List, DatePicker, Button, WingBlank, WhiteSpace, TabBar } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setStartDate } from '../actions/Trains';
-import loc from 'antd-mobile/lib/date-picker/locale/zh_CN';
+import loc from '../locale/date-picker/ja_JP';
 
 class TrainIndex extends React.PureComponent {
 
