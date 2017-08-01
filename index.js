@@ -13,16 +13,15 @@ objectAssignPolyfill();
 //require('es6-promise').polyfill();
 //require('es6-promise/auto');
 
-//开发模式
-//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
-
 //打包png目录的所有图片
 let requireContext = require.context("./src/assets/png", true, /^\.\/.*\.png$/);
 requireContext.keys().map(requireContext);
 
+//开发模式
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 //生产模式
-const store = createStore(reducer, applyMiddleware(thunk));
+//const store = createStore(reducer, applyMiddleware(thunk));
 
 //高清模式兼容
 /*

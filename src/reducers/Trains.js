@@ -260,9 +260,9 @@ const trainReducer = (state=initStates, action) => {
       return state.set('linkman', action.linkman);
       break;
     
-    //设置表单提交状态
-    case 'SET_RESPONSE':
-      return state.set('formResponse', action.response);
+    //设置表单提交后的返回值
+    case 'SET_ORDER_RESULT':
+      return state.set('orderState', action.orderState);
       break;
 
     default:

@@ -35,14 +35,16 @@ const initStates = Map({
   selectSeat: null,
   passengers: null, //乘客列表（对象数组）
   linkman: null, //联系人（对象）
-  formResponse: null, //表单提交后的相应
+  orderState: null, //表单提交后的响应
   sorterTab: null, //默认排序:sortByStartTime, sortByRunTime, sortByPrice
   noSearch: false, //从book页跳回搜索页时，仅一次有效。
   totalPrice: 0, //价格合计
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   //fetchTrainsUrl: '/public/data/fetchTrain.txt',
-  fetchTrainsUrl: 'http://202.103.68.62:9093/index.php/tools/tt',
+  fetchTrainsUrl: 'http://202.103.68.62:9093/index.php/tools/tt/',
+  //表单提交
+  orderUrl: 'http://202.103.68.62:9093/orders/train_thankyou/',
   //[城市选择页 layout/TrainCity.js]
   stationsArrInit: [
     {cn:'北京', code:'BJP', en:'Beijing'}, 

@@ -109,12 +109,7 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
 };
 
 //异步提交订单
-export const ajaxOrder = (url, fromStation, toStation, startDate) => {
-  const data = {
-    from: fromStation.code,
-    to: toStation.code,
-    date: startDate.format('YYYY-MM-DD'),
-  };
+export const ajaxOrder = (data) => {
   //使用POST
   const postHeader = {
     method: 'POST',
@@ -122,20 +117,24 @@ export const ajaxOrder = (url, fromStation, toStation, startDate) => {
     body: queryString.stringify(data),
   };
   return (dispatch) => {
-    dispatch(gettingTrainsResult());
     //异步Ajax请求
-    fetch(url+'?'+queryString.stringify(data))
+    fetch(data.url, postHeader)
       .then((res) => {
         //从返回的Promise里得到文本
         return res.json();
       })
       .then((json) => {
-        //拿到文本，然后dispatch action
-        //console.log(json);
-        dispatch(setTrainsResult(json));
+        //拿到文本后设置订单状态
+        dispatch(setOrderResult(json));
       });
   }
 };
+
+//按运行时间排序
+export const setOrderResult = (orderState) => ({
+  type: 'SET_ORDER_RESULT',
+  orderState,
+});
 
 //按运行时间排序
 export const sortByRunTime = () => ({

@@ -1,6 +1,5 @@
 /*针对SEO的H1样式，更改为继承父元素。*/
 #TrainIndex-h1 {font-size:inherit; font-weight:inherit; margin:inherit;}
-.trainPage {}
 
 #TrainIndex-searchList .am-list-item .am-list-line .am-list-extra {
     flex-grow: 1;
