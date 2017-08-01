@@ -23,6 +23,10 @@ class TrainBookLinkman extends React.PureComponent {
   }
 
   updateLinkman = () => {
+    const lName = document.getElementById('lName').value;
+    const lEmail = document.getElementById('lEmail').value;
+    const lNation = document.getElementById('lNation').value;
+    const lPhone = document.getElementById('lPhone').value;
     //更新联系人信息
     this.props.setLinkman({
       name: lName,

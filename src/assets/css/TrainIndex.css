@@ -2,24 +2,9 @@
 #TrainIndex-h1 {font-size:inherit; font-weight:inherit; margin:inherit;}
 .trainPage {}
 
-/*
-默认还是使用阿里国际的按钮样式
-#TrainIndex-search-btn {
-    color: #fff;
-    background-color: rgba(219, 87, 51, 1);
-    padding: 4px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 0px rgba(219, 31, 5, 1), 0px 0px 20px rgba(120, 120, 120, .5);
-    -webkit-transition: all .1s ease;
-    -moz-transition: all .1s ease;
-    transition: all .1s ease;
+#TrainIndex-searchList .am-list-item .am-list-line .am-list-extra {
+    flex-grow: 1;
 }
-#TrainIndex-search-btn:active {
-    box-shadow: 0px 0px 0px rgba(219, 31, 5, 1), 0px 0px 10px rgba(200, 200, 200, .7);
-    position: relative;
-    top: 2px;
-}
-*/
 
 /*tabbar*/
 #TrainIndex-tabbar-div .am-tab-bar-bar .am-tab-bar-tab-title {font-size:32px; color:#333!important; margin-bottom: 0.1rem;}

@@ -1,14 +1,8 @@
-.bookPage {
-}
-#payDiv {
-}
 #trainInfo .bFrom, #trainInfo .bTo {
   flex-grow: 1;
 }
 #trainInfo .bFromTime, #trainInfo .bToTime {
   text-align: right;
-}
-#trainInfo .bFromDate, #trainInfo .bToDate {
 }
 #trainInfo .bFrom2, #trainInfo .bTo2 {
   font-size: 0.6rem;
@@ -28,8 +22,6 @@
 #trainInfo .bTime {
   position: relative;
   left: -0.1rem;
-}
-.bPay {
 }
 .bTotal {
   color: #d81e06;

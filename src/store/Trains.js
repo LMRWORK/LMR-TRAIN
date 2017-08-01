@@ -1,5 +1,27 @@
 import { Map } from 'immutable';
 import moment from 'moment';
+
+//初始化moment的语言包。
+switch (document.domain) {
+  case 'www.arachina.com':
+    moment.locale('ja');
+    break;
+  case 'www.viaje-a-china.com':
+    moment.locale('es');
+    break;
+  case 'www.voyageschine.com':
+    moment.locale('fr');
+    break;
+  case 'www.viaggio-in-cina.it':
+    moment.locale('it');
+    break;
+  case 'www.chinahighlights.ru':
+    moment.locale('ru');
+    break;
+  default:
+    moment.locale('it');
+}
+
 //初始化store
 const initStates = Map({
   //[全局 states]
@@ -19,7 +41,7 @@ const initStates = Map({
   totalPrice: 0, //价格合计
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
-  /**fetchTrainsUrl: '/public/data/fetchTrain.txt',**/
+  //fetchTrainsUrl: '/public/data/fetchTrain.txt',
   fetchTrainsUrl: 'http://202.103.68.62:9093/index.php/tools/tt',
   //[城市选择页 layout/TrainCity.js]
   stationsArrInit: [

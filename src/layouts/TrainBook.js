@@ -68,7 +68,7 @@ class TrainBook extends React.PureComponent {
             <List.Item thumb={this.props.lang.cityIcon} onClick={this.showDetailFromTime}> 
               <Flex>
                 <Flex.Item className="bItem bFrom">{this.props.selectTrain.DepartStation}</Flex.Item>
-                <Flex.Item className="bItem bFromTime">{this.props.startDate.format('MM/DD HH:mm')}
+                <Flex.Item className="bItem bFromTime">{this.props.startDate.format('MMM D, HH:mm')}
                   <a className="detailTime"> {/*this.props.lang.detailText*/} 
                     { this.state.showDetailFromTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
                   </a>
@@ -87,7 +87,7 @@ class TrainBook extends React.PureComponent {
             <List.Item thumb={this.props.lang.cityIcon} onClick={this.showDetailToTime}> 
               <Flex>
                 <Flex.Item className="bItem bTo">{this.props.selectTrain.ArriveStation}</Flex.Item>
-                <Flex.Item className="bItem bToTime">{this.props.arriveDate.format('MM/DD HH:mm')}
+                <Flex.Item className="bItem bToTime">{this.props.arriveDate.format('MMM D, HH:mm')}
                   <a className="detailTime"> {/*this.props.lang.detailText*/} 
                     { this.state.showDetailToTime ? <img className="moreIcon" src={this.props.lang.lessIcon}/> : <img className="moreIcon" src={this.props.lang.moreIcon}/> }
                   </a>
