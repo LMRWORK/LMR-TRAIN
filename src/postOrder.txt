@@ -1,26 +1,26 @@
-=====searchÒ³Ãæ======
+=====searché¡µé¢======
 
 select_train:G1232
-Txt_FZ_1:ÉÏº£
-Txt_DZ_1:Ìì½ò
+Txt_FZ_1:ä¸Šæµ·
+Txt_DZ_1:å¤©æ´¥
 select_duration:06:06
-select_fz:ÉÏº£ºç˜òñk
-select_dz:Ìì½ò
+select_fz:ä¸Šæµ·è™¹æ©‹é§…
+select_dz:å¤©æ´¥
 select_dz_date:06/14/2017
 select_from_time:07:49
 select_to_time:13:55
-select_seat:1|1|¥Ó¥¸¥Í¥¹Ï¯|9|46|1631|1630.5
-select_train_seats:1|1|1µÈÏ¯|M|41|870|869.5@1|1|¥Ó¥¸¥Í¥¹Ï¯|9|46|1631|1630.5@1|1|2µÈÏ¯|O|13|517|516.5
-ticketclass_1:1|1631|9|46|¥Ó¥¸¥Í¥¹Ï¯
+select_seat:1|1|ãƒ“ã‚¸ãƒã‚¹å¸­|9|46|1631|1630.5
+select_train_seats:1|1|1ç­‰å¸­|M|41|870|869.5@1|1|ãƒ“ã‚¸ãƒã‚¹å¸­|9|46|1631|1630.5@1|1|2ç­‰å¸­|O|13|517|516.5
+ticketclass_1:1|1631|9|46|ãƒ“ã‚¸ãƒã‚¹å¸­
 select_yp:46
 si:1
 stationDate_1:06/14/2017
 data_type:mobile_post
 
 
-=====±íµ¥Ò³Ãæ=======
-
-Ê¹ÓÃÀàËÆ FromSS µÄ·½Ê½´«µİ²ÎÊı¸øºóÌ¨·şÎñÆ÷Ğé¹¹Ò»¸ö¹ºÎï³µ£¬ĞèÒªºóÌ¨Ôö¼ÓÖ§³Ö¡£
+=====è¡¨å•é¡µé¢=======
+/orders/train_thankyou/
+ä½¿ç”¨ç±»ä¼¼ FromSS çš„æ–¹å¼ä¼ é€’å‚æ•°ç»™åå°æœåŠ¡å™¨è™šæ„ä¸€ä¸ªè´­ç‰©è½¦ï¼Œéœ€è¦åå°å¢åŠ æ”¯æŒã€‚
 
 guestName[]:daren1
 guestpassport[]:daren1_pass
@@ -35,7 +35,7 @@ fullname:LMRlxianxi
 email:lmrhaiddd@163.com
 phone:13657854652
 Nationality:2
-SpecialRequest:!-ĞÂ°æ-ÊÖ»ú¶©µ¥-!
+SpecialRequest:!-æ–°ç‰ˆ-æ‰‹æœºè®¢å•-!
 gender:100002
 isDelivery:my
 passenerno:2

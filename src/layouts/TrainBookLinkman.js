@@ -2,7 +2,7 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { List, NavBar, Flex, WhiteSpace, WingBlank, Button, InputItem } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { setNoSearch, setLinkman } from '../actions/Trains';
+import { setNoSearch, setLinkman, ajaxOrder } from '../actions/Trains';
 
 class TrainBookLinkman extends React.PureComponent {
 
@@ -59,6 +59,7 @@ class TrainBookLinkman extends React.PureComponent {
     //提交表单
     if (lName && lEmail && lNation && lPhone && valiEmail) {
       console.log('已搜集完所有数据，TODO：异步提交表单，监控响应!');
+      this.props.ajaxOrder({});
     } else {
       console.log('验证失败禁止提交!');
     }
@@ -153,7 +154,8 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setLinkman: (linkman) => dispatch(setLinkman(linkman)),
-  setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch))
+  setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch)),
+  ajaxOrder: (data) => dispatch(ajaxOrder(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainBookLinkman);

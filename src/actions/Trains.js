@@ -92,13 +92,6 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
     to: toStation.code,
     date: startDate.format('YYYY-MM-DD'),
   };
-  /** 生产环境使用POST
-  const postHeader = {
-    method: 'POST',
-    headers: {'Content-Type':'application/x-www-form-urlencoded'},
-    body: queryString.stringify(data),
-  };
-  **/
   return (dispatch) => {
     dispatch(gettingTrainsResult());
     //异步Ajax请求
@@ -109,36 +102,35 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
       })
       .then((json) => {
         //拿到文本，然后dispatch action
+        //console.log(json);
+        dispatch(setTrainsResult(json));
+      });
+  }
+};
 
-        /**
-        模拟ajax延时，并随机重置'运行时间'，方便测试。
-        json.result[0].RunTime = Math.ceil(Math.random()*100);
-        */
-        /*
-        const trainType = ['G', 'D', 'T', 'C', '1', 'L'];
-        const t = moment();
-        let r;
-        json.result.forEach(i => {
-          i.cheapSeat.SeatPrice = 50 + Math.ceil(Math.random()*2000);
-          i.SeatList[0].SeatPrice = i.cheapSeat.SeatPrice;
-          t.minute(Math.ceil(Math.random()*60));
-          t.hour(Math.ceil(12 + Math.random()*24))
-          i.RunTime = t.format('HH:mm');
-          t.minute(Math.ceil(Math.random()*60));
-          t.hour(Math.ceil(Math.random()*24))
-          i.DepartTime = t.format('HH:mm');
-          t.minute(Math.ceil(Math.random()*60));
-          t.hour(Math.ceil(Math.random()*24))
-          i.ArriveTime = t.format('HH:mm');
-          r = Math.floor((Math.random()*10)%6);
-          i.TrainType = trainType[r];
-          i.TrainCode = i.TrainType + i.TrainCode.slice(1);
-        });
-        setTimeout(() => dispatch(setTrainsResult(json)), 1200);
-        */
-        /**
-        生产环境注释掉上面测试
-        */
+//异步提交订单
+export const ajaxOrder = (url, fromStation, toStation, startDate) => {
+  const data = {
+    from: fromStation.code,
+    to: toStation.code,
+    date: startDate.format('YYYY-MM-DD'),
+  };
+  //使用POST
+  const postHeader = {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: queryString.stringify(data),
+  };
+  return (dispatch) => {
+    dispatch(gettingTrainsResult());
+    //异步Ajax请求
+    fetch(url+'?'+queryString.stringify(data))
+      .then((res) => {
+        //从返回的Promise里得到文本
+        return res.json();
+      })
+      .then((json) => {
+        //拿到文本，然后dispatch action
         //console.log(json);
         dispatch(setTrainsResult(json));
       });
