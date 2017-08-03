@@ -7,7 +7,7 @@ class FilterContent extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    console.log('😃 FilterContent', props);
+    //console.log('😃 FilterContent', props);
   }
 
   //过滤条件 highSpeed、time0006，time0612、time1218、time1824
@@ -32,7 +32,7 @@ class FilterContent extends React.PureComponent {
   }
 
   render() {
-    console.log("🔥 FilterContent.render()");
+    //console.log("🔥 FilterContent.render()");
     return (
       <div id="FilterContent">
         <List renderHeader="车次类型">

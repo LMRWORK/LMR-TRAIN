@@ -14,7 +14,7 @@ class TrainCity extends React.PureComponent {
       searchType: this.props.location.search=='?from' ? 'from' : 'to',
       stationsArr: [],
     };
-    console.log('😃 TrainCity', props);
+    //console.log('😃 TrainCity', props);
   }
 
   componentDidMount = () => {
@@ -36,7 +36,7 @@ class TrainCity extends React.PureComponent {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainCity.shouldComponentUpdate');
+    //console.log('TrainCity.shouldComponentUpdate');
     return this.state.stationsArr != nextState.stationsArr;
   }
 
@@ -54,7 +54,7 @@ class TrainCity extends React.PureComponent {
       }
       if (reg_arr.length > 0) {
         this.setState({stationsArr: reg_arr});
-        //console.log(stationObj_arr);
+        ////console.log(stationObj_arr);
       }
     } else {
       this.setState({stationsArr: []});
@@ -67,7 +67,7 @@ class TrainCity extends React.PureComponent {
   }
 
   render() {
-    console.log("🔥 TrainCity.render()");
+    //console.log("🔥 TrainCity.render()");
     let lists = this.state.stationsArr.length ? this.state.stationsArr : this.props.stationsArrInit;
     return (
       <QueueAnim className="router-wrap" type="bottom">

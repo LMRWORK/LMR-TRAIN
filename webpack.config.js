@@ -9,7 +9,7 @@ const svgDirs = [
   'C:\\VHD\\Dropbox\\icht-train\\node_modules\\.1.5.0@antd-mobile\\lib\\icon\\style\\assets\\'
 ];
 
-console.log(svgDirs);
+//console.log(svgDirs);
 
 const config = {
 

@@ -14,11 +14,11 @@ class TrainBook extends React.PureComponent {
       showDetailFromTime: false,
       showDetailToTime: false,
     };
-    console.log('😃 TrainBook', props);
+    //console.log('😃 TrainBook', props);
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainBook.componentWillReceiveProps', nextProps);
+    //console.log('TrainBook.componentWillReceiveProps', nextProps);
   }
 
   componentDidMount = () => {
@@ -27,9 +27,9 @@ class TrainBook extends React.PureComponent {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainBook.shouldComponentUpdate');
-    //console.log(nextProps.passengers);
-    //console.log(this.props.passengers);
+    //console.log('TrainBook.shouldComponentUpdate');
+    ////console.log(nextProps.passengers);
+    ////console.log(this.props.passengers);
     return true;
   }
 
@@ -44,7 +44,7 @@ class TrainBook extends React.PureComponent {
   }
 
   render() {
-    console.log("🔥 TrainBook.render()");
+    //console.log("🔥 TrainBook.render()");
     //没有数据路由到搜索页
     if (!this.props.selectTrain) {
       this.props.setNoSearch(false);

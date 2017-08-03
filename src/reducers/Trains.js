@@ -106,7 +106,7 @@ const trainReducer = (state=initStates, action) => {
       const selectSeat = state.get('selectSeat');
       const passengers = state.get('passengers');
       const exRate = state.get('trainsResult').ExRate;
-      console.log('SET_TOTAL_PRICE', selectTrain, selectSeat, passengers);
+      //console.log('SET_TOTAL_PRICE', selectTrain, selectSeat, passengers);
       passengers.forEach(i => {
         if (i.age == 0 || i.age == null) {
           pure += Math.ceil(selectSeat.SeatPriceRMB * exRate);
@@ -157,14 +157,14 @@ const trainReducer = (state=initStates, action) => {
         default:
           filter_array = [];
       }
-      //console.log('SET_FILTER_TYPE', filter_array);
+      ////console.log('SET_FILTER_TYPE', filter_array);
       return state.set('filterType', filter_array);
 
     //执行过滤：通过放置显示标识来完成，提高效率。
     case 'RUN_FILTER':
       filter_array = state.get('filterType');
       list = state.get('trainsResult');
-      //console.log('RUN_FILTER', filter_array);
+      ////console.log('RUN_FILTER', filter_array);
       if (filter_array.length) {
         let t, t1, t2;
         list.result.forEach(i => {
@@ -254,7 +254,7 @@ const trainReducer = (state=initStates, action) => {
           i.display = 'flex';
         });
       }
-      //console.log('RUN_FILTER', list.result);
+      ////console.log('RUN_FILTER', list.result);
       return state.set('trainsResult', list);
       break;
 

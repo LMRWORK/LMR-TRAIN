@@ -16,11 +16,11 @@ class TrainBookLinkman extends React.PureComponent {
       lPhoneError: false,
       lNationError: false
     };
-    console.log('😃 TrainBookLinkman', props);
+    //console.log('😃 TrainBookLinkman', props);
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainBookLinkman.componentWillReceiveProps', nextProps);
+    //console.log('TrainBookLinkman.componentWillReceiveProps', nextProps);
   }
 
   updateLinkman = () => {
@@ -59,15 +59,79 @@ class TrainBookLinkman extends React.PureComponent {
     }
     //提交表单
     if (lName && lEmail && lNation && lPhone && valiEmail) {
-      console.log('已搜集完所有数据，TODO：异步提交表单，监控响应!');
+      //console.log('已搜集完所有数据，TODO：异步提交表单，监控响应!');
+      //火车信息整理
+      let selectTrain = {};
+      selectTrain.search_index = 1;
+      selectTrain.select_train = this.props.selectTrain.TrainCode;
+      selectTrain.select_seat = '0|0|'+this.props.selectSeat.SeatName+'|'+this.props.selectSeat.SeatCode+'|'+this.props.selectSeat.SeatInventory+'|'+this.props.selectSeat.SeatPriceRMB+'|'+this.props.selectSeat.SeatPrice;
+      selectTrain.select_train_seats = '';
+      this.props.selectTrain.SeatList.forEach( i => {
+        selectTrain.select_train_seats += '0|0|'+i.SeatName+'|'+i.SeatCode+'|'+i.SeatInventory+'|'+i.SeatPriceRMB+'|'+i.SeatPrice + '@';
+      });
+      selectTrain.select_train_seats = selectTrain.select_train_seats.slice(0 , -1);
+      selectTrain.select_from_time = this.props.selectTrain.DepartTime;
+      selectTrain.select_to_time = this.props.selectTrain.ArriveTime;
+      selectTrain.select_fz = this.props.selectTrain.DepartStation;
+      selectTrain.select_dz = this.props.selectTrain.ArriveStation;
+      selectTrain.select_duration = this.props.selectTrain.RunTime;
+      selectTrain.select_date = this.props.startDate.format('MM/DD/YYYY');
+      selectTrain.select_dz_date = this.props.arriveDate.format('MM/DD/YYYY');
+      selectTrain.service_fee = ''; //国际火车票指定手续费
+      selectTrain.train_no = this.props.selectTrain.TrainNo;
+      selectTrain.seat_types = this.props.selectTrain.SeatType;
+      selectTrain.from_no = this.props.selectTrain.DepartStationNo;
+      selectTrain.to_no = this.props.selectTrain.ArriveStationNo;
+      selectTrain.select_fz_code = this.props.selectTrain.DepartStationCode;
+      selectTrain.select_dz_code = this.props.selectTrain.ArriveStationCode;
+      selectTrain.select_yp = this.props.selectSeat.SeatInventory;
+
+      //乘客分类处理
+      const adult = this.props.passengers.filter(i => !i.age);
+      const child = this.props.passengers.filter(i => i.age);
+      let adultsName = [], adultsPass = [], adultsPic = [];
+      let childrenName = [], childrenPass = [], childrenPic = [];
+      adult.forEach( i => {
+        adultsName.push(i.name);
+        adultsPass.push(i.passport);
+        adultsPic.push('');
+      });
+      child.forEach( i => {
+        childrenName.push(i.name);
+        childrenPass.push(i.passport);
+        childrenPic.push('');
+      });
       this.props.ajaxOrder({
+        //火车订单信息
+        fromSSmobile: [JSON.stringify(selectTrain)],
+        //乘客和联系人信息
+        SpecialRequest: '!-REACT-手机订单-!',
         url: this.props.orderUrl,
-        test: 'test'
+        fullname: lName,
+        email: lEmail,
+        phone: lPhone,
+        Nationality: lNation,
+        passenerno: adult.length,
+        guestName: adultsName,
+        guestpassport: adultsPass,
+        passPic: adultsPic,
+        passenerno_chd: child.length,
+        guestNameCHD: childrenName,
+        guestpassportCHD: childrenPass,
+        passPicCHD: childrenPic,
+        //下面是固定选项
+        changeseat: 1,
+        changetrain: 1,
+        isDelivery: 'my',
+        gender: 100002,
+        email1: '',
+        data_type: 'mobile',
+        ticketclass_1: ''
       });
       //显示轻提示
       //Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
     } else {
-      console.log('验证失败禁止提交!');
+      //console.log('验证失败禁止提交!');
     }
   }
 
@@ -77,7 +141,7 @@ class TrainBookLinkman extends React.PureComponent {
   }
 
   render() {
-    console.log("🔥 TrainBookLinkman.render()");
+    //console.log("🔥 TrainBookLinkman.render()");
     //没有数据路由到搜索页
     if (!this.props.selectTrain) {
       this.props.setNoSearch(false);

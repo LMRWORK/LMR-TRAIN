@@ -18,7 +18,7 @@ class TrainSearch extends React.PureComponent {
       lastAction: 'init', //用于记录复杂页面的操作历史
 
     };
-    console.log('😃 TrainSearch', props);
+    //console.log('😃 TrainSearch', props);
   }
 
   componentDidMount = () => {
@@ -39,7 +39,7 @@ class TrainSearch extends React.PureComponent {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainSearch.componentWillReceiveProps', nextProps);
+    //console.log('TrainSearch.componentWillReceiveProps', nextProps);
     //加载完成
     if (nextProps.trainsResult) {
       //隐藏轻提示
@@ -50,7 +50,7 @@ class TrainSearch extends React.PureComponent {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainSearch.shouldComponentUpdate');
+    //console.log('TrainSearch.shouldComponentUpdate');
     return this.props.fromStation.code != nextProps.fromStation.code || 
            this.props.toStation.code != nextProps.toStation.code ||
            this.props.startDate != nextProps.startDate ||
@@ -78,8 +78,8 @@ class TrainSearch extends React.PureComponent {
       Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
       //更新日期
       this.props.setStartDate(moment);
-      //console.log(this.props.startDate.format('L'));
-      //console.log(this.props.startDate.format('L'));
+      ////console.log(this.props.startDate.format('L'));
+      ////console.log(this.props.startDate.format('L'));
       //清空原结果
       this.props.setTrainsResult(null);
       //重新抓取火车数据
@@ -139,13 +139,13 @@ class TrainSearch extends React.PureComponent {
       }
       //过滤条件
       this.setState({lastAction: 'sorter'});
-      //console.log('sort done: ' + data);
+      ////console.log('sort done: ' + data);
     }
   }
 
   //选择车站后，提交store，并路由到座位选择页
   onSelect = (train) => {
-    //console.log(train);
+    ////console.log(train);
     if (train.IsBookable) {
       this.props.setSelectTrain(train);
       this.props.history.push('/book');
@@ -172,7 +172,7 @@ class TrainSearch extends React.PureComponent {
   }
 
   render() {
-    console.log("🔥 TrainSearch.render()");
+    //console.log("🔥 TrainSearch.render()");
     return (
       <div>
         <QueueAnim className="date-wrap" type="top">

@@ -32,23 +32,23 @@ class TrainForm extends React.PureComponent {
     };
     //初始化乘客列表并放入store
     this.props.passengers || this.props.setPassengers([Object.assign({}, passengerInfo)]);
-    console.log('😃 TrainForm', props);
+    //console.log('😃 TrainForm', props);
   }
 
   componentDidMount = () => {
-    console.log('TrainForm.componentDidMount');
+    //console.log('TrainForm.componentDidMount');
     //计算价格
     this.props.setTotalPrice();
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('TrainForm.componentWillReceiveProps', nextProps);
+    //console.log('TrainForm.componentWillReceiveProps', nextProps);
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    console.log('TrainForm.shouldComponentUpdate');
-    //console.log(nextProps.passengers);
-    //console.log(this.props.passengers);
+    //console.log('TrainForm.shouldComponentUpdate');
+    ////console.log(nextProps.passengers);
+    ////console.log(this.props.passengers);
 
     //对比乘客数据，优化性能
     let passengerStatus = true;
@@ -73,7 +73,7 @@ class TrainForm extends React.PureComponent {
 
   //选择座位
   onSelectSeat = (seat) => {
-    console.log('TrainForm.onSelectSeat', seat);
+    //console.log('TrainForm.onSelectSeat', seat);
     this.props.setSelectSeat(seat);
     this.setState({lastAction: 'onSelectSeat'+seat.SeatCode});
     //计算价格
@@ -199,7 +199,7 @@ class TrainForm extends React.PureComponent {
       chk = !i.ageError && !i.nameError && !i.passportError;
     })
     this.setState({lastAction: 'onNextBook'});
-    console.log('TrainBook.onNextBook', this.props.passengers);
+    //console.log('TrainBook.onNextBook', this.props.passengers);
     if (chk) {
       this.props.history.push('/booklinkman');
     }
@@ -210,7 +210,7 @@ class TrainForm extends React.PureComponent {
   } 
 
   render() {
-    console.log("🔥 TrainForm.render()");
+    //console.log("🔥 TrainForm.render()");
     //体验优化：如果点选过座位，则保持已选择过的座位类型。
     let selectSeatCode = null;
     if (this.props.selectSeat) {

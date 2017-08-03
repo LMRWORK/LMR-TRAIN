@@ -10,7 +10,7 @@ class TrainThankyou extends React.PureComponent {
   }
 
   render() {
-    console.log('%cTrainThankyou.render()', 'background: #222; color: #bada55');
+    //console.log('%cTrainThankyou.render()', 'background: #222; color: #bada55');
     const Step = Steps.Step;
 
     return (
