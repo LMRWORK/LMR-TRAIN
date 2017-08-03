@@ -103,7 +103,7 @@ class TrainBookLinkman extends React.PureComponent {
       });
       this.props.ajaxOrder({
         //火车订单信息
-        fromSSmobile: [JSON.stringify(selectTrain)],
+        fromSSmobile: JSON.stringify([selectTrain]),
         //乘客和联系人信息
         SpecialRequest: '!-REACT-手机订单-!',
         url: this.props.orderUrl,

@@ -45,7 +45,7 @@ const initStates = Map({
   //fetchTrainsUrl: '/public/data/fetchTrain.txt',
   fetchTrainsUrl: 'http://202.103.68.62:9093/index.php/tools/tt/',
   //表单提交
-  orderUrl: 'http://202.103.68.62:9093/orders/train_thankyou/',
+  orderUrl: 'https://www.arachina.com/orders/train_thankyou/',
   //[城市选择页 layout/TrainCity.js]
   stationsArrInit: [
     {cn:'北京', code:'BJP', en:'Beijing'}, 
