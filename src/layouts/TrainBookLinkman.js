@@ -65,7 +65,7 @@ class TrainBookLinkman extends React.PureComponent {
         test: 'test'
       });
       //显示轻提示
-      Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
+      //Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
     } else {
       console.log('验证失败禁止提交!');
     }
@@ -126,7 +126,7 @@ class TrainBookLinkman extends React.PureComponent {
               </InputItem>
             </List.Item>
           </List>
-          <List renderHeader={this.props.lang.totalTitle} id="payDiv3">
+          <List renderHeader={this.props.lang.totalTitle + this.props.lang.priceMarkBegin + this.props.totalFee + this.props.lang.priceMarkAfter} id="payDiv3">
             <List.Item thumb={this.props.lang.totalPriceIcon}>
               <Flex>
                 <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>
@@ -159,6 +159,7 @@ const mapStateToProps = (store) => ({
   selectSeat: store.get('selectSeat'),
   linkman: store.get('linkman'),
   orderUrl: store.get('orderUrl'),
+  totalFee: store.get('totalFee'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
