@@ -3,6 +3,7 @@ import QueueAnim from 'rc-queue-anim';
 import { List, NavBar, Flex, WhiteSpace, WingBlank, Button, InputItem, Toast } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setNoSearch, setLinkman, ajaxOrder } from '../actions/Trains';
+import Loading from '../components/Loading';
 
 class TrainBookLinkman extends React.PureComponent {
 
@@ -89,18 +90,20 @@ class TrainBookLinkman extends React.PureComponent {
           <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>,this.props.lang.navibarLeftBack]} mode="dark" onLeftClick={this.goBack}>
             <h1 id="TrainIndex-h1">{this.props.lang.checkNaviBar}</h1>
           </NavBar>
-          <List renderHeader={this.props.lang.checkTrainText} id="payDiv1">
-            <List.Item thumb={this.props.lang.trainIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.TrainCode}</span> <span className="sFont">{this.props.selectSeat.SeatName}</span></List.Item>
-            <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.DepartStation}</span> <span className="sFont">{this.props.startDate.format('lll')}</span></List.Item>
-            <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.ArriveStation}</span> <span className="sFont">{this.props.arriveDate.format('lll')}</span></List.Item>
-          </List>
-          <List renderHeader={this.props.lang.checkPersonText} id="payDiv2">
-          {this.props.passengers.map( i => (
-            <List.Item thumb={this.props.lang.nameIcon} extra={i.age ? this.props.lang.childText : this.props.lang.adultText} align="top" multipleLine>
-              <span style={{fontSize:'0.6rem'}}>{i.name}</span> <List.Item.Brief>{i.passport}</List.Item.Brief>
-            </List.Item>
-          ))}
-          </List>
+          <div id="guestinfo">
+            <List renderHeader={this.props.lang.checkTrainText} id="payDiv1">
+              <List.Item thumb={this.props.lang.trainIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.TrainCode}</span> <span className="sFont">{this.props.selectSeat.SeatName}</span></List.Item>
+              <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.DepartStation}</span> <span className="sFont">{this.props.startDate.format('lll')}</span></List.Item>
+              <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.ArriveStation}</span> <span className="sFont">{this.props.arriveDate.format('lll')}</span></List.Item>
+            </List>
+            <List renderHeader={this.props.lang.checkPersonText} id="payDiv2">
+            {this.props.passengers.map( i => (
+              <List.Item thumb={this.props.lang.nameIcon} extra={i.age ? this.props.lang.childText : this.props.lang.adultText} align="top" multipleLine>
+                <span style={{fontSize:'0.6rem'}}>{i.name}</span> <List.Item.Brief>{i.passport}</List.Item.Brief>
+              </List.Item>
+            ))}
+            </List>
+          </div>
           <List renderHeader={this.props.lang.linkmanHead}>
             <List.Item className="imgAutoList">
               <InputItem placeholder={this.props.lang.namePlaceholder} id="lName" error={this.state.lNameError} onErrorClick={() => alert(this.props.lang.lName)} defaultValue={this.props.linkman ? this.props.linkman.name : null}>

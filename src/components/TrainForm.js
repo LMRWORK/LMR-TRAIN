@@ -290,7 +290,7 @@ class TrainForm extends React.PureComponent {
           )}
           </QueueAnim>
         </div>
-        <List renderHeader={this.props.lang.totalTitle} id="payDiv">
+        <List renderHeader={this.props.lang.totalTitle + this.props.lang.priceMarkBegin + this.props.totalPrice + this.props.lang.priceMarkAfter} id="payDiv">
           <List.Item thumb={this.props.lang.totalPriceIcon}>
             <Flex>
               <Flex.Item className="bItem bTotal">{this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}</Flex.Item>

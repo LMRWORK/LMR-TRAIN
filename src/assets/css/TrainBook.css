@@ -91,3 +91,13 @@ span.sFont {
   position: relative;
   top: 0.1rem;
 }
+#guestinfo {
+  border: 5px solid lightseagreen;
+  padding: 0 0 0.6rem;
+  margin: 0.5rem;
+  background: lightyellow;
+  border-radius: 0.3rem;
+}
+.passWrap .am-list-item .am-input-control input{
+  color: darkcyan;
+}
