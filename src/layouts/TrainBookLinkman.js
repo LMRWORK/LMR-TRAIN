@@ -1,20 +1,9 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, Flex, WhiteSpace, WingBlank, Button, InputItem, Toast, ActionSheet } from 'antd-mobile';
+import { List, NavBar, Flex, WhiteSpace, WingBlank, Button, InputItem, Toast, Picker } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setNoSearch, setLinkman, ajaxOrder } from '../actions/Trains';
 import Loading from '../components/Loading';
-
-// fix touch to scroll background page on iOS
-// https://github.com/ant-design/ant-design-mobile/issues/307
-// https://github.com/ant-design/ant-design-mobile/issues/163
-const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
-let wrapProps;
-if (isIPhone) {
-  wrapProps = {
-    onTouchStart: e => e.preventDefault(),
-  };
-}
 
 class TrainBookLinkman extends React.PureComponent {
 
@@ -31,19 +20,30 @@ class TrainBookLinkman extends React.PureComponent {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    //console.log('TrainBookLinkman.componentWillReceiveProps', nextProps);
+    console.log(nextProps);
+    if (nextProps.orderState) {
+      if (nextProps.orderState.status == 'ok') {
+        Toast.hide();
+        this.props.history.push('/thankyou');
+      } else {
+        Toast.hide();
+        alert(this.props.lang.tryAgainText);
+      }
+    }
   }
 
   updateLinkman = () => {
     const lName = document.getElementById('lName').value;
     const lEmail = document.getElementById('lEmail').value;
     const lNation = document.getElementById('lNation').value;
+    const lNationId = document.getElementById('lNation').getAttribute('data-ref');
     const lPhone = document.getElementById('lPhone').value;
     //更新联系人信息
     this.props.setLinkman({
       name: lName,
       email: lEmail,
       nation: lNation,
+      nationId: lNationId,
       phone: lPhone,
     });
   }
@@ -55,6 +55,7 @@ class TrainBookLinkman extends React.PureComponent {
     const lName = document.getElementById('lName').value;
     const lEmail = document.getElementById('lEmail').value;
     const lNation = document.getElementById('lNation').value;
+    const lNationId = document.getElementById('lNation').getAttribute('data-ref');
     const lPhone = document.getElementById('lPhone').value;
     lName ? this.setState({'lNameError': false}) : this.setState({'lNameError': true});
     lNation ? this.setState({'lNationError': false}) : this.setState({'lNationError': true});
@@ -68,7 +69,7 @@ class TrainBookLinkman extends React.PureComponent {
       this.setState({'lEmailError': true});
     }
     //提交表单
-    if (lName && lEmail && lNation && lPhone && valiEmail) {
+    if (lName && lEmail && lNation && lPhone && valiEmail && lNationId) {
       //console.log('已搜集完所有数据，TODO：异步提交表单，监控响应!');
       //火车信息整理
       let selectTrain = {};
@@ -120,7 +121,7 @@ class TrainBookLinkman extends React.PureComponent {
         fullname: lName,
         email: lEmail,
         phone: lPhone,
-        Nationality: lNation,
+        Nationality: lNationId,
         passenerno: adult.length,
         guestName: adultsName,
         guestpassport: adultsPass,
@@ -139,7 +140,7 @@ class TrainBookLinkman extends React.PureComponent {
         ticketclass_1: ''
       });
       //显示轻提示
-      //Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
+      Toast.info(<Loading text={this.props.lang.loadingText}/>, 0);
     } else {
       //console.log('验证失败禁止提交!');
     }
@@ -150,20 +151,18 @@ class TrainBookLinkman extends React.PureComponent {
     this.props.history.push('/book');
   }
 
-  selectNation = () => {
-    const BUTTONS = ['操作一', '操作二', '操作三', '删除', '取消'];
-    ActionSheet.showActionSheetWithOptions({
-      options: BUTTONS,
-      cancelButtonIndex: BUTTONS.length - 1,
-      destructiveButtonIndex: BUTTONS.length - 2,
-      // title: '标题',
-      message: '我是描述我是描述',
-      maskClosable: true,
-      'data-seed': 'logId',
-      wrapProps,
-    },
-    (buttonIndex) => {
-      console.log(BUTTONS[buttonIndex]);
+  selectNation = (value) => {
+    const lName = document.getElementById('lName').value;
+    const lEmail = document.getElementById('lEmail').value;
+    const lNation = value[0];
+    const lPhone = document.getElementById('lPhone').value;
+    //更新联系人信息
+    this.props.setLinkman({
+      name: lName,
+      email: lEmail,
+      nation: lNation[0],
+      nationId: lNation[1],
+      phone: lPhone,
     });
   }
 
@@ -206,11 +205,13 @@ class TrainBookLinkman extends React.PureComponent {
                 {this.props.lang.emailText}
               </InputItem>
             </List.Item>
-            <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.nationPlaceholder} editable={false} onClick={this.selectNation} id="lNation" error={this.state.lNationError} onErrorClick={() => alert(this.props.lang.lNation)} defaultValue={this.props.linkman ? this.props.linkman.nation : null}>
-                {this.props.lang.nationText}
-              </InputItem>
-            </List.Item>
+            <Picker data={this.props.lang.nations} cols={1} onOk={(value) => this.selectNation(value)} okText={this.props.lang.okText} dismissText={this.props.lang.searchCancel} extra="">
+              <List.Item className="imgAutoList">
+                <InputItem placeholder={this.props.lang.nationPlaceholder} editable={false} id="lNation" error={this.state.lNationError} onErrorClick={() => alert(this.props.lang.lNation)} value={this.props.linkman ? this.props.linkman.nation : null} data-ref={this.props.linkman ? this.props.linkman.nationId : null}>
+                  {this.props.lang.nationText}
+                </InputItem>
+              </List.Item>
+            </Picker>
             <List.Item className="imgAutoList">
               <InputItem placeholder={this.props.lang.phonePlaceholder} id="lPhone" error={this.state.lPhoneError} onErrorClick={() => alert(this.props.lang.lPhone)} defaultValue={this.props.linkman ? this.props.linkman.phone : null}>
                 {this.props.lang.phoneText}
@@ -250,6 +251,7 @@ const mapStateToProps = (store) => ({
   selectSeat: store.get('selectSeat'),
   linkman: store.get('linkman'),
   orderUrl: store.get('orderUrl'),
+  orderState: store.get('orderState'),
   totalFee: store.get('totalFee'),
 });
 

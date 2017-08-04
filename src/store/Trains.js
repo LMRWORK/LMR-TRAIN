@@ -45,7 +45,8 @@ const initStates = Map({
   //fetchTrainsUrl: '/public/data/fetchTrain.txt',
   fetchTrainsUrl: 'http://202.103.68.62:9093/index.php/tools/tt/',
   //表单提交
-  orderUrl: 'https://www.arachina.com/orders/train_thankyou/',
+  //orderUrl: 'https://www.arachina.com/orders/train_thankyou/',
+  orderUrl: 'http://202.103.68.62:9093/orders/train_thankyou/',
   //[城市选择页 layout/TrainCity.js]
   stationsArrInit: [
     {cn:'北京', code:'BJP', en:'Beijing'}, 
@@ -159,7 +160,7 @@ const initStates = Map({
     agePlaceholder: '例如：成人/儿童',
     totalTitle: '价格合计，包含含卡费和服务费：',
     nextStepLinker: '下一步',
-    bookNpay: '下单 & 支付',
+    bookNpay: '下单',
     bookTips: '*为了保证您的预定有效，请尽快完成付款，付款后会在24小时内帮您锁定车次。',
     requiredAge: '请填写乘客年龄。',
     requiredName: '请填写乘客姓名。',
@@ -174,11 +175,13 @@ const initStates = Map({
     'lEmail': '请填写联系人的Email：jobs@facebook.com。',
     'lNation': '请填写联系人的国籍。',
     'lPhone': '请填写联系人的联系手机。',
-    'nations': [{
-      '日本':2,
-      '中国':1,
-      'その他':0
-    }]
+    'chooseNationText': '选择国籍',
+    'tryAgainText': '请重新提交',
+    'nations': [
+      { label: '日本', value: ['日本', 2] },
+      { label: '中国', value: ['中国', 1] },
+      { label: 'その他', value: ['その他', 0] },
+    ],
   },
 });
 
