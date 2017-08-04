@@ -2,6 +2,7 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { NavBar, NoticeBar, Result, Icon, WhiteSpace,WingBlank } from 'antd-mobile';
 import { connect } from 'react-redux';
+import { setOrderResult } from '../actions/Trains';
 
 class TrainThankyou extends React.PureComponent {
 
@@ -14,6 +15,7 @@ class TrainThankyou extends React.PureComponent {
   }
 
   goBack = () => {
+    this.props.setOrderResult(null)
     this.props.history.push('/booklinkman');
   }
 
@@ -55,6 +57,7 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  setOrderResult: (state) => dispatch(setOrderResult(state))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainThankyou);
