@@ -173,7 +173,12 @@ const initStates = Map({
     'lName': '请填写联系人的姓名。',
     'lEmail': '请填写联系人的Email：jobs@facebook.com。',
     'lNation': '请填写联系人的国籍。',
-    'lPhone': '请填写联系人的联系手机。'
+    'lPhone': '请填写联系人的联系手机。',
+    'nations': [{
+      '日本':2,
+      '中国':1,
+      'その他':0
+    }]
   },
 });
 

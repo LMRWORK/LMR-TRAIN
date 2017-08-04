@@ -1,9 +1,20 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { List, NavBar, Flex, WhiteSpace, WingBlank, Button, InputItem, Toast } from 'antd-mobile';
+import { List, NavBar, Flex, WhiteSpace, WingBlank, Button, InputItem, Toast, ActionSheet } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setNoSearch, setLinkman, ajaxOrder } from '../actions/Trains';
 import Loading from '../components/Loading';
+
+// fix touch to scroll background page on iOS
+// https://github.com/ant-design/ant-design-mobile/issues/307
+// https://github.com/ant-design/ant-design-mobile/issues/163
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+  wrapProps = {
+    onTouchStart: e => e.preventDefault(),
+  };
+}
 
 class TrainBookLinkman extends React.PureComponent {
 
@@ -35,7 +46,6 @@ class TrainBookLinkman extends React.PureComponent {
       nation: lNation,
       phone: lPhone,
     });
-    
   }
 
   //预定支付
@@ -140,6 +150,23 @@ class TrainBookLinkman extends React.PureComponent {
     this.props.history.push('/book');
   }
 
+  selectNation = () => {
+    const BUTTONS = ['操作一', '操作二', '操作三', '删除', '取消'];
+    ActionSheet.showActionSheetWithOptions({
+      options: BUTTONS,
+      cancelButtonIndex: BUTTONS.length - 1,
+      destructiveButtonIndex: BUTTONS.length - 2,
+      // title: '标题',
+      message: '我是描述我是描述',
+      maskClosable: true,
+      'data-seed': 'logId',
+      wrapProps,
+    },
+    (buttonIndex) => {
+      console.log(BUTTONS[buttonIndex]);
+    });
+  }
+
   render() {
     //console.log("🔥 TrainBookLinkman.render()");
     //没有数据路由到搜索页
@@ -180,7 +207,7 @@ class TrainBookLinkman extends React.PureComponent {
               </InputItem>
             </List.Item>
             <List.Item className="imgAutoList">
-              <InputItem placeholder={this.props.lang.nationPlaceholder} id="lNation" error={this.state.lNationError} onErrorClick={() => alert(this.props.lang.lNation)} defaultValue={this.props.linkman ? this.props.linkman.nation : null}>
+              <InputItem placeholder={this.props.lang.nationPlaceholder} editable={false} onClick={this.selectNation} id="lNation" error={this.state.lNationError} onErrorClick={() => alert(this.props.lang.lNation)} defaultValue={this.props.linkman ? this.props.linkman.nation : null}>
                 {this.props.lang.nationText}
               </InputItem>
             </List.Item>
