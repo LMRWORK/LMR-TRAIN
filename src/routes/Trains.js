@@ -31,7 +31,7 @@ export const routes = (props) => {
 
   //动画API参考文档：https://motion.ant.design/api/queue-anim
   return (
-    <Route location={location} key={location.pathname} path={location.pathname} component={component} />
+    <Route location={location} key={location.key} path={location.pathname} component={component} />
   );
 
 }
