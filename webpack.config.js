@@ -15,8 +15,9 @@ const config = {
 
   entry: {
     bundle: path.resolve(__dirname, 'index.js'),
-    vendor1: ['react', 'react-dom', 'react-redux', 'immutable', 'rc-queue-anim', 'react-lazyload', 'redux-thunk'],
-    vendor2: ['react-router-dom', 'moment', 'query-string', 'whatwg-fetch'],
+    vendor1: ['react', 'react-dom', 'react-redux', 'immutable', 'redux-thunk', 'react-router-dom', 'query-string', 'react-lazyload', 'whatwg-fetch'],
+    vendor2: ['rc-queue-anim'],
+    vendor3: ['moment']
   },
 
   output: {
@@ -92,7 +93,7 @@ const config = {
     */
     //new webpack.EnvironmentPlugin(['NODE_ENV']),
 
-    new webpack.optimize.CommonsChunkPlugin({ name: ['vendor1', 'vendor2'], minChunks: 2 }),
+    new webpack.optimize.CommonsChunkPlugin({ name: ['vendor1', 'vendor2', 'vendor3'], minChunks: 2 }),
     new ExtractTextPlugin('bundle.css'),
   ],
 

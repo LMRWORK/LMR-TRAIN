@@ -181,7 +181,8 @@ const initStates = Map({
       { label: '日本', value: ['日本', 2] },
       { label: '中国', value: ['中国', 1] },
       { label: 'その他', value: ['その他', 0] },
-    ],
+    ], //国家列表
+    'selectedNation': [['日本', 2], ['中国', 1], ['その他', 0]] //默认国家
   },
 });
 

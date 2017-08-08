@@ -104,3 +104,6 @@ span.sFont {
 .imgAutoList.forss {
   padding-left: 1.2rem;
 }
+.imgAutoList .am-list-extra {
+  display: none;
+}

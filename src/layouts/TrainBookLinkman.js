@@ -14,13 +14,14 @@ class TrainBookLinkman extends React.PureComponent {
       lNameError: false,
       lEmailError: false,
       lPhoneError: false,
-      lNationError: false
+      lNationError: false,
+      selectedNation: null
     };
     //console.log('😃 TrainBookLinkman', props);
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.log(nextProps);
+    //console.log(nextProps);
     if (nextProps.orderState) {
       if (nextProps.orderState.status == 'ok') {
         Toast.hide();
@@ -164,6 +165,8 @@ class TrainBookLinkman extends React.PureComponent {
       nationId: lNation[1],
       phone: lPhone,
     });
+    //更新state
+    this.setState({'selectedNation': value});
   }
 
   render() {
@@ -205,7 +208,7 @@ class TrainBookLinkman extends React.PureComponent {
                 {this.props.lang.emailText}
               </InputItem>
             </List.Item>
-            <Picker data={this.props.lang.nations} cols={1} onOk={(value) => this.selectNation(value)} okText={this.props.lang.okText} dismissText={this.props.lang.searchCancel} extra="">
+            <Picker data={this.props.lang.nations} cols={1} value={this.state.selectedNation} onOk={(value) => this.selectNation(value)} okText={this.props.lang.okText} dismissText={this.props.lang.searchCancel} extra="">
               <List.Item className="imgAutoList">
                 <InputItem placeholder={this.props.lang.nationPlaceholder} editable={false} id="lNation" error={this.state.lNationError} onErrorClick={() => alert(this.props.lang.lNation)} value={this.props.linkman ? this.props.linkman.nation : null} data-ref={this.props.linkman ? this.props.linkman.nationId : null}>
                   {this.props.lang.nationText}
@@ -252,7 +255,7 @@ const mapStateToProps = (store) => ({
   linkman: store.get('linkman'),
   orderUrl: store.get('orderUrl'),
   orderState: store.get('orderState'),
-  totalFee: store.get('totalFee'),
+  totalFee: store.get('totalFee')
 });
 
 const mapDispatchToProps = (dispatch) => ({

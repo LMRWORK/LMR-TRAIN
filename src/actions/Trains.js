@@ -102,7 +102,7 @@ export const fetchTrains = (url, fromStation, toStation, startDate) => {
       })
       .then((json) => {
         //拿到文本，然后dispatch action
-        ////console.log(json);
+        //console.log(json);
         dispatch(setTrainsResult(json));
       });
   }
