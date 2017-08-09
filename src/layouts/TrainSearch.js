@@ -221,12 +221,12 @@ class TrainSearch extends React.PureComponent {
                     <div className="sEnd">{i.ArriveTime}</div>
                   </div>
                   <div className="flex-item flex-grow-6">
+                    { i.IsBookable ? '' : <div className="sellout-text"><Icon type="cross-circle" size="xxs"/> <span>{this.props.lang.selloutText}</span></div> }
                     <div className="sRun">{this.props.lang.needTime} {i.RunTime}</div>
                     <div className="sFrom">{i.DepartStation}</div>
                     <div className="sTo">{i.ArriveStation}</div>
                   </div>
-                  <div className="flex-item flex-grow-2">
-                    { i.IsBookable ? '' : <div className="sellout-text"><Icon type="cross-circle" size="xxs"/> <span>{this.props.lang.selloutText}</span></div> }
+                  <div className="flex-item flex-grow-2 none">
                     <div className="sSeat"><img src={this.props.lang.seatIcon}/> {i.CheapSeat.SeatName} </div>
                     <div className="sPrice"> <img src={this.props.lang.priceIcon}/> {this.props.lang.priceMarkBegin+i.CheapSeat.SeatPrice+this.props.lang.priceMarkAfter} </div>
                   </div>

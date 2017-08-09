@@ -19,7 +19,7 @@ switch (document.domain) {
     moment.locale('ru');
     break;
   default:
-    moment.locale('it');
+    moment.locale('es');
 }
 
 //初始化store
@@ -43,10 +43,10 @@ const initStates = Map({
   //[全局 api] - /public/data 模拟接口返回数据，生产环境请替换成对应的接口。
   stationsUrl: '/public/data/stations.txt',
   //fetchTrainsUrl: '/public/data/fetchTrain.txt',
-  fetchTrainsUrl: 'http://202.103.68.62:9093/index.php/tools/tt/',
+  fetchTrainsUrl: 'http://202.103.68.62:9096/index.php/tools/tt/',
   //表单提交
   //orderUrl: 'https://www.arachina.com/orders/train_thankyou/',
-  orderUrl: 'http://202.103.68.62:9093/orders/train_thankyou/',
+  orderUrl: 'http://202.103.68.62:9096/orders/train_thankyou/',
   //[城市选择页 layout/TrainCity.js]
   stationsArrInit: [
     {cn:'北京', code:'BJP', en:'Beijing'}, 
@@ -64,6 +64,7 @@ const initStates = Map({
   filterType: [], //过滤条件数组：highSpeed、slowSpeed、time0006、time0612、time1218、time1824
   //[多语言支持 language]
   lang: {
+    //
     //[全局 图片，上线后请替换成cdn图源]
     cityIcon: '/public/img/city.png',
     dateIcon: '/public/img/date.png',
@@ -104,12 +105,12 @@ const initStates = Map({
     priceMarkAfter: '',   //货币后缀
     //datepicker
     datepicker: {
-      okText: '確認',
-      dismissText: 'キャンセル',
+      okText: '确认',
+      dismissText: '取消',
       year: '年',
       month: '月',
       day: '日',
-      hour: '時',
+      hour: '时',
       minute: '分'
     },
     //[首页 layout/TrainIndex.js]
@@ -182,7 +183,7 @@ const initStates = Map({
       { label: '中国', value: ['中国', 1] },
       { label: 'その他', value: ['その他', 0] },
     ], //国家列表
-    'selectedNation': [['日本', 2], ['中国', 1], ['その他', 0]] //默认国家
+    'selectedNation': null //保存已选择的国籍
   },
 });
 

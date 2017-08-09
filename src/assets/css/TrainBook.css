@@ -22,6 +22,7 @@
 #trainInfo .bTime {
   position: relative;
   left: -0.1rem;
+  text-align: right;
 }
 .bTotal {
   color: #d81e06;

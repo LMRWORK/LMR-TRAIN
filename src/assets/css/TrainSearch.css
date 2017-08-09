@@ -43,6 +43,11 @@
   padding-left: 0.8rem;
   position: relative;
 }
+.sRun.sRunBook {
+  font-size: inherit;
+  padding-bottom: 0.3rem;
+  padding-left: 0.8rem;
+}
 .sRun:before {
   width: 0.5rem;
   height: 0.5rem;
@@ -53,6 +58,9 @@
   left: 0;
   top: 0;
 }
+.sRun.sRunBook:before {
+  top: 0.14rem;
+}
 .sRun:after {
   width: 0.2rem;
   height: 0.2rem;
@@ -62,6 +70,9 @@
   border-bottom: 1px solid #000;
   left: 0.1rem;
   top: 0.1rem;
+}
+.sRun.sRunBook:after {
+  top: 0.24rem;
 }
 .sFrom {
   color: #555;
@@ -180,7 +191,9 @@
 .sellout-text{
   color: #a12023;
   position: absolute;
-  top: 0.3rem;
+  top: 0.4rem;
+  left: 6rem;
+  font-size: 0.6rem;
 }
 .sellout-text span {
   vertical-align: text-top;
@@ -264,6 +277,9 @@
 .filterOk:active, .filterReset:active {
   background: #eee;
   border-radius: 0.2rem;
+}
+.none {
+  display: none;
 }
 /*flex*/
 .flex-box {
