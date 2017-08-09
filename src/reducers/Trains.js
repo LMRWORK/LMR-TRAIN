@@ -109,12 +109,12 @@ const trainReducer = (state=initStates, action) => {
       //console.log('SET_TOTAL_PRICE', selectTrain, selectSeat, passengers);
       passengers.forEach(i => {
         if (i.age == 0 || i.age == null) {
-          pure += Math.ceil(selectSeat.SeatPriceRMB * exRate);
-          price += Math.ceil((selectSeat.SeatPriceRMB + selectSeat.ServiceCharge) * exRate);
+          pure += Math.ceil(selectSeat.SeatPriceRMB / exRate);
+          price += Math.ceil((selectSeat.SeatPriceRMB + selectSeat.ServiceCharge) / exRate);
         } else {
-          pure += Math.ceil(selectSeat.SeatPriceRMB * selectSeat.ChildDiscut * exRate);
+          pure += Math.ceil(selectSeat.SeatPriceRMB * selectSeat.ChildDiscut / exRate);
           //小孩折扣系数计算放在服务器端完成，测试时取0.5
-          price += Math.ceil((selectSeat.SeatPriceRMB * selectSeat.ChildDiscut + selectSeat.ServiceCharge) * exRate);
+          price += Math.ceil((selectSeat.SeatPriceRMB * selectSeat.ChildDiscut + selectSeat.ServiceCharge) / exRate);
         }
       })
       return state.set('totalPrice', Math.ceil(price)).set('totalFee', Math.ceil(price - pure));

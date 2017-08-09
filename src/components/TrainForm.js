@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { setSelectSeat, setPassengers, setTotalPrice, postForm } from '../actions/Trains';
 
 const RadioItem = Radio.RadioItem;
+const Brief = List.Item.Brief;
+
 //乘客信息模板 mutable类型
 const passengerInfo = {
   age: null,       // 0 成人，1 儿童
@@ -244,12 +246,12 @@ class TrainForm extends React.PureComponent {
       <div>
         <List renderHeader={this.props.lang.selectSeatText}>
         { this.props.selectTrain.SeatList.map(i => (
-          <RadioItem thumb={this.props.lang.seatO2Icon} key={i.SeatCode} checked={ selectSeatCode == i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
-            <Flex>
-              <Flex.Item className="flex-grow-7">{i.SeatName}</Flex.Item>
-              <Flex.Item className="flex-grow-5">{this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span></Flex.Item>
-              <Flex.Item className="flex-grow-6">{i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span></Flex.Item>
-            </Flex>
+          <RadioItem multipleLine thumb={this.props.lang.seatO2Icon} key={i.SeatCode} checked={ selectSeatCode == i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
+            {i.SeatName} 
+            <Brief onClick={() => alert('xxx')}>
+            {this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span>
+            , &nbsp;&nbsp; {i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span>
+            </Brief>
           </RadioItem>
         ))}
         </List>
