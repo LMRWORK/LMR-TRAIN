@@ -45,10 +45,10 @@ class TrainBook extends React.PureComponent {
 
   render() {
     //console.log("🔥 TrainBook.render()");
-    //没有数据路由到搜索页
+    //没有数据路由到首页
     if (!this.props.selectTrain) {
       this.props.setNoSearch(false);
-      this.props.history.push('/search');
+      this.props.history.push('/');
       return false;
     }
     return (

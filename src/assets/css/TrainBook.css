@@ -88,10 +88,8 @@
 }
 span.sFont {
   font-size: 0.6rem;
-  float: right;
-  position: relative;
-  top: 0.1rem;
 }
+
 #guestinfo {
   border: 5px solid darkred;
   padding: 0 0 0.6rem;
@@ -107,4 +105,20 @@ span.sFont {
 }
 .imgAutoList .am-list-extra {
   display: none;
+}
+.passWrap input {
+  font-weight: bold;
+  font-size: 0.62rem!important;
+}
+.passWrap input::-webkit-input-placeholder {
+  font-weight: normal;
+  font-size:inherit;
+}
+.passWrap input::-moz-placeholder {
+  font-weight: normal;
+  font-size:inherit;
+}
+.passWrap input:-ms-input-placeholder {
+  font-weight: normal;
+  font-size:inherit;
 }

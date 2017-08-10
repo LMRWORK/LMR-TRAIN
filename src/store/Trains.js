@@ -171,6 +171,7 @@ const initStates = Map({
     endDateText: '抵达日期',
     checkTrainText: '请仔细确认列车信息。',
     checkPersonText: '请仔细确认乘客信息。',
+    cancelSubOne: '请确认或取消删除此乘车信息？',
     linkmanHead: '请填写联系人信息，我们会在24小时内联系您。',
     'lName': '请填写联系人的姓名。',
     'lEmail': '请填写联系人的Email：jobs@facebook.com。',
@@ -183,7 +184,11 @@ const initStates = Map({
       { label: '中国', value: ['中国', 1] },
       { label: 'その他', value: ['その他', 0] },
     ], //国家列表
-    'selectedNation': null //保存已选择的国籍
+    'selectedNation': null, //保存已选择的国籍
+    //[Thankyou页面 layout/TrainThankyou.js]
+    thankyouH1Text: '感谢您的预定',
+    thankyouTitle: '预定成功',
+    thankyouMessage: '我们会在24小时内联系您，请注意查收邮件。',
   },
 });
 

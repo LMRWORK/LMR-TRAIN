@@ -185,14 +185,27 @@ class TrainBookLinkman extends React.PureComponent {
           </NavBar>
           <div id="guestinfo">
             <List renderHeader={this.props.lang.checkTrainText} id="payDiv1">
-              <List.Item thumb={this.props.lang.trainIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.TrainCode}</span> <span className="sFont">{this.props.selectSeat.SeatName}</span></List.Item>
-              <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.DepartStation}</span> <span className="sFont">{this.props.startDate.format('lll')}</span></List.Item>
-              <List.Item thumb={this.props.lang.cityIcon}><span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.ArriveStation}</span> <span className="sFont">{this.props.arriveDate.format('lll')}</span></List.Item>
+              <List.Item thumb={this.props.lang.trainIcon}>
+                <span style={{fontSize:'0.6rem'}}>{this.props.selectTrain.TrainCode}</span>:&nbsp;
+                <span className="sFont">{this.props.selectSeat.SeatName}</span>
+              </List.Item>
+              <List.Item thumb={this.props.lang.cityIcon}>
+                <span style={{fontSize:'0.6rem'}}>{this.props.lang.fromStationLabel}: {this.props.selectTrain.DepartStation}</span> 
+                <br/>
+                <span className="sFont">{this.props.startDate.format('lll')}</span>
+              </List.Item>
+              <List.Item thumb={this.props.lang.cityIcon}>
+                <span style={{fontSize:'0.6rem'}}>{this.props.lang.toStationLabel}: {this.props.selectTrain.ArriveStation}</span>
+                <br/>
+                <span className="sFont">{this.props.arriveDate.format('lll')}</span>
+              </List.Item>
             </List>
             <List renderHeader={this.props.lang.checkPersonText} id="payDiv2">
             {this.props.passengers.map( i => (
               <List.Item thumb={this.props.lang.nameIcon} extra={i.age ? this.props.lang.childText : this.props.lang.adultText} align="top" multipleLine>
-                <span style={{fontSize:'0.6rem'}}>{i.name}</span> <List.Item.Brief>{i.passport}</List.Item.Brief>
+                <span style={{fontSize:'0.6rem'}}>{this.props.lang.nameText}: {i.name}</span> 
+                <br/>
+                <span className="sFont">{this.props.lang.passportText}: {i.passport}</span>
               </List.Item>
             ))}
             </List>

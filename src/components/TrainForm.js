@@ -11,11 +11,11 @@ const Brief = List.Item.Brief;
 //乘客信息模板 mutable类型
 const passengerInfo = {
   age: null,       // 0 成人，1 儿童
-  name:null,      // 姓名
-  passport:null,  // 护照
-  ageError:false,        // 是否填写年龄
-  nameError:false,       // 是否填写姓名
-  passportError:false,   // 是否填写护照
+  name: '',      // 姓名
+  passport: '',  // 护照
+  ageError: false,        // 是否填写年龄
+  nameError: false,       // 是否填写姓名
+  passportError: false,   // 是否填写护照
   showAdd: true,  // 是否显示增加按钮
   showSub: false, // 是否显示减少按钮
   price: 0,
@@ -114,6 +114,8 @@ class TrainForm extends React.PureComponent {
 
   //减少一名乘客
   subOne = (id) => {
+    const cf = window.confirm(this.props.lang.cancelSubOne);
+    if (!cf) return this.setState({ lastAction: 'cancelSubOne' });
     //减少一名乘客
     this.props.passengers.splice(id, 1); 
     //按钮显示逻辑
@@ -248,10 +250,12 @@ class TrainForm extends React.PureComponent {
         { this.props.selectTrain.SeatList.map(i => (
           <RadioItem multipleLine thumb={this.props.lang.seatO2Icon} key={i.SeatCode} checked={ selectSeatCode == i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
             {i.SeatName} 
-            <Brief onClick={() => alert('xxx')}>
-            {this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span>
-            , &nbsp;&nbsp; {i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span>
-            </Brief>
+            <div onClick={() => this.onSelectSeat(i)}>
+              <Brief>
+              {this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span>
+              ,&nbsp;{i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span>
+              </Brief>
+            </div>
           </RadioItem>
         ))}
         </List>
@@ -277,12 +281,12 @@ class TrainForm extends React.PureComponent {
               <List.Item className="passBtn">
                 <Flex>
                   {i.showSub ?
-                  <Flex.Item className="subOne" onTouchEnd={() => this.subOne(id)}>
+                  <Flex.Item className="subOne" onClick={() => this.subOne(id)}>
                     <img src={this.props.lang.subIcon} className="subOneIcon"/>
                     {this.props.lang.subOneText}
                   </Flex.Item> :''}
                   {i.showAdd ?
-                  <Flex.Item className="addOne" onTouchEnd={() => this.addOne(id)}>
+                  <Flex.Item className="addOne" onClick={() => this.addOne(id)}>
                     <img src={this.props.lang.addIcon} className="addOneIcon"/>
                     {this.props.lang.addOneText}
                   </Flex.Item> :''}
