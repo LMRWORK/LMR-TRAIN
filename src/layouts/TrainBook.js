@@ -17,20 +17,11 @@ class TrainBook extends React.PureComponent {
     //console.log('😃 TrainBook', props);
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    //console.log('TrainBook.componentWillReceiveProps', nextProps);
-  }
-
   componentDidMount = () => {
     //从表单页返回时，不刷新结果。
-    this.props.setNoSearch(true);
-  }
-
-  shouldComponentUpdate = (nextProps, nextState) => {
-    //console.log('TrainBook.shouldComponentUpdate');
-    ////console.log(nextProps.passengers);
-    ////console.log(this.props.passengers);
-    return true;
+    if (this.props.selectTrain) {
+      this.props.setNoSearch(true);
+    }
   }
 
   //显示发车时间
@@ -44,13 +35,13 @@ class TrainBook extends React.PureComponent {
   }
 
   render() {
-    //console.log("🔥 TrainBook.render()");
-    //没有数据路由到首页
+    //没有数据就路由到首页
     if (!this.props.selectTrain) {
       this.props.setNoSearch(false);
       this.props.history.push('/');
       return false;
     }
+    //console.log("🔥 TrainBook.render()");
     return (
       <QueueAnim className="router-wrap" type="right">
         <div className="bookPage" key="1">

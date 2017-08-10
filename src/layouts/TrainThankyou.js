@@ -29,7 +29,7 @@ class TrainThankyou extends React.PureComponent {
             </NavBar>
             <WhiteSpace />
             <Result
-                img={<Icon type="check-circle" className="icon" style={{ fill: '#1F90E6', width: '2.2rem', height: '2.2rem' }} />}
+                img={<Icon type="check-circle" className="icon" style={{ fill: '#1F90E6', width: '2.4rem', height: '2.4rem' }} />}
                 title={this.props.lang.thankyouTitle}
                 message={this.props.lang.thankyouMessage}
               />

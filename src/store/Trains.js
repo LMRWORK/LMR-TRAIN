@@ -62,6 +62,7 @@ const initStates = Map({
     {cn:'昆明', code:'KMM', en:'Kunming'},
   ],
   filterType: [], //过滤条件数组：highSpeed、slowSpeed、time0006、time0612、time1218、time1824
+  'selectedNation': null, //保存已选择的国籍
   //[多语言支持 language]
   lang: {
     //
@@ -182,9 +183,12 @@ const initStates = Map({
     'nations': [
       { label: '日本', value: ['日本', 2] },
       { label: '中国', value: ['中国', 1] },
-      { label: 'その他', value: ['その他', 0] },
+      { label: '西班牙', value: ['西班牙', 26] },
+      { label: '墨西哥', value: ['墨西哥', 32] },
+      { label: '意大利', value: ['意大利', 9] },
+      { label: '法国', value: ['法国', 8] },
+      { label: '其他', value: ['其他', 0] },
     ], //国家列表
-    'selectedNation': null, //保存已选择的国籍
     //[Thankyou页面 layout/TrainThankyou.js]
     thankyouH1Text: '感谢您的预定',
     thankyouTitle: '预定成功',

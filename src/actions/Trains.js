@@ -180,3 +180,9 @@ export const setLinkman = (linkman) => ({
   type: 'SET_LINKMAN',
   linkman
 });
+
+//设置联系人国籍选项状态
+export const setLinkmanNation = (nation) => ({
+  type: 'SET_LINKMAN_NATION',
+  nation
+});

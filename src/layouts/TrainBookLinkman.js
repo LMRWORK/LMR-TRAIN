@@ -2,7 +2,7 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { List, NavBar, Flex, WhiteSpace, WingBlank, Button, InputItem, Toast, Picker } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { setNoSearch, setLinkman, ajaxOrder } from '../actions/Trains';
+import { setNoSearch, setLinkman, ajaxOrder, setLinkmanNation } from '../actions/Trains';
 import Loading from '../components/Loading';
 
 class TrainBookLinkman extends React.PureComponent {
@@ -166,7 +166,7 @@ class TrainBookLinkman extends React.PureComponent {
       phone: lPhone,
     });
     //更新state
-    this.setState({'selectedNation': value});
+    this.props.setLinkmanNation(value);
   }
 
   render() {
@@ -221,7 +221,7 @@ class TrainBookLinkman extends React.PureComponent {
                 {this.props.lang.emailText}
               </InputItem>
             </List.Item>
-            <Picker data={this.props.lang.nations} cols={1} value={this.state.selectedNation} onOk={(value) => this.selectNation(value)} okText={this.props.lang.okText} dismissText={this.props.lang.searchCancel} extra="">
+            <Picker data={this.props.lang.nations} cols={1} value={this.props.selectedNation} onOk={(value) => this.selectNation(value)} okText={this.props.lang.okText} dismissText={this.props.lang.searchCancel} extra="">
               <List.Item className="imgAutoList">
                 <InputItem placeholder={this.props.lang.nationPlaceholder} editable={false} id="lNation" error={this.state.lNationError} onErrorClick={() => alert(this.props.lang.lNation)} value={this.props.linkman ? this.props.linkman.nation : null} data-ref={this.props.linkman ? this.props.linkman.nationId : null}>
                   {this.props.lang.nationText}
@@ -268,13 +268,15 @@ const mapStateToProps = (store) => ({
   linkman: store.get('linkman'),
   orderUrl: store.get('orderUrl'),
   orderState: store.get('orderState'),
-  totalFee: store.get('totalFee')
+  totalFee: store.get('totalFee'),
+  selectedNation: store.get('selectedNation'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setLinkman: (linkman) => dispatch(setLinkman(linkman)),
   setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch)),
-  ajaxOrder: (data) => dispatch(ajaxOrder(data))
+  ajaxOrder: (data) => dispatch(ajaxOrder(data)),
+  setLinkmanNation: (nation) => dispatch(setLinkmanNation(nation))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainBookLinkman);

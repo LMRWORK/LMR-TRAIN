@@ -268,6 +268,11 @@ const trainReducer = (state=initStates, action) => {
     case 'SET_ORDER_RESULT':
       return state.set('orderState', action.orderState);
       break;
+    
+    //设置国籍选项状态
+    case 'SET_LINKMAN_NATION':
+      return state.set('selectedNation', action.nation);
+      break;
 
     default:
       return state;
