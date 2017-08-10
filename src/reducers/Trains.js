@@ -106,7 +106,7 @@ const trainReducer = (state=initStates, action) => {
       const selectSeat = state.get('selectSeat');
       const passengers = state.get('passengers');
       const exRate = state.get('trainsResult').ExRate;
-      //console.log('SET_TOTAL_PRICE', selectTrain, selectSeat, passengers);
+      const cardFee = state.get('trainsResult').CardFee;
       passengers.forEach(i => {
         if (i.age == 0 || i.age == null) {
           pure += Math.ceil(selectSeat.SeatPriceRMB / exRate);
@@ -117,6 +117,7 @@ const trainReducer = (state=initStates, action) => {
           price += Math.ceil((selectSeat.SeatPriceRMB * selectSeat.ChildDiscut + selectSeat.ServiceCharge) / exRate);
         }
       })
+      price = Math.ceil(price * cardFee);
       return state.set('totalPrice', Math.ceil(price)).set('totalFee', Math.ceil(price - pure));
 
     //不重新搜索的标志。
