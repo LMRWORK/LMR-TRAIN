@@ -160,7 +160,7 @@ const initStates = Map({
     ageTips: '注意：身高小于1.5米的儿童，享受儿童折扣：坐票1/2，卧铺3/4。',
     ageText: '年龄',
     agePlaceholder: '例如：成人/儿童',
-    totalTitle: '价格合计，包含含卡费和服务费：',
+    totalTitle: '价格合计，包含卡费和服务费：',
     nextStepLinker: '下一步',
     bookNpay: '下单',
     bookTips: '*为了保证您的预定有效，请尽快完成付款，付款后会在24小时内帮您锁定车次。',
