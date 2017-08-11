@@ -100,8 +100,8 @@ const trainReducer = (state=initStates, action) => {
 
     //设置总价格。
     case 'SET_TOTAL_PRICE':
-      let price = 0;
-      let pure = 0;
+      let pure = 0;   //裸价
+      let price = 0;  //卖价
       const selectTrain = state.get('selectTrain');
       const selectSeat = state.get('selectSeat');
       const passengers = state.get('passengers');
@@ -109,16 +109,15 @@ const trainReducer = (state=initStates, action) => {
       const cardFee = state.get('trainsResult').CardFee;
       passengers.forEach(i => {
         if (i.age == 0 || i.age == null) {
-          pure += Math.ceil(selectSeat.SeatPriceRMB / exRate);
-          price += Math.ceil((selectSeat.SeatPriceRMB + selectSeat.ServiceCharge) / exRate);
+          pure += selectSeat.SeatPriceRMB;
         } else {
-          pure += Math.ceil(selectSeat.SeatPriceRMB * selectSeat.ChildDiscut / exRate);
           //小孩折扣系数计算放在服务器端完成，测试时取0.5
-          price += Math.ceil((selectSeat.SeatPriceRMB * selectSeat.ChildDiscut + selectSeat.ServiceCharge) / exRate);
+          pure += Math.ceil(selectSeat.SeatPriceRMB * selectSeat.ChildDiscut);
         }
+        price += pure + selectSeat.ServiceCharge;
       })
-      price = Math.ceil(price * cardFee);
-      return state.set('totalPrice', Math.ceil(price)).set('totalFee', Math.ceil(price - pure));
+      price = Math.ceil(price * cardFee / exRate);
+      return state.set('totalPrice', price).set('totalFee', price - Math.ceil(pure / exRate));
 
     //不重新搜索的标志。
     case 'SET_NOSEARCH':

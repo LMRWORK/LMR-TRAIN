@@ -250,7 +250,7 @@ class TrainForm extends React.PureComponent {
         { this.props.selectTrain.SeatList.map(i => (
           <RadioItem multipleLine thumb={this.props.lang.seatO2Icon} key={i.SeatCode} checked={ selectSeatCode == i.SeatCode} onChange={() => this.onSelectSeat(i)} disabled={i.SeatInventory === 0}>
             {i.SeatName} 
-            <div onClick={() => this.onSelectSeat(i)}>
+            <div onClick={() => i.SeatInventory === 0 || this.onSelectSeat(i)}>
               <Brief>
               {this.props.lang.priceMarkBegin}{i.SeatPrice}{this.props.lang.priceMarkAfter} <span className="bookSmall">{this.props.lang.perPerson}</span>
               ,&nbsp;{i.SeatInventory} <span className="bookSmall">{this.props.lang.leavingTiket}</span>
