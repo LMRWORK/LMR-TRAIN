@@ -1,6 +1,6 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { NavBar, Result, Icon, WhiteSpace, WingBlank } from 'antd-mobile';
+import { NavBar, Result, Icon, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { setOrderResult } from '../actions/Trains';
 
@@ -13,6 +13,29 @@ class TrainThankyou extends React.PureComponent {
       props.history.push('/');
     }
   }
+
+  pay_massage = () => (
+    <div>
+      {this.props.lang.payMessage}<br/><br/>
+      <div className="payText">
+        {this.props.lang.totalTitle}
+        {this.props.lang.priceMarkBegin}{this.props.totalPrice}{this.props.lang.priceMarkAfter}
+      </div>
+      <a href={this.props.orderState.payurl} target="_blank"><img src={this.props.lang.payImage} width="500"/></a><br/><br/>
+      {this.props.lang.payThanksText2}
+      <WingBlank><Button className="btn" type="primary" style={{margin:'0.5rem 0'}} onClick={ () => this.props.history.push('/') }>{this.props.lang.paySearchNext}</Button></WingBlank>
+      {this.props.lang.payThanksLinker}
+    </div>
+  );
+
+  nopay_massage = () => (
+    <div>
+      {this.props.lang.thankyouMessage}<br/><br/>
+      {this.props.lang.payThanksText}
+      <WingBlank><Button className="btn" type="primary" style={{margin:'0.5rem 0'}} onClick={ () => this.props.history.push('/') }>{this.props.lang.paySearchNext}</Button></WingBlank>
+      {this.props.lang.payThanksLinker}
+    </div>
+  );
 
   goBack = () => {
     this.props.setOrderResult(null)
@@ -27,12 +50,12 @@ class TrainThankyou extends React.PureComponent {
             <NavBar iconName={null} leftContent={[<img className="chtBack" src={this.props.lang.backIcon}/>, this.props.lang.navibarLeftBack]} onLeftClick={this.goBack}>
               <h1 id="TrainIndex-h1">{this.props.lang.thankyouH1Text}</h1>
             </NavBar>
-            <WhiteSpace />
             <Result
-                img={<Icon type="check-circle" className="icon" style={{ fill: '#1F90E6', width: '2.4rem', height: '2.4rem' }} />}
-                title={this.props.lang.thankyouTitle}
-                message={this.props.lang.thankyouMessage}
-              />
+              img={<Icon type="check-circle" className="icon" style={{ fill: '#1F90E6', width: '2.4rem', height: '2.4rem' }} />}
+              title={this.props.lang.thankyouTitle}
+              message={(this.props.orderState && this.props.orderState.payurl) ? this.pay_massage() : this.nopay_massage()}
+            />
+            <WhiteSpace />
           </div>
         </QueueAnim>
       </div>

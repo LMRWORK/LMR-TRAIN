@@ -192,7 +192,13 @@ const initStates = Map({
     //[Thankyou页面 layout/TrainThankyou.js]
     thankyouH1Text: '感谢您的预定',
     thankyouTitle: '预定成功',
-    thankyouMessage: '我们会在24小时内联系您，请注意查收邮件。',
+    thankyouMessage: '我们已经接收到您的火车预定信息，并会在24小时内进行预定操作。',
+    payMessage: '你可以点击下方的Paypel按钮在线支付票款，以便我们尽快帮您锁定火车座位。',
+    payImage: '//data.chinahighlights.com/pic/paypaloffer-button.jpg',
+    payThanksText: '感谢您的预定，你可以点击下方',
+    payThanksText2: '在支付完成后，你可以点击下方',
+    payThanksLinker: '如果您有任何其他疑问，请联系: contact@arachina.com 或 +86-2885311/2885339。',
+    paySearchNext: '继续预定其他车次',
   },
 });
 

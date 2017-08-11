@@ -106,6 +106,11 @@ span.sFont {
 .imgAutoList .am-list-extra {
   display: none;
 }
+
+.payText {
+  color: darkcyan;
+  font-size: 0.6rem;
+}
 /*
 .passWrap input {
   font-weight: bold;
