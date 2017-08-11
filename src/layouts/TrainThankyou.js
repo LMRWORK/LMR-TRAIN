@@ -2,7 +2,7 @@ import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import { NavBar, Result, Icon, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { setOrderResult } from '../actions/Trains';
+import { setOrderResult, setNoSearch } from '../actions/Trains';
 
 class TrainThankyou extends React.PureComponent {
 
@@ -23,7 +23,7 @@ class TrainThankyou extends React.PureComponent {
       </div>
       <a href={this.props.orderState.payurl} target="_blank"><img src={this.props.lang.payImage} width="500"/></a><br/><br/>
       {this.props.lang.payThanksText2}
-      <WingBlank><Button className="btn" type="primary" style={{margin:'0.5rem 0'}} onClick={ () => this.props.history.push('/') }>{this.props.lang.paySearchNext}</Button></WingBlank>
+      <WingBlank><Button className="btn" type="primary" style={{margin:'0.5rem 0'}} onClick={ () => this.backHome() }>{this.props.lang.paySearchNext}</Button></WingBlank>
       {this.props.lang.payThanksLinker}
     </div>
   );
@@ -32,7 +32,7 @@ class TrainThankyou extends React.PureComponent {
     <div>
       {this.props.lang.thankyouMessage}<br/><br/>
       {this.props.lang.payThanksText}
-      <WingBlank><Button className="btn" type="primary" style={{margin:'0.5rem 0'}} onClick={ () => this.props.history.push('/') }>{this.props.lang.paySearchNext}</Button></WingBlank>
+      <WingBlank><Button className="btn" type="primary" style={{margin:'0.5rem 0'}} onClick={ () => this.backHome() }>{this.props.lang.paySearchNext}</Button></WingBlank>
       {this.props.lang.payThanksLinker}
     </div>
   );
@@ -40,6 +40,12 @@ class TrainThankyou extends React.PureComponent {
   goBack = () => {
     this.props.setOrderResult(null)
     this.props.history.push('/booklinkman');
+  }
+
+  backHome = () => {
+    this.props.setOrderResult(null);
+    this.props.setNoSearch(false);
+    this.props.history.push('/');
   }
 
   render() {
@@ -79,7 +85,8 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setOrderResult: (state) => dispatch(setOrderResult(state))
+  setOrderResult: (state) => dispatch(setOrderResult(state)),
+  setNoSearch: (noSearch) => dispatch(setNoSearch(noSearch)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainThankyou);
